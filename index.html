@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>China Awaits — Your Complete Travel Guide to China</title>
+  <meta name="description" content="Everything a foreign traveler needs to know about China — visa, cities, food, transport, hospitals, tips and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --red: #C0392B;
+      --red-dark: #922b21;
+      --gold: #D4AC0D;
+      --bg: #FAFAF8;
+      --bg2: #F3F1EC;
+      --text: #1a1a1a;
+      --text2: #5a5a5a;
+      --text3: #9a9a9a;
+      --border: rgba(0,0,0,0.09);
+      --radius: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,250,248,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 60px;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--red); font-weight: 700; text-decoration: none; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: 14px; color: var(--text2); font-weight: 400; transition: color .2s; }
+    .nav-links a:hover { color: var(--red); }
+    .nav-cta {
+      background: var(--red); color: #fff; border: none; padding: 8px 18px;
+      border-radius: 24px; font-size: 13px; font-weight: 500; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; display: flex; align-items: center; gap: 7px;
+      text-decoration: none;
+    }
+    .pulse { width: 7px; height: 7px; background: #4ade80; border-radius: 50%; animation: pulse 1.8s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.85)} }
+    .nav-mobile-toggle { display: none; background: none; border: none; font-size: 22px; cursor: pointer; color: var(--text); }
+
+    /* HERO */
+    .hero {
+      min-height: 560px;
+      background: linear-gradient(150deg, #7B1111 0%, #C0392B 45%, #C97B2A 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 5rem 2rem 5rem; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0; opacity: .06;
+      background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 5 L46 22 L64 16 L56 32 L74 40 L56 48 L64 64 L46 58 L40 75 L34 58 L16 64 L24 48 L6 40 L24 32 L16 16 L34 22 Z' fill='%23fff'/%3E%3C/svg%3E");
+      background-size: 80px 80px;
+    }
+    .hero-lanterns { position: absolute; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; padding: 0 3rem; font-size: 56px; opacity: .2; pointer-events: none; }
+    .hero-badge {
+      background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3);
+      color: #fff; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+      padding: 5px 16px; border-radius: 24px; margin-bottom: 1.2rem; position: relative;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif; color: #fff; font-size: clamp(36px, 6vw, 64px);
+      font-weight: 700; line-height: 1.08; margin-bottom: .8rem; position: relative;
+      text-shadow: 0 3px 24px rgba(0,0,0,.25);
+    }
+    .hero h1 em { color: #FFD700; font-style: normal; }
+    .hero-sub { color: rgba(255,255,255,.85); font-size: 18px; font-weight: 300; max-width: 520px; margin-bottom: 2.5rem; position: relative; }
+    .hero-search {
+      display: flex; width: 100%; max-width: 520px; background: #fff;
+      border-radius: 50px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,.22);
+      position: relative;
+    }
+    .hero-search input {
+      flex: 1; border: none; outline: none; padding: 15px 22px;
+      font-size: 15px; font-family: 'DM Sans', sans-serif; color: var(--text); background: transparent;
+    }
+    .hero-search button {
+      background: var(--red); color: #fff; border: none; padding: 15px 26px;
+      font-size: 14px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif;
+      border-radius: 0 50px 50px 0; transition: background .2s;
+    }
+    .hero-search button:hover { background: var(--red-dark); }
+    .hero-stats { display: flex; gap: 3rem; margin-top: 2.5rem; position: relative; }
+    .stat-n { font-size: 28px; font-weight: 700; color: #FFD700; }
+    .stat-l { font-size: 11px; color: rgba(255,255,255,.65); letter-spacing: 1.5px; text-transform: uppercase; }
+
+    /* SECTIONS */
+    .section { max-width: 860px; margin: 0 auto; padding: 4rem 2rem; }
+    .section-header { margin-bottom: 1.6rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; margin-bottom: .25rem; }
+    .section-sub { font-size: 15px; color: var(--text2); }
+
+    /* CITIES */
+    .cities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px; }
+    .city-card {
+      border-radius: var(--radius); overflow: hidden; position: relative; cursor: pointer;
+      aspect-ratio: 2/3; display: flex; flex-direction: column; justify-content: flex-end;
+      text-decoration: none; transition: transform .25s, box-shadow .25s;
+      box-shadow: 0 2px 8px rgba(0,0,0,.08);
+    }
+    .city-card:hover { transform: translateY(-5px); box-shadow: 0 12px 28px rgba(0,0,0,.15); }
+    .city-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 60px; }
+    .city-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.78) 0%, rgba(0,0,0,.08) 55%, transparent 100%); }
+    .city-info { position: relative; z-index: 1; padding: 12px; }
+    .city-name { color: #fff; font-size: 15px; font-weight: 500; }
+    .city-tag { color: rgba(255,255,255,.65); font-size: 11px; margin-top: 2px; }
+    .city-bj .city-bg { background: linear-gradient(135deg,#1a3557,#1e5fa8); }
+    .city-sh .city-bg { background: linear-gradient(135deg,#0f2c40,#0e7490); }
+    .city-gz .city-bg { background: linear-gradient(135deg,#1a3322,#15803d); }
+    .city-sz .city-bg { background: linear-gradient(135deg,#1c1040,#7c3aed); }
+    .city-cd .city-bg { background: linear-gradient(135deg,#3b1010,#c0392b); }
+
+    /* CATEGORIES */
+    .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 10px; }
+    .cat-item {
+      display: flex; flex-direction: column; align-items: center; gap: 7px;
+      padding: 1.1rem .5rem; border-radius: var(--radius);
+      border: 1px solid var(--border); background: #fff; cursor: pointer;
+      transition: border-color .2s, transform .2s; text-decoration: none; color: inherit;
+    }
+    .cat-item:hover { border-color: var(--red); transform: translateY(-2px); }
+    .cat-icon { font-size: 24px; }
+    .cat-label { font-size: 12px; color: var(--text2); text-align: center; line-height: 1.3; }
+
+    /* AI WIDGET */
+    .ai-box {
+      background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--red);
+      border-radius: var(--radius); padding: 1.5rem; display: flex; gap: 1rem;
+    }
+    .ai-avatar {
+      width: 44px; height: 44px; border-radius: 50%; background: var(--red);
+      display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;
+    }
+    .ai-name { font-size: 12px; font-weight: 500; color: var(--red); margin-bottom: 5px; letter-spacing: .5px; text-transform: uppercase; }
+    .ai-text { font-size: 15px; color: var(--text); line-height: 1.6; margin-bottom: 12px; }
+    .ai-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+    .ai-chip {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 20px;
+      padding: 6px 13px; font-size: 12px; color: var(--text2); cursor: pointer;
+      text-decoration: none; transition: border-color .2s, color .2s;
+    }
+    .ai-chip:hover { border-color: var(--red); color: var(--red); }
+
+    /* INFO STRIPS */
+    .info-list { display: flex; flex-direction: column; gap: 10px; }
+    .info-item {
+      display: flex; align-items: center; gap: 14px; padding: 14px 16px;
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      text-decoration: none; color: inherit; transition: border-color .2s, transform .2s;
+    }
+    .info-item:hover { border-color: var(--red); transform: translateX(3px); }
+    .info-icon { font-size: 22px; width: 30px; text-align: center; flex-shrink: 0; }
+    .info-title { font-size: 15px; font-weight: 500; }
+    .info-desc { font-size: 13px; color: var(--text2); margin-top: 2px; }
+    .info-arrow { margin-left: auto; color: var(--text3); font-size: 20px; }
+
+    /* DIVIDER */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0 2rem; }
+
+    /* FOOTER */
+    footer {
+      background: #111; color: rgba(255,255,255,.5);
+      text-align: center; padding: 3rem 2rem;
+    }
+    .footer-logo { font-family: 'Playfair Display', serif; color: var(--red); font-size: 22px; margin-bottom: 8px; }
+    .footer-tagline { font-size: 13px; margin-bottom: 1.5rem; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+    .footer-links a { color: rgba(255,255,255,.4); font-size: 13px; text-decoration: none; }
+    .footer-links a:hover { color: #fff; }
+
+    /* AI CHAT OVERLAY */
+    #ai-overlay {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5);
+      z-index: 1000; align-items: flex-end; justify-content: center;
+    }
+    #ai-overlay.open { display: flex; }
+    .ai-panel {
+      background: #fff; width: 100%; max-width: 600px; border-radius: 20px 20px 0 0;
+      padding: 1.5rem; max-height: 85vh; display: flex; flex-direction: column;
+    }
+    .ai-panel-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+    .ai-panel-title { font-family: 'Playfair Display', serif; font-size: 18px; }
+    .ai-close { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--text2); }
+    .ai-messages { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; margin-bottom: 1rem; min-height: 200px; }
+    .msg { max-width: 80%; padding: 10px 14px; border-radius: 14px; font-size: 14px; line-height: 1.5; }
+    .msg-ai { background: var(--bg2); color: var(--text); align-self: flex-start; border-radius: 4px 14px 14px 14px; }
+    .msg-user { background: var(--red); color: #fff; align-self: flex-end; border-radius: 14px 4px 14px 14px; }
+    .ai-input-row { display: flex; gap: 8px; }
+    .ai-input-row input {
+      flex: 1; border: 1px solid var(--border); border-radius: 24px;
+      padding: 10px 16px; font-size: 14px; font-family: 'DM Sans', sans-serif; outline: none;
+    }
+    .ai-input-row input:focus { border-color: var(--red); }
+    .ai-send {
+      background: var(--red); color: #fff; border: none; border-radius: 50%;
+      width: 42px; height: 42px; font-size: 18px; cursor: pointer; flex-shrink: 0;
+    }
+    .ai-typing { font-size: 13px; color: var(--text3); padding: 8px 14px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-mobile-toggle { display: block; }
+      .hero-lanterns { display: none; }
+      .hero h1 { font-size: 36px; }
+      .hero-stats { gap: 1.5rem; }
+      .stat-n { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="/">China Awaits</a>
+  <ul class="nav-links">
+    <li><a href="#cities">Cities</a></li>
+    <li><a href="#topics">Topics</a></li>
+    <li><a href="#essentials">Essentials</a></li>
+    <li><a href="#ai">AI Guide</a></li>
+  </ul>
+  <a class="nav-cta" href="#ai" onclick="openAI()">
+    <span class="pulse"></span> Ask AI
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-lanterns"><span>🏮</span><span>🏮</span></div>
+  <div class="hero-badge">Your Complete China Travel Guide</div>
+  <h1>China <em>Awaits</em> You</h1>
+  <p class="hero-sub">Everything a foreign traveler needs — from visa to food, transport to hospitals, culture to tips.</p>
+  <div class="hero-search">
+    <input type="text" id="hero-search-input" placeholder="Search cities, food, visa tips..." onkeydown="handleSearch(event)" />
+    <button onclick="triggerSearch()">Search</button>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-n">10+</div><div class="stat-l">Cities</div></div>
+    <div class="stat"><div class="stat-n">500+</div><div class="stat-l">Guides</div></div>
+    <div class="stat"><div class="stat-n">24/7</div><div class="stat-l">AI Help</div></div>
+  </div>
+</section>
+
+<!-- CITIES -->
+<section class="section" id="cities">
+  <div class="section-header">
+    <div class="section-title">Explore Cities</div>
+    <div class="section-sub">Pick a city and start planning your trip</div>
+  </div>
+  <div class="cities-grid">
+    <a href="cities/beijing.html" class="city-card city-bj">
+      <div class="city-bg">🏯</div>
+      <div class="city-overlay"></div>
+      <div class="city-info"><div class="city-name">Beijing</div><div class="city-tag">Capital · History · Culture</div></div>
+    </a>
+    <a href="cities/shanghai.html" class="city-card city-sh">
+      <div class="city-bg">🌆</div>
+      <div class="city-overlay"></div>
+      <div class="city-info"><div class="city-name">Shanghai</div><div class="city-tag">Modern · Cosmopolitan</div></div>
+    </a>
+    <a href="cities/guangzhou.html" class="city-card city-gz">
+      <div class="city-bg">🌺</div>
+      <div class="city-overlay"></div>
+      <div class="city-info"><div class="city-name">Guangzhou</div><div class="city-tag">Food Capital · Dim Sum</div></div>
+    </a>
+    <a href="cities/shenzhen.html" class="city-card city-sz">
+      <div class="city-bg">💻</div>
+      <div class="city-overlay"></div>
+      <div class="city-info"><div class="city-name">Shenzhen</div><div class="city-tag">Tech Hub · Innovation</div></div>
+    </a>
+    <a href="cities/chengdu.html" class="city-card city-cd">
+      <div class="city-bg">🐼</div>
+      <div class="city-overlay"></div>
+      <div class="city-info"><div class="city-name">Chengdu</div><div class="city-tag">Pandas · Spicy Food</div></div>
+    </a>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- TOPICS -->
+<section class="section" id="topics">
+  <div class="section-header">
+    <div class="section-title">Browse by Topic</div>
+    <div class="section-sub">Find exactly what you need for your trip</div>
+  </div>
+  <div class="cat-grid">
+    <a href="topics/visa.html" class="cat-item"><div class="cat-icon">🛂</div><div class="cat-label">Visa & Entry</div></a>
+    <a href="topics/food.html" class="cat-item"><div class="cat-icon">🍜</div><div class="cat-label">Food & Dining</div></a>
+    <a href="topics/transport.html" class="cat-item"><div class="cat-icon">🚄</div><div class="cat-label">Transport</div></a>
+    <a href="topics/hotels.html" class="cat-item"><div class="cat-icon">🏨</div><div class="cat-label">Hotels</div></a>
+    <a href="topics/medical.html" class="cat-item"><div class="cat-icon">🏥</div><div class="cat-label">Medical</div></a>
+    <a href="topics/apps.html" class="cat-item"><div class="cat-icon">📱</div><div class="cat-label">Apps & SIM</div></a>
+    <a href="topics/money.html" class="cat-item"><div class="cat-icon">💰</div><div class="cat-label">Money & Pay</div></a>
+    <a href="topics/culture.html" class="cat-item"><div class="cat-icon">🎭</div><div class="cat-label">Culture Tips</div></a>
+    <a href="topics/safety.html" class="cat-item"><div class="cat-icon">🛡️</div><div class="cat-label">Safety</div></a>
+    <a href="topics/internet.html" class="cat-item"><div class="cat-icon">📡</div><div class="cat-label">Internet & VPN</div></a>
+    <a href="topics/shopping.html" class="cat-item"><div class="cat-icon">🛍️</div><div class="cat-label">Shopping</div></a>
+    <a href="topics/language.html" class="cat-item"><div class="cat-icon">💬</div><div class="cat-label">Language Help</div></a>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ESSENTIALS -->
+<section class="section" id="essentials">
+  <div class="section-header">
+    <div class="section-title">Essential Info</div>
+    <div class="section-sub">Things every traveler must know before arriving</div>
+  </div>
+  <div class="info-list">
+    <a href="topics/visa.html" class="info-item">
+      <div class="info-icon">🛂</div>
+      <div><div class="info-title">Visa-free entry for 54 countries</div><div class="info-desc">Check if your passport qualifies for visa-free stay up to 90 days</div></div>
+      <div class="info-arrow">›</div>
+    </a>
+    <a href="topics/money.html" class="info-item">
+      <div class="info-icon">💳</div>
+      <div><div class="info-title">Mobile payments for foreigners</div><div class="info-desc">Step-by-step guide to setting up Alipay & WeChat Pay</div></div>
+      <div class="info-arrow">›</div>
+    </a>
+    <a href="topics/internet.html" class="info-item">
+      <div class="info-icon">📡</div>
+      <div><div class="info-title">Internet & VPN guide</div><div class="info-desc">How to stay connected and access Google, WhatsApp and more</div></div>
+      <div class="info-arrow">›</div>
+    </a>
+    <a href="topics/apps.html" class="info-item">
+      <div class="info-icon">📱</div>
+      <div><div class="info-title">Essential apps to install before you go</div><div class="info-desc">Maps, translation, ride-hailing, food delivery and more</div></div>
+      <div class="info-arrow">›</div>
+    </a>
+    <a href="topics/medical.html" class="info-item">
+      <div class="info-icon">🏥</div>
+      <div><div class="info-title">Hospitals with English-speaking staff</div><div class="info-desc">International clinics in Beijing, Shanghai, Guangzhou and more</div></div>
+      <div class="info-arrow">›</div>
+    </a>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- AI SECTION -->
+<section class="section" id="ai">
+  <div class="section-header">
+    <div class="section-title">Ask Our AI Assistant</div>
+    <div class="section-sub">Get instant answers about traveling in China — available 24/7</div>
+  </div>
+  <div class="ai-box">
+    <div class="ai-avatar">🤖</div>
+    <div style="flex:1">
+      <div class="ai-name">China Awaits AI Guide</div>
+      <div class="ai-text">Hi! I know everything about traveling in China — visas, food, transport, safety, culture, hospitals, mobile payments and more. Ask me anything!</div>
+      <div class="ai-chips">
+        <a class="ai-chip" onclick="askAI('Do I need a visa to visit China?')">Do I need a visa?</a>
+        <a class="ai-chip" onclick="askAI('How do foreigners pay in China?')">How to pay in China?</a>
+        <a class="ai-chip" onclick="askAI('What are the best foods to try in Beijing?')">Best food in Beijing?</a>
+        <a class="ai-chip" onclick="askAI('Is China safe for tourists?')">Is it safe?</a>
+        <a class="ai-chip" onclick="askAI('How do I get a SIM card in China as a foreigner?')">Getting a SIM card?</a>
+        <a class="ai-chip" onclick="askAI('How does the high-speed train system work in China?')">High-speed trains?</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">China Awaits</div>
+  <div class="footer-tagline">Your trusted guide for exploring China · chinaawaits.com</div>
+  <div class="footer-links">
+    <a href="#cities">Cities</a>
+    <a href="topics/visa.html">Visa</a>
+    <a href="topics/food.html">Food</a>
+    <a href="topics/transport.html">Transport</a>
+    <a href="topics/medical.html">Medical</a>
+    <a href="#ai">AI Guide</a>
+  </div>
+</footer>
+
+<!-- AI CHAT OVERLAY -->
+<div id="ai-overlay" onclick="closeAIOnBg(event)">
+  <div class="ai-panel">
+    <div class="ai-panel-header">
+      <div class="ai-panel-title">China Awaits AI Guide</div>
+      <button class="ai-close" onclick="closeAI()">✕</button>
+    </div>
+    <div class="ai-messages" id="ai-messages">
+      <div class="msg msg-ai">Hi! I'm your China travel guide. Ask me anything about visiting China — visas, food, transport, safety, culture, and more!</div>
+    </div>
+    <div class="ai-input-row">
+      <input type="text" id="ai-input" placeholder="Ask anything about China..." onkeydown="handleAIKey(event)" />
+      <button class="ai-send" onclick="sendAI()">↑</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const ANTHROPIC_API_URL = "https://api.anthropic.com/v1/messages";
+
+  function openAI() {
+    document.getElementById('ai-overlay').classList.add('open');
+    setTimeout(() => document.getElementById('ai-input').focus(), 100);
+  }
+  function closeAI() {
+    document.getElementById('ai-overlay').classList.remove('open');
+  }
+  function closeAIOnBg(e) {
+    if (e.target === document.getElementById('ai-overlay')) closeAI();
+  }
+  function askAI(q) {
+    openAI();
+    document.getElementById('ai-input').value = q;
+    setTimeout(sendAI, 200);
+  }
+  function handleSearch(e) {
+    if (e.key === 'Enter') triggerSearch();
+  }
+  function triggerSearch() {
+    const q = document.getElementById('hero-search-input').value.trim();
+    if (q) askAI(q);
+  }
+  function handleAIKey(e) {
+    if (e.key === 'Enter') sendAI();
+  }
+
+  const conversationHistory = [];
+
+  async function sendAI() {
+    const input = document.getElementById('ai-input');
+    const messages = document.getElementById('ai-messages');
+    const text = input.value.trim();
+    if (!text) return;
+
+    input.value = '';
+
+    // Add user message
+    const userMsg = document.createElement('div');
+    userMsg.className = 'msg msg-user';
+    userMsg.textContent = text;
+    messages.appendChild(userMsg);
+
+    // Add to history
+    conversationHistory.push({ role: 'user', content: text });
+
+    // Typing indicator
+    const typing = document.createElement('div');
+    typing.className = 'ai-typing';
+    typing.textContent = 'Thinking...';
+    messages.appendChild(typing);
+    messages.scrollTop = messages.scrollHeight;
+
+    try {
+      const response = await fetch(ANTHROPIC_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 1000,
+          system: `You are a friendly, knowledgeable travel guide for China Awaits (chinaawaits.com), a travel information website for foreigners visiting China. 
+You help foreign tourists with questions about: visas and entry requirements, cities (Beijing, Shanghai, Guangzhou, Shenzhen, Chengdu and more), food and dining, transportation (trains, metro, flights, taxi), hotels, mobile payments (Alipay, WeChat Pay), internet and VPN, SIM cards, hospitals with English service, safety tips, cultural etiquette, language help, and general travel tips.
+Always be warm, practical, and specific. Give actionable advice. Keep answers concise but complete. If asked about something outside China travel, gently redirect to travel topics.`,
+          messages: conversationHistory
+        })
+      });
+
+      const data = await response.json();
+      typing.remove();
+
+      const aiText = data.content?.[0]?.text || "Sorry, I couldn't get a response. Please try again.";
+      conversationHistory.push({ role: 'assistant', content: aiText });
+
+      const aiMsg = document.createElement('div');
+      aiMsg.className = 'msg msg-ai';
+      aiMsg.textContent = aiText;
+      messages.appendChild(aiMsg);
+    } catch (err) {
+      typing.remove();
+      const errMsg = document.createElement('div');
+      errMsg.className = 'msg msg-ai';
+      errMsg.textContent = 'Something went wrong. Please check your connection and try again.';
+      messages.appendChild(errMsg);
+    }
+
+    messages.scrollTop = messages.scrollHeight;
+  }
+</script>
+
+</body>
+</html>
