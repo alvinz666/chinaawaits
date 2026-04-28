@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visa & Entry — China Awaits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C0392B;
+    --red-dark: #96281B;
+    --gold: #C9A84C;
+    --gold-light: #F5EDD6;
+    --ink: #1A1210;
+    --ink-mid: #4A3F3C;
+    --ink-soft: #8C7B77;
+    --paper: #FDFAF7;
+    --paper-warm: #F5F0EB;
+    --border: rgba(26,18,16,0.1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(253,250,247,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem; height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--red); text-decoration: none; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.85rem; color: var(--ink-mid); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--red); }
+
+  /* HERO */
+  .hero { padding-top: 60px; background: var(--ink); position: relative; overflow: hidden; }
+  .hero-bg-pattern {
+    position: absolute; inset: 0; opacity: 0.05;
+    background-image: repeating-linear-gradient(45deg, rgba(201,168,76,0.8) 0, rgba(201,168,76,0.8) 1px, transparent 0, transparent 50%);
+    background-size: 20px 20px;
+  }
+  .hero-inner { position: relative; max-width: 860px; margin: 0 auto; padding: 5rem 2rem 4rem; }
+  .hero-eyebrow { font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 1.2rem; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 1.2rem; }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.65); max-width: 540px; margin-bottom: 2.5rem; font-weight: 300; }
+
+  /* QUICK CHECK WIDGET */
+  .quick-check {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 14px;
+    padding: 1.5rem;
+    max-width: 520px;
+    margin-bottom: 2rem;
+  }
+  .quick-check-label { font-size: 0.8rem; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .quick-check-row { display: flex; gap: 0.75rem; align-items: center; }
+  .quick-check input {
+    flex: 1; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px; padding: 0.65rem 1rem; font-size: 0.9rem;
+    color: #fff; font-family: 'DM Sans', sans-serif; outline: none;
+    transition: border-color 0.2s;
+  }
+  .quick-check input::placeholder { color: rgba(255,255,255,0.35); }
+  .quick-check input:focus { border-color: var(--gold); }
+  .check-btn {
+    background: var(--red); color: #fff; border: none; border-radius: 8px;
+    padding: 0.65rem 1.2rem; font-size: 0.85rem; font-weight: 500;
+    cursor: pointer; font-family: 'DM Sans', sans-serif; white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .check-btn:hover { background: var(--red-dark); }
+  .quick-result {
+    margin-top: 0.75rem; padding: 0.75rem 1rem; border-radius: 8px;
+    font-size: 0.875rem; display: none;
+  }
+  .quick-result.visa-free { background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); color: #86efac; }
+  .quick-result.needs-visa { background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5; }
+  .quick-result.transit { background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); color: #fcd34d; }
+
+  /* JUMP NAV */
+  .jump-nav { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .jump-nav a {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.45rem 1rem; border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.15);
+    font-size: 0.8rem; color: rgba(255,255,255,0.75); text-decoration: none;
+    transition: all 0.2s;
+  }
+  .jump-nav a:hover { background: rgba(201,168,76,0.15); border-color: var(--gold); color: var(--gold); }
+  .jump-num { width: 18px; height: 18px; background: var(--red); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 500; color: #fff; flex-shrink: 0; }
+
+  /* MAIN */
+  main { max-width: 860px; margin: 0 auto; padding: 0 2rem 5rem; }
+
+  /* SECTION */
+  .section { padding: 4rem 0 0; border-top: 1px solid var(--border); margin-top: 4rem; }
+  .section:first-child { border-top: none; }
+  .section-header { display: flex; align-items: flex-start; gap: 1.2rem; margin-bottom: 2rem; }
+  .section-num { width: 40px; height: 40px; border-radius: 50%; background: var(--red); color: #fff; font-family: 'Playfair Display', serif; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 4px; }
+  .section-eyebrow { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); font-weight: 500; margin-bottom: 0.25rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--ink); line-height: 1.2; }
+
+  /* PROSE */
+  p.prose { font-size: 0.95rem; color: var(--ink-mid); line-height: 1.75; margin-bottom: 1rem; }
+
+  /* CARDS */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+  .card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.4rem; transition: border-color 0.2s, box-shadow 0.2s; }
+  .card:hover { border-color: rgba(192,57,43,0.3); box-shadow: 0 4px 20px rgba(192,57,43,0.07); }
+  .card-icon { font-size: 1.5rem; margin-bottom: 0.6rem; }
+  .card-title { font-weight: 500; font-size: 0.95rem; color: var(--ink); margin-bottom: 0.4rem; }
+  .card-body { font-size: 0.85rem; color: var(--ink-soft); line-height: 1.6; }
+
+  /* HIGHLIGHT CARD */
+  .highlight-card {
+    background: var(--ink); color: #fff; border-radius: 14px;
+    padding: 1.75rem 2rem; margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+  }
+  .highlight-num { font-family: 'Playfair Display', serif; font-size: 4rem; font-weight: 700; color: var(--gold); line-height: 1; flex-shrink: 0; }
+  .highlight-text h3 { font-size: 1.1rem; font-weight: 500; margin-bottom: 0.35rem; }
+  .highlight-text p { font-size: 0.875rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+  /* SEARCH TABLE */
+  .search-bar {
+    display: flex; gap: 0.75rem; margin-bottom: 1rem; align-items: center; flex-wrap: wrap;
+  }
+  .search-bar input {
+    flex: 1; min-width: 200px; border: 1px solid var(--border); border-radius: 8px;
+    padding: 0.65rem 1rem; font-size: 0.9rem; font-family: 'DM Sans', sans-serif;
+    background: #fff; outline: none; transition: border-color 0.2s; color: var(--ink);
+  }
+  .search-bar input:focus { border-color: var(--red); }
+  .filter-btns { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .filter-btn {
+    padding: 0.4rem 0.9rem; border-radius: 100px; font-size: 0.78rem;
+    border: 1px solid var(--border); background: #fff; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; color: var(--ink-mid);
+    transition: all 0.15s;
+  }
+  .filter-btn.active { background: var(--red); color: #fff; border-color: var(--red); }
+  .filter-btn:hover:not(.active) { border-color: var(--red); color: var(--red); }
+
+  .country-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 0.5rem; }
+  .country-table th { background: var(--paper-warm); padding: 0.75rem 1rem; text-align: left; font-weight: 500; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); border-bottom: 1px solid var(--border); }
+  .country-table td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--border); color: var(--ink-mid); vertical-align: middle; }
+  .country-table tr:last-child td { border-bottom: none; }
+  .country-table tr:hover td { background: var(--paper-warm); }
+  .country-table tbody tr { transition: background 0.1s; }
+
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 100px; font-size: 0.7rem; font-weight: 500; }
+  .badge-green { background: #E8F5E9; color: #2E7D32; }
+  .badge-amber { background: #FFF8E1; color: #F57F17; }
+  .badge-red   { background: #FFEBEE; color: #C62828; }
+  .badge-blue  { background: #E3F2FD; color: #1565C0; }
+
+  .table-count { font-size: 0.8rem; color: var(--ink-soft); margin-bottom: 1rem; }
+  .no-results { text-align: center; padding: 2rem; color: var(--ink-soft); font-size: 0.9rem; display: none; }
+
+  /* STEPS */
+  .steps { display: flex; flex-direction: column; gap: 0; margin-bottom: 1.5rem; }
+  .step { display: grid; grid-template-columns: 32px 1fr; gap: 1rem; position: relative; }
+  .step:not(:last-child)::before { content: ''; position: absolute; left: 15px; top: 32px; bottom: -12px; width: 2px; background: var(--border); }
+  .step-num { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--red); color: var(--red); font-size: 0.8rem; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #fff; position: relative; z-index: 1; }
+  .step-content { padding-bottom: 1.5rem; }
+  .step-title { font-weight: 500; font-size: 0.95rem; color: var(--ink); margin-bottom: 0.3rem; padding-top: 4px; }
+  .step-body { font-size: 0.875rem; color: var(--ink-soft); line-height: 1.65; }
+
+  /* BOXES */
+  .warn-box { background: #FFF5F5; border: 1px solid rgba(192,57,43,0.2); border-left: 4px solid var(--red); border-radius: 0 12px 12px 0; padding: 1rem 1.4rem; margin-bottom: 1.5rem; font-size: 0.875rem; color: var(--ink-mid); display: flex; gap: 0.6rem; align-items: flex-start; }
+  .info-box { background: #F0F7FF; border: 1px solid rgba(59,130,246,0.2); border-left: 4px solid #3B82F6; border-radius: 0 12px 12px 0; padding: 1rem 1.4rem; margin-bottom: 1.5rem; font-size: 0.875rem; color: var(--ink-mid); display: flex; gap: 0.6rem; align-items: flex-start; }
+  .gold-box { background: var(--gold-light); border: 1px solid rgba(201,168,76,0.3); border-left: 4px solid var(--gold); border-radius: 0 12px 12px 0; padding: 1rem 1.4rem; margin-bottom: 1.5rem; font-size: 0.875rem; color: var(--ink-mid); display: flex; gap: 0.6rem; align-items: flex-start; }
+
+  .rec-box { background: var(--paper-warm); border: 1px solid var(--border); border-radius: 12px; padding: 1.4rem 1.6rem; margin-bottom: 1.5rem; }
+  .rec-box-title { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 0.8rem; }
+  .rec-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .rec-list li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.9rem; color: var(--ink-mid); }
+  .rec-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex-shrink: 0; margin-top: 8px; }
+  .rec-list strong { color: var(--ink); }
+
+  /* FAQ */
+  .faq-item { border: 1px solid var(--border); border-radius: 12px; margin-bottom: 0.75rem; background: #fff; overflow: hidden; }
+  .faq-q { padding: 1rem 1.25rem; font-weight: 500; font-size: 0.95rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--ink); user-select: none; transition: background 0.15s; }
+  .faq-q:hover { background: var(--paper-warm); }
+  .faq-arrow { font-size: 1.1rem; color: var(--red); transition: transform 0.2s; flex-shrink: 0; }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s; font-size: 0.875rem; color: var(--ink-mid); line-height: 1.7; padding: 0 1.25rem; }
+  .faq-item.open .faq-a { max-height: 300px; padding: 0 1.25rem 1rem; }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+  /* RELATED */
+  .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem; }
+  .related-card { display: block; padding: 1.2rem 1.4rem; background: #fff; border: 1px solid var(--border); border-radius: 12px; text-decoration: none; transition: all 0.2s; }
+  .related-card:hover { border-color: var(--red); transform: translateY(-2px); }
+  .related-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--red); font-weight: 500; margin-bottom: 0.4rem; }
+  .related-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--ink); font-weight: 600; }
+  .related-desc { font-size: 0.8rem; color: var(--ink-soft); margin-top: 0.3rem; }
+
+  .cta-block { background: var(--ink); border-radius: 16px; padding: 2.5rem; margin-top: 4rem; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; }
+  .cta-block h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #fff; font-weight: 600; }
+  .cta-block p { font-size: 0.9rem; color: rgba(255,255,255,0.55); max-width: 400px; }
+  .cta-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 2rem; background: var(--red); color: #fff; border-radius: 100px; font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: background 0.2s; cursor: pointer; border: none; }
+  .cta-btn:hover { background: var(--red-dark); }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    .hero-inner { padding: 3.5rem 1.25rem 3rem; }
+    main { padding: 0 1.25rem 4rem; }
+    .highlight-card { flex-direction: column; gap: 0.75rem; }
+    .highlight-num { font-size: 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../index.html">China Awaits</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="pre-arrival.html">Before You Arrive</a></li>
+    <li><a href="transport.html">Transport</a></li>
+    <li><a href="food.html">Food</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Entry Requirements</p>
+    <h1>Visa & <em>Entry</em></h1>
+    <p class="hero-sub">China has dramatically expanded visa-free access since 2023. Check what applies to your passport — you may not need a visa at all.</p>
+
+    <div class="quick-check">
+      <p class="quick-check-label">Quick check — do you need a visa?</p>
+      <div class="quick-check-row">
+        <input type="text" id="country-input" placeholder="Type your country (e.g. Germany, Japan...)" oninput="checkVisa()" />
+        <button class="check-btn" onclick="checkVisa()">Check</button>
+      </div>
+      <div class="quick-result" id="quick-result"></div>
+    </div>
+
+    <nav class="jump-nav" aria-label="Jump to section">
+      <a href="#visa-free"><span class="jump-num">1</span> Visa-Free Countries</a>
+      <a href="#transit"><span class="jump-num">2</span> Transit (144h)</a>
+      <a href="#evisa"><span class="jump-num">3</span> e-Visa</a>
+      <a href="#traditional"><span class="jump-num">4</span> Traditional Visa</a>
+      <a href="#arrival"><span class="jump-num">5</span> At the Border</a>
+      <a href="#faq"><span class="jump-num">6</span> FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ① VISA-FREE -->
+  <section class="section" id="visa-free">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-header-text">
+        <p class="section-eyebrow">No visa needed</p>
+        <h2 class="section-title">Visa-Free Countries</h2>
+      </div>
+    </div>
+
+    <div class="highlight-card">
+      <div class="highlight-num">59</div>
+      <div class="highlight-text">
+        <h3>Countries with visa-free access to China</h3>
+        <p>Through a combination of mutual agreements and China's unilateral visa-free policy, citizens of 59 countries can visit China without applying for a visa in advance. Most get 30 days. Policy extended through December 31, 2026.</p>
+      </div>
+    </div>
+
+    <p class="prose">Citizens of eligible countries can enter China for tourism, business, visiting relatives, cultural exchange, or transit — without any visa application. The policy does <strong>not</strong> cover work, study, or journalism activities.</p>
+
+    <div class="gold-box">
+      <span>✨</span>
+      <p><strong>New in 2025–2026:</strong> UK, Canada, Russia, and Sweden were all added to the visa-free list. If you last checked eligibility a year ago, check again — the list has grown significantly.</p>
+    </div>
+
+    <!-- SEARCH + TABLE -->
+    <div class="search-bar">
+      <input type="text" id="table-search" placeholder="Search a country..." oninput="filterTable()" />
+      <div class="filter-btns">
+        <button class="filter-btn active" onclick="filterRegion('all', this)">All</button>
+        <button class="filter-btn" onclick="filterRegion('Europe', this)">Europe</button>
+        <button class="filter-btn" onclick="filterRegion('Asia', this)">Asia</button>
+        <button class="filter-btn" onclick="filterRegion('Americas', this)">Americas</button>
+        <button class="filter-btn" onclick="filterRegion('Middle East', this)">Middle East</button>
+        <button class="filter-btn" onclick="filterRegion('Other', this)">Other</button>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.5rem;">
+      <p class="table-count" id="table-count" style="margin:0;">Showing all 59 countries</p>
+      <p style="font-size:0.75rem; color:var(--ink-soft); margin:0;">
+        <span style="display:inline-block; width:7px; height:7px; border-radius:50%; background:#4ade80; margin-right:4px; vertical-align:middle;"></span>
+        Last updated: April 2026 &mdash; <a href="https://en.nia.gov.cn" target="_blank" style="color:var(--ink-soft); text-decoration:underline;">verify at nia.gov.cn</a>
+      </p>
+    </div>
+
+    <table class="country-table" id="country-table">
+      <thead>
+        <tr>
+          <th>Country</th>
+          <th>Region</th>
+          <th>Max stay</th>
+          <th>Policy type</th>
+        </tr>
+      </thead>
+      <tbody id="country-tbody">
+      </tbody>
+    </table>
+    <p class="no-results" id="no-results">No countries found. Try a different search.</p>
+
+    <div id="show-more-wrap" style="text-align:center; margin:0.75rem 0 1.5rem;">
+      <button id="show-more-btn" onclick="toggleShowAll()" style="background:none; border:1px solid var(--border); border-radius:100px; padding:0.5rem 1.5rem; font-size:0.85rem; color:var(--ink-mid); cursor:pointer; font-family:'DM Sans',sans-serif; transition:all 0.2s;">
+        Show all 59 countries ▾
+      </button>
+    </div>
+
+    <div class="info-box" style="margin-top:0;">
+      <span>ℹ️</span>
+      <p>This list is accurate as of early 2026. Visa policies can change — always verify with the <a href="https://en.nia.gov.cn" target="_blank" style="color:#1565C0">China National Immigration Administration</a> or your nearest Chinese embassy before travel.</p>
+    </div>
+  </section>
+
+  <!-- ② TRANSIT -->
+  <section class="section" id="transit">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-header-text">
+        <p class="section-eyebrow">Passing through China</p>
+        <h2 class="section-title">144-Hour Transit Visa-Free</h2>
+      </div>
+    </div>
+
+    <p class="prose">Even if your country isn't on the visa-free list, you may be able to spend up to 6 days in China without a visa if you're transiting between two other countries. This is one of the most useful — and underused — policies for travellers.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">✈️</div>
+        <p class="card-title">Who qualifies</p>
+        <p class="card-body">You must be travelling between two different countries (not returning to your origin country), have a confirmed onward ticket, and enter through one of the 65 eligible ports.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⏱️</div>
+        <p class="card-title">How long you can stay</p>
+        <p class="card-body">Up to 144 hours (6 days) from the time of entry. You must stay within the designated area — usually the city or province of your port of entry.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏙️</div>
+        <p class="card-title">Where it's available</p>
+        <p class="card-body">65 ports including Beijing, Shanghai, Guangzhou, Chengdu, Xi'an, Hangzhou, Nanjing, Kunming, and many more. Also now includes Hong Kong–Zhuhai–Macao Bridge crossing.</p>
+      </div>
+    </div>
+
+    <div class="warn-box">
+      <span>⚠️</span>
+      <p><strong>72-hour version also available</strong> at a wider range of ports for shorter transits. If you only need a day or two in China, the 72-hour policy applies at more entry points.</p>
+    </div>
+
+    <div class="rec-box">
+      <p class="rec-box-title">Transit visa-free tips</p>
+      <ul class="rec-list">
+        <li>Print or screenshot your onward ticket — immigration will ask to see it</li>
+        <li>You don't need to stay at the airport, but you must leave by the deadline</li>
+        <li>The clock starts from midnight on the day after you enter, not from the exact arrival time</li>
+        <li>If your layover is under 24 hours, you may be able to stay airside without using the policy</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ③ e-VISA -->
+  <section class="section" id="evisa">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div class="section-header-text">
+        <p class="section-eyebrow">Apply online</p>
+        <h2 class="section-title">e-Visa</h2>
+      </div>
+    </div>
+
+    <p class="prose">China introduced an online visa application system (e-Visa) for citizens of many countries. If you need a visa but your country is eligible for the e-Visa, this is far simpler than the traditional process — no embassy visit required.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">💻</div>
+        <p class="card-title">Apply online</p>
+        <p class="card-body">Submit your application entirely online at the official China e-Visa portal. No embassy appointment, no physical documents to post. Takes 4–7 business days typically.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📄</div>
+        <p class="card-title">What you'll need</p>
+        <p class="card-body">A valid passport (6+ months validity), a digital passport photo, your travel itinerary, and accommodation details. Some applicants may need to provide financial documents.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📅</div>
+        <p class="card-title">How long it's valid</p>
+        <p class="card-body">Most tourist e-Visas (L category) allow a single entry, 30-day stay, valid for 3 months from issue date. Business visas (M category) may allow multiple entries.</p>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <span>🔗</span>
+      <p>Apply at the official portal: <a href="https://www.visaforchina.cn" target="_blank" style="color:#1565C0">visaforchina.cn</a> — be cautious of third-party sites that charge extra fees for the same service. The official site is free (visa fee still applies).</p>
+    </div>
+  </section>
+
+  <!-- ④ TRADITIONAL VISA -->
+  <section class="section" id="traditional">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div class="section-header-text">
+        <p class="section-eyebrow">Embassy application</p>
+        <h2 class="section-title">Traditional Visa</h2>
+      </div>
+    </div>
+
+    <p class="prose">If you're not eligible for visa-free entry or the e-Visa, you'll need to apply in person at a Chinese embassy or consulate. The process is straightforward but requires planning — allow at least 2–4 weeks before your trip.</p>
+
+    <h3 style="font-family:'Playfair Display',serif; font-size:1.1rem; margin-bottom:1rem; color:var(--ink);">Application process</h3>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <p class="step-title">Determine the right visa category</p>
+          <p class="step-body">Tourist visas are category <strong>L</strong>. Business is <strong>M</strong>. Study is <strong>X</strong>. Work is <strong>Z</strong>. Family visits are <strong>Q</strong> or <strong>S</strong>. Most travellers need an L visa.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <p class="step-title">Gather your documents</p>
+          <p class="step-body">Required: passport (valid 6+ months, with at least 2 blank pages), completed application form, passport photo, flight itinerary (round-trip or onward), hotel bookings for your stay, and bank statements showing sufficient funds.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <p class="step-title">Book an appointment</p>
+          <p class="step-body">Most Chinese embassies and consulates require a pre-booked appointment. Check your nearest Chinese embassy website. Visa Application Centres (VACs) in major cities often process applications on behalf of the embassy.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <p class="step-title">Submit and pay</p>
+          <p class="step-body">Visa fees vary by nationality and number of entries requested. Single-entry tourist visas typically cost $50–$140 USD equivalent. Processing takes 4–7 business days for standard; express service (1–3 days) costs more.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <p class="step-title">Collect your passport</p>
+          <p class="step-body">Your passport is returned with the visa sticker. Check the dates, number of entries, and duration of stay carefully before leaving the counter.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🔁</div>
+        <p class="card-title">Single vs. multiple entry</p>
+        <p class="card-body">Single entry means once you leave China, the visa is used. Multiple entry allows re-entry within the validity period — useful for trips to Hong Kong, Macau, or neighbouring countries.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📆</div>
+        <p class="card-title">Validity vs. duration of stay</p>
+        <p class="card-body">A "3-month validity, 30-day stay" visa means you must enter within 3 months of issue, and can stay up to 30 days per entry — these are two separate concepts that confuse many travellers.</p>
+      </div>
+    </div>
+
+    <div class="warn-box">
+      <span>⚠️</span>
+      <p><strong>Don't overstay.</strong> Overstaying a Chinese visa carries fines of ¥500 per day (up to ¥10,000), potential detention, and a ban on future entry. Always leave before your permitted stay expires.</p>
+    </div>
+  </section>
+
+  <!-- ⑤ AT THE BORDER -->
+  <section class="section" id="arrival">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div class="section-header-text">
+        <p class="section-eyebrow">Arriving in China</p>
+        <h2 class="section-title">At the Border</h2>
+      </div>
+    </div>
+
+    <p class="prose">The entry process at Chinese airports is efficient once you know what to expect. Here's what happens from the moment you land to when you clear customs.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <p class="step-title">Health and quarantine check</p>
+          <p class="step-body">You may pass through a health screening area. This is quick and standard. No health forms or vaccines are currently required for most nationalities entering China for tourism.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <p class="step-title">Immigration (passport control)</p>
+          <p class="step-body">Foreign nationals queue at immigration counters. Have your passport open to the photo page, and your completed Arrival Card ready (distributed on the plane or available at the counter). Fingerprints are taken for first-time visitors.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <p class="step-title">Collect your luggage</p>
+          <p class="step-body">Standard baggage collection. Flight information boards show which carousel your flight's bags are on.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <p class="step-title">Customs declaration</p>
+          <p class="step-body">Most travellers take the green "Nothing to Declare" channel. Use the red channel if you're carrying more than ¥20,000 RMB in cash, more than $5,000 USD (or equivalent) in foreign currency, restricted goods, or commercial goods. Declaring honestly is always the right choice — penalties for undisclosed items are serious.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <p class="step-title">Register at your hotel</p>
+          <p class="step-body">By law, foreigners must register with local police within 24 hours of arrival. Hotels do this automatically when you check in with your passport — it's standard procedure. If staying with friends or in a private rental, you must register at the nearest police station yourself.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rec-box">
+      <p class="rec-box-title">What to have ready at immigration</p>
+      <ul class="rec-list">
+        <li>Passport (with visa if required, or ensure you're from a visa-free country)</li>
+        <li>Completed Arrival Card (name, passport number, flight number, accommodation address in China)</li>
+        <li>Your hotel address in Chinese — immigration may ask, and having it written in Chinese avoids confusion</li>
+        <li>Return or onward flight booking — immigration can ask for proof</li>
+      </ul>
+    </div>
+
+    <div class="info-box">
+      <span>📋</span>
+      <p><strong>Arrival Card tip:</strong> Fill this in on the plane before landing. You'll need your Chinese accommodation address — if you don't know it yet, write the name of a major hotel in the city as a placeholder, then note your actual address is confirmed later.</p>
+    </div>
+  </section>
+
+  <!-- ⑥ FAQ -->
+  <section class="section" id="faq">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div class="section-header-text">
+        <p class="section-eyebrow">Common questions</p>
+        <h2 class="section-title">FAQ</h2>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Can I extend my stay inside China if I'm visa-free?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">In limited circumstances, yes. You can apply for a stay extension at a local Public Security Bureau (PSB) Entry-Exit Administration office. Extensions are not guaranteed and are granted at the officer's discretion. It's far easier to plan your trip within the allowed period.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Does my visa-free 30 days reset if I leave and re-enter?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Technically yes, but immigration has discretion to refuse re-entry if they believe you're trying to live in China on repeated visa-free stays. A short trip to Hong Kong, Macau, or a neighbouring country and returning the same day is generally not recommended as a "visa run" strategy.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Is Hong Kong or Macau the same as mainland China for visa purposes?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">No — Hong Kong and Macau are Special Administrative Regions with their own separate entry rules. Most nationalities can enter Hong Kong visa-free for 90 days and Macau for 30–90 days. Entering the mainland from Hong Kong or Macau requires the correct mainland visa or visa-free eligibility.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">I have a connecting flight through China. Do I need a visa?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">If you stay airside (in the international transit area without passing through immigration), no visa is needed. If you want to exit the airport and explore the city during a layover, you'll need either a standard visa or to qualify for the 72/144-hour transit visa-free policy.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Can I work or study on a tourist visa or visa-free entry?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">No. Working or studying in China requires the appropriate visa category (Z for work, X for study). Using a tourist visa or visa-free entry for work or study is illegal and can result in serious penalties including deportation and bans on future entry.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">My passport is about to expire — can I still travel?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">China requires your passport to be valid for at least 6 months beyond your intended stay. If your passport expires in less than 6 months from your travel date, renew it before applying for a visa or travelling.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Do I need travel insurance for a Chinese visa?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">It depends on your visa type. Some visa categories (particularly for certain nationalities) require proof of travel insurance as part of the application. Even when not required, travel insurance covering medical emergencies in China is strongly recommended — healthcare costs without insurance can be very high.</div>
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h2>Visa sorted? Now prepare for arrival.</h2>
+    <p>SIM card, VPN, Alipay setup, and everything else to sort before you board the plane.</p>
+    <a class="cta-btn" href="pre-arrival.html">Before You Arrive →</a>
+  </div>
+
+  <!-- RELATED -->
+  <section style="margin-top:3rem;">
+    <p style="font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-soft); font-weight:500; margin-bottom:1rem;">Keep reading</p>
+    <div class="related-grid">
+      <a class="related-card" href="pre-arrival.html">
+        <p class="related-label">Preparation</p>
+        <p class="related-title">Before You Arrive</p>
+        <p class="related-desc">SIM, VPN, Alipay, cash, maps — everything to set up at home.</p>
+      </a>
+      <a class="related-card" href="transport.html">
+        <p class="related-label">Getting around</p>
+        <p class="related-title">Transport</p>
+        <p class="related-desc">High-speed trains, metro, taxis and how to book.</p>
+      </a>
+      <a class="related-card" href="money.html">
+        <p class="related-label">Spending</p>
+        <p class="related-title">Money & Payments</p>
+        <p class="related-desc">Alipay, WeChat Pay, cash, and budgeting in China.</p>
+      </a>
+      <a class="related-card" href="safety.html">
+        <p class="related-label">Stay safe</p>
+        <p class="related-title">Safety</p>
+        <p class="related-desc">Emergency numbers, hospitals, and what to know.</p>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer style="background:var(--ink); color:rgba(255,255,255,0.45); font-size:0.8rem; padding:2rem; text-align:center; margin-top:4rem;">
+  <p style="font-family:'Playfair Display',serif; font-size:1rem; color:rgba(255,255,255,0.8); margin-bottom:0.5rem;">China Awaits</p>
+  <p>Visa information updated regularly. Always verify with official sources before travel.</p>
+</footer>
+
+<script>
+// ── COUNTRY DATA ──
+const countries = [
+  // Europe
+  {name:"Albania",region:"Europe",stay:"30 days",type:"Mutual agreement"},
+  {name:"Austria",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Belarus",region:"Europe",stay:"30 days",type:"Mutual agreement"},
+  {name:"Belgium",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Bosnia and Herzegovina",region:"Europe",stay:"30 days",type:"Mutual agreement"},
+  {name:"Bulgaria",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Croatia",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Cyprus",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Czech Republic",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Denmark",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Estonia",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Finland",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"France",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Germany",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Greece",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Hungary",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Iceland",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Ireland",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Italy",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Latvia",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Liechtenstein",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Luxembourg",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Malta",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Monaco",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Montenegro",region:"Europe",stay:"30 days",type:"Mutual agreement"},
+  {name:"Netherlands",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"North Macedonia",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Norway",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Poland",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Portugal",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Romania",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Russia",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Serbia",region:"Europe",stay:"30 days",type:"Mutual agreement"},
+  {name:"Slovakia",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Slovenia",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Spain",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Sweden",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Switzerland",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"Ukraine",region:"Europe",stay:"30 days",type:"Unilateral"},
+  {name:"United Kingdom",region:"Europe",stay:"30 days",type:"Unilateral"},
+  // Asia-Pacific
+  {name:"Australia",region:"Asia",stay:"30 days",type:"Unilateral"},
+  {name:"Brunei",region:"Asia",stay:"30 days",type:"Unilateral"},
+  {name:"Indonesia",region:"Asia",stay:"30 days",type:"Unilateral"},
+  {name:"Japan",region:"Asia",stay:"30 days",type:"Unilateral"},
+  {name:"Kazakhstan",region:"Asia",stay:"30 days",type:"Mutual agreement"},
+  {name:"Malaysia",region:"Asia",stay:"30 days",type:"Unilateral"},
+  {name:"New Zealand",region:"Asia",stay:"30 days",type:"Unilateral"},
+  {name:"Philippines",region:"Asia",stay:"30 days",type:"Unilateral"},
+  {name:"Republic of Korea",region:"Asia",stay:"30 days",type:"Unilateral"},
+  {name:"Singapore",region:"Asia",stay:"30 days",type:"Mutual agreement"},
+  {name:"Thailand",region:"Asia",stay:"30 days",type:"Mutual agreement"},
+  // Americas
+  {name:"Argentina",region:"Americas",stay:"30 days",type:"Mutual agreement"},
+  {name:"Brazil",region:"Americas",stay:"30 days",type:"Unilateral"},
+  {name:"Canada",region:"Americas",stay:"30 days",type:"Unilateral"},
+  {name:"Chile",region:"Americas",stay:"30 days",type:"Unilateral"},
+  {name:"Mexico",region:"Americas",stay:"30 days",type:"Unilateral"},
+  {name:"United States",region:"Americas",stay:"30 days",type:"Unilateral"},
+  // Middle East
+  {name:"Qatar",region:"Middle East",stay:"30 days",type:"Unilateral"},
+  {name:"United Arab Emirates",region:"Middle East",stay:"30 days",type:"Mutual agreement"},
+  // Other
+  {name:"Fiji",region:"Other",stay:"30 days",type:"Mutual agreement"},
+  {name:"Mauritius",region:"Other",stay:"30 days",type:"Mutual agreement"},
+  {name:"Seychelles",region:"Other",stay:"30 days",type:"Mutual agreement"},
+];
+
+// Visa-free country names for quick-check widget
+const visaFreeNames = countries.map(c => c.name.toLowerCase());
+
+// ── RENDER TABLE ──
+let activeRegion = 'all';
+let showAll = false;
+const DEFAULT_ROWS = 10;
+
+function renderTable(data) {
+  const tbody = document.getElementById('country-tbody');
+  const noResults = document.getElementById('no-results');
+  const count = document.getElementById('table-count');
+  const btn = document.getElementById('show-more-btn');
+  const btnWrap = document.getElementById('show-more-wrap');
+  const isFiltering = document.getElementById('table-search').value.trim().length > 0 || activeRegion !== 'all';
+
+  if (data.length === 0) {
+    tbody.innerHTML = '';
+    noResults.style.display = 'block';
+    count.textContent = 'No countries match your search';
+    btnWrap.style.display = 'none';
+    return;
+  }
+
+  noResults.style.display = 'none';
+
+  // When actively searching or filtering, show all results
+  const displayData = (showAll || isFiltering) ? data : data.slice(0, DEFAULT_ROWS);
+  const hasMore = !isFiltering && data.length > DEFAULT_ROWS;
+
+  count.textContent = isFiltering
+    ? `Showing ${data.length} of ${countries.length} countries`
+    : (showAll ? `Showing all ${data.length} countries` : `Showing ${displayData.length} of ${data.length} countries`);
+
+  tbody.innerHTML = displayData.map(c => `
+    <tr>
+      <td><strong style="color:var(--ink)">${c.name}</strong></td>
+      <td><span class="badge badge-blue">${c.region}</span></td>
+      <td><span class="badge badge-green">${c.stay}</span></td>
+      <td style="color:var(--ink-soft); font-size:0.8rem">${c.type}</td>
+    </tr>
+  `).join('');
+
+  btnWrap.style.display = hasMore ? 'block' : 'none';
+  if (hasMore) {
+    btn.textContent = showAll ? 'Show fewer ▴' : `Show all ${data.length} countries ▾`;
+  }
+}
+
+function toggleShowAll() {
+  showAll = !showAll;
+  filterTable();
+}
+
+function filterTable() {
+  const search = document.getElementById('table-search').value.toLowerCase();
+  let data = countries;
+  if (activeRegion !== 'all') data = data.filter(c => c.region === activeRegion);
+  if (search) data = data.filter(c => c.name.toLowerCase().includes(search));
+  renderTable(data);
+}
+
+function filterRegion(region, btn) {
+  activeRegion = region;
+  showAll = false;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterTable();
+}
+
+// ── QUICK CHECK ──
+function checkVisa() {
+  const input = document.getElementById('country-input').value.trim().toLowerCase();
+  const result = document.getElementById('quick-result');
+  if (!input || input.length < 2) { result.style.display = 'none'; return; }
+
+  const match = countries.find(c => c.name.toLowerCase().includes(input));
+
+  result.style.display = 'block';
+  result.className = 'quick-result';
+
+  if (match) {
+    result.classList.add('visa-free');
+    result.innerHTML = `✓ <strong>${match.name}</strong> — visa-free entry for up to <strong>${match.stay}</strong>. Policy valid through December 31, 2026.`;
+  } else {
+    // Check for transit eligibility hint
+    const transitHint = input.includes('india') || input.includes('pakistan') || input.includes('vietnam') || input.includes('nigeria') || input.includes('egypt');
+    result.classList.add('needs-visa');
+    result.innerHTML = `Your country was not found in the visa-free list. You will likely need to apply for a visa — check the <strong>e-Visa</strong> option below, or contact your nearest Chinese embassy.${transitHint ? ' The 144-hour transit policy may apply if you\'re passing through.' : ''}`;
+  }
+}
+
+// ── FAQ TOGGLE ──
+function toggleFaq(el) {
+  el.classList.toggle('open');
+}
+
+// Init table on load
+renderTable(countries);
+</script>
+
+</body>
+</html>
