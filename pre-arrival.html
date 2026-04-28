@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Before You Arrive — China Awaits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C0392B;
+    --red-dark: #96281B;
+    --red-light: #E8D5D3;
+    --gold: #C9A84C;
+    --gold-light: #F5EDD6;
+    --ink: #1A1210;
+    --ink-mid: #4A3F3C;
+    --ink-soft: #8C7B77;
+    --paper: #FDFAF7;
+    --paper-warm: #F5F0EB;
+    --border: rgba(26,18,16,0.1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(253,250,247,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--red);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.85rem;
+    color: var(--ink-mid);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--red); }
+
+  /* ── HERO ── */
+  .hero {
+    padding-top: 60px;
+    background: var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.06;
+    background-image: repeating-linear-gradient(
+      0deg, transparent, transparent 40px,
+      rgba(201,168,76,0.6) 40px, rgba(201,168,76,0.6) 41px
+    ),
+    repeating-linear-gradient(
+      90deg, transparent, transparent 40px,
+      rgba(201,168,76,0.6) 40px, rgba(201,168,76,0.6) 41px
+    );
+  }
+  .hero-inner {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 5rem 2rem 4rem;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.65);
+    max-width: 540px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  /* Jump nav */
+  .jump-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .jump-nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 1rem;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.15);
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    transition: all 0.2s;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+  .jump-nav a:hover {
+    background: rgba(201,168,76,0.15);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+  .jump-num {
+    width: 18px; height: 18px;
+    background: var(--red);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  /* ── ALERT BANNER ── */
+  .alert-banner {
+    background: var(--gold-light);
+    border-left: 4px solid var(--gold);
+    padding: 1rem 1.5rem;
+    max-width: 860px;
+    margin: 2rem auto 0;
+    border-radius: 0 8px 8px 0;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .alert-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; }
+  .alert-text { font-size: 0.9rem; color: var(--ink-mid); }
+  .alert-text strong { color: var(--ink); }
+
+  /* ── MAIN LAYOUT ── */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2rem 5rem;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 4rem 0 0;
+    border-top: 1px solid var(--border);
+    margin-top: 4rem;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:first-child { border-top: none; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  .section-num {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--red);
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .section-header-text {}
+  .section-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--red);
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  /* ── CARDS GRID ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.4rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .card:hover {
+    border-color: rgba(192,57,43,0.3);
+    box-shadow: 0 4px 20px rgba(192,57,43,0.07);
+  }
+  .card-icon { font-size: 1.5rem; margin-bottom: 0.6rem; }
+  .card-title {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+  .card-body {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  /* ── RECOMMENDATION BOX ── */
+  .rec-box {
+    background: var(--paper-warm);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.4rem 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+  .rec-box-title {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+  .rec-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .rec-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+    color: var(--ink-mid);
+  }
+  .rec-list li::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--red);
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+  .rec-list strong { color: var(--ink); }
+
+  /* ── WARNING BOX ── */
+  .warn-box {
+    background: #FFF5F5;
+    border: 1px solid rgba(192,57,43,0.2);
+    border-left: 4px solid var(--red);
+    border-radius: 0 12px 12px 0;
+    padding: 1rem 1.4rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+    color: var(--ink-mid);
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+  }
+  .warn-box strong { color: var(--ink); }
+
+  /* ── INFO BOX ── */
+  .info-box {
+    background: #F0F7FF;
+    border: 1px solid rgba(59,130,246,0.2);
+    border-left: 4px solid #3B82F6;
+    border-radius: 0 12px 12px 0;
+    padding: 1rem 1.4rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+    color: var(--ink-mid);
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+  }
+
+  /* ── STEPS ── */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 1.5rem;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 1rem;
+    position: relative;
+  }
+  .step:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 32px;
+    bottom: -12px;
+    width: 2px;
+    background: var(--border);
+  }
+  .step-num {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--red);
+    color: var(--red);
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: #fff;
+    position: relative;
+    z-index: 1;
+  }
+  .step-content {
+    padding-bottom: 1.5rem;
+  }
+  .step-title {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+    padding-top: 4px;
+  }
+  .step-body {
+    font-size: 0.875rem;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+
+  /* ── CHECKLIST ── */
+  .checklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--ink-mid);
+    padding: 0.6rem 0.9rem;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+    user-select: none;
+  }
+  .checklist li:hover { background: var(--paper-warm); }
+  .checklist li.checked {
+    opacity: 0.5;
+    text-decoration: line-through;
+    background: var(--paper-warm);
+  }
+  .check-box {
+    width: 18px; height: 18px;
+    border-radius: 4px;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+  .checklist li.checked .check-box {
+    background: var(--red);
+    border-color: var(--red);
+    color: #fff;
+    font-size: 0.65rem;
+  }
+
+  /* ── TABLE ── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .data-table th {
+    background: var(--paper-warm);
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 500;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink-mid);
+    vertical-align: top;
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: var(--paper-warm); }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 500;
+  }
+  .badge-green { background: #E8F5E9; color: #2E7D32; }
+  .badge-amber { background: #FFF8E1; color: #F57F17; }
+  .badge-red   { background: #FFEBEE; color: #C62828; }
+
+  /* ── PROSE ── */
+  p.prose {
+    font-size: 0.95rem;
+    color: var(--ink-mid);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 1.5rem 0;
+  }
+
+  /* ── FINAL CHECKLIST CTA ── */
+  .cta-block {
+    background: var(--ink);
+    border-radius: 16px;
+    padding: 2.5rem;
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+  .cta-block h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: #fff;
+    font-weight: 600;
+  }
+  .cta-block p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.55);
+    max-width: 400px;
+  }
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 2rem;
+    background: var(--red);
+    color: #fff;
+    border-radius: 100px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .cta-btn:hover { background: var(--red-dark); }
+
+  /* ── RELATED PAGES ── */
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .related-card {
+    display: block;
+    padding: 1.2rem 1.4rem;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .related-card:hover {
+    border-color: var(--red);
+    transform: translateY(-2px);
+  }
+  .related-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--red);
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+  }
+  .related-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .related-desc {
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    margin-top: 0.3rem;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    .hero-inner { padding: 3.5rem 1.25rem 3rem; }
+    main { padding: 0 1.25rem 4rem; }
+    .cta-block { padding: 1.75rem 1.25rem; }
+    .card-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="../index.html">China Awaits</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="visa.html">Visa & Entry</a></li>
+    <li><a href="transport.html">Transport</a></li>
+    <li><a href="food.html">Food</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Travel Preparation</p>
+    <h1>Before You <em>Arrive</em></h1>
+    <p class="hero-sub">China is unlike anywhere else you've travelled. A little preparation before you board the plane makes an enormous difference. Here's everything you need to sort out at home.</p>
+    <nav class="jump-nav" aria-label="Jump to section">
+      <a href="#sim"><span class="jump-num">1</span> SIM Card</a>
+      <a href="#vpn"><span class="jump-num">2</span> VPN</a>
+      <a href="#payment"><span class="jump-num">3</span> Mobile Payment</a>
+      <a href="#money"><span class="jump-num">4</span> Money & Cash</a>
+      <a href="#apps"><span class="jump-num">5</span> Apps & Maps</a>
+      <a href="#documents"><span class="jump-num">6</span> Documents</a>
+      <a href="#packing"><span class="jump-num">7</span> Packing Tips</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ALERT BANNER -->
+<div style="background: var(--ink); padding: 0 2rem;">
+  <div class="alert-banner" role="note">
+    <span class="alert-icon">⚠️</span>
+    <p class="alert-text"><strong>Do this before you leave home.</strong> Many of the apps and services on this page — especially VPNs and mobile payment setup — cannot be downloaded or configured once you're inside China. Don't leave it until the airport.</p>
+  </div>
+</div>
+<div style="background: var(--ink); height: 2rem;"></div>
+
+<!-- MAIN -->
+<main>
+
+  <!-- ① SIM CARD -->
+  <section class="section" id="sim">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-header-text">
+        <p class="section-eyebrow">Staying Connected</p>
+        <h2 class="section-title">SIM Card</h2>
+      </div>
+    </div>
+
+    <p class="prose">Your home SIM will likely work in China through international roaming, but the rates are punishing and speeds are often throttled. Getting a dedicated China SIM is strongly recommended.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">📶</div>
+        <p class="card-title">Buy before you fly (recommended)</p>
+        <p class="card-body">Purchase a China-ready SIM from your home country. Activate it at home, test it, and it works the moment you land. Many travel SIMs work across Asia too.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🛬</div>
+        <p class="card-title">Buy at the airport</p>
+        <p class="card-body">China Mobile, China Unicom, and China Telecom all have counters in arrival halls at major airports. Expect queues. You'll need your passport.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📱</div>
+        <p class="card-title">eSIM</p>
+        <p class="card-body">The most seamless option if your phone supports it. Providers like Airalo offer eSIMs for China that you buy and install from home before departure.</p>
+      </div>
+    </div>
+
+    <div class="rec-box">
+      <p class="rec-box-title">Recommended Options</p>
+      <ul class="rec-list">
+        <li><strong>Airalo (eSIM)</strong> — Buy online, install at home, instant activation. No physical SIM needed. Works on any eSIM-compatible phone.</li>
+        <li><strong>China Unicom International SIM</strong> — Available on their website or at many electronics shops in Hong Kong and Asian airports. Reliable 4G/5G coverage.</li>
+        <li><strong>Three (UK) / T-Mobile (US)</strong> — If your plan includes roaming in China, this can work as a backup, but data may be slow.</li>
+      </ul>
+    </div>
+
+    <div class="warn-box">
+      <span>⚠️</span>
+      <p><strong>Note on VoIP calls:</strong> WhatsApp, FaceTime, and Skype calls may not work without a VPN even with a local SIM. WeChat calls work natively inside China.</p>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Option</th>
+          <th>Price range</th>
+          <th>Best for</th>
+          <th>Hassle level</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>eSIM (Airalo etc.)</td>
+          <td>$8–25 / 7 days</td>
+          <td>Most travellers</td>
+          <td><span class="badge badge-green">Low</span></td>
+        </tr>
+        <tr>
+          <td>Airport SIM (local carrier)</td>
+          <td>¥50–150 / month</td>
+          <td>Long stays</td>
+          <td><span class="badge badge-amber">Medium</span></td>
+        </tr>
+        <tr>
+          <td>International roaming</td>
+          <td>$5–15 / day</td>
+          <td>Very short trips</td>
+          <td><span class="badge badge-green">Low</span></td>
+        </tr>
+        <tr>
+          <td>Pocket Wi-Fi rental</td>
+          <td>$5–10 / day</td>
+          <td>Groups sharing</td>
+          <td><span class="badge badge-amber">Medium</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ② VPN -->
+  <section class="section" id="vpn">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-header-text">
+        <p class="section-eyebrow">Internet Access</p>
+        <h2 class="section-title">VPN</h2>
+      </div>
+    </div>
+
+    <p class="prose">China operates the world's most extensive internet filtering system, often called the "Great Firewall." Google, Gmail, YouTube, Instagram, Facebook, WhatsApp, X (Twitter), and most Western news sites are blocked. A VPN lets you bypass this and access the internet as normal.</p>
+
+    <div class="warn-box">
+      <span>🔴</span>
+      <p><strong>Critical:</strong> Download and set up your VPN <em>before</em> entering China. The VPN providers' own websites are blocked inside China, so you cannot download them once you've arrived. This is the single most important thing on this page.</p>
+    </div>
+
+    <div class="rec-box">
+      <p class="rec-box-title">VPNs That Reliably Work in China (2024–2025)</p>
+      <ul class="rec-list">
+        <li><strong>ExpressVPN</strong> — Consistently the most reliable in China. Lightway protocol handles the firewall well. More expensive but worth it.</li>
+        <li><strong>NordVPN</strong> — Good speeds. Use "Obfuscated Servers" mode for China specifically — standard servers won't connect.</li>
+        <li><strong>Astrill VPN</strong> — Very popular among long-term expats in China. Pricier, but known for consistent performance.</li>
+        <li><strong>Surfshark</strong> — Budget-friendly option. Works in China but can be inconsistent during major political events.</li>
+      </ul>
+    </div>
+
+    <div class="info-box">
+      <span>ℹ️</span>
+      <p>VPN availability can change, especially around sensitive dates (National Day in October, for example). It's worth having two VPNs installed as a backup. Even paid VPNs can have outages inside China — this is normal, not a refund situation.</p>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif; font-size:1.1rem; margin-bottom:1rem; color:var(--ink);">Setup checklist before you travel</h3>
+    <ul class="checklist" id="vpn-checklist">
+      <li onclick="toggleCheck(this)"><span class="check-box"></span> Subscribe to a VPN service (ExpressVPN or NordVPN recommended)</li>
+      <li onclick="toggleCheck(this)"><span class="check-box"></span> Install the app on all your devices (phone, laptop, tablet)</li>
+      <li onclick="toggleCheck(this)"><span class="check-box"></span> Enable the China-specific protocol (Lightway / Obfuscated Servers)</li>
+      <li onclick="toggleCheck(this)"><span class="check-box"></span> Test the connection — connect once before you travel</li>
+      <li onclick="toggleCheck(this)"><span class="check-box"></span> Download a backup VPN as a second option</li>
+      <li onclick="toggleCheck(this)"><span class="check-box"></span> Save the VPN's emergency email/mirror site for support inside China</li>
+    </ul>
+  </section>
+
+  <!-- ③ MOBILE PAYMENT -->
+  <section class="section" id="payment">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div class="section-header-text">
+        <p class="section-eyebrow">Paying for Things</p>
+        <h2 class="section-title">Mobile Payment</h2>
+      </div>
+    </div>
+
+    <p class="prose">China is a near-cashless society. The vast majority of payments — from street food stalls to high-end restaurants, taxis to supermarkets — are made via QR code using either <strong>Alipay</strong> or <strong>WeChat Pay</strong>. As a foreign visitor, you can now set both up with an international card.</p>
+
+    <div class="info-box">
+      <span>✅</span>
+      <p>Since 2023, both Alipay and WeChat Pay have made it significantly easier for foreigners to use their services with international Visa/Mastercard cards. You don't need a Chinese bank account anymore.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">💙</div>
+        <p class="card-title">Alipay (recommended)</p>
+        <p class="card-body">The easiest option for foreigners. Download the international version of Alipay and link your Visa, Mastercard, or Amex. Wide acceptance nationwide.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💚</div>
+        <p class="card-title">WeChat Pay</p>
+        <p class="card-body">Requires a WeChat account. Now supports international cards. Many vendors in tourist areas prefer WeChat Pay, so having both is useful.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🍎</div>
+        <p class="card-title">Apple Pay</p>
+        <p class="card-body">Apple Pay works at UnionPay-enabled terminals in China — but only if you have a <strong>UnionPay card</strong> linked to your wallet. Foreign Visa/Mastercard linked to Apple Pay will generally not be accepted at Chinese POS machines. If you have a UnionPay card from your home bank, add it before you travel.</p>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif; font-size:1.1rem; margin: 1.5rem 0 1rem; color:var(--ink);">Setting up Alipay — step by step</h3>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <p class="step-title">Download the Alipay app</p>
+          <p class="step-body">Search for "Alipay" in your App Store or Google Play. Make sure you download the international version (the icon is blue).</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <p class="step-title">Register with your phone number</p>
+          <p class="step-body">Use your home country phone number. You'll receive a verification SMS. Choose "International User" if prompted.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <p class="step-title">Complete identity verification</p>
+          <p class="step-body">Tap your profile → "International Card" → enter your passport number and nationality. This takes 1–2 minutes.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <p class="step-title">Add your card</p>
+          <p class="step-body">Go to "Add Bank Card" and enter your Visa or Mastercard details. American Express is also accepted. The card must support international online transactions.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <p class="step-title">Test a small transaction</p>
+          <p class="step-body">Use Alipay to make a small purchase or top-up before you travel, to confirm everything is working. Some cards decline on first use due to overseas transaction blocks — call your bank if this happens.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="warn-box">
+      <span>💳</span>
+      <p><strong>Tell your bank before you go.</strong> Notify your card issuer that you'll be using the card in China. Many banks auto-block transactions from Chinese payment systems as potential fraud. A quick call or message in the app prevents a lot of frustration.</p>
+    </div>
+  </section>
+
+  <!-- ④ MONEY -->
+  <section class="section" id="money">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div class="section-header-text">
+        <p class="section-eyebrow">Currency & Cash</p>
+        <h2 class="section-title">Money & Cash</h2>
+      </div>
+    </div>
+
+    <p class="prose">Even in China's cashless society, carry some physical RMB (Chinese Yuan, ¥). Small markets, some rural transport, tipping, and a handful of traditional shops still prefer cash. You won't need much, but having none at all is a mistake.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">💵</div>
+        <p class="card-title">How much to bring</p>
+        <p class="card-body">Budget around ¥100–200 per day for cash expenses. For a one-week trip, ¥500–1,000 RMB (~$70–$140 USD) is plenty for most urban travellers — more if you plan to visit rural areas or local markets. Always have small notes — ¥10, ¥20, ¥50.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏦</div>
+        <p class="card-title">Best place to exchange</p>
+        <p class="card-body">Airport bank counters at major Chinese airports offer official rates. Bank of China branches give the best rates in-city. Avoid hotel exchange desks — rates are poor.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏧</div>
+        <p class="card-title">ATMs</p>
+        <p class="card-body">Bank of China and ICBC ATMs accept most foreign Visa/Mastercard/UnionPay. Look for the international card logos. Daily withdrawal limit is typically ¥2,500–5,000. Fees apply.</p>
+      </div>
+    </div>
+
+    <div class="rec-box">
+      <p class="rec-box-title">Money tips</p>
+      <ul class="rec-list">
+        <li>Don't exchange currency at your home country airport — rates are much worse than in China</li>
+        <li>Wise (formerly TransferWise) and Revolut cards get excellent exchange rates at Chinese ATMs</li>
+        <li>Keep some ¥100 notes for taxis and larger purchases, and smaller notes for street food and markets</li>
+        <li>Fake notes exist — always check ¥50 and ¥100 bills when receiving change</li>
+      </ul>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr><th>Currency exchange option</th><th>Rate quality</th><th>Convenience</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Bank of China (in China)</td><td><span class="badge badge-green">Best</span></td><td><span class="badge badge-amber">Requires branch visit</span></td></tr>
+        <tr><td>Airport bank counter (China)</td><td><span class="badge badge-green">Good</span></td><td><span class="badge badge-green">Very convenient</span></td></tr>
+        <tr><td>ATM withdrawal (Wise/Revolut)</td><td><span class="badge badge-green">Good</span></td><td><span class="badge badge-green">Easy</span></td></tr>
+        <tr><td>Hotel exchange desk</td><td><span class="badge badge-red">Poor</span></td><td><span class="badge badge-green">Convenient</span></td></tr>
+        <tr><td>Home country airport</td><td><span class="badge badge-red">Poor</span></td><td><span class="badge badge-amber">Pre-trip</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ⑤ APPS & MAPS -->
+  <section class="section" id="apps">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div class="section-header-text">
+        <p class="section-eyebrow">Navigation & Apps</p>
+        <h2 class="section-title">Apps & Maps</h2>
+      </div>
+    </div>
+
+    <p class="prose">Google Maps works in China only with a VPN, and its data for Chinese streets and transit is often outdated. Download these alternatives before you leave — and download offline maps so navigation works even without a reliable signal.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🗺️</div>
+        <p class="card-title">Maps.me (offline maps)</p>
+        <p class="card-body">Download China maps for offline use. Works without internet. Good for walking navigation in cities. Free.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚇</div>
+        <p class="card-title">Baidu Maps</p>
+        <p class="card-body">The most accurate maps app for China. Has transit directions, bike-share locations, and real-time traffic. English mode available.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚕</div>
+        <p class="card-title">DiDi</p>
+        <p class="card-body">China's ride-hailing app (like Uber). Essential for getting around cities. Download it and register with your phone number before arrival.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚄</div>
+        <p class="card-title">Trip.com or 12306</p>
+        <p class="card-body">For booking high-speed trains. Trip.com has an English interface and accepts international cards. 12306 is the official app (Chinese only, but functional).</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💬</div>
+        <p class="card-title">WeChat</p>
+        <p class="card-body">Not just for payment — WeChat is how Chinese people communicate. Hotels, tour guides, and local contacts all use it. Download and set up an account now.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌐</div>
+        <p class="card-title">Microsoft Translator (best all-rounder)</p>
+        <p class="card-body">Works in China without a VPN. Free on iOS and Android. Covers camera OCR, voice conversation mode, and offline packs. The safest primary translation app for most travellers — download the Simplified Chinese offline pack before you fly.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔴</div>
+        <p class="card-title">Baidu Translate</p>
+        <p class="card-body">China's homegrown translator — works without a VPN and its Chinese-language output sounds the most natural to locals. Best for showing written text to a taxi driver or shopkeeper. iOS and Android. Interface is partly in Chinese but manageable.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🍎</div>
+        <p class="card-title">Apple Translate (iPhone built-in)</p>
+        <p class="card-body">iPhone users already have this. Solid for everyday travel phrases with a clean interface. Supports offline use — download the Chinese language pack in Settings before you go. No VPN needed. Not quite as powerful as Microsoft Translator for camera translation, but great as a quick backup.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🤖</div>
+        <p class="card-title">Android (Samsung / Google)</p>
+        <p class="card-body">Samsung users have the built-in <strong>Interpreter</strong> app for real-time spoken conversation — genuinely useful face-to-face. All Android users can also use <strong>Google Lens</strong> (hold camera over text) for instant on-screen translation, which works offline with downloaded packs. Google Translate itself needs a VPN to function online in China.</p>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <span>💡</span>
+      <p><strong>Pro tip:</strong> WeChat and Alipay both have built-in translation tools. In WeChat, long-press any Chinese message and tap "Translate." In Alipay, use the Scan feature to translate menus and signs in real time. You'll often already have your phone open in these apps — no need to switch to a separate app.</p>
+    </div>
+
+    <div class="info-box">
+      <span>📥</span>
+      <p>Download offline map data for the specific cities you're visiting before you leave home. Offline maps typically require 500MB–2GB per city. Do this on Wi-Fi.</p>
+    </div>
+  </section>
+
+  <!-- ⑥ DOCUMENTS -->
+  <section class="section" id="documents">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div class="section-header-text">
+        <p class="section-eyebrow">Travel Essentials</p>
+        <h2 class="section-title">Documents & Insurance</h2>
+      </div>
+    </div>
+
+    <p class="prose">China requires you to carry your passport at all times by law — it's used to check into hotels, buy train tickets, and occasionally at security checkpoints. Keep both physical and digital copies.</p>
+
+    <ul class="checklist" id="doc-checklist">
+      <li onclick="toggleCheck(this)"><span class="check-box"></span> Passport (valid for at least 6 months beyond your travel dates)</li>
+      <li onclick="toggleCheck(this)"><span class="check-box"></span> Chinese visa (if required — see our <a href="visa.html" onclick="event.stopPropagation()" style="color:var(--red)">Visa & Entry guide</a>)</li>
+      <li onclick="toggleCheck(this)"><span class="check-box"></span> 2–3 photocopies of the passport data page and visa</li>
+      <li onclick="toggleCheck(this)"><span class="check-box"></span> Scanned copies uploaded to cloud storage (Google Drive / iCloud)</li>
+      <li onclick="toggleCheck(this)"><span class="check-box"></span> Travel insurance confirmation — check it covers China</li>
+      <li onclick="toggleCheck(this)"><span class="check-box"></span> Hotel confirmation / accommodation address in Chinese (useful at customs)</li>
+      <li onclick="toggleCheck(this)"><span class="check-box"></span> Emergency contacts saved offline on your phone</li>
+      <li onclick="toggleCheck(this)"><span class="check-box"></span> International driving licence (if planning to drive)</li>
+    </ul>
+
+    <div class="rec-box">
+      <p class="rec-box-title">Travel Insurance</p>
+      <ul class="rec-list">
+        <li>China is not covered by most European health insurance schemes (EHIC/GHIC cards don't apply)</li>
+        <li>Medical costs for serious illness or accident can run into tens of thousands of dollars without insurance</li>
+        <li>Make sure your policy covers <strong>emergency medical evacuation</strong> — this is particularly important</li>
+        <li>Some Chinese visa applications require proof of travel insurance — check your visa requirements</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ⑦ PACKING -->
+  <section class="section" id="packing">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <div class="section-header-text">
+        <p class="section-eyebrow">Final Preparations</p>
+        <h2 class="section-title">Packing Tips</h2>
+      </div>
+    </div>
+
+    <p class="prose">A few practical items make a big difference in China that travellers from other destinations often overlook.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🔌</div>
+        <p class="card-title">Power adaptor</p>
+        <p class="card-body">China uses Type A (two flat pins) and Type I (two diagonal pins) sockets, 220V/50Hz. Most hotels have universal sockets but pack a universal adaptor to be safe.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💊</div>
+        <p class="card-title">Medications</p>
+        <p class="card-body">Bring any prescription medication you need — some Western drugs are unavailable or require a prescription in China. Pack more than you need in case of delays.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">😷</div>
+        <p class="card-title">Air quality</p>
+        <p class="card-body">Air pollution can be significant in Beijing, Shanghai, and other major cities. Bring a quality N95/KN95 mask if you're sensitive to air quality or visiting in winter.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧻</div>
+        <p class="card-title">Pocket tissues</p>
+        <p class="card-body">Public restrooms often don't supply toilet paper. A small pack of tissues in your bag is one of the most useful things you can carry in China.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌡️</div>
+        <p class="card-title">Weather & seasons</p>
+        <p class="card-body">China has extreme climate variation. Northern winters (Beijing, Xi'an) can hit -15°C; southern summers are humid and hot. Pack accordingly for your specific destinations.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎒</div>
+        <p class="card-title">Day bag for security</p>
+        <p class="card-body">Bag X-ray machines are common at metro stations, tourist sites, and train stations. A small, organised bag speeds this up considerably.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / FINAL CHECKLIST -->
+  <div class="cta-block">
+    <h2>All set? Now sort your visa.</h2>
+    <p>Make sure you have the right visa for China before any of this matters. Visa requirements have changed significantly — many nationalities can now enter visa-free.</p>
+    <a class="cta-btn" href="visa.html">Visa & Entry Guide →</a>
+  </div>
+
+  <!-- RELATED PAGES -->
+  <section style="margin-top: 3rem;">
+    <p style="font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-soft); font-weight:500; margin-bottom:1rem;">Keep reading</p>
+    <div class="related-grid">
+      <a class="related-card" href="visa.html">
+        <p class="related-label">Entry requirements</p>
+        <p class="related-title">Visa & Entry</p>
+        <p class="related-desc">Visa-free, visa on arrival, e-visa — what applies to you.</p>
+      </a>
+      <a class="related-card" href="transport.html">
+        <p class="related-label">Getting around</p>
+        <p class="related-title">Transport</p>
+        <p class="related-desc">High-speed trains, metro, taxis, and more.</p>
+      </a>
+      <a class="related-card" href="money.html">
+        <p class="related-label">Spending money</p>
+        <p class="related-title">Money & Payments</p>
+        <p class="related-desc">Deep dive into Alipay, WeChat Pay, and budgeting.</p>
+      </a>
+      <a class="related-card" href="internet.html">
+        <p class="related-label">Internet access</p>
+        <p class="related-title">VPN & Internet</p>
+        <p class="related-desc">Full guide to navigating the Great Firewall.</p>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer style="background:var(--ink); color:rgba(255,255,255,0.45); font-size:0.8rem; padding:2rem; text-align:center; margin-top:4rem;">
+  <p style="font-family:'Playfair Display',serif; font-size:1rem; color:rgba(255,255,255,0.8); margin-bottom:0.5rem;">China Awaits</p>
+  <p>Information is updated regularly but always verify with official sources before travel.</p>
+</footer>
+
+<script>
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+  const box = el.querySelector('.check-box');
+  box.textContent = el.classList.contains('checked') ? '✓' : '';
+}
+</script>
+
+</body>
+</html>
