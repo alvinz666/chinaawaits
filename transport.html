@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting Around China — China Awaits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #C0392B;
+      --red-dark: #96281B;
+      --gold: #C9A84C;
+      --gold-light: #e8c96a;
+      --ink: #1a1a1a;
+      --ink-soft: #3d3d3d;
+      --mist: #f7f4f0;
+      --mist-dark: #ede9e3;
+      --white: #ffffff;
+      --border: #e0d9d0;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,0.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 60px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--red);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--red); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(192,57,43,0.25) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 50%, rgba(201,168,76,0.15) 0%, transparent 60%);
+    }
+    .hero-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image: repeating-linear-gradient(
+        45deg,
+        var(--gold) 0,
+        var(--gold) 1px,
+        transparent 0,
+        transparent 50%
+      );
+      background-size: 20px 20px;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.4);
+      padding: 0.3rem 0.9rem;
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.65);
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+      position: relative;
+    }
+
+    /* Quick jump nav */
+    .jump-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+      position: relative;
+    }
+    .jump-nav a {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 0.45rem 1rem;
+      border-radius: 40px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .jump-nav a:hover {
+      background: rgba(201,168,76,0.2);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .page-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1.5rem 5rem;
+    }
+
+    /* ── SECTION ── */
+    .section {
+      margin-top: 4.5rem;
+      scroll-margin-top: 80px;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .section-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--red);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .section-title-group h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+    .section-title-group p {
+      font-size: 0.88rem;
+      color: #888;
+      margin-top: 0.1rem;
+    }
+
+    /* ── PROSE ── */
+    .prose p {
+      font-size: 0.97rem;
+      color: var(--ink-soft);
+      margin-bottom: 1rem;
+    }
+    .prose strong { color: var(--ink); font-weight: 600; }
+
+    /* ── HIGHLIGHT BOX ── */
+    .highlight {
+      background: var(--mist);
+      border-left: 3px solid var(--gold);
+      padding: 1rem 1.2rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.2rem 0;
+      font-size: 0.93rem;
+      color: var(--ink-soft);
+    }
+    .highlight strong { color: var(--ink); }
+
+    .tip-box {
+      background: #fff8ee;
+      border: 1px solid #f0d990;
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      margin: 1.2rem 0;
+      font-size: 0.92rem;
+      color: #6b5b1a;
+    }
+    .tip-box::before {
+      content: '💡 Tip: ';
+      font-weight: 600;
+    }
+
+    .warning-box {
+      background: #fff5f5;
+      border: 1px solid #f5c6c6;
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      margin: 1.2rem 0;
+      font-size: 0.92rem;
+      color: #7a2020;
+    }
+    .warning-box::before {
+      content: '⚠️ Note: ';
+      font-weight: 600;
+    }
+
+    /* ── STEP LIST ── */
+    .steps {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin: 1.2rem 0;
+    }
+    .steps li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: var(--mist);
+      border-radius: 10px;
+      padding: 0.9rem 1.1rem;
+    }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      background: var(--red);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step-text { font-size: 0.93rem; color: var(--ink-soft); }
+    .step-text strong { color: var(--ink); display: block; margin-bottom: 0.1rem; }
+
+    /* ── BULLET LIST ── */
+    .bullet-list {
+      list-style: none;
+      margin: 1rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .bullet-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      font-size: 0.93rem;
+      color: var(--ink-soft);
+    }
+    .bullet-list li::before {
+      content: '—';
+      color: var(--gold);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ── COMPARISON TABLE ── */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    thead {
+      background: var(--ink);
+      color: white;
+    }
+    thead th {
+      padding: 0.85rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.83rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:nth-child(even) { background: var(--mist); }
+    tbody td {
+      padding: 0.85rem 1rem;
+      color: var(--ink-soft);
+      vertical-align: top;
+    }
+    tbody td:first-child { font-weight: 600; color: var(--ink); }
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.15rem 0.55rem;
+      border-radius: 20px;
+    }
+    .badge-green { background: #e6f9ee; color: #1a7a3c; }
+    .badge-yellow { background: #fff8e1; color: #7a5f00; }
+    .badge-red { background: #fff0f0; color: #9a2020; }
+
+    /* ── CARD GRID ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+      margin: 1.2rem 0;
+    }
+    .card {
+      background: var(--mist);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .card:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-2px);
+    }
+    .card-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .card p { font-size: 0.87rem; color: #666; line-height: 1.5; }
+
+    /* ── FAQ ── */
+    .faq { margin: 1.5rem 0; }
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 0.6rem;
+      overflow: hidden;
+    }
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.93rem;
+      font-weight: 600;
+      color: var(--ink);
+      text-align: left;
+      gap: 1rem;
+    }
+    .faq-q:hover { background: var(--mist); }
+    .faq-arrow {
+      font-size: 1rem;
+      color: var(--gold);
+      transition: transform 0.25s;
+      flex-shrink: 0;
+    }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a {
+      display: none;
+      padding: 0 1.2rem 1rem;
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      border-top: 1px solid var(--border);
+      padding-top: 0.8rem;
+    }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+
+    /* ── BACK LINK ── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--red);
+      text-decoration: none;
+      margin-top: 3rem;
+      padding: 0.5rem 0;
+    }
+    .back-link:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 1rem; }
+      .page-wrap { padding: 0 1rem 4rem; }
+      .hero { padding: 3.5rem 1rem 3rem; }
+      .card-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo">China Awaits</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="visa.html">Visa</a></li>
+    <li><a href="pre-arrival.html">Pre-Arrival</a></li>
+    <li><a href="transport.html" style="color:var(--red)">Transport</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-tag">Getting Around</div>
+  <h1>Transport in <span>China</span></h1>
+  <p class="hero-sub">From bullet trains to bike-share — China's transport network is vast, fast, and surprisingly easy to navigate once you know the basics.</p>
+  <div class="jump-nav">
+    <a href="#rail">🚄 High-Speed Rail</a>
+    <a href="#metro">🚇 Metro</a>
+    <a href="#didi">🚗 DiDi</a>
+    <a href="#flight">✈️ Domestic Flights</a>
+    <a href="#bus">🚌 Long-Distance Bus</a>
+    <a href="#taxi">🚕 Taxis</a>
+    <a href="#bike">🚲 Bike-Share</a>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="page-wrap">
+
+  <!-- ── HIGH-SPEED RAIL ── -->
+  <section class="section" id="rail">
+    <div class="section-header">
+      <div class="section-icon">🚄</div>
+      <div class="section-title-group">
+        <h2>High-Speed Rail (高铁)</h2>
+        <p>The fastest and most comfortable way to travel between cities</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>China's high-speed rail (HSR) network is the largest in the world — over 45,000 km of track connecting virtually every major city. Trains travel at up to 350 km/h, making routes like Beijing–Shanghai (1,318 km) in just 4.5 hours. It's often faster than flying once you factor in airport time.</p>
+    </div>
+
+    <div class="highlight">
+      <strong>Key route examples:</strong> Beijing → Shanghai: ~4.5 hrs | Beijing → Xi'an: ~5.5 hrs | Shanghai → Hangzhou: ~1 hr | Guangzhou → Shenzhen: ~30 min
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;margin:1.5rem 0 0.8rem">How to Book Tickets</h3>
+    <p style="font-size:0.93rem;color:var(--ink-soft);margin-bottom:1rem;">You have two options: book in advance online, or buy directly at the station.</p>
+    <ul class="steps">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <strong>Option A: Book online (recommended)</strong>
+          Use <strong>Trip.com</strong> or the <strong>China Train Booking</strong> app — English interface, accepts foreign credit cards. Alternatively, the official <strong>12306</strong> app works but is Chinese-only and harder for foreigners. Tickets go on sale 15 days before departure on 12306, and up to 30 days ahead on Trip.com.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <strong>Option B: Buy at the station counter or machine</strong>
+          You can walk up to any train station ticket window (售票处) and buy a physical ticket on the spot using your passport. Self-service machines also have an English option and accept cash, Chinese bank cards, and in some stations foreign cards. This is especially handy for same-day or next-day travel on less busy routes.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <strong>Your passport is your ticket</strong>
+          Whether you booked online or at the counter, your ticket is linked to your passport number. Show your passport at the gate or at a self-service kiosk to collect a boarding pass (for online bookings). Physical tickets bought at the counter are ready to use directly.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-text">
+          <strong>Arrive 30 minutes early</strong>
+          Train stations are large. You'll pass through security (like an airport) and need to find your platform. Gates close 5 minutes before departure — don't be late.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">5</div>
+        <div class="step-text">
+          <strong>Find your car and seat</strong>
+          Your ticket shows 车次 (train number), 车厢 (car number), and 座位 (seat). Platform signs show which section of the platform each car stops at.
+        </div>
+      </li>
+    </ul>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;margin:1.5rem 0 0.8rem">Seat Classes</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Chinese</th>
+            <th>Description</th>
+            <th>Price (BJ→SH)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Second Class</td>
+            <td>二等座</td>
+            <td>Standard seats, 3+2 layout, comfortable</td>
+            <td>~¥553</td>
+          </tr>
+          <tr>
+            <td>First Class</td>
+            <td>一等座</td>
+            <td>Wider seats, 2+2 layout, more legroom</td>
+            <td>~¥933</td>
+          </tr>
+          <tr>
+            <td>Business Class</td>
+            <td>商务座</td>
+            <td>Lie-flat seats, meals included</td>
+            <td>~¥1,748</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tip-box">Second class is perfectly comfortable for most journeys. The seats are clean, spacious, and have power outlets. Upgrade to first class for trips over 4 hours if you want extra room.</div>
+
+    <div class="warning-box">Luggage rules: there are no weight limits enforced, but bags must fit in the overhead rack or under the seat. There's no checked baggage service on HSR trains.</div>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;margin:1.5rem 0 0.8rem">Useful Tips</h3>
+    <ul class="bullet-list">
+      <li>Trains are very punctual — delays are rare</li>
+      <li>There's a dining car on most long-distance trains; food is cheap and decent</li>
+      <li>Hot water dispensers are available in every car (bring instant noodles like a local)</li>
+      <li>Station names are shown in both Chinese and pinyin on signs</li>
+      <li>Download your e-ticket to your phone before travelling — screenshots work fine</li>
+      <li>Some cities have multiple train stations (e.g. Beijing has 4) — double-check which one</li>
+    </ul>
+  </section>
+
+  <!-- ── METRO ── -->
+  <section class="section" id="metro">
+    <div class="section-header">
+      <div class="section-icon">🚇</div>
+      <div class="section-title-group">
+        <h2>Metro (地铁)</h2>
+        <p>Fast, cheap, and the best way to get around within a city</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Major Chinese cities have world-class metro systems — clean, air-conditioned, and incredibly affordable (most fares are ¥2–8). Shanghai has 20 lines, Beijing has 27, Guangzhou has 16. Stations are signed in both Chinese and English.</p>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;margin:1.5rem 0 0.8rem">How to Pay</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">📱</div>
+        <h3>Alipay / WeChat Pay</h3>
+        <p>Scan QR code at the turnstile. The easiest and most universal option — works in 40+ cities. Set up the Transport tab in Alipay once per city. <strong>Recommended for most travellers.</strong></p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💳</div>
+        <h3>Foreign Bank Card (Contactless)</h3>
+        <p>Tap your Visa, Mastercard, AmEx, or JCB card directly at the gate — no app needed. <strong>Beijing</strong> supports all 5 major international card brands across its entire network. <strong>Shanghai</strong> accepts Visa/MC contactless on the Maglev and Line 11 (from June 2025, expanding). Other cities are rolling out support — look for the contactless symbol (⊕) at gates.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🍎</div>
+        <h3>Apple Pay / Google Pay</h3>
+        <p>Works where contactless bank cards are accepted (Beijing full network; Shanghai pilot lines). You can also add a Chinese transit card to Apple Wallet for cities that support it. Check for the contactless symbol at the gate.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💴</div>
+        <h3>Transit Card (公交卡)</h3>
+        <p>City-specific rechargeable card. Tap on and off. Buy and top up at any station service desk or machine. Often gives a small discount. Good if you'll use the metro heavily over several days.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎫</div>
+        <h3>Cash (Single-Trip Token)</h3>
+        <p>Buy a token at the vending machine with cash. Machines have an English option. Always works as a backup — no app or card needed.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚌</div>
+        <h3>National Transit Card (交通联合)</h3>
+        <p>Accepted in many cities across China. Worth it if you're visiting multiple cities and want one card for everything.</p>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <strong>Travelling as a group?</strong> In <strong>Shanghai</strong>, Alipay has a companion ticket feature in its Transport section — one person can generate QR codes for multiple passengers from a single account. Availability varies by city; in Beijing and most other cities, each person needs their own phone to scan in. When in doubt, use the ticket machine to buy multiple paper tokens for the group.
+    </div>
+
+    <div class="tip-box">Security screening (bags through X-ray) is mandatory at every metro station entrance. Keep a small bag or backpack ready to put on the belt. It's quick — usually under 30 seconds.</div>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;margin:1.5rem 0 0.8rem">Recommended Metro Apps</h3>
+    <ul class="bullet-list">
+      <li><strong>Apple Maps</strong> — surprisingly accurate in China, works without VPN. Best free option for foreigners.</li>
+      <li><strong style="color:var(--red)">Google Maps ⚠️ REQUIRES VPN</strong> — blocked in China without a VPN. Even with a VPN, its China map data is often outdated. <strong>Not recommended as your primary navigation app in China.</strong></li>
+      <li><strong>Amap / AutoNavi (高德地图)</strong> — the gold standard for navigation in China. Has an English mode. Highly recommended for foreigners.</li>
+      <li><strong>Baidu Maps (百度地图)</strong> — most accurate for real-time info, but primarily Chinese-language interface.</li>
+      <li><strong>City-specific apps</strong> — e.g. Metro Daduhui (Shanghai), useful for detailed line maps and offline use.</li>
+    </ul>
+  </section>
+
+  <!-- ── DIDI ── -->
+  <section class="section" id="didi">
+    <div class="section-header">
+      <div class="section-icon">🚗</div>
+      <div class="section-title-group">
+        <h2>DiDi (滴滴)</h2>
+        <p>China's Uber — essential for door-to-door travel</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>DiDi is China's dominant ride-hailing app with hundreds of millions of users. It works just like Uber: open the app, set your pickup and destination, confirm the price, and a driver comes to you. Most drivers do not speak English — but that's fine, because the app handles everything.</p>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;margin:1.5rem 0 0.8rem">Getting Started</h3>
+    <ul class="steps">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <strong>Download DiDi (international version)</strong>
+          Search "DiDi" on the App Store or Google Play. The international version has an English interface. Sign up with your phone number.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <strong>Add a payment method</strong>
+          Foreign Visa/Mastercard credit cards now work in DiDi. You can also link Alipay or WeChat Pay if you've set those up.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <strong>Enter your destination in English or by pasting an address</strong>
+          DiDi supports English place names. For more accuracy, copy-paste a Chinese address from a map app or from your hotel's info card.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-text">
+          <strong>Show the driver your destination on the map</strong>
+          If needed, just point to the map on your screen. Drivers are used to foreign passengers.
+        </div>
+      </li>
+    </ul>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;margin:1.5rem 0 0.8rem">DiDi Service Types</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Chinese</th>
+            <th>Vehicle</th>
+            <th>Perks</th>
+            <th>Best For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Express</td>
+            <td>快车</td>
+            <td>Standard cars</td>
+            <td>None beyond the ride</td>
+            <td>Everyday travel, short trips</td>
+          </tr>
+          <tr>
+            <td>Premier</td>
+            <td>优享</td>
+            <td>Newer, higher-end cars; drivers with 5-star ratings</td>
+            <td>Complimentary bottled water, phone charging cables in the armrest console, sometimes snacks; 24/7 dedicated customer service</td>
+            <td>Airport runs, longer trips, business travel</td>
+          </tr>
+          <tr>
+            <td>Luxe</td>
+            <td>豪华</td>
+            <td>Luxury vehicles (Audi A6L, BMW 5 Series, Mercedes E-Class)</td>
+            <td>All Premier perks + premium vehicle selection; schedule-ahead available</td>
+            <td>Special occasions, impressing clients</td>
+          </tr>
+          <tr>
+            <td>DiDi Taxi</td>
+            <td>出租车</td>
+            <td>Registered metered taxis</td>
+            <td>Metered fare, official taxi receipt</td>
+            <td>When you prefer a traditional taxi</td>
+          </tr>
+          <tr>
+            <td>DiDi 6-Seater</td>
+            <td>六座</td>
+            <td>MPV / minivan</td>
+            <td>More luggage space, fits groups of 5–6</td>
+            <td>Groups or lots of luggage</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tip-box">Save your hotel's address in Chinese characters in your phone's notes. Show it to drivers, restaurant staff, and anyone who needs to know where you're going. Your hotel's front desk can write this for you.</div>
+
+    <div class="warning-box">Surge pricing applies during rain, rush hours, and holidays — the same as Uber. If prices seem high, try waiting 5–10 minutes or walking a block away from a busy area.</div>
+  </section>
+
+  <!-- ── DOMESTIC FLIGHTS ── -->
+  <section class="section" id="flight">
+    <div class="section-header">
+      <div class="section-icon">✈️</div>
+      <div class="section-title-group">
+        <h2>Domestic Flights (国内航班)</h2>
+        <p>Best for very long distances or when rail isn't available</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>China has a dense network of domestic flights. For distances over 1,500 km (e.g. Beijing to Chengdu, or Shanghai to Kunming) or when there's no convenient rail connection, flying can be the best option. However, for anything under 4–5 hours by rail, the train is usually more convenient once you factor in airport check-in time.</p>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;margin:1.5rem 0 0.8rem">Where to Book</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">✈️</div>
+        <h3>Trip.com</h3>
+        <p>Best for foreigners. English interface, accepts foreign cards, shows all airlines. Also great for hotels and train tickets.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌐</div>
+        <h3>Skyscanner / <span style="color:var(--red)">Google Flights ⚠️</span></h3>
+        <p>Good for price comparison before your trip. Note: <strong>Google Flights requires a VPN when accessed from inside China</strong> — use it for research before you arrive, then book via Trip.com or airline sites once in China.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏢</div>
+        <h3>Direct with Airlines</h3>
+        <p>Air China, China Eastern, China Southern all have English websites. Foreign card acceptance varies.</p>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;margin:1.5rem 0 0.8rem">At the Airport</h3>
+    <ul class="bullet-list">
+      <li>Arrive at least <strong>2 hours before departure</strong> (domestic) — security and check-in lines can be long</li>
+      <li>Check-in counters open 2–3 hours before flights; online check-in available for most airlines</li>
+      <li>Your passport is your boarding document — you must show it at check-in and security</li>
+      <li>Airport signs are bilingual (Chinese + English); airport staff often speak basic English</li>
+      <li>Domestic departures and international departures are usually in separate terminals — check ahead</li>
+      <li>Liquids rules apply: 100ml per container, in a clear bag for carry-on</li>
+    </ul>
+
+    <div class="tip-box">China's airports frequently run on time, but delays do happen — especially in summer storm season (June–September) and during Chinese national holidays. Build buffer time into your connections.</div>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;margin:1.5rem 0 0.8rem">Rail vs. Flight: When to Choose What</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Journey</th>
+            <th>Best Option</th>
+            <th>Reason</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Beijing → Shanghai</td>
+            <td><span class="badge badge-green">Rail</span></td>
+            <td>4.5 hrs, city-centre to city-centre</td>
+          </tr>
+          <tr>
+            <td>Beijing → Xi'an</td>
+            <td><span class="badge badge-green">Rail</span></td>
+            <td>5.5 hrs, very comfortable</td>
+          </tr>
+          <tr>
+            <td>Shanghai → Chengdu</td>
+            <td><span class="badge badge-yellow">Either</span></td>
+            <td>Rail ~11 hrs (overnight), flight ~2.5 hrs</td>
+          </tr>
+          <tr>
+            <td>Beijing → Kunming</td>
+            <td><span class="badge badge-red">Flight</span></td>
+            <td>Rail is very long; flight ~3 hrs</td>
+          </tr>
+          <tr>
+            <td>Any city → Tibet</td>
+            <td><span class="badge badge-red">Flight</span></td>
+            <td>Requires special permit; flight easiest option</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── LONG-DISTANCE BUS ── -->
+  <section class="section" id="bus">
+    <div class="section-header">
+      <div class="section-icon">🚌</div>
+      <div class="section-title-group">
+        <h2>Long-Distance Bus (长途客车)</h2>
+        <p>Useful for shorter regional routes not served by rail</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Long-distance buses connect cities and towns that aren't on the rail network — especially in rural areas, mountainous regions, and smaller provincial cities. They depart from a dedicated long-distance bus station (长途汽车站), usually near the city's train station.</p>
+    </div>
+
+    <div class="highlight">
+      <strong>When buses are useful:</strong> Getting to scenic areas like Zhangjiajie, Yellow Mountain (黄山), or smaller towns in Yunnan and Guizhou provinces that don't have train stations. Also good for short hops of 1–3 hours between nearby cities.
+    </div>
+
+    <ul class="bullet-list">
+      <li>Tickets are bought in person at the bus station; some routes are on Trip.com</li>
+      <li>Bring your passport — it's required for long-distance bus tickets</li>
+      <li>Luggage goes in the compartment under the bus; keep valuables with you</li>
+      <li>Buses often have fixed departure times — arrive 20 minutes early</li>
+      <li>Overnight sleeper buses exist for very long routes (12+ hours), with bunk-style seats</li>
+      <li>Comfort varies widely — newer routes use comfortable coaches; older routes may be basic</li>
+    </ul>
+
+    <div class="tip-box">For scenic mountain areas, consider hiring a private car or joining a day tour — it's often more convenient than navigating local bus schedules, especially if signage isn't in English.</div>
+  </section>
+
+  <!-- ── TAXIS ── -->
+  <section class="section" id="taxi">
+    <div class="section-header">
+      <div class="section-icon">🚕</div>
+      <div class="section-title-group">
+        <h2>Taxis (出租车)</h2>
+        <p>Always metered, generally honest — but have your destination ready</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Regular taxis are still widely available in Chinese cities, especially outside metro stations and at airports. They're metered, licensed, and generally reliable. The main challenge for foreigners is communication — very few taxi drivers speak English.</p>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;margin:1.5rem 0 0.8rem">How to Ride a Taxi</h3>
+    <ul class="steps">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <strong>Hail from the street or queue at a taxi stand</strong>
+          Green light on = available. Wave your hand. In busy areas (airports, stations), use the designated taxi queue — don't accept offers from unlicensed drivers.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <strong>Show your destination in Chinese</strong>
+          Have the address or destination name written in Chinese on your phone. Hotel business cards in Chinese are perfect for this.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <strong>Make sure the meter is running</strong>
+          The driver should start the meter (计价器) at the beginning of the trip. If they don't, politely point to the meter or say "打表" (dǎ biǎo).
+        </div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-text">
+          <strong>Pay the metered fare</strong>
+          Pay by cash or — in most modern taxis — scan a QR code for Alipay/WeChat Pay. Tipping is not customary in China.
+        </div>
+      </li>
+    </ul>
+
+    <div class="warning-box">At airports and tourist attractions, avoid unofficial "black car" (黑车) operators who approach you before you reach the official taxi queue. Always use metered taxis or DiDi for safety and fair pricing.</div>
+
+    <div class="highlight">
+      <strong>Starting fares by city (approx.):</strong> Beijing ¥13 | Shanghai ¥18 | Guangzhou ¥12 | Chengdu ¥10. After the initial distance, most cities charge ¥1.5–3 per km.
+    </div>
+  </section>
+
+  <!-- ── BIKE SHARE ── -->
+  <section class="section" id="bike">
+    <div class="section-header">
+      <div class="section-icon">🚲</div>
+      <div class="section-title-group">
+        <h2>Bike-Share & E-Scooters (共享单车)</h2>
+        <p>Perfect for short trips and exploring neighbourhoods</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Bike-share is everywhere in Chinese cities. Meituan (美团) and Hello Bike (哈啰) are the dominant providers. Bikes are unlocked via QR code, charged by the minute (~¥1.5–2.5/30 min), and dropped anywhere on the street within the designated zone. E-bikes and e-scooters are also available in many cities.</p>
+    </div>
+
+    <div class="highlight">
+      <strong>How to use:</strong> Open Meituan or Alipay (which has Hello Bike built in) → find a nearby bike → scan the QR code on the lock → ride → end the ride and lock the bike anywhere on the street.
+    </div>
+
+    <ul class="bullet-list">
+      <li>Requires a Chinese phone number and Alipay/WeChat Pay to deposit and pay</li>
+      <li>A refundable deposit (usually ¥99–299) is required; you can unlock it when leaving China</li>
+      <li>Ride in bike lanes where available — they're well-marked in most cities</li>
+      <li>Helmets are rarely provided and not legally required for regular bikes</li>
+      <li>Some scenic areas (e.g. West Lake in Hangzhou) have their own local bike-share systems — very cheap</li>
+    </ul>
+
+    <div class="tip-box">Bike-share is one of the most enjoyable ways to explore a city — especially for areas between metro stations. Hangzhou, Chengdu, and Xiamen are particularly bike-friendly cities.</div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="section" id="faq">
+    <div class="section-header">
+      <div class="section-icon">❓</div>
+      <div class="section-title-group">
+        <h2>Frequently Asked Questions</h2>
+        <p>Common transport questions from foreign visitors</p>
+      </div>
+    </div>
+
+    <div class="faq">
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Do I need to book train tickets in advance?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">
+          For popular routes (especially Beijing–Shanghai and any travel around national holidays like Golden Week in early October and Chinese New Year), book at least 1–2 weeks in advance — tickets sell out fast. For off-peak travel on less busy routes, a few days ahead is usually fine. Tickets go on sale 15 days before departure on 12306, and up to 30 days ahead on Trip.com.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Can I use Uber in China?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">
+          Uber does not operate in China. DiDi is the equivalent — it works almost identically. Download DiDi before you arrive. The international version has an English interface and accepts foreign credit cards.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Is it safe to take taxis in China?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">
+          Yes — licensed, metered taxis are safe and reliable. The main risk is overcharging at airports or tourist spots, usually from unofficial drivers who approach you before you reach the taxi queue. Always use the official taxi stand, make sure the meter is on, or use DiDi which shows you the price upfront.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Do metro stations have English signs?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">
+          Yes, in all major cities (Beijing, Shanghai, Guangzhou, Shenzhen, Chengdu, Xi'an, Hangzhou, etc.), metro stations have signs in both Chinese and English (pinyin). Announcements are also made in English. Ticket machines have an English option. Smaller cities may have less English signage — use Amap or Google Maps (with VPN) for directions.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Can I drive in China with a foreign licence?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">
+          No — international driving permits are not recognised in China. You need a Chinese driving licence to drive legally. For most tourists, this means self-driving is not an option. DiDi, taxis, and hired drivers with vehicles are the practical alternatives.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          How do I get from the airport to the city centre?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">
+          Most major Chinese cities have an airport express rail link (e.g. Beijing Capital Airport Express, Shanghai Maglev to Pudong, Guangzhou APM). These are fast, cheap, and clearly signed. DiDi and taxis are also available from the arrivals hall — follow signs to "taxi" or use DiDi to arrange pickup. Airport buses are another affordable option and stop at key city locations.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          What's the cheapest way to travel between cities?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">
+          Second class on the high-speed rail is typically the best value — it's faster than buses, cheaper than flights, and very comfortable. Budget domestic flights can sometimes be cheaper, but factor in airport transfer time and costs. Long-distance buses are the cheapest option but also the slowest and least comfortable.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <a href="../index.html" class="back-link">← Back to China Awaits</a>
+
+</div>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+</body>
+</html>
