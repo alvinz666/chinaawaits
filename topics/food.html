@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Food & Dining in China — China Awaits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #C0392B;
+      --red-dark: #96281B;
+      --gold: #C9A84C;
+      --gold-light: #e8c96a;
+      --ink: #1a1a1a;
+      --ink-soft: #3d3d3d;
+      --mist: #f7f4f0;
+      --mist-dark: #ede9e3;
+      --white: #ffffff;
+      --border: #e0d9d0;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,0.14);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); line-height: 1.7; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.97); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 60px;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--red); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-size: 0.88rem; font-weight: 500; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--red); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--ink); position: relative; overflow: hidden;
+      padding: 5rem 2rem 4rem; text-align: center;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 15% 60%, rgba(192,57,43,0.3) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 40%, rgba(201,168,76,0.18) 0%, transparent 55%);
+    }
+    .hero-pattern {
+      position: absolute; inset: 0; opacity: 0.035;
+      background-image: repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%);
+      background-size: 20px 20px;
+    }
+    .hero-tag {
+      display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,0.4);
+      padding: 0.3rem 0.9rem; border-radius: 2px; margin-bottom: 1.5rem; position: relative;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 1rem; position: relative;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.65); max-width: 540px; margin: 0 auto 2.5rem; position: relative; }
+    .jump-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; position: relative; }
+    .jump-nav a {
+      display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 500;
+      color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15); padding: 0.45rem 1rem; border-radius: 40px;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .jump-nav a:hover { background: rgba(201,168,76,0.2); border-color: var(--gold); color: var(--gold); }
+
+    /* ── LAYOUT ── */
+    .page-wrap { max-width: 860px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+    /* ── SECTION ── */
+    .section { margin-top: 4.5rem; scroll-margin-top: 80px; }
+    .section-header {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1.8rem;
+      padding-bottom: 1rem; border-bottom: 2px solid var(--border);
+    }
+    .section-icon {
+      width: 48px; height: 48px; background: var(--red); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;
+    }
+    .section-title-group h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+    .section-title-group p { font-size: 0.88rem; color: #888; margin-top: 0.1rem; }
+
+    /* ── PROSE ── */
+    .prose p { font-size: 0.97rem; color: var(--ink-soft); margin-bottom: 1rem; }
+    .prose strong { color: var(--ink); font-weight: 600; }
+
+    /* ── BOXES ── */
+    .highlight { background: var(--mist); border-left: 3px solid var(--gold); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1.2rem 0; font-size: 0.93rem; color: var(--ink-soft); }
+    .highlight strong { color: var(--ink); }
+    .tip-box { background: #fff8ee; border: 1px solid #f0d990; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #6b5b1a; }
+    .tip-box::before { content: '💡 Tip: '; font-weight: 600; }
+    .warning-box { background: #fff5f5; border: 1px solid #f5c6c6; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #7a2020; }
+    .warning-box::before { content: '⚠️ Note: '; font-weight: 600; }
+
+    /* ── BULLET LIST ── */
+    .bullet-list { list-style: none; margin: 1rem 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .bullet-list li { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.93rem; color: var(--ink-soft); }
+    .bullet-list li::before { content: '—'; color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+
+    /* ── STEPS ── */
+    .steps { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; margin: 1.2rem 0; }
+    .steps li { display: flex; align-items: flex-start; gap: 1rem; background: var(--mist); border-radius: 10px; padding: 0.9rem 1.1rem; }
+    .step-num { width: 28px; height: 28px; background: var(--red); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .step-text { font-size: 0.93rem; color: var(--ink-soft); }
+    .step-text strong { color: var(--ink); display: block; margin-bottom: 0.1rem; }
+
+    /* ── TABLE ── */
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    thead { background: var(--ink); color: white; }
+    thead th { padding: 0.85rem 1rem; text-align: left; font-weight: 600; font-size: 0.83rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:nth-child(even) { background: var(--mist); }
+    tbody td { padding: 0.85rem 1rem; color: var(--ink-soft); vertical-align: top; }
+    tbody td:first-child { font-weight: 600; color: var(--ink); }
+
+    /* ── CARD GRID ── */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; transition: box-shadow 0.2s, transform 0.2s; }
+    .card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+    .card-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+    .card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .card p { font-size: 0.87rem; color: #666; line-height: 1.5; }
+
+    /* ── REGIONAL MAP ── */
+    .region-map-wrap { margin: 1.5rem 0; }
+    .region-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.2rem; }
+    .region-tab {
+      padding: 0.5rem 1.1rem; border-radius: 40px; font-size: 0.88rem; font-weight: 600;
+      border: 2px solid var(--border); background: var(--white); cursor: pointer;
+      transition: all 0.2s; color: var(--ink-soft);
+    }
+    .region-tab:hover { border-color: var(--red); color: var(--red); }
+    .region-tab.active { background: var(--red); border-color: var(--red); color: white; }
+
+    .region-panel { display: none; animation: fadeIn 0.25s ease; }
+    .region-panel.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    .region-card {
+      background: var(--mist); border: 1px solid var(--border); border-radius: 16px;
+      overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    }
+    .region-info { padding: 1.8rem; }
+    .region-name { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .region-subtitle { font-size: 0.85rem; color: var(--gold); font-weight: 600; margin-bottom: 1rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .region-desc { font-size: 0.92rem; color: var(--ink-soft); margin-bottom: 1.2rem; line-height: 1.6; }
+    .region-flavour { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+    .flavour-tag {
+      font-size: 0.78rem; font-weight: 600; padding: 0.2rem 0.7rem; border-radius: 20px; letter-spacing: 0.03em;
+    }
+    .tag-spicy { background: #ffeaea; color: #b91c1c; }
+    .tag-sweet { background: #fff3e0; color: #b45309; }
+    .tag-salty { background: #e8f4fd; color: #1e40af; }
+    .tag-umami { background: #f0fdf4; color: #166534; }
+    .tag-mild { background: #f5f3ff; color: #5b21b6; }
+    .tag-sour { background: #fefce8; color: #854d0e; }
+    .tag-rich { background: #fdf2f8; color: #86198f; }
+    .region-dishes h4 { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #999; margin-bottom: 0.6rem; }
+    .dish-chips { display: flex; flex-direction: column; gap: 0.35rem; }
+    .dish-chip { font-size: 0.88rem; color: var(--ink-soft); display: flex; align-items: baseline; gap: 0.5rem; }
+    .dish-chip .zh { font-size: 0.78rem; color: #bbb; }
+    .region-visual {
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem; position: relative;
+      background: linear-gradient(135deg, rgba(192,57,43,0.08), rgba(201,168,76,0.12));
+      min-height: 200px;
+    }
+    .region-cities { margin-top: 1rem; font-size: 0.82rem; color: #999; }
+    .region-cities strong { color: var(--ink-soft); }
+
+    /* ── MUST-TRY DISHES ── */
+    .dishes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .dish-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: 14px;
+      padding: 1.2rem; transition: all 0.2s; cursor: default;
+    }
+    .dish-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); border-color: var(--gold); }
+    .dish-emoji { font-size: 2rem; margin-bottom: 0.6rem; display: block; }
+    .dish-name { font-family: 'Playfair Display', serif; font-size: 0.98rem; font-weight: 700; margin-bottom: 0.15rem; }
+    .dish-zh { font-size: 0.8rem; color: #bbb; margin-bottom: 0.5rem; }
+    .dish-desc { font-size: 0.82rem; color: #777; line-height: 1.45; }
+    .dish-region { font-size: 0.75rem; font-weight: 600; color: var(--gold); margin-top: 0.5rem; letter-spacing: 0.04em; text-transform: uppercase; }
+
+    /* ── DIETARY BADGES ── */
+    .dietary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .dietary-card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; }
+    .dietary-card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+    .dietary-card p { font-size: 0.87rem; color: #666; line-height: 1.5; margin-bottom: 0.7rem; }
+    .phrase-box { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 0.7rem 0.9rem; }
+    .phrase-box .zh { font-size: 1rem; font-weight: 600; color: var(--red); margin-bottom: 0.1rem; }
+    .phrase-box .pinyin { font-size: 0.78rem; color: #999; font-style: italic; margin-bottom: 0.1rem; }
+    .phrase-box .en { font-size: 0.8rem; color: var(--ink-soft); }
+
+    /* ── FAQ ── */
+    .faq { margin: 1.5rem 0; }
+    .faq-item { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 0.6rem; overflow: hidden; }
+    .faq-q { width: 100%; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.2rem; font-family: 'DM Sans', sans-serif; font-size: 0.93rem; font-weight: 600; color: var(--ink); text-align: left; gap: 1rem; }
+    .faq-q:hover { background: var(--mist); }
+    .faq-arrow { font-size: 1rem; color: var(--gold); transition: transform 0.25s; flex-shrink: 0; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0.8rem 1.2rem 1rem; font-size: 0.9rem; color: var(--ink-soft); border-top: 1px solid var(--border); }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── DISH IMAGE ── */
+    .dish-img-wrap {
+      width: 100%; height: 130px; border-radius: 8px; margin-bottom: 0.8rem;
+      overflow: hidden; background: var(--mist-dark); position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .dish-img-placeholder { font-size: 2.8rem; opacity: 0.5; }
+    .dish-img-wrap img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; border-radius: 8px;
+      transition: opacity 0.4s; opacity: 0;
+    }
+    .dish-img-wrap img.loaded { opacity: 1; }
+
+    /* ── BACK LINK ── */
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.88rem; font-weight: 500; color: var(--red); text-decoration: none; margin-top: 3rem; }
+    .back-link:hover { text-decoration: underline; }
+
+    .h3-style { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin: 1.5rem 0 0.8rem; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .page-wrap { padding: 0 1rem 4rem; }
+      .hero { padding: 3.5rem 1rem 3rem; }
+      .region-card { grid-template-columns: 1fr; }
+      .region-visual { min-height: 120px; }
+      .dishes-grid { grid-template-columns: repeat(2, 1fr); }
+      .dietary-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo">China Awaits</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="visa.html">Visa</a></li>
+    <li><a href="transport.html">Transport</a></li>
+    <li><a href="food.html" style="color:var(--red)">Food</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-tag">Food & Dining</div>
+  <h1>Eating in <span>China</span></h1>
+  <p class="hero-sub">One of the world's great food cultures — and surprisingly easy to navigate as a foreigner once you know the basics.</p>
+  <div class="jump-nav">
+    <a href="#overview">🍽️ Overview</a>
+    <a href="#regional">🗺️ Regional Flavours</a>
+    <a href="#must-try">⭐ Must-Try Dishes</a>
+    <a href="#ordering">📋 How to Order</a>
+    <a href="#dietary">🥦 Dietary Needs</a>
+    <a href="#apps">📱 Finding Food</a>
+    <a href="#etiquette">🥢 Etiquette</a>
+    <a href="#faq">❓ FAQ</a>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- ── OVERVIEW ── -->
+  <section class="section" id="overview">
+    <div class="section-header">
+      <div class="section-icon">🍽️</div>
+      <div class="section-title-group">
+        <h2>Chinese Food: An Overview</h2>
+        <p>Why "Chinese food" is not one thing</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>The single most important thing to understand about eating in China: there is no such thing as "Chinese food" as a unified cuisine. China is a continent-sized country with eight major culinary traditions, each as distinct from one another as French is from Thai. What you eat in Sichuan bears almost no resemblance to what's on the table in Canton.</p>
+      <p>This is great news for travellers — every city you visit is a completely different food experience. The challenging part is knowing what to look for, and how to navigate menus, ordering systems, and local customs that can feel opaque at first.</p>
+    </div>
+    <div class="highlight">
+      <strong>The Eight Cuisines (八大菜系):</strong> Sichuan (川), Cantonese (粤), Shandong (鲁), Jiangsu (苏), Zhejiang (浙), Fujian (闽), Hunan (湘), Anhui (徽). Most restaurants in China specialise in one regional style.
+    </div>
+    <div class="tip-box">Street food is some of the best food in China — don't be afraid of it. Look for stalls with a queue of locals, high turnover, and a visible cooking process. These are almost always safe and delicious.</div>
+
+    <div style="background:linear-gradient(135deg,#1a1a1a,#2d1a1a);border-radius:14px;padding:1.4rem 1.6rem;margin:1.5rem 0;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;">
+      <div style="font-size:2rem;flex-shrink:0;">🏙️</div>
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--gold);margin-bottom:0.3rem;">Looking for a specific city's food scene?</div>
+        <div style="font-size:0.88rem;color:rgba(255,255,255,0.7);line-height:1.6;">Our city pages go deep on local specialities, neighbourhood food streets, and must-visit restaurants. Check out
+          <a href="../cities/beijing.html" style="color:var(--gold);font-weight:600;text-decoration:none;">Beijing</a>,
+          <a href="../cities/shanghai.html" style="color:var(--gold);font-weight:600;text-decoration:none;">Shanghai</a>,
+          <a href="../cities/guangzhou.html" style="color:var(--gold);font-weight:600;text-decoration:none;">Guangzhou</a>,
+          <a href="../cities/chengdu.html" style="color:var(--gold);font-weight:600;text-decoration:none;">Chengdu</a> and more.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── REGIONAL MAP ── -->
+  <section class="section" id="regional">
+    <div class="section-header">
+      <div class="section-icon">🗺️</div>
+      <div class="section-title-group">
+        <h2>Regional Flavour Map</h2>
+        <p>Click a region to explore its food culture</p>
+      </div>
+    </div>
+
+    <div class="region-map-wrap">
+
+      <!-- D3 China Map -->
+      <div style="background:var(--mist);border:1px solid var(--border);border-radius:16px;padding:1.2rem;margin-bottom:1.4rem;">
+        <p style="font-size:0.82rem;color:#999;text-align:center;margin-bottom:0.8rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;">Click a region on the map — or use the tabs below</p>
+        <div id="china-map-container" style="position:relative;width:100%;max-width:580px;margin:0 auto;">
+          <svg id="china-map" style="width:100%;cursor:pointer;border-radius:10px;"></svg>
+          <!-- Tooltip -->
+          <div id="map-tooltip" style="display:none;position:absolute;background:#1a1a1a;color:#fff;padding:0.4rem 0.8rem;border-radius:8px;font-size:0.82rem;font-weight:600;pointer-events:none;white-space:nowrap;border:1px solid var(--gold);"></div>
+        </div>
+
+        <!-- Colour legend -->
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.6rem;margin-top:1rem;">
+          <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#fca5a5;display:inline-block;border:1px solid #f87171;"></span>Spicy</span>
+          <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#86efac;display:inline-block;border:1px solid #4ade80;"></span>Mild &amp; Fresh</span>
+          <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#fde68a;display:inline-block;border:1px solid #fbbf24;"></span>Sweet &amp; Rich</span>
+          <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#93c5fd;display:inline-block;border:1px solid #60a5fa;"></span>Savoury &amp; Hearty</span>
+          <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#6ee7b7;display:inline-block;border:1px solid #34d399;"></span>Herbal</span>
+          <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#d8b4fe;display:inline-block;border:1px solid #c084fc;"></span>Central Asian</span>
+          <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#e2e8f0;display:inline-block;border:1px solid #cbd5e1;"></span>No specific cuisine</span>
+        </div>
+      </div>
+
+      <!-- Tab buttons -->
+      <div class="region-tabs">
+        <button class="region-tab active" id="tab-sichuan" onclick="showRegion('sichuan')">🌶️ Sichuan</button>
+        <button class="region-tab" id="tab-cantonese" onclick="showRegion('cantonese')">🍵 Cantonese</button>
+        <button class="region-tab" id="tab-beijing" onclick="showRegion('beijing')">🏯 Beijing</button>
+        <button class="region-tab" id="tab-shanghai" onclick="showRegion('shanghai')">🌆 Shanghai</button>
+        <button class="region-tab" id="tab-hunan" onclick="showRegion('hunan')">🔥 Hunan</button>
+        <button class="region-tab" id="tab-xinjiang" onclick="showRegion('xinjiang')">🐑 Xinjiang</button>
+        <button class="region-tab" id="tab-yunnan" onclick="showRegion('yunnan')">🌿 Yunnan</button>
+      </div>
+
+      <!-- SICHUAN -->
+      <div class="region-panel active" id="region-sichuan">
+        <div class="region-card">
+          <div class="region-info">
+            <div class="region-name">Sichuan Cuisine</div>
+            <div class="region-subtitle">川菜 · Chuān Cài</div>
+            <div class="region-flavour">
+              <span class="flavour-tag tag-spicy">🌶️ Spicy</span>
+              <span class="flavour-tag tag-sour">🍋 Numbing</span>
+              <span class="flavour-tag tag-rich">🫙 Bold</span>
+            </div>
+            <div class="region-desc">The world-famous "mala" (麻辣 — numbing and spicy) flavour comes from a combination of dried chillies and Sichuan peppercorns that create a unique tingling sensation on the tongue. Sichuan food is intensely flavoured, fragrant, and not for the spice-averse — though many dishes come in non-spicy versions if you ask.</div>
+            <div class="region-dishes">
+              <h4>Signature Dishes</h4>
+              <div class="dish-chips">
+                <div class="dish-chip">Hot Pot <span class="zh">火锅 huǒguō</span></div>
+                <div class="dish-chip">Mapo Tofu <span class="zh">麻婆豆腐 mápó dòufu</span></div>
+                <div class="dish-chip">Dan Dan Noodles <span class="zh">担担面 dàndàn miàn</span></div>
+                <div class="dish-chip">Kung Pao Chicken <span class="zh">宫保鸡丁 gōngbǎo jīdīng</span></div>
+                <div class="dish-chip">Twice-Cooked Pork <span class="zh">回锅肉 huíguō ròu</span></div>
+              </div>
+            </div>
+            <div class="region-cities"><strong>Best cities:</strong> Chengdu, Chongqing</div>
+          </div>
+          <div class="region-visual">🌶️</div>
+        </div>
+      </div>
+
+      <!-- CANTONESE -->
+      <div class="region-panel" id="region-cantonese">
+        <div class="region-card">
+          <div class="region-info">
+            <div class="region-name">Cantonese Cuisine</div>
+            <div class="region-subtitle">粤菜 · Yuè Cài</div>
+            <div class="region-flavour">
+              <span class="flavour-tag tag-mild">🌸 Mild</span>
+              <span class="flavour-tag tag-umami">🌿 Umami</span>
+              <span class="flavour-tag tag-sweet">🍯 Lightly Sweet</span>
+            </div>
+            <div class="region-desc">The cuisine that gave the world dim sum. Cantonese cooking emphasises the natural flavour of ingredients — fresh seafood, steamed vegetables, lightly seasoned sauces. It's the most internationally recognisable Chinese cuisine, though the authentic version is far more refined than what most people have tried abroad. Dim sum brunch (饮茶, yum cha) is a cultural institution.</div>
+            <div class="region-dishes">
+              <h4>Signature Dishes</h4>
+              <div class="dish-chips">
+                <div class="dish-chip">Dim Sum <span class="zh">点心 diǎnxīn</span></div>
+                <div class="dish-chip">Char Siu Pork <span class="zh">叉烧 chāshāo</span></div>
+                <div class="dish-chip">Steamed Fish <span class="zh">清蒸鱼 qīngzhēng yú</span></div>
+                <div class="dish-chip">Roast Duck <span class="zh">烧鸭 shāoyā</span></div>
+                <div class="dish-chip">Congee <span class="zh">粥 zhōu</span></div>
+              </div>
+            </div>
+            <div class="region-cities"><strong>Best cities:</strong> Guangzhou, Shenzhen, Hong Kong</div>
+          </div>
+          <div class="region-visual">🍵</div>
+        </div>
+      </div>
+
+      <!-- BEIJING -->
+      <div class="region-panel" id="region-beijing">
+        <div class="region-card">
+          <div class="region-info">
+            <div class="region-name">Beijing Cuisine</div>
+            <div class="region-subtitle">京菜 · Jīng Cài</div>
+            <div class="region-flavour">
+              <span class="flavour-tag tag-salty">🧂 Salty</span>
+              <span class="flavour-tag tag-rich">🫙 Rich</span>
+              <span class="flavour-tag tag-umami">🌿 Savoury</span>
+            </div>
+            <div class="region-desc">Beijing's cuisine reflects its history as an imperial capital — hearty, substantial, and built for cold northern winters. Wheat-based dishes (noodles, dumplings, steamed buns) dominate over rice. The city is also famous for its street food culture around Wangfujing and the hutongs, offering skewers, sesame flatbreads, and stinky tofu.</div>
+            <div class="region-dishes">
+              <h4>Signature Dishes</h4>
+              <div class="dish-chips">
+                <div class="dish-chip">Peking Duck <span class="zh">北京烤鸭 Běijīng kǎoyā</span></div>
+                <div class="dish-chip">Zhajiangmian <span class="zh">炸酱面 zhājiàng miàn</span></div>
+                <div class="dish-chip">Dumplings <span class="zh">饺子 jiǎozi</span></div>
+                <div class="dish-chip">Lamb Hot Pot <span class="zh">涮羊肉 shuàn yángròu</span></div>
+                <div class="dish-chip">Jianbing <span class="zh">煎饼 jiānbing</span></div>
+              </div>
+            </div>
+            <div class="region-cities"><strong>Best cities:</strong> Beijing, Tianjin</div>
+          </div>
+          <div class="region-visual">🏯</div>
+        </div>
+      </div>
+
+      <!-- SHANGHAI -->
+      <div class="region-panel" id="region-shanghai">
+        <div class="region-card">
+          <div class="region-info">
+            <div class="region-name">Shanghai & Jiangsu Cuisine</div>
+            <div class="region-subtitle">沪菜 · Hù Cài</div>
+            <div class="region-flavour">
+              <span class="flavour-tag tag-sweet">🍯 Sweet</span>
+              <span class="flavour-tag tag-rich">🫙 Rich</span>
+              <span class="flavour-tag tag-umami">🌿 Umami</span>
+            </div>
+            <div class="region-desc">Shanghai cuisine is sweeter and oilier than most other Chinese styles — braised meats are lacquered with sugar and soy, and dumplings are filled with rich pork soup. The region's proximity to the Yangtze Delta means excellent freshwater seafood and hairy crabs in autumn. Xiaolongbao (soup dumplings) are perhaps Shanghai's most famous export.</div>
+            <div class="region-dishes">
+              <h4>Signature Dishes</h4>
+              <div class="dish-chips">
+                <div class="dish-chip">Soup Dumplings <span class="zh">小笼包 xiǎolóngbāo</span></div>
+                <div class="dish-chip">Red-Braised Pork <span class="zh">红烧肉 hóngshāo ròu</span></div>
+                <div class="dish-chip">Pan-Fried Buns <span class="zh">生煎包 shēngjiān bāo</span></div>
+                <div class="dish-chip">Hairy Crab <span class="zh">大闸蟹 dàzhá xiè</span></div>
+                <div class="dish-chip">Scallion Noodles <span class="zh">葱油面 cōngyóu miàn</span></div>
+              </div>
+            </div>
+            <div class="region-cities"><strong>Best cities:</strong> Shanghai, Suzhou, Hangzhou</div>
+          </div>
+          <div class="region-visual">🥟</div>
+        </div>
+      </div>
+
+      <!-- HUNAN -->
+      <div class="region-panel" id="region-hunan">
+        <div class="region-card">
+          <div class="region-info">
+            <div class="region-name">Hunan Cuisine</div>
+            <div class="region-subtitle">湘菜 · Xiāng Cài</div>
+            <div class="region-flavour">
+              <span class="flavour-tag tag-spicy">🌶️ Very Spicy</span>
+              <span class="flavour-tag tag-sour">🍋 Sour</span>
+              <span class="flavour-tag tag-salty">🧂 Salty</span>
+            </div>
+            <div class="region-desc">Often said to be even spicier than Sichuan — but without the numbing Sichuan pepper. Hunan cooking is dry-spicy, sour, and intensely smoky. The cuisine uses a lot of cured and preserved ingredients, fresh chillies (not dried), and garlic. It's the food of Mao Zedong's homeland, and Chairman Mao's Red Braised Pork is now a national icon.</div>
+            <div class="region-dishes">
+              <h4>Signature Dishes</h4>
+              <div class="dish-chips">
+                <div class="dish-chip">Mao's Red Pork <span class="zh">毛氏红烧肉 Máo shì hóngshāo ròu</span></div>
+                <div class="dish-chip">Stir-fried Pork with Chilli <span class="zh">小炒肉 xiǎochǎo ròu</span></div>
+                <div class="dish-chip">Steamed Fish Head <span class="zh">剁椒鱼头 duòjiāo yútóu</span></div>
+                <div class="dish-chip">Rice Noodles <span class="zh">米粉 mǐfěn</span></div>
+              </div>
+            </div>
+            <div class="region-cities"><strong>Best cities:</strong> Changsha, Zhangjiajie</div>
+          </div>
+          <div class="region-visual">🔥</div>
+        </div>
+      </div>
+
+      <!-- XINJIANG -->
+      <div class="region-panel" id="region-xinjiang">
+        <div class="region-card">
+          <div class="region-info">
+            <div class="region-name">Xinjiang Cuisine</div>
+            <div class="region-subtitle">新疆菜 · Xīnjiāng Cài</div>
+            <div class="region-flavour">
+              <span class="flavour-tag tag-rich">🫙 Hearty</span>
+              <span class="flavour-tag tag-umami">🌿 Cumin-forward</span>
+              <span class="flavour-tag tag-mild">🌸 Mild to Medium</span>
+            </div>
+            <div class="region-desc">Xinjiang cuisine reflects the region's Central Asian and Muslim Uyghur heritage — lamb is king, pork is absent, and the flavours lean towards cumin, caraway, and chilli. The food is hearty and meat-forward, with flatbreads (naan), hand-pulled noodles, and whole-roasted lamb. Xinjiang restaurants are found all over China and are a great option for travellers avoiding pork.</div>
+            <div class="region-dishes">
+              <h4>Signature Dishes</h4>
+              <div class="dish-chips">
+                <div class="dish-chip">Big Plate Chicken <span class="zh">大盘鸡 dàpán jī</span></div>
+                <div class="dish-chip">Hand-Pulled Noodles <span class="zh">拌面 bànmiàn / laghman</span></div>
+                <div class="dish-chip">Lamb Skewers <span class="zh">羊肉串 yángròu chuàn</span></div>
+                <div class="dish-chip">Polo (Pilaf Rice) <span class="zh">手抓饭 shǒuzhuā fàn</span></div>
+                <div class="dish-chip">Naan Bread <span class="zh">馕 náng</span></div>
+              </div>
+            </div>
+            <div class="region-cities"><strong>Best cities:</strong> Ürümqi, Kashgar — and Xinjiang restaurants nationwide</div>
+          </div>
+          <div class="region-visual">🐑</div>
+        </div>
+      </div>
+
+      <!-- YUNNAN -->
+      <div class="region-panel" id="region-yunnan">
+        <div class="region-card">
+          <div class="region-info">
+            <div class="region-name">Yunnan Cuisine</div>
+            <div class="region-subtitle">滇菜 · Diān Cài</div>
+            <div class="region-flavour">
+              <span class="flavour-tag tag-sour">🍋 Sour</span>
+              <span class="flavour-tag tag-mild">🌸 Herbal</span>
+              <span class="flavour-tag tag-umami">🌿 Earthy</span>
+            </div>
+            <div class="region-desc">One of China's most underrated cuisines — fresh, herb-forward, and deeply influenced by neighbouring Myanmar, Laos, and Vietnam. Yunnan is famous for its wild mushrooms, cross-bridge noodles, and air-dried hams. The food is less oily than most Chinese cuisines and tends to be lighter and fresher, with bright citrus and herb notes.</div>
+            <div class="region-dishes">
+              <h4>Signature Dishes</h4>
+              <div class="dish-chips">
+                <div class="dish-chip">Cross-Bridge Noodles <span class="zh">过桥米线 guòqiáo mǐxiàn</span></div>
+                <div class="dish-chip">Steam Pot Chicken <span class="zh">汽锅鸡 qìguō jī</span></div>
+                <div class="dish-chip">Fried Goat Cheese <span class="zh">煎乳饼 jiān rǔbǐng</span></div>
+                <div class="dish-chip">Wild Mushroom Hot Pot <span class="zh">野生菌火锅 yěshēng jūn huǒguō</span></div>
+                <div class="dish-chip">Crossing the Bridge Rice Noodles <span class="zh">米线 mǐxiàn</span></div>
+              </div>
+            </div>
+            <div class="region-cities"><strong>Best cities:</strong> Kunming, Dali, Lijiang</div>
+          </div>
+          <div class="region-visual">🌿</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── MUST-TRY ── -->
+  <section class="section" id="must-try">
+    <div class="section-header">
+      <div class="section-icon">⭐</div>
+      <div class="section-title-group">
+        <h2>Must-Try Dishes</h2>
+        <p>Things every visitor should eat at least once</p>
+      </div>
+    </div>
+
+    <h3 class="h3-style">Street Food</h3>
+    <div class="dishes-grid">
+      <div class="dish-card">
+        <div class="dish-img-wrap" data-search="jianbing Chinese crepe street food Beijing">
+          <div class="dish-img-placeholder">🥚</div>
+        </div>
+        <div class="dish-name">Jianbing</div>
+        <div class="dish-zh">煎饼 jiānbing</div>
+        <div class="dish-desc">Crispy crepe with egg, hoisin, chilli paste, and a cracker inside. The ultimate Chinese street breakfast — found everywhere.</div>
+        <div class="dish-region">Nationwide · ¥5–12</div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-img-wrap" data-search="Chinese BBQ skewers chuanr lamb street food">
+          <div class="dish-img-placeholder">🍢</div>
+        </div>
+        <div class="dish-name">BBQ Skewers</div>
+        <div class="dish-zh">烧烤 shāokǎo</div>
+        <div class="dish-desc">Everything from lamb to squid to lotus root, grilled over charcoal with cumin and chilli. A nightly street food ritual.</div>
+        <div class="dish-region">Nationwide · ¥2–8 per skewer</div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-img-wrap" data-search="roujiamo Chinese pork flatbread sandwich Xian">
+          <div class="dish-img-placeholder">🫓</div>
+        </div>
+        <div class="dish-name">Roujiamo</div>
+        <div class="dish-zh">肉夹馍 ròujiāmó</div>
+        <div class="dish-desc">Often called the "Chinese burger" — braised pork stuffed into a flatbread. Xi'an's most famous export after the terracotta army.</div>
+        <div class="dish-region">Xi'an & nationwide · ¥8–15</div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-img-wrap" data-search="tanghulu candied hawthorn berries stick Beijing snack">
+          <div class="dish-img-placeholder">🍡</div>
+        </div>
+        <div class="dish-name">Tanghulu</div>
+        <div class="dish-zh">糖葫芦 tánghúlu</div>
+        <div class="dish-desc">Candied hawthorn berries on a stick — the quintessential Beijing street snack. Crunchy, sweet-sour shell, soft fruit inside.</div>
+        <div class="dish-region">Northern China · ¥5–10</div>
+      </div>
+    </div>
+
+    <h3 class="h3-style">Sit-Down Dishes</h3>
+    <div class="dishes-grid">
+      <div class="dish-card">
+        <div class="dish-img-wrap" data-search="Peking duck Beijing roast duck pancakes restaurant">
+          <div class="dish-img-placeholder">🦆</div>
+        </div>
+        <div class="dish-name">Peking Duck</div>
+        <div class="dish-zh">北京烤鸭 Běijīng kǎoyā</div>
+        <div class="dish-desc">Lacquered roast duck served with thin pancakes, spring onion, and hoisin. A full Peking duck experience at Quanjude or Da Dong is a bucket-list meal.</div>
+        <div class="dish-region">Beijing · ¥200–400 for a full duck</div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-img-wrap" data-search="xiaolongbao soup dumplings Shanghai bamboo steamer">
+          <div class="dish-img-placeholder">🥟</div>
+        </div>
+        <div class="dish-name">Xiaolongbao</div>
+        <div class="dish-zh">小笼包 xiǎolóngbāo</div>
+        <div class="dish-desc">Shanghai soup dumplings — bite-size parcels of pork with hot soup inside. The ritual: bite a small hole, sip the soup, then eat the whole thing.</div>
+        <div class="dish-region">Shanghai · ¥25–60 per basket</div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-img-wrap" data-search="Chinese hot pot Sichuan restaurant boiling broth">
+          <div class="dish-img-placeholder">🌶️</div>
+        </div>
+        <div class="dish-name">Hot Pot</div>
+        <div class="dish-zh">火锅 huǒguō</div>
+        <div class="dish-desc">Simmering broth at the table, into which you dip raw meat, vegetables, tofu, and noodles. Social, interactive, and one of China's most beloved dining formats.</div>
+        <div class="dish-region">Nationwide · ¥80–200 per person</div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-img-wrap" data-search="Lanzhou beef noodle soup hand-pulled noodles China">
+          <div class="dish-img-placeholder">🍜</div>
+        </div>
+        <div class="dish-name">Lanzhou Beef Noodles</div>
+        <div class="dish-zh">兰州拉面 Lánzhōu lāmiàn</div>
+        <div class="dish-desc">Hand-pulled noodles in a clear beef broth with chilli oil and sliced beef. One of China's most ubiquitous and beloved noodle dishes — found in every city.</div>
+        <div class="dish-region">Nationwide · ¥10–20</div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-img-wrap" data-search="mapo tofu Sichuan dish spicy red sauce tofu">
+          <div class="dish-img-placeholder">🫕</div>
+        </div>
+        <div class="dish-name">Mapo Tofu</div>
+        <div class="dish-zh">麻婆豆腐 mápó dòufu</div>
+        <div class="dish-desc">Silken tofu in a fiery, numbing sauce of fermented black beans, chilli, and Sichuan peppercorns. One of China's most addictive dishes.</div>
+        <div class="dish-region">Sichuan & nationwide · ¥20–45</div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-img-wrap" data-search="dim sum Cantonese dumplings bamboo steamer yum cha">
+          <div class="dish-img-placeholder">🍱</div>
+        </div>
+        <div class="dish-name">Dim Sum</div>
+        <div class="dish-zh">点心 diǎnxīn</div>
+        <div class="dish-desc">The Cantonese brunch tradition — dozens of small dishes (dumplings, buns, rolls, puddings) served from carts or ordered on a checklist. Best experienced in Guangzhou.</div>
+        <div class="dish-region">Cantonese cities · ¥60–150 per person</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ORDERING ── -->
+  <section class="section" id="ordering">
+    <div class="section-header">
+      <div class="section-icon">📋</div>
+      <div class="section-title-group">
+        <h2>How to Order Food</h2>
+        <p>QR menus, language barriers, and practical tips</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Ordering food in China has been almost entirely digitised. Most restaurants no longer have physical menus — you scan a QR code on the table with WeChat or Alipay, browse the menu (often with photos), and order directly from your phone. The food comes to the table without you needing to interact with a server.</p>
+    </div>
+
+    <h3 class="h3-style">The QR Code Ordering System</h3>
+    <ul class="steps">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <strong>Scan the QR code on your table</strong>
+          Open WeChat or Alipay, tap the scan icon, and point at the table's QR code. This opens the restaurant's ordering mini-program directly in the app.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <strong>Browse by photos</strong>
+          Most menus have photos for every dish. You don't need to read Chinese — tap what looks good. Prices are shown in yuan (¥).
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <strong>Use the in-app translate function</strong>
+          Both WeChat and Alipay have built-in translation. In WeChat, press and hold on any Chinese text to translate it. In Alipay, the translate icon appears throughout the app.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-text">
+          <strong>Confirm and pay</strong>
+          After ordering, pay through the same app. The bill is settled digitally — no need to ask for the check.
+        </div>
+      </li>
+    </ul>
+
+    <div class="tip-box">Can't get the QR system to work? Just point at what you want on the menu or at another table, or hold up fingers to indicate quantity. Restaurant staff are accustomed to international visitors and will figure it out.</div>
+
+    <h3 class="h3-style">Useful Phrases for Restaurants</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Situation</th><th>Chinese</th><th>Pinyin</th><th>Meaning</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Getting a table</td><td>两个人 / 三个人</td><td>liǎng gè rén / sān gè rén</td><td>Table for 2 / 3</td></tr>
+          <tr><td>Ordering</td><td>这个，谢谢</td><td>zhège, xièxie</td><td>This one, please (point at menu)</td></tr>
+          <tr><td>No spice</td><td>不要辣</td><td>bù yào là</td><td>No chilli / not spicy</td></tr>
+          <tr><td>A little spicy</td><td>微辣</td><td>wēi là</td><td>Mild spice level</td></tr>
+          <tr><td>Bill please</td><td>买单</td><td>mǎi dān</td><td>Check / bill please</td></tr>
+          <tr><td>Delicious</td><td>很好吃</td><td>hěn hǎo chī</td><td>Very delicious</td></tr>
+          <tr><td>Water please</td><td>要水</td><td>yào shuǐ</td><td>Water please</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="warning-box">Tap water is not safe to drink in China. Ask for bottled water (瓶装水 píngzhuāng shuǐ) or hot/warm water (热水 rèshuǐ), which restaurants almost always provide free. Ice in drinks at reputable restaurants is generally fine.</div>
+  </section>
+
+  <!-- ── DIETARY ── -->
+  <section class="section" id="dietary">
+    <div class="section-header">
+      <div class="section-icon">🥦</div>
+      <div class="section-title-group">
+        <h2>Dietary Requirements</h2>
+        <p>Vegetarian, halal, allergies, and other needs</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>China can be challenging for those with strict dietary restrictions — vegetarians in particular will find that many dishes listed as "vegetable" contain meat stock, lard, or small amounts of pork. Being explicit and knowing the right phrases helps enormously.</p>
+    </div>
+
+    <div class="dietary-grid">
+
+      <div class="dietary-card">
+        <h3>🥬 Vegetarian</h3>
+        <p>Buddhist-style vegetarian restaurants (素食 sùshí) are the safest option — fully meat-free, often excellent. Found near temples in most major cities. In regular restaurants, be very specific.</p>
+        <div class="phrase-box">
+          <div class="zh">我是素食者，不吃肉、鱼和海鲜</div>
+          <div class="pinyin">Wǒ shì sùshízhě, bù chī ròu, yú hé hǎixiān</div>
+          <div class="en">I am vegetarian — no meat, fish, or seafood</div>
+        </div>
+      </div>
+
+      <div class="dietary-card">
+        <h3>🌱 Vegan</h3>
+        <p>Veganism is rare in China but growing in cities. Stick to Buddhist vegetarian restaurants. Be aware that egg and dairy appear in many "vegetable" dishes even in regular restaurants.</p>
+        <div class="phrase-box">
+          <div class="zh">不吃肉、鱼、蛋、奶制品</div>
+          <div class="pinyin">Bù chī ròu, yú, dàn, nǎizhìpǐn</div>
+          <div class="en">No meat, fish, eggs, or dairy</div>
+        </div>
+      </div>
+
+      <div class="dietary-card">
+        <h3>☪️ Halal</h3>
+        <p>Halal (清真 qīngzhēn) restaurants are widespread — especially Xinjiang and Lanzhou noodle restaurants, which are Muslim-run and pork-free. Look for the Arabic script or 清真 sign at the entrance.</p>
+        <div class="phrase-box">
+          <div class="zh">我需要清真食物，不吃猪肉</div>
+          <div class="pinyin">Wǒ xūyào qīngzhēn shíwù, bù chī zhūròu</div>
+          <div class="en">I need halal food — no pork</div>
+        </div>
+      </div>
+
+      <div class="dietary-card">
+        <h3>🚫 No Pork</h3>
+        <p>Pork is the dominant meat in Chinese cooking. For pork-free options: Xinjiang restaurants, Lanzhou noodle shops, and seafood restaurants are all safe bets.</p>
+        <div class="phrase-box">
+          <div class="zh">我不吃猪肉</div>
+          <div class="pinyin">Wǒ bù chī zhūròu</div>
+          <div class="en">I don't eat pork</div>
+        </div>
+      </div>
+
+      <div class="dietary-card">
+        <h3>⚠️ Nut Allergy</h3>
+        <p>Peanuts and sesame are very common in Chinese cooking and are often hidden in sauces. Be explicit and consider carrying an allergy card in Chinese.</p>
+        <div class="phrase-box">
+          <div class="zh">我对花生/芝麻过敏，非常严重</div>
+          <div class="pinyin">Wǒ duì huāshēng/zhīma guòmǐn, fēicháng yánzhòng</div>
+          <div class="en">I am severely allergic to peanuts/sesame</div>
+        </div>
+      </div>
+
+      <div class="dietary-card">
+        <h3>🌾 Gluten-Free</h3>
+        <p>Gluten-free is a very unfamiliar concept in China. Soy sauce (含麦 hán mài) contains gluten. Rice-based dishes are generally safer — try rice noodle restaurants and Cantonese rice dishes.</p>
+        <div class="phrase-box">
+          <div class="zh">我不能吃麸质，不能吃小麦</div>
+          <div class="pinyin">Wǒ bù néng chī fūzhì, bù néng chī xiǎomài</div>
+          <div class="en">I cannot eat gluten or wheat</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="tip-box">For severe allergies, consider printing an allergy card in Chinese before your trip. Several websites offer customisable cards in Chinese for common allergies — worth doing for anything life-threatening.</div>
+  </section>
+
+  <!-- ── APPS ── -->
+  <section class="section" id="apps">
+    <div class="section-header">
+      <div class="section-icon">📱</div>
+      <div class="section-title-group">
+        <h2>Finding Food & Delivery</h2>
+        <p>Apps for discovering restaurants and ordering in</p>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🗺️</div>
+        <h3>Dianping (大众点评)</h3>
+        <p>China's Yelp — the definitive restaurant review platform. Has ratings, photos, menus, and user reviews for virtually every restaurant in China. Best used via the built-in mini-program in WeChat. Interface is Chinese, but photos and star ratings speak for themselves.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🛵</div>
+        <h3>Meituan (美团)</h3>
+        <p>The dominant food delivery app. If you're staying in an apartment or want food delivered to your hotel, Meituan delivers from thousands of restaurants within 30 minutes. Requires Chinese or linked Alipay/WeChat account to use.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🛵</div>
+        <h3>Ele.me (饿了么)</h3>
+        <p>Alibaba's food delivery platform — a close competitor to Meituan. Integrated directly into Alipay, making it slightly easier for foreigners who have set up Alipay with a foreign card.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🗺️</div>
+        <h3>Amap / Gaode (高德)</h3>
+        <p>The best navigation app also has a restaurant discovery feature. Search "restaurant" near your location in English and it will show nearby options with ratings. More foreigner-friendly than Dianping.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🍽️</div>
+        <h3>SmartShanghai / TheBeijinger</h3>
+        <p>English-language city guides with curated restaurant recommendations for expats and tourists. Excellent for finding international food, brunch spots, and English-friendly restaurants in Shanghai and Beijing.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="color:var(--red);font-weight:700;font-size:1rem;">VPN</div>
+        <h3 style="color:var(--red);">⚠️ Google Maps / Yelp / TripAdvisor</h3>
+        <p><strong>Google Maps and Yelp require a VPN in China</strong> and their China data is often outdated or incomplete. TripAdvisor works without a VPN but has limited China coverage. Use Dianping and Amap for local restaurant discovery.</p>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <strong>Practical tip:</strong> For most travellers, the easiest approach is to walk around a neighbourhood and look for restaurants with full tables and a visible kitchen. A queue outside at lunch or dinner time is a reliable quality signal in China.
+    </div>
+  </section>
+
+  <!-- ── ETIQUETTE ── -->
+  <section class="section" id="etiquette">
+    <div class="section-header">
+      <div class="section-icon">🥢</div>
+      <div class="section-title-group">
+        <h2>Dining Etiquette</h2>
+        <p>Customs to know — and a few myths to ignore</p>
+      </div>
+    </div>
+
+    <h3 class="h3-style">Things You Should Know</h3>
+    <div style="display:flex;flex-direction:column;gap:1rem;margin:1rem 0;">
+      <div style="background:var(--mist);border-radius:10px;padding:1rem 1.2rem;">
+        <div style="font-weight:700;color:var(--ink);margin-bottom:0.3rem;">🍽️ Sharing is the norm</div>
+        <div style="font-size:0.92rem;color:var(--ink-soft);">Chinese meals are almost always communal — dishes are placed in the centre and everyone takes from them. Don't order one dish per person; order several to share.</div>
+      </div>
+      <div style="background:var(--mist);border-radius:10px;padding:1rem 1.2rem;">
+        <div style="font-weight:700;color:var(--ink);margin-bottom:0.3rem;">🥂 Toasting is important</div>
+        <div style="font-size:0.92rem;color:var(--ink-soft);">If drinking alcohol, wait for a toast before the first sip. The host usually initiates. You say 干杯 (gānbēi — "dry cup" / cheers) and drink together.</div>
+      </div>
+      <div style="background:var(--mist);border-radius:10px;padding:1rem 1.2rem;">
+        <div style="font-weight:700;color:var(--ink);margin-bottom:0.3rem;">💳 The host pays</div>
+        <div style="font-size:0.92rem;color:var(--ink-soft);">Fighting over the bill is common and expected — the person who invited usually insists on paying. Don't be surprised if someone snatches the bill from you; return the favour next time.</div>
+      </div>
+      <div style="background:var(--mist);border-radius:10px;padding:1rem 1.2rem;">
+        <div style="font-weight:700;color:var(--ink);margin-bottom:0.3rem;">🍵 Pour for others first</div>
+        <div style="font-size:0.92rem;color:var(--ink-soft);">Fill your neighbours' glasses or teacups before your own. It's a small gesture that signals consideration and is deeply ingrained in Chinese dining culture.</div>
+      </div>
+      <div style="background:var(--mist);border-radius:10px;padding:1rem 1.2rem;">
+        <div style="font-weight:700;color:var(--ink);margin-bottom:0.3rem;">🥢 Chopstick rules</div>
+        <div style="font-size:0.92rem;color:var(--ink-soft);">Don't stick chopsticks vertically into a bowl of rice (resembles incense at a funeral), and don't pass food chopstick to chopstick (associated with funeral rites). Place them on the rest when not in use.</div>
+      </div>
+      <div style="background:var(--mist);border-radius:10px;padding:1rem 1.2rem;">
+        <div style="font-weight:700;color:var(--ink);margin-bottom:0.3rem;">🍜 Slurping is fine</div>
+        <div style="font-size:0.92rem;color:var(--ink-soft);">Slurping noodles is not considered rude in China. Neither is talking loudly or gesturing expressively at the table — Chinese dining is social and lively.</div>
+      </div>
+      <div style="background:var(--mist);border-radius:10px;padding:1rem 1.2rem;">
+        <div style="font-weight:700;color:var(--ink);margin-bottom:0.3rem;">🚫 No tipping</div>
+        <div style="font-size:0.92rem;color:var(--ink-soft);">Tipping is not customary in Chinese restaurants — it can actually cause confusion. Don't leave money on the table.</div>
+      </div>
+    </div>
+
+    <h3 class="h3-style">A Few Myths</h3>
+    <div style="display:flex;flex-direction:column;gap:1rem;margin:1rem 0;">
+      <div style="background:#fff8ee;border:1px solid #f0d990;border-radius:10px;padding:1rem 1.2rem;">
+        <div style="font-weight:700;color:var(--ink);margin-bottom:0.3rem;">You don't have to eat everything offered</div>
+        <div style="font-size:0.92rem;color:#6b5b1a;">It's perfectly fine to politely decline a dish you don't want. Nobody will be offended.</div>
+      </div>
+      <div style="background:#fff8ee;border:1px solid #f0d990;border-radius:10px;padding:1rem 1.2rem;">
+        <div style="font-weight:700;color:var(--ink);margin-bottom:0.3rem;">Forks and spoons are available</div>
+        <div style="font-size:0.92rem;color:#6b5b1a;">At virtually every restaurant that serves foreigners, just ask if you're struggling with chopsticks — nobody will judge you.</div>
+      </div>
+      <div style="background:#fff8ee;border:1px solid #f0d990;border-radius:10px;padding:1rem 1.2rem;">
+        <div style="font-weight:700;color:var(--ink);margin-bottom:0.3rem;">Not all Chinese food is spicy</div>
+        <div style="font-size:0.92rem;color:#6b5b1a;">Cantonese, Shanghainese, and Beijing cuisine are generally mild. If you're spice-sensitive, say "bù yào là" (不要辣) when ordering.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="section" id="faq">
+    <div class="section-header">
+      <div class="section-icon">❓</div>
+      <div class="section-title-group">
+        <h2>Frequently Asked Questions</h2>
+        <p>Common food questions from foreign visitors</p>
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">Is the food in China safe to eat?<span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes — food safety standards in China have improved dramatically over the past decade, especially at restaurants frequented by locals. Street food with high turnover and a visible cooking process is generally very safe. Avoid pre-cooked food that has been sitting out for a long time, and don't drink tap water.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if I can't use chopsticks?<span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Almost every restaurant will have forks, spoons, and sometimes knives available — just ask. Nobody will be offended. Many restaurants in tourist areas proactively offer forks to foreign visitors. Soup spoons are always on the table. You'll be absolutely fine.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How much does food typically cost?<span class="faq-arrow">▾</span></button>
+        <div class="faq-a">China is exceptional value for food at every level. Street food: ¥5–20 per item. A proper sit-down meal at a local restaurant: ¥30–80 per person. A mid-range restaurant with dishes: ¥80–200 per person. A high-end restaurant experience (Peking duck, fine dining): ¥300–800+ per person. International food (Western restaurants, Japanese, Korean) tends to be more expensive — ¥100–300 per person.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I find Western food easily?<span class="faq-arrow">▾</span></button>
+        <div class="faq-a">In major cities (Beijing, Shanghai, Guangzhou, Shenzhen, Chengdu), yes — there are excellent Western restaurants, international chains, Japanese, Korean, and Southeast Asian restaurants. In smaller cities and rural areas, options become limited quickly. McDonald's, KFC, Burger King, and Pizza Hut are ubiquitous nationwide and can be a familiar fallback.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is it true that unusual meats are served in China?<span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Some exotic meats exist in specific regional markets or adventurous restaurants, but the vast majority of Chinese food — even at street level — is completely familiar: chicken, pork, beef, lamb, fish, and tofu. You will not accidentally eat something unusual at a normal restaurant. If you're concerned, stick to dishes you can identify from the photos on the menu.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I need to book restaurants in advance?<span class="faq-arrow">▾</span></button>
+        <div class="faq-a">For popular restaurants and special experiences (Peking duck restaurants, famous hot pot chains like Haidilao, dim sum institutions in Guangzhou), booking ahead is strongly recommended — queues can be hours long. For everyday local restaurants, just walk in. Booking is done via Dianping or WeChat mini-programs; for foreign visitors, asking your hotel to call ahead is the easiest option.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What should I do if I have a food emergency or bad reaction?<span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Mild stomach issues are common for first-time visitors as your gut adjusts to new ingredients and bacteria — usually passes within 1–2 days. Stay hydrated with bottled water. For more serious reactions, especially allergic reactions, go directly to the nearest hospital emergency department (急诊室 jízhěn shì). International hospitals in major cities have English-speaking staff. See our Medical guide for recommended hospitals by city.</div>
+      </div>
+    </div>
+  </section>
+
+  <a href="../index.html" class="back-link">← Back to China Awaits</a>
+
+</div>
+
+<script>
+  // Region tabs + map
+  function showRegion(id) {
+    document.querySelectorAll('.region-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.region-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('region-' + id).classList.add('active');
+    const tab = document.getElementById('tab-' + id);
+    if (tab) tab.classList.add('active');
+
+    // Highlight map region
+    const mapEl = document.getElementById('map-' + id);
+    document.querySelectorAll('.map-region path').forEach(p => {
+      p.style.filter = '';
+      p.style.opacity = '0.75';
+    });
+    if (mapEl) {
+      const path = mapEl.querySelector('path');
+      if (path) {
+        path.style.opacity = '1';
+        path.style.filter = 'drop-shadow(0 0 6px rgba(201,168,76,0.6))';
+      }
+    }
+  }
+
+  // ── Load dish images via Wikimedia Commons API ──
+  async function loadDishImages() {
+    const wraps = document.querySelectorAll('.dish-img-wrap[data-search]');
+    for (const wrap of wraps) {
+      const query = wrap.getAttribute('data-search');
+      try {
+        const url = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(query)}&srnamespace=6&srlimit=3&prop=pageimages&format=json&origin=*`;
+        const res = await fetch(url);
+        const data = await res.json();
+        const results = data?.query?.search;
+        if (results && results.length > 0) {
+          // Get page image for first result
+          const title = results[0].title;
+          const imgUrl = `https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(title)}&prop=pageimages&pithumbsize=400&format=json&origin=*`;
+          const imgRes = await fetch(imgUrl);
+          const imgData = await imgRes.json();
+          const pages = imgData?.query?.pages;
+          const page = pages ? Object.values(pages)[0] : null;
+          const thumb = page?.thumbnail?.source;
+          if (thumb) {
+            const img = document.createElement('img');
+            img.alt = query;
+            img.onload = () => img.classList.add('loaded');
+            img.onerror = () => img.remove();
+            img.src = thumb;
+            wrap.appendChild(img);
+          }
+        }
+      } catch (e) {
+        // silently fail — placeholder emoji stays
+      }
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    loadDishImages();
+    initD3Map();
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+<!-- D3 for real China map -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>
+  // Province → cuisine region mapping
+  const provinceRegion = {
+    '四川': 'sichuan', '重庆': 'sichuan',
+    '广东': 'cantonese', '香港': 'cantonese', '澳门': 'cantonese',
+    '北京': 'beijing', '天津': 'beijing', '河北': 'beijing', '山东': 'beijing',
+    '上海': 'shanghai', '江苏': 'shanghai', '浙江': 'shanghai', '安徽': 'shanghai',
+    '湖南': 'hunan',
+    '新疆': 'xinjiang',
+    '云南': 'yunnan',
+  };
+
+  const regionConfig = {
+    sichuan:   { color: '#fca5a5', hover: '#f87171', label: '🌶️ Sichuan · Spicy & Numbing' },
+    cantonese: { color: '#86efac', hover: '#4ade80', label: '🍵 Cantonese · Mild & Fresh' },
+    beijing:   { color: '#93c5fd', hover: '#60a5fa', label: '🏯 Beijing · Savoury & Rich' },
+    shanghai:  { color: '#fde68a', hover: '#fbbf24', label: '🌆 Shanghai · Sweet & Rich' },
+    hunan:     { color: '#fdba74', hover: '#fb923c', label: '🔥 Hunan · Fiery & Smoky' },
+    xinjiang:  { color: '#d8b4fe', hover: '#c084fc', label: '🐑 Xinjiang · Cumin & Lamb' },
+    yunnan:    { color: '#6ee7b7', hover: '#34d399', label: '🌿 Yunnan · Herbal & Sour' },
+    none:      { color: '#e2e8f0', hover: '#cbd5e1', label: null },
+  };
+
+  let activeRegion = 'sichuan';
+
+  async function initD3Map() {
+    const container = document.getElementById('china-map-container');
+    const svg = d3.select('#china-map');
+    const tooltip = document.getElementById('map-tooltip');
+    const W = container.offsetWidth;
+    const H = Math.round(W * 0.78);
+    svg.attr('viewBox', `0 0 ${W} ${H}`).attr('height', H);
+
+    // Ocean background
+    svg.append('rect').attr('width', W).attr('height', H).attr('fill', '#dbeafe').attr('rx', 10);
+
+    let geo;
+    try {
+      // Use a reliable China provinces GeoJSON from a public CDN
+      const res = await fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries/CHN.geo.json');
+      const world = await res.json();
+      // Fallback: use a simplified China outline only
+      geo = world;
+    } catch(e) {
+      showMapFallback();
+      return;
+    }
+
+    const projection = d3.geoMercator().fitSize([W, H], geo);
+    const path = d3.geoPath().projection(projection);
+
+    const g = svg.append('g');
+
+    // Try province-level GeoJSON first, fallback to country outline
+    let provinceGeo;
+    try {
+      const pRes = await fetch('https://raw.githubusercontent.com/echarts-maps/echarts-china-provinces-js/master/geometryProvince/all.json');
+      provinceGeo = await pRes.json();
+    } catch(e) { provinceGeo = null; }
+
+    if (provinceGeo && provinceGeo.features) {
+      // Draw provinces
+      g.selectAll('path')
+        .data(provinceGeo.features)
+        .enter().append('path')
+        .attr('d', path)
+        .attr('fill', d => {
+          const name = d.properties.name || d.properties.NAME_1 || '';
+          const region = provinceRegion[name] || 'none';
+          return regionConfig[region].color;
+        })
+        .attr('stroke', '#fff')
+        .attr('stroke-width', 0.8)
+        .style('cursor', d => {
+          const name = d.properties.name || d.properties.NAME_1 || '';
+          return provinceRegion[name] ? 'pointer' : 'default';
+        })
+        .on('mousemove', function(event, d) {
+          const name = d.properties.name || d.properties.NAME_1 || '';
+          const region = provinceRegion[name];
+          const cfg = regionConfig[region || 'none'];
+          if (cfg.label) {
+            tooltip.style.display = 'block';
+            tooltip.textContent = cfg.label;
+            const rect = container.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            tooltip.style.left = Math.min(x + 12, W - 180) + 'px';
+            tooltip.style.top = (y - 36) + 'px';
+          }
+          d3.select(this).attr('fill', regionConfig[region || 'none'].hover);
+        })
+        .on('mouseleave', function(event, d) {
+          tooltip.style.display = 'none';
+          const name = d.properties.name || d.properties.NAME_1 || '';
+          const region = provinceRegion[name] || 'none';
+          d3.select(this).attr('fill', regionConfig[region].color);
+        })
+        .on('click', function(event, d) {
+          const name = d.properties.name || d.properties.NAME_1 || '';
+          const region = provinceRegion[name];
+          if (region) showRegion(region);
+        });
+
+      // Add region labels at centroid
+      const labeledRegions = new Set();
+      const labelData = [
+        { region: 'xinjiang',  cx: null, cy: null, text: '新疆\nXinjiang' },
+        { region: 'beijing',   cx: null, cy: null, text: 'Beijing\n北京' },
+        { region: 'shanghai',  cx: null, cy: null, text: 'Shanghai\n上海' },
+        { region: 'sichuan',   cx: null, cy: null, text: 'Sichuan\n四川' },
+        { region: 'hunan',     cx: null, cy: null, text: 'Hunan\n湖南' },
+        { region: 'yunnan',    cx: null, cy: null, text: 'Yunnan\n云南' },
+        { region: 'cantonese', cx: null, cy: null, text: 'Guangdong\n广东' },
+      ];
+
+      provinceGeo.features.forEach(d => {
+        const name = d.properties.name || d.properties.NAME_1 || '';
+        const region = provinceRegion[name];
+        if (region && !labeledRegions.has(region)) {
+          labeledRegions.add(region);
+          try {
+            const centroid = path.centroid(d);
+            const ld = labelData.find(l => l.region === region);
+            if (ld && centroid[0] && centroid[1]) {
+              ld.cx = centroid[0];
+              ld.cy = centroid[1];
+            }
+          } catch(e) {}
+        }
+      });
+
+      labelData.forEach(ld => {
+        if (!ld.cx) return;
+        const lines = ld.text.split('\n');
+        const txt = g.append('text')
+          .attr('x', ld.cx).attr('y', ld.cy)
+          .attr('text-anchor', 'middle')
+          .attr('pointer-events', 'none');
+        lines.forEach((line, i) => {
+          txt.append('tspan')
+            .attr('x', ld.cx)
+            .attr('dy', i === 0 ? 0 : '1.1em')
+            .attr('font-size', i === 0 ? '10px' : '8px')
+            .attr('font-weight', i === 0 ? '700' : '400')
+            .attr('font-family', 'DM Sans, sans-serif')
+            .attr('fill', '#1a1a1a')
+            .attr('paint-order', 'stroke')
+            .attr('stroke', 'rgba(255,255,255,0.8)')
+            .attr('stroke-width', '3px')
+            .text(line);
+        });
+      });
+
+    } else {
+      // Fallback: single country outline coloured by zones
+      g.append('path')
+        .datum(geo)
+        .attr('d', path)
+        .attr('fill', '#e2e8f0')
+        .attr('stroke', '#94a3b8')
+        .attr('stroke-width', 1.5);
+      showMapFallback();
+    }
+  }
+
+  function showMapFallback() {
+    const container = document.getElementById('china-map-container');
+    if (container) {
+      container.innerHTML = '<p style="text-align:center;padding:2rem;color:#999;font-size:0.88rem;">Use the tabs below to explore regional cuisines</p>';
+    }
+  }
+</script>
+
+</body>
+</html>
