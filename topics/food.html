@@ -323,14 +323,10 @@
 
     <div class="region-map-wrap">
 
-      <!-- D3 China Map -->
+      <!-- ECharts China Map -->
       <div style="background:var(--mist);border:1px solid var(--border);border-radius:16px;padding:1.2rem;margin-bottom:1.4rem;">
         <p style="font-size:0.82rem;color:#999;text-align:center;margin-bottom:0.8rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;">Click a region on the map — or use the tabs below</p>
-        <div id="china-map-container" style="position:relative;width:100%;max-width:580px;margin:0 auto;">
-          <svg id="china-map" style="width:100%;cursor:pointer;border-radius:10px;"></svg>
-          <!-- Tooltip -->
-          <div id="map-tooltip" style="display:none;position:absolute;background:#1a1a1a;color:#fff;padding:0.4rem 0.8rem;border-radius:8px;font-size:0.82rem;font-weight:600;pointer-events:none;white-space:nowrap;border:1px solid var(--gold);"></div>
-        </div>
+        <div id="china-map-container" style="width:100%;height:360px;max-width:600px;margin:0 auto;"></div>
 
         <!-- Colour legend -->
         <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.6rem;margin-top:1rem;">
@@ -340,7 +336,7 @@
           <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#93c5fd;display:inline-block;border:1px solid #60a5fa;"></span>Savoury &amp; Hearty</span>
           <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#6ee7b7;display:inline-block;border:1px solid #34d399;"></span>Herbal</span>
           <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#d8b4fe;display:inline-block;border:1px solid #c084fc;"></span>Central Asian</span>
-          <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#e2e8f0;display:inline-block;border:1px solid #cbd5e1;"></span>No specific cuisine</span>
+          <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#e2e8f0;display:inline-block;border:1px solid #cbd5e1;"></span>Other</span>
         </div>
       </div>
 
@@ -989,43 +985,47 @@
     }
   }
 
-  // ── Load dish images via Wikimedia Commons API ──
+  // ── Load dish images via Wikipedia REST API (reliable thumbnails) ──
+  const dishWikiPages = {
+    'jianbing Chinese crepe street food Beijing':       'Jianbing',
+    'Chinese BBQ skewers chuanr lamb street food':      'Chuanr',
+    'roujiamo Chinese pork flatbread sandwich Xian':    'Roujiamo',
+    'tanghulu candied hawthorn berries stick Beijing snack': 'Tanghulu',
+    'Peking duck Beijing roast duck pancakes restaurant': 'Peking_duck',
+    'xiaolongbao soup dumplings Shanghai bamboo steamer': 'Xiaolongbao',
+    'Chinese hot pot Sichuan restaurant boiling broth': 'Hot_pot',
+    'Lanzhou beef noodle soup hand-pulled noodles China': 'Lanzhou_beef_noodles',
+    'mapo tofu Sichuan dish spicy red sauce tofu':       'Mapo_tofu',
+    'dim sum Cantonese dumplings bamboo steamer yum cha': 'Dim_sum',
+  };
+
   async function loadDishImages() {
     const wraps = document.querySelectorAll('.dish-img-wrap[data-search]');
     for (const wrap of wraps) {
       const query = wrap.getAttribute('data-search');
+      const wikiTitle = dishWikiPages[query];
+      if (!wikiTitle) continue;
       try {
-        const url = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(query)}&srnamespace=6&srlimit=3&prop=pageimages&format=json&origin=*`;
-        const res = await fetch(url);
+        const res = await fetch(
+          `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(wikiTitle)}`
+        );
+        if (!res.ok) continue;
         const data = await res.json();
-        const results = data?.query?.search;
-        if (results && results.length > 0) {
-          // Get page image for first result
-          const title = results[0].title;
-          const imgUrl = `https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(title)}&prop=pageimages&pithumbsize=400&format=json&origin=*`;
-          const imgRes = await fetch(imgUrl);
-          const imgData = await imgRes.json();
-          const pages = imgData?.query?.pages;
-          const page = pages ? Object.values(pages)[0] : null;
-          const thumb = page?.thumbnail?.source;
-          if (thumb) {
-            const img = document.createElement('img');
-            img.alt = query;
-            img.onload = () => img.classList.add('loaded');
-            img.onerror = () => img.remove();
-            img.src = thumb;
-            wrap.appendChild(img);
-          }
+        const thumb = data?.thumbnail?.source || data?.originalimage?.source;
+        if (thumb) {
+          const img = document.createElement('img');
+          img.alt = wikiTitle.replace(/_/g, ' ');
+          img.onload = () => img.classList.add('loaded');
+          img.onerror = () => img.remove();
+          img.src = thumb;
+          wrap.appendChild(img);
         }
-      } catch (e) {
-        // silently fail — placeholder emoji stays
-      }
+      } catch(e) { /* keep emoji placeholder */ }
     }
   }
 
   window.addEventListener('DOMContentLoaded', () => {
     loadDishImages();
-    initD3Map();
   });
 
   // FAQ accordion
@@ -1039,180 +1039,152 @@
   });
 </script>
 
-<!-- D3 for real China map -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<!-- ECharts for China map -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
 <script>
-  // Province → cuisine region mapping
+  // Province → cuisine region
   const provinceRegion = {
     '四川': 'sichuan', '重庆': 'sichuan',
-    '广东': 'cantonese', '香港': 'cantonese', '澳门': 'cantonese',
-    '北京': 'beijing', '天津': 'beijing', '河北': 'beijing', '山东': 'beijing',
-    '上海': 'shanghai', '江苏': 'shanghai', '浙江': 'shanghai', '安徽': 'shanghai',
+    '广东': 'cantonese', '香港': 'cantonese', '澳门': 'cantonese', '广西': 'cantonese',
+    '北京': 'beijing', '天津': 'beijing', '河北': 'beijing', '山东': 'beijing', '山西': 'beijing', '河南': 'beijing',
+    '上海': 'shanghai', '江苏': 'shanghai', '浙江': 'shanghai', '安徽': 'shanghai', '江西': 'shanghai',
     '湖南': 'hunan',
     '新疆': 'xinjiang',
-    '云南': 'yunnan',
+    '云南': 'yunnan', '贵州': 'yunnan',
   };
 
-  const regionConfig = {
-    sichuan:   { color: '#fca5a5', hover: '#f87171', label: '🌶️ Sichuan · Spicy & Numbing' },
-    cantonese: { color: '#86efac', hover: '#4ade80', label: '🍵 Cantonese · Mild & Fresh' },
-    beijing:   { color: '#93c5fd', hover: '#60a5fa', label: '🏯 Beijing · Savoury & Rich' },
-    shanghai:  { color: '#fde68a', hover: '#fbbf24', label: '🌆 Shanghai · Sweet & Rich' },
-    hunan:     { color: '#fdba74', hover: '#fb923c', label: '🔥 Hunan · Fiery & Smoky' },
-    xinjiang:  { color: '#d8b4fe', hover: '#c084fc', label: '🐑 Xinjiang · Cumin & Lamb' },
-    yunnan:    { color: '#6ee7b7', hover: '#34d399', label: '🌿 Yunnan · Herbal & Sour' },
-    none:      { color: '#e2e8f0', hover: '#cbd5e1', label: null },
+  const regionColors = {
+    sichuan:   '#fca5a5',
+    cantonese: '#86efac',
+    beijing:   '#93c5fd',
+    shanghai:  '#fde68a',
+    hunan:     '#fdba74',
+    xinjiang:  '#d8b4fe',
+    yunnan:    '#6ee7b7',
+    other:     '#e2e8f0',
   };
 
-  let activeRegion = 'sichuan';
+  const provinceEN = {
+    '北京': 'Beijing', '天津': 'Tianjin', '河北': 'Hebei', '山西': 'Shanxi',
+    '内蒙古': 'Inner Mongolia', '辽宁': 'Liaoning', '吉林': 'Jilin', '黑龙江': 'Heilongjiang',
+    '上海': 'Shanghai', '江苏': 'Jiangsu', '浙江': 'Zhejiang', '安徽': 'Anhui',
+    '福建': 'Fujian', '江西': 'Jiangxi', '山东': 'Shandong', '河南': 'Henan',
+    '湖北': 'Hubei', '湖南': 'Hunan', '广东': 'Guangdong', '广西': 'Guangxi',
+    '海南': 'Hainan', '重庆': 'Chongqing', '四川': 'Sichuan', '贵州': 'Guizhou',
+    '云南': 'Yunnan', '西藏': 'Tibet', '陕西': 'Shaanxi', '甘肃': 'Gansu',
+    '青海': 'Qinghai', '宁夏': 'Ningxia', '新疆': 'Xinjiang',
+    '香港': 'Hong Kong', '澳门': 'Macao', '台湾': 'Taiwan',
+  };
 
-  async function initD3Map() {
+  const regionLabels = {
+    sichuan:   '🌶️ Sichuan · Spicy & Numbing',
+    cantonese: '🍵 Cantonese · Mild & Fresh',
+    beijing:   '🏯 Beijing · Savoury & Rich',
+    shanghai:  '🌆 Shanghai · Sweet & Rich',
+    hunan:     '🔥 Hunan · Fiery & Smoky',
+    xinjiang:  '🐑 Xinjiang · Cumin & Lamb',
+    yunnan:    '🌿 Yunnan · Herbal & Sour',
+  };
+
+  async function initEChartsMap() {
     const container = document.getElementById('china-map-container');
-    const svg = d3.select('#china-map');
-    const tooltip = document.getElementById('map-tooltip');
-    const W = container.offsetWidth;
-    const H = Math.round(W * 0.78);
-    svg.attr('viewBox', `0 0 ${W} ${H}`).attr('height', H);
+    if (!container) return;
 
-    // Ocean background
-    svg.append('rect').attr('width', W).attr('height', H).attr('fill', '#dbeafe').attr('rx', 10);
-
-    let geo;
+    // Load China map GeoJSON via ECharts' built-in map registration
+    let chinaGeo;
     try {
-      // Use a reliable China provinces GeoJSON from a public CDN
-      const res = await fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries/CHN.geo.json');
-      const world = await res.json();
-      // Fallback: use a simplified China outline only
-      geo = world;
+      const r = await fetch('https://cdn.jsdelivr.net/npm/echarts/map/json/china.json');
+      chinaGeo = await r.json();
     } catch(e) {
-      showMapFallback();
+      container.innerHTML = '<p style="text-align:center;padding:2rem;color:#888;font-size:0.9rem;">Use the tabs below to explore regional cuisines 👇</p>';
       return;
     }
 
-    const projection = d3.geoMercator().fitSize([W, H], geo);
-    const path = d3.geoPath().projection(projection);
+    echarts.registerMap('china', chinaGeo);
 
-    const g = svg.append('g');
+    const chart = echarts.init(container, null, { renderer: 'svg' });
 
-    // Try province-level GeoJSON first, fallback to country outline
-    let provinceGeo;
-    try {
-      const pRes = await fetch('https://raw.githubusercontent.com/echarts-maps/echarts-china-provinces-js/master/geometryProvince/all.json');
-      provinceGeo = await pRes.json();
-    } catch(e) { provinceGeo = null; }
+    // Build data array — one entry per province
+    const mapData = chinaGeo.features.map(f => {
+      const name = f.properties.name;
+      const region = provinceRegion[name] || 'other';
+      return { name, value: region, region };
+    });
 
-    if (provinceGeo && provinceGeo.features) {
-      // Draw provinces
-      g.selectAll('path')
-        .data(provinceGeo.features)
-        .enter().append('path')
-        .attr('d', path)
-        .attr('fill', d => {
-          const name = d.properties.name || d.properties.NAME_1 || '';
-          const region = provinceRegion[name] || 'none';
-          return regionConfig[region].color;
-        })
-        .attr('stroke', '#fff')
-        .attr('stroke-width', 0.8)
-        .style('cursor', d => {
-          const name = d.properties.name || d.properties.NAME_1 || '';
-          return provinceRegion[name] ? 'pointer' : 'default';
-        })
-        .on('mousemove', function(event, d) {
-          const name = d.properties.name || d.properties.NAME_1 || '';
-          const region = provinceRegion[name];
-          const cfg = regionConfig[region || 'none'];
-          if (cfg.label) {
-            tooltip.style.display = 'block';
-            tooltip.textContent = cfg.label;
-            const rect = container.getBoundingClientRect();
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
-            tooltip.style.left = Math.min(x + 12, W - 180) + 'px';
-            tooltip.style.top = (y - 36) + 'px';
-          }
-          d3.select(this).attr('fill', regionConfig[region || 'none'].hover);
-        })
-        .on('mouseleave', function(event, d) {
-          tooltip.style.display = 'none';
-          const name = d.properties.name || d.properties.NAME_1 || '';
-          const region = provinceRegion[name] || 'none';
-          d3.select(this).attr('fill', regionConfig[region].color);
-        })
-        .on('click', function(event, d) {
-          const name = d.properties.name || d.properties.NAME_1 || '';
-          const region = provinceRegion[name];
-          if (region) showRegion(region);
-        });
+    chart.setOption({
+      backgroundColor: '#dbeafe',
+      tooltip: {
+        trigger: 'item',
+        formatter: p => {
+          const r = p.data?.region;
+          const enName = provinceEN[p.name] || p.name;
+          return r && regionLabels[r]
+            ? `<b>${enName}</b><br/>${regionLabels[r]}`
+            : enName;
+        },
+        backgroundColor: '#1a1a1a',
+        borderColor: '#C9A84C',
+        textStyle: { color: '#fff', fontSize: 12 },
+      },
+      series: [{
+        type: 'map',
+        map: 'china',
+        roam: false,
+        label: {
+          show: true,
+          formatter: p => {
+            const region = provinceRegion[p.name];
+            if (!region) return '';
+            const mainProvince = {
+              sichuan: '四川', cantonese: '广东', beijing: '北京',
+              shanghai: '上海', hunan: '湖南', xinjiang: '新疆', yunnan: '云南',
+            };
+            if (mainProvince[region] !== p.name) return '';
+            return provinceEN[p.name] || p.name;
+          },
+          textStyle: {
+            color: '#1a1a1a',
+            fontSize: 10,
+            fontWeight: 'bold',
+            fontFamily: 'DM Sans, sans-serif',
+          },
+        },
+        emphasis: {
+          label: { show: false },
+          itemStyle: { areaColor: '#C9A84C', shadowBlur: 10 },
+        },
+        data: mapData,
+        itemStyle: { borderColor: '#fff', borderWidth: 0.8 },
+      }],
+      visualMap: {
+        show: false,
+        categories: ['sichuan','cantonese','beijing','shanghai','hunan','xinjiang','yunnan','other'],
+        inRange: { color: Object.values(regionColors) },
+      },
+    });
 
-      // Add region labels at centroid
-      const labeledRegions = new Set();
-      const labelData = [
-        { region: 'xinjiang',  cx: null, cy: null, text: '新疆\nXinjiang' },
-        { region: 'beijing',   cx: null, cy: null, text: 'Beijing\n北京' },
-        { region: 'shanghai',  cx: null, cy: null, text: 'Shanghai\n上海' },
-        { region: 'sichuan',   cx: null, cy: null, text: 'Sichuan\n四川' },
-        { region: 'hunan',     cx: null, cy: null, text: 'Hunan\n湖南' },
-        { region: 'yunnan',    cx: null, cy: null, text: 'Yunnan\n云南' },
-        { region: 'cantonese', cx: null, cy: null, text: 'Guangdong\n广东' },
-      ];
+    // Custom colour per province using piece-by-piece override
+    const seriesData = mapData.map(d => ({
+      name: d.name,
+      value: d.region,
+      itemStyle: { areaColor: regionColors[d.region] || regionColors.other },
+    }));
+    chart.setOption({
+      visualMap: { show: false },
+      series: [{ data: seriesData }],
+    });
 
-      provinceGeo.features.forEach(d => {
-        const name = d.properties.name || d.properties.NAME_1 || '';
-        const region = provinceRegion[name];
-        if (region && !labeledRegions.has(region)) {
-          labeledRegions.add(region);
-          try {
-            const centroid = path.centroid(d);
-            const ld = labelData.find(l => l.region === region);
-            if (ld && centroid[0] && centroid[1]) {
-              ld.cx = centroid[0];
-              ld.cy = centroid[1];
-            }
-          } catch(e) {}
-        }
-      });
+    chart.on('click', params => {
+      const region = provinceRegion[params.name];
+      if (region) showRegion(region);
+    });
 
-      labelData.forEach(ld => {
-        if (!ld.cx) return;
-        const lines = ld.text.split('\n');
-        const txt = g.append('text')
-          .attr('x', ld.cx).attr('y', ld.cy)
-          .attr('text-anchor', 'middle')
-          .attr('pointer-events', 'none');
-        lines.forEach((line, i) => {
-          txt.append('tspan')
-            .attr('x', ld.cx)
-            .attr('dy', i === 0 ? 0 : '1.1em')
-            .attr('font-size', i === 0 ? '10px' : '8px')
-            .attr('font-weight', i === 0 ? '700' : '400')
-            .attr('font-family', 'DM Sans, sans-serif')
-            .attr('fill', '#1a1a1a')
-            .attr('paint-order', 'stroke')
-            .attr('stroke', 'rgba(255,255,255,0.8)')
-            .attr('stroke-width', '3px')
-            .text(line);
-        });
-      });
-
-    } else {
-      // Fallback: single country outline coloured by zones
-      g.append('path')
-        .datum(geo)
-        .attr('d', path)
-        .attr('fill', '#e2e8f0')
-        .attr('stroke', '#94a3b8')
-        .attr('stroke-width', 1.5);
-      showMapFallback();
-    }
+    window.addEventListener('resize', () => chart.resize());
   }
 
-  function showMapFallback() {
-    const container = document.getElementById('china-map-container');
-    if (container) {
-      container.innerHTML = '<p style="text-align:center;padding:2rem;color:#999;font-size:0.88rem;">Use the tabs below to explore regional cuisines</p>';
-    }
-  }
+  window.addEventListener('DOMContentLoaded', () => {
+    initEChartsMap();
+  });
 </script>
 
 </body>
