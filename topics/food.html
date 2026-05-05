@@ -173,12 +173,42 @@
     .dish-chips { display: flex; flex-direction: column; gap: 0.35rem; }
     .dish-chip { font-size: 0.88rem; color: var(--ink-soft); display: flex; align-items: baseline; gap: 0.5rem; }
     .dish-chip .zh { font-size: 0.78rem; color: #bbb; }
+
+    /* ── REGION VISUAL (right side image) ── */
     .region-visual {
-      display: flex; align-items: center; justify-content: center;
-      font-size: 5rem; position: relative;
-      background: linear-gradient(135deg, rgba(192,57,43,0.08), rgba(201,168,76,0.12));
-      min-height: 200px;
+      position: relative;
+      min-height: 280px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(192,57,43,0.12), rgba(201,168,76,0.18));
     }
+    .region-visual img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: opacity 0.5s ease;
+      opacity: 0;
+    }
+    .region-visual img.loaded { opacity: 1; }
+    .region-visual .region-img-fallback {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem;
+      transition: opacity 0.4s;
+    }
+    .region-visual img.loaded + .region-img-fallback,
+    .region-visual.img-loaded .region-img-fallback { opacity: 0; }
+    /* Caption overlay at bottom */
+    .region-visual .region-img-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 0.5rem 0.8rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.55));
+      font-size: 0.72rem; color: rgba(255,255,255,0.85);
+      font-style: italic;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .region-visual.img-loaded .region-img-caption { opacity: 1; }
+
     .region-cities { margin-top: 1rem; font-size: 0.82rem; color: #999; }
     .region-cities strong { color: var(--ink-soft); }
 
@@ -240,7 +270,7 @@
       .page-wrap { padding: 0 1rem 4rem; }
       .hero { padding: 3.5rem 1rem 3rem; }
       .region-card { grid-template-columns: 1fr; }
-      .region-visual { min-height: 120px; }
+      .region-visual { min-height: 200px; }
       .dishes-grid { grid-template-columns: repeat(2, 1fr); }
       .dietary-grid { grid-template-columns: 1fr; }
     }
@@ -323,10 +353,11 @@
 
     <div class="region-map-wrap">
 
-      <!-- ECharts China Map -->
-      <div style="background:var(--mist);border:1px solid var(--border);border-radius:16px;padding:1.2rem;margin-bottom:1.4rem;">
+      <!-- ECharts China Map — full-width breakout -->
+      <div style="background:var(--mist);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.2rem 2rem;margin-bottom:1.4rem;margin-left:calc(-50vw + 50%);margin-right:calc(-50vw + 50%);width:100vw;box-sizing:border-box;">
         <p style="font-size:0.82rem;color:#999;text-align:center;margin-bottom:0.8rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;">Click a region on the map — or use the tabs below</p>
-        <div id="china-map-container" style="width:100%;height:360px;max-width:600px;margin:0 auto;"></div>
+        <!-- MAP IS BIGGER: 520px tall, wider max-width -->
+        <div id="china-map-container" style="width:100%;height:600px;"></div>
 
         <!-- Colour legend -->
         <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.6rem;margin-top:1rem;">
@@ -375,7 +406,11 @@
             </div>
             <div class="region-cities"><strong>Best cities:</strong> Chengdu, Chongqing</div>
           </div>
-          <div class="region-visual">🌶️</div>
+          <div class="region-visual" id="visual-sichuan">
+            <img id="region-img-sichuan" alt="Sichuan Cuisine" />
+            <div class="region-img-fallback">🌶️</div>
+            <div class="region-img-caption" id="region-caption-sichuan"></div>
+          </div>
         </div>
       </div>
 
@@ -403,7 +438,11 @@
             </div>
             <div class="region-cities"><strong>Best cities:</strong> Guangzhou, Shenzhen, Hong Kong</div>
           </div>
-          <div class="region-visual">🍵</div>
+          <div class="region-visual" id="visual-cantonese">
+            <img id="region-img-cantonese" alt="Cantonese Cuisine" />
+            <div class="region-img-fallback">🍵</div>
+            <div class="region-img-caption" id="region-caption-cantonese"></div>
+          </div>
         </div>
       </div>
 
@@ -431,7 +470,11 @@
             </div>
             <div class="region-cities"><strong>Best cities:</strong> Beijing, Tianjin</div>
           </div>
-          <div class="region-visual">🏯</div>
+          <div class="region-visual" id="visual-beijing">
+            <img id="region-img-beijing" alt="Beijing Cuisine" />
+            <div class="region-img-fallback">🏯</div>
+            <div class="region-img-caption" id="region-caption-beijing"></div>
+          </div>
         </div>
       </div>
 
@@ -459,7 +502,11 @@
             </div>
             <div class="region-cities"><strong>Best cities:</strong> Shanghai, Suzhou, Hangzhou</div>
           </div>
-          <div class="region-visual">🥟</div>
+          <div class="region-visual" id="visual-shanghai">
+            <img id="region-img-shanghai" alt="Shanghai Cuisine" />
+            <div class="region-img-fallback">🥟</div>
+            <div class="region-img-caption" id="region-caption-shanghai"></div>
+          </div>
         </div>
       </div>
 
@@ -486,7 +533,11 @@
             </div>
             <div class="region-cities"><strong>Best cities:</strong> Changsha, Zhangjiajie</div>
           </div>
-          <div class="region-visual">🔥</div>
+          <div class="region-visual" id="visual-hunan">
+            <img id="region-img-hunan" alt="Hunan Cuisine" />
+            <div class="region-img-fallback">🔥</div>
+            <div class="region-img-caption" id="region-caption-hunan"></div>
+          </div>
         </div>
       </div>
 
@@ -514,7 +565,11 @@
             </div>
             <div class="region-cities"><strong>Best cities:</strong> Ürümqi, Kashgar — and Xinjiang restaurants nationwide</div>
           </div>
-          <div class="region-visual">🐑</div>
+          <div class="region-visual" id="visual-xinjiang">
+            <img id="region-img-xinjiang" alt="Xinjiang Cuisine" />
+            <div class="region-img-fallback">🐑</div>
+            <div class="region-img-caption" id="region-caption-xinjiang"></div>
+          </div>
         </div>
       </div>
 
@@ -542,7 +597,11 @@
             </div>
             <div class="region-cities"><strong>Best cities:</strong> Kunming, Dali, Lijiang</div>
           </div>
-          <div class="region-visual">🌿</div>
+          <div class="region-visual" id="visual-yunnan">
+            <img id="region-img-yunnan" alt="Yunnan Cuisine" />
+            <div class="region-img-fallback">🌿</div>
+            <div class="region-img-caption" id="region-caption-yunnan"></div>
+          </div>
         </div>
       </div>
 
@@ -962,6 +1021,68 @@
 </div>
 
 <script>
+  // ── Region image Wikipedia pages ──
+  const regionWikiPages = {
+    sichuan:   { title: 'Sichuan_cuisine',   caption: 'Sichuan cuisine' },
+    cantonese: { title: 'Cantonese_cuisine', caption: 'Cantonese cuisine' },
+    beijing:   { title: 'Peking_duck',       caption: 'Peking duck — Beijing\'s most iconic dish' },
+    shanghai:  { title: 'Xiaolongbao',       caption: 'Xiaolongbao — Shanghai\'s signature soup dumplings' },
+    hunan:     { title: 'Hunan_cuisine',     caption: 'Hunan cuisine' },
+    xinjiang:  { title: 'Xinjiang_cuisine',  caption: 'Xinjiang cuisine' },
+    yunnan:    { title: 'Yunnan_cuisine',    caption: 'Yunnan cuisine' },
+  };
+
+  // Fallback Wikipedia titles if the first doesn't return an image
+  const regionWikiFallbacks = {
+    sichuan:   ['Mapo_tofu', 'Hot_pot'],
+    cantonese: ['Dim_sum', 'Char_siu'],
+    beijing:   ['Peking_duck', 'Jiaozi'],
+    shanghai:  ['Xiaolongbao', 'Red_braised_pork_belly'],
+    hunan:     ['Steamed_fish_head_with_diced_hot_red_peppers', 'Hunan_cuisine'],
+    xinjiang:  ['Uyghur_cuisine', 'Chuanr'],
+    yunnan:    ['Yunnan_cuisine', 'Rice_noodles'],
+  };
+
+  async function fetchWikiImage(title) {
+    const res = await fetch(
+      `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data?.thumbnail?.source || data?.originalimage?.source || null;
+  }
+
+  async function loadRegionImages() {
+    for (const [region, info] of Object.entries(regionWikiPages)) {
+      const img = document.getElementById('region-img-' + region);
+      const visual = document.getElementById('visual-' + region);
+      const caption = document.getElementById('region-caption-' + region);
+      if (!img || !visual) continue;
+
+      try {
+        let src = await fetchWikiImage(info.title);
+
+        // Try fallbacks if primary fails
+        if (!src && regionWikiFallbacks[region]) {
+          for (const fallback of regionWikiFallbacks[region]) {
+            src = await fetchWikiImage(fallback);
+            if (src) break;
+          }
+        }
+
+        if (src) {
+          img.src = src;
+          img.onload = () => {
+            img.classList.add('loaded');
+            visual.classList.add('img-loaded');
+            if (caption) caption.textContent = info.caption;
+          };
+          img.onerror = () => { /* keep emoji fallback */ };
+        }
+      } catch(e) { /* keep emoji fallback */ }
+    }
+  }
+
   // Region tabs + map
   function showRegion(id) {
     document.querySelectorAll('.region-panel').forEach(p => p.classList.remove('active'));
@@ -969,23 +1090,9 @@
     document.getElementById('region-' + id).classList.add('active');
     const tab = document.getElementById('tab-' + id);
     if (tab) tab.classList.add('active');
-
-    // Highlight map region
-    const mapEl = document.getElementById('map-' + id);
-    document.querySelectorAll('.map-region path').forEach(p => {
-      p.style.filter = '';
-      p.style.opacity = '0.75';
-    });
-    if (mapEl) {
-      const path = mapEl.querySelector('path');
-      if (path) {
-        path.style.opacity = '1';
-        path.style.filter = 'drop-shadow(0 0 6px rgba(201,168,76,0.6))';
-      }
-    }
   }
 
-  // ── Load dish images via Wikipedia REST API (reliable thumbnails) ──
+  // ── Load dish images via Wikipedia REST API ──
   const dishWikiPages = {
     'jianbing Chinese crepe street food Beijing':       'Jianbing',
     'Chinese BBQ skewers chuanr lamb street food':      'Chuanr',
@@ -1006,18 +1113,13 @@
       const wikiTitle = dishWikiPages[query];
       if (!wikiTitle) continue;
       try {
-        const res = await fetch(
-          `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(wikiTitle)}`
-        );
-        if (!res.ok) continue;
-        const data = await res.json();
-        const thumb = data?.thumbnail?.source || data?.originalimage?.source;
-        if (thumb) {
+        const src = await fetchWikiImage(wikiTitle);
+        if (src) {
           const img = document.createElement('img');
           img.alt = wikiTitle.replace(/_/g, ' ');
           img.onload = () => img.classList.add('loaded');
           img.onerror = () => img.remove();
-          img.src = thumb;
+          img.src = src;
           wrap.appendChild(img);
         }
       } catch(e) { /* keep emoji placeholder */ }
@@ -1026,6 +1128,7 @@
 
   window.addEventListener('DOMContentLoaded', () => {
     loadDishImages();
+    loadRegionImages();
   });
 
   // FAQ accordion
@@ -1042,7 +1145,6 @@
 <!-- ECharts for China map -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
 <script>
-  // Province → cuisine region
   const provinceRegion = {
     '四川': 'sichuan', '重庆': 'sichuan',
     '广东': 'cantonese', '香港': 'cantonese', '澳门': 'cantonese', '广西': 'cantonese',
@@ -1090,7 +1192,6 @@
     const container = document.getElementById('china-map-container');
     if (!container) return;
 
-    // Load China map GeoJSON via ECharts' built-in map registration
     let chinaGeo;
     try {
       const r = await fetch('https://cdn.jsdelivr.net/npm/echarts/map/json/china.json');
@@ -1101,10 +1202,8 @@
     }
 
     echarts.registerMap('china', chinaGeo);
-
     const chart = echarts.init(container, null, { renderer: 'svg' });
 
-    // Build data array — one entry per province
     const mapData = chinaGeo.features.map(f => {
       const name = f.properties.name;
       const region = provinceRegion[name] || 'other';
@@ -1143,10 +1242,7 @@
             return provinceEN[p.name] || p.name;
           },
           textStyle: {
-            color: '#1a1a1a',
-            fontSize: 10,
-            fontWeight: 'bold',
-            fontFamily: 'DM Sans, sans-serif',
+            color: '#1a1a1a', fontSize: 10, fontWeight: 'bold', fontFamily: 'DM Sans, sans-serif',
           },
         },
         emphasis: {
@@ -1156,23 +1252,15 @@
         data: mapData,
         itemStyle: { borderColor: '#fff', borderWidth: 0.8 },
       }],
-      visualMap: {
-        show: false,
-        categories: ['sichuan','cantonese','beijing','shanghai','hunan','xinjiang','yunnan','other'],
-        inRange: { color: Object.values(regionColors) },
-      },
+      visualMap: { show: false },
     });
 
-    // Custom colour per province using piece-by-piece override
     const seriesData = mapData.map(d => ({
       name: d.name,
       value: d.region,
       itemStyle: { areaColor: regionColors[d.region] || regionColors.other },
     }));
-    chart.setOption({
-      visualMap: { show: false },
-      series: [{ data: seriesData }],
-    });
+    chart.setOption({ series: [{ data: seriesData }] });
 
     chart.on('click', params => {
       const region = provinceRegion[params.name];
