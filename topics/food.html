@@ -353,11 +353,11 @@
 
     <div class="region-map-wrap">
 
-      <!-- ECharts China Map — full-width breakout -->
-      <div style="background:var(--mist);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.2rem 2rem;margin-bottom:1.4rem;margin-left:calc(-50vw + 50%);margin-right:calc(-50vw + 50%);width:100vw;box-sizing:border-box;">
+      <!-- ECharts China Map -->
+      <div style="background:var(--mist);border:1px solid var(--border);border-radius:16px;padding:1.2rem;margin-bottom:1.4rem;">
         <p style="font-size:0.82rem;color:#999;text-align:center;margin-bottom:0.8rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;">Click a region on the map — or use the tabs below</p>
         <!-- MAP IS BIGGER: 520px tall, wider max-width -->
-        <div id="china-map-container" style="width:100%;height:600px;"></div>
+        <div id="china-map-container" style="width:100%;height:70vh;min-height:480px;max-height:780px;"></div>
 
         <!-- Colour legend -->
         <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.6rem;margin-top:1rem;">
@@ -1022,25 +1022,25 @@
 
 <script>
   // ── Region image Wikipedia pages ──
+  // Using city/landscape/culture pages to avoid overlap with food dish images below
   const regionWikiPages = {
-    sichuan:   { title: 'Sichuan_cuisine',   caption: 'Sichuan cuisine' },
-    cantonese: { title: 'Cantonese_cuisine', caption: 'Cantonese cuisine' },
-    beijing:   { title: 'Peking_duck',       caption: 'Peking duck — Beijing\'s most iconic dish' },
-    shanghai:  { title: 'Xiaolongbao',       caption: 'Xiaolongbao — Shanghai\'s signature soup dumplings' },
-    hunan:     { title: 'Hunan_cuisine',     caption: 'Hunan cuisine' },
-    xinjiang:  { title: 'Xinjiang_cuisine',  caption: 'Xinjiang cuisine' },
-    yunnan:    { title: 'Yunnan_cuisine',    caption: 'Yunnan cuisine' },
+    sichuan:   { title: 'Chengdu',          caption: 'Chengdu, Sichuan' },
+    cantonese: { title: 'Guangzhou',         caption: 'Guangzhou, Guangdong' },
+    beijing:   { title: 'Forbidden_City',    caption: 'The Forbidden City, Beijing' },
+    shanghai:  { title: 'Shanghai',          caption: 'Shanghai' },
+    hunan:     { title: 'Zhangjiajie',       caption: 'Zhangjiajie, Hunan' },
+    xinjiang:  { title: 'Kashgar',           caption: 'Kashgar, Xinjiang' },
+    yunnan:    { title: 'Lijiang',           caption: 'Lijiang Old Town, Yunnan' },
   };
 
-  // Fallback Wikipedia titles if the first doesn't return an image
   const regionWikiFallbacks = {
-    sichuan:   ['Mapo_tofu', 'Hot_pot'],
-    cantonese: ['Dim_sum', 'Char_siu'],
-    beijing:   ['Peking_duck', 'Jiaozi'],
-    shanghai:  ['Xiaolongbao', 'Red_braised_pork_belly'],
-    hunan:     ['Steamed_fish_head_with_diced_hot_red_peppers', 'Hunan_cuisine'],
-    xinjiang:  ['Uyghur_cuisine', 'Chuanr'],
-    yunnan:    ['Yunnan_cuisine', 'Rice_noodles'],
+    sichuan:   ['Chongqing', 'Sichuan'],
+    cantonese: ['Shenzhen', 'Guangdong'],
+    beijing:   ['Beijing', 'Temple_of_Heaven'],
+    shanghai:  ['Bund,_Shanghai', 'Pudong'],
+    hunan:     ['Changsha', 'Hunan'],
+    xinjiang:  ['Ürümqi', 'Xinjiang'],
+    yunnan:    ['Dali,_Yunnan', 'Kunming'],
   };
 
   async function fetchWikiImage(title) {
@@ -1049,7 +1049,18 @@
     );
     if (!res.ok) return null;
     const data = await res.json();
-    return data?.thumbnail?.source || data?.originalimage?.source || null;
+    // Prefer originalimage (full resolution) over thumbnail
+    const src = data?.originalimage?.source || data?.thumbnail?.source || null;
+    // If originalimage is huge, request a resized version via the thumbnail URL pattern
+    if (src && data?.originalimage?.source) {
+      // Use thumbnail at 800px wide for good quality without being too large
+      const thumb = data?.thumbnail?.source;
+      if (thumb) {
+        // Replace thumbnail width with 800 for higher res
+        return thumb.replace(/\/\d+px-/, '/800px-');
+      }
+    }
+    return src;
   }
 
   async function loadRegionImages() {
