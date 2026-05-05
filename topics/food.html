@@ -1021,15 +1021,15 @@
 </div>
 
 <script>
-  // Hardcoded region images — city/landscape photos, no API dependency
+  // Unsplash CDN — stable direct links, no hotlinking restrictions
   const regionImages = {
-    sichuan:   { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Chengdu_Chunxi_Road.jpg/800px-Chengdu_Chunxi_Road.jpg', caption: 'Chengdu, Sichuan' },
-    cantonese: { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Guangzhou_skyline_from_White_Cloud_Mountain.jpg/800px-Guangzhou_skyline_from_White_Cloud_Mountain.jpg', caption: 'Guangzhou, Guangdong' },
-    beijing:   { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/BeijingTianasquare.jpg/800px-BeijingTianasquare.jpg', caption: 'Tiananmen Square, Beijing' },
-    shanghai:  { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Shanghai_Skyline_%28reflection%29.jpg/800px-Shanghai_Skyline_%28reflection%29.jpg', caption: 'Shanghai skyline' },
-    hunan:     { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Zhangjiajie_National_Forest_Park_-_Hunan%2C_China.jpg/800px-Zhangjiajie_National_Forest_Park_-_Hunan%2C_China.jpg', caption: 'Zhangjiajie, Hunan' },
-    xinjiang:  { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Id_Kah_Mosque_in_Kashgar.jpg/800px-Id_Kah_Mosque_in_Kashgar.jpg', caption: 'Kashgar, Xinjiang' },
-    yunnan:    { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Lijiang_old_town_in_Yunnan.jpg/800px-Lijiang_old_town_in_Yunnan.jpg', caption: 'Lijiang Old Town, Yunnan' },
+    sichuan:   { src: 'https://images.unsplash.com/photo-1537531875943-e32fe2ddf6ea?w=800&q=80', caption: 'Chengdu, Sichuan' },
+    cantonese: { src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80', caption: 'Guangzhou, Guangdong' },
+    beijing:   { src: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800&q=80', caption: 'Beijing' },
+    shanghai:  { src: 'https://images.unsplash.com/photo-1474181487882-5abf3f0ba6c2?w=800&q=80', caption: 'Shanghai' },
+    hunan:     { src: 'https://images.unsplash.com/photo-1513415431958-a6e41cad7498?w=800&q=80', caption: 'Zhangjiajie, Hunan' },
+    xinjiang:  { src: 'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800&q=80', caption: 'Xinjiang' },
+    yunnan:    { src: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=800&q=80', caption: 'Yunnan' },
   };
 
   function loadRegionImages() {
@@ -1057,29 +1057,28 @@
     if (tab) tab.classList.add('active');
   }
 
-  // ── Load dish images via Wikipedia REST API ──
-  // Hardcoded Wikimedia Commons image URLs — reliable, no API call needed
+  // Unsplash CDN — stable direct links, no hotlinking restrictions
   const dishImages = {
     'jianbing Chinese crepe street food Beijing':
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Jianbing_%28cropped%29.jpg/800px-Jianbing_%28cropped%29.jpg',
+      'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&q=80',
     'Chinese BBQ skewers chuanr lamb street food':
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Chuan_skewers_2.jpg/800px-Chuan_skewers_2.jpg',
+      'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80',
     'roujiamo Chinese pork flatbread sandwich Xian':
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Rou_jia_mo.jpg/800px-Rou_jia_mo.jpg',
+      'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=800&q=80',
     'tanghulu candied hawthorn berries stick Beijing snack':
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Tanghulu_in_Beijing.jpg/800px-Tanghulu_in_Beijing.jpg',
+      'https://images.unsplash.com/photo-1606728035253-49e8a23146de?w=800&q=80',
     'Peking duck Beijing roast duck pancakes restaurant':
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Peking_duck_-_stonesoup.jpg/800px-Peking_duck_-_stonesoup.jpg',
+      'https://images.unsplash.com/photo-1548943487-a2e4e43b4853?w=800&q=80',
     'xiaolongbao soup dumplings Shanghai bamboo steamer':
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Xiaolongbao_-_9.jpg/800px-Xiaolongbao_-_9.jpg',
+      'https://images.unsplash.com/photo-1607330289024-1535c6b4e1c1?w=800&q=80',
     'Chinese hot pot Sichuan restaurant boiling broth':
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Szechuan_hot_pot_in_Chongqing%2C_China.jpg/800px-Szechuan_hot_pot_in_Chongqing%2C_China.jpg',
+      'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800&q=80',
     'Lanzhou beef noodle soup hand-pulled noodles China':
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Lanzhou_beef_noodles.jpg/800px-Lanzhou_beef_noodles.jpg',
+      'https://images.unsplash.com/photo-1547592180-85f173990554?w=800&q=80',
     'mapo tofu Sichuan dish spicy red sauce tofu':
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/MaPoTofu.jpg/800px-MaPoTofu.jpg',
+      'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800&q=80',
     'dim sum Cantonese dumplings bamboo steamer yum cha':
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Dim_sum_in_San_Francisco.jpg/800px-Dim_sum_in_San_Francisco.jpg',
+      'https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=800&q=80',
   };
 
   function loadDishImages() {
@@ -1090,7 +1089,11 @@
       if (!src) return;
       const img = document.createElement('img');
       img.alt = query;
-      img.onload = () => img.classList.add('loaded');
+      img.onload = () => {
+        img.classList.add('loaded');
+        const ph = wrap.querySelector('.dish-img-placeholder');
+        if (ph) ph.style.display = 'none';
+      };
       img.onerror = () => img.remove();
       img.src = src;
       wrap.appendChild(img);
