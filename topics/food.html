@@ -361,13 +361,13 @@
 
         <!-- Colour legend -->
         <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.6rem;margin-top:1rem;">
-          <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#fca5a5;display:inline-block;border:1px solid #f87171;"></span>Spicy</span>
-          <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#86efac;display:inline-block;border:1px solid #4ade80;"></span>Mild &amp; Fresh</span>
-          <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#fde68a;display:inline-block;border:1px solid #fbbf24;"></span>Sweet &amp; Rich</span>
-          <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#93c5fd;display:inline-block;border:1px solid #60a5fa;"></span>Savoury &amp; Hearty</span>
-          <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#6ee7b7;display:inline-block;border:1px solid #34d399;"></span>Herbal</span>
-          <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#d8b4fe;display:inline-block;border:1px solid #c084fc;"></span>Central Asian</span>
-          <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#e2e8f0;display:inline-block;border:1px solid #cbd5e1;"></span>Other</span>
+          <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#fca5a5;display:inline-block;border:1px solid #f87171;"></span>Spicy (Sichuan)</span>
+          <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#86efac;display:inline-block;border:1px solid #4ade80;"></span>Mild &amp; Fresh (Cantonese)</span>
+          <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#fde68a;display:inline-block;border:1px solid #fbbf24;"></span>Sweet &amp; Rich (Shanghai)</span>
+          <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#93c5fd;display:inline-block;border:1px solid #60a5fa;"></span>Savoury &amp; Hearty (Northern)</span>
+          <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#fdba74;display:inline-block;border:1px solid #fb923c;"></span>Fiery &amp; Smoky (Hunan)</span>
+          <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#6ee7b7;display:inline-block;border:1px solid #34d399;"></span>Herbal &amp; Sour (Yunnan)</span>
+          <span style="display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:#666;"><span style="width:12px;height:12px;border-radius:3px;background:#d8b4fe;display:inline-block;border:1px solid #c084fc;"></span>Cumin &amp; Lamb (Xinjiang)</span>
         </div>
       </div>
 
@@ -1044,23 +1044,16 @@
   };
 
   async function fetchWikiImage(title) {
-    const res = await fetch(
-      `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`
-    );
-    if (!res.ok) return null;
-    const data = await res.json();
-    // Prefer originalimage (full resolution) over thumbnail
-    const src = data?.originalimage?.source || data?.thumbnail?.source || null;
-    // If originalimage is huge, request a resized version via the thumbnail URL pattern
-    if (src && data?.originalimage?.source) {
-      // Use thumbnail at 800px wide for good quality without being too large
+    try {
+      const res = await fetch(
+        `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`
+      );
+      if (!res.ok) return null;
+      const data = await res.json();
       const thumb = data?.thumbnail?.source;
-      if (thumb) {
-        // Replace thumbnail width with 800 for higher res
-        return thumb.replace(/\/\d+px-/, '/800px-');
-      }
-    }
-    return src;
+      if (thumb) return thumb.replace(/\/\d+px-/, '/800px-');
+      return data?.originalimage?.source || null;
+    } catch(e) { return null; }
   }
 
   async function loadRegionImages() {
@@ -1157,13 +1150,21 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
 <script>
   const provinceRegion = {
+    // Sichuan — spicy numbing
     '四川': 'sichuan', '重庆': 'sichuan',
-    '广东': 'cantonese', '香港': 'cantonese', '澳门': 'cantonese', '广西': 'cantonese',
+    // Cantonese — mild fresh
+    '广东': 'cantonese', '香港': 'cantonese', '澳门': 'cantonese', '广西': 'cantonese', '福建': 'cantonese', '海南': 'cantonese',
+    // Beijing / Northern — savoury hearty
     '北京': 'beijing', '天津': 'beijing', '河北': 'beijing', '山东': 'beijing', '山西': 'beijing', '河南': 'beijing',
+    '辽宁': 'beijing', '吉林': 'beijing', '黑龙江': 'beijing', '内蒙古': 'beijing', '陕西': 'beijing',
+    // Shanghai / Jiangnan — sweet rich
     '上海': 'shanghai', '江苏': 'shanghai', '浙江': 'shanghai', '安徽': 'shanghai', '江西': 'shanghai',
-    '湖南': 'hunan',
-    '新疆': 'xinjiang',
-    '云南': 'yunnan', '贵州': 'yunnan',
+    // Hunan — fiery smoky
+    '湖南': 'hunan', '湖北': 'hunan',
+    // Xinjiang — cumin lamb
+    '新疆': 'xinjiang', '甘肃': 'xinjiang', '宁夏': 'xinjiang', '青海': 'xinjiang',
+    // Yunnan — herbal sour
+    '云南': 'yunnan', '贵州': 'yunnan', '西藏': 'yunnan', '台湾': 'yunnan',
   };
 
   const regionColors = {
