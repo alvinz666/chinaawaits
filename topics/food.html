@@ -1021,69 +1021,30 @@
 </div>
 
 <script>
-  // ── Region image Wikipedia pages ──
-  // Using city/landscape/culture pages to avoid overlap with food dish images below
-  const regionWikiPages = {
-    sichuan:   { title: 'Chengdu',          caption: 'Chengdu, Sichuan' },
-    cantonese: { title: 'Guangzhou',         caption: 'Guangzhou, Guangdong' },
-    beijing:   { title: 'Forbidden_City',    caption: 'The Forbidden City, Beijing' },
-    shanghai:  { title: 'Shanghai',          caption: 'Shanghai' },
-    hunan:     { title: 'Zhangjiajie',       caption: 'Zhangjiajie, Hunan' },
-    xinjiang:  { title: 'Kashgar',           caption: 'Kashgar, Xinjiang' },
-    yunnan:    { title: 'Lijiang',           caption: 'Lijiang Old Town, Yunnan' },
+  // Hardcoded region images — city/landscape photos, no API dependency
+  const regionImages = {
+    sichuan:   { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Chengdu_Chunxi_Road.jpg/800px-Chengdu_Chunxi_Road.jpg', caption: 'Chengdu, Sichuan' },
+    cantonese: { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Guangzhou_skyline_from_White_Cloud_Mountain.jpg/800px-Guangzhou_skyline_from_White_Cloud_Mountain.jpg', caption: 'Guangzhou, Guangdong' },
+    beijing:   { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/BeijingTianasquare.jpg/800px-BeijingTianasquare.jpg', caption: 'Tiananmen Square, Beijing' },
+    shanghai:  { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Shanghai_Skyline_%28reflection%29.jpg/800px-Shanghai_Skyline_%28reflection%29.jpg', caption: 'Shanghai skyline' },
+    hunan:     { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Zhangjiajie_National_Forest_Park_-_Hunan%2C_China.jpg/800px-Zhangjiajie_National_Forest_Park_-_Hunan%2C_China.jpg', caption: 'Zhangjiajie, Hunan' },
+    xinjiang:  { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Id_Kah_Mosque_in_Kashgar.jpg/800px-Id_Kah_Mosque_in_Kashgar.jpg', caption: 'Kashgar, Xinjiang' },
+    yunnan:    { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Lijiang_old_town_in_Yunnan.jpg/800px-Lijiang_old_town_in_Yunnan.jpg', caption: 'Lijiang Old Town, Yunnan' },
   };
 
-  const regionWikiFallbacks = {
-    sichuan:   ['Chongqing', 'Sichuan'],
-    cantonese: ['Shenzhen', 'Guangdong'],
-    beijing:   ['Beijing', 'Temple_of_Heaven'],
-    shanghai:  ['Bund,_Shanghai', 'Pudong'],
-    hunan:     ['Changsha', 'Hunan'],
-    xinjiang:  ['Ürümqi', 'Xinjiang'],
-    yunnan:    ['Dali,_Yunnan', 'Kunming'],
-  };
-
-  async function fetchWikiImage(title) {
-    try {
-      const res = await fetch(
-        `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`
-      );
-      if (!res.ok) return null;
-      const data = await res.json();
-      const thumb = data?.thumbnail?.source;
-      if (thumb) return thumb.replace(/\/\d+px-/, '/800px-');
-      return data?.originalimage?.source || null;
-    } catch(e) { return null; }
-  }
-
-  async function loadRegionImages() {
-    for (const [region, info] of Object.entries(regionWikiPages)) {
+  function loadRegionImages() {
+    for (const [region, info] of Object.entries(regionImages)) {
       const img = document.getElementById('region-img-' + region);
       const visual = document.getElementById('visual-' + region);
-      const caption = document.getElementById('region-caption-' + region);
+      const captionEl = document.getElementById('region-caption-' + region);
       if (!img || !visual) continue;
-
-      try {
-        let src = await fetchWikiImage(info.title);
-
-        // Try fallbacks if primary fails
-        if (!src && regionWikiFallbacks[region]) {
-          for (const fallback of regionWikiFallbacks[region]) {
-            src = await fetchWikiImage(fallback);
-            if (src) break;
-          }
-        }
-
-        if (src) {
-          img.src = src;
-          img.onload = () => {
-            img.classList.add('loaded');
-            visual.classList.add('img-loaded');
-            if (caption) caption.textContent = info.caption;
-          };
-          img.onerror = () => { /* keep emoji fallback */ };
-        }
-      } catch(e) { /* keep emoji fallback */ }
+      img.src = info.src;
+      img.onload = () => {
+        img.classList.add('loaded');
+        visual.classList.add('img-loaded');
+        if (captionEl) captionEl.textContent = info.caption;
+      };
+      img.onerror = () => { /* keep emoji fallback */ };
     }
   }
 
@@ -1097,37 +1058,43 @@
   }
 
   // ── Load dish images via Wikipedia REST API ──
-  const dishWikiPages = {
-    'jianbing Chinese crepe street food Beijing':       'Jianbing',
-    'Chinese BBQ skewers chuanr lamb street food':      'Chuanr',
-    'roujiamo Chinese pork flatbread sandwich Xian':    'Roujiamo',
-    'tanghulu candied hawthorn berries stick Beijing snack': 'Tanghulu',
-    'Peking duck Beijing roast duck pancakes restaurant': 'Peking_duck',
-    'xiaolongbao soup dumplings Shanghai bamboo steamer': 'Xiaolongbao',
-    'Chinese hot pot Sichuan restaurant boiling broth': 'Hot_pot',
-    'Lanzhou beef noodle soup hand-pulled noodles China': 'Lanzhou_beef_noodles',
-    'mapo tofu Sichuan dish spicy red sauce tofu':       'Mapo_tofu',
-    'dim sum Cantonese dumplings bamboo steamer yum cha': 'Dim_sum',
+  // Hardcoded Wikimedia Commons image URLs — reliable, no API call needed
+  const dishImages = {
+    'jianbing Chinese crepe street food Beijing':
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Jianbing_%28cropped%29.jpg/800px-Jianbing_%28cropped%29.jpg',
+    'Chinese BBQ skewers chuanr lamb street food':
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Chuan_skewers_2.jpg/800px-Chuan_skewers_2.jpg',
+    'roujiamo Chinese pork flatbread sandwich Xian':
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Rou_jia_mo.jpg/800px-Rou_jia_mo.jpg',
+    'tanghulu candied hawthorn berries stick Beijing snack':
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Tanghulu_in_Beijing.jpg/800px-Tanghulu_in_Beijing.jpg',
+    'Peking duck Beijing roast duck pancakes restaurant':
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Peking_duck_-_stonesoup.jpg/800px-Peking_duck_-_stonesoup.jpg',
+    'xiaolongbao soup dumplings Shanghai bamboo steamer':
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Xiaolongbao_-_9.jpg/800px-Xiaolongbao_-_9.jpg',
+    'Chinese hot pot Sichuan restaurant boiling broth':
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Szechuan_hot_pot_in_Chongqing%2C_China.jpg/800px-Szechuan_hot_pot_in_Chongqing%2C_China.jpg',
+    'Lanzhou beef noodle soup hand-pulled noodles China':
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Lanzhou_beef_noodles.jpg/800px-Lanzhou_beef_noodles.jpg',
+    'mapo tofu Sichuan dish spicy red sauce tofu':
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/MaPoTofu.jpg/800px-MaPoTofu.jpg',
+    'dim sum Cantonese dumplings bamboo steamer yum cha':
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Dim_sum_in_San_Francisco.jpg/800px-Dim_sum_in_San_Francisco.jpg',
   };
 
-  async function loadDishImages() {
+  function loadDishImages() {
     const wraps = document.querySelectorAll('.dish-img-wrap[data-search]');
-    for (const wrap of wraps) {
+    wraps.forEach(wrap => {
       const query = wrap.getAttribute('data-search');
-      const wikiTitle = dishWikiPages[query];
-      if (!wikiTitle) continue;
-      try {
-        const src = await fetchWikiImage(wikiTitle);
-        if (src) {
-          const img = document.createElement('img');
-          img.alt = wikiTitle.replace(/_/g, ' ');
-          img.onload = () => img.classList.add('loaded');
-          img.onerror = () => img.remove();
-          img.src = src;
-          wrap.appendChild(img);
-        }
-      } catch(e) { /* keep emoji placeholder */ }
-    }
+      const src = dishImages[query];
+      if (!src) return;
+      const img = document.createElement('img');
+      img.alt = query;
+      img.onload = () => img.classList.add('loaded');
+      img.onerror = () => img.remove();
+      img.src = src;
+      wrap.appendChild(img);
+    });
   }
 
   window.addEventListener('DOMContentLoaded', () => {
