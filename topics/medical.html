@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Health & Medical in China — China Awaits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #C0392B;
+      --red-dark: #96281B;
+      --gold: #C9A84C;
+      --gold-light: #e8c96a;
+      --ink: #1a1a1a;
+      --ink-soft: #3d3d3d;
+      --mist: #f7f4f0;
+      --mist-dark: #ede9e3;
+      --white: #ffffff;
+      --border: #e0d9d0;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); line-height: 1.7; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.97); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 60px;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--red); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-size: 0.88rem; font-weight: 500; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--red); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--ink); position: relative; overflow: hidden;
+      padding: 5rem 2rem 4rem; text-align: center;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 60%, rgba(192,57,43,0.25) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 35%, rgba(201,168,76,0.15) 0%, transparent 55%);
+    }
+    .hero-pattern {
+      position: absolute; inset: 0; opacity: 0.035;
+      background-image: repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%);
+      background-size: 20px 20px;
+    }
+    .hero-tag {
+      display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,0.4);
+      padding: 0.3rem 0.9rem; border-radius: 2px; margin-bottom: 1.5rem; position: relative;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 1rem; position: relative;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.65); max-width: 540px; margin: 0 auto 2.5rem; position: relative; }
+    .jump-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; position: relative; }
+    .jump-nav a {
+      display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 500;
+      color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15); padding: 0.45rem 1rem; border-radius: 40px;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .jump-nav a:hover { background: rgba(201,168,76,0.2); border-color: var(--gold); color: var(--gold); }
+
+    /* ── EMERGENCY BANNER ── */
+    .emergency-banner {
+      background: #c62828; color: white;
+      padding: 1.2rem 2rem;
+      display: flex; align-items: center; justify-content: center;
+      gap: 2.5rem; flex-wrap: wrap;
+      text-align: center;
+    }
+    .emergency-number { display: flex; flex-direction: column; align-items: center; gap: 0.1rem; }
+    .emergency-number .num { font-size: 2rem; font-weight: 700; font-family: 'Playfair Display', serif; line-height: 1; }
+    .emergency-number .label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; }
+    .emergency-divider { width: 1px; height: 40px; background: rgba(255,255,255,0.3); }
+
+    /* ── LAYOUT ── */
+    .page-wrap { max-width: 860px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+    /* ── SECTION ── */
+    .section { margin-top: 4.5rem; scroll-margin-top: 80px; }
+    .section-header {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1.8rem;
+      padding-bottom: 1rem; border-bottom: 2px solid var(--border);
+    }
+    .section-icon {
+      width: 48px; height: 48px; background: var(--red); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;
+    }
+    .section-title-group h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+    .section-title-group p { font-size: 0.88rem; color: #888; margin-top: 0.1rem; }
+
+    /* ── PROSE ── */
+    .prose p { font-size: 0.97rem; color: var(--ink-soft); margin-bottom: 1rem; }
+    .prose strong { color: var(--ink); font-weight: 600; }
+
+    /* ── BOXES ── */
+    .highlight { background: var(--mist); border-left: 3px solid var(--gold); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1.2rem 0; font-size: 0.93rem; color: var(--ink-soft); }
+    .highlight strong { color: var(--ink); }
+    .tip-box { background: #fff8ee; border: 1px solid #f0d990; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #6b5b1a; }
+    .tip-box::before { content: '💡 Tip: '; font-weight: 600; }
+    .warning-box { background: #fff5f5; border: 1px solid #f5c6c6; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #7a2020; }
+    .warning-box::before { content: '⚠️ Note: '; font-weight: 600; }
+
+    /* ── BULLET LIST ── */
+    .bullet-list { list-style: none; margin: 1rem 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .bullet-list li { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.93rem; color: var(--ink-soft); }
+    .bullet-list li::before { content: '—'; color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+
+    /* ── STEPS ── */
+    .steps { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; margin: 1.2rem 0; }
+    .steps li { display: flex; align-items: flex-start; gap: 1rem; background: var(--mist); border-radius: 10px; padding: 0.9rem 1.1rem; }
+    .step-num { width: 28px; height: 28px; background: var(--red); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .step-text { font-size: 0.93rem; color: var(--ink-soft); }
+    .step-text strong { color: var(--ink); display: block; margin-bottom: 0.1rem; }
+
+    /* ── TABLE ── */
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    thead { background: var(--ink); color: white; }
+    thead th { padding: 0.85rem 1rem; text-align: left; font-weight: 600; font-size: 0.83rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:nth-child(even) { background: var(--mist); }
+    tbody td { padding: 0.85rem 1rem; color: var(--ink-soft); vertical-align: top; }
+    tbody td:first-child { font-weight: 600; color: var(--ink); }
+
+    /* ── CLINIC COMPARISON CARDS ── */
+    .clinic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .clinic-card { border-radius: 14px; padding: 1.4rem; border: 1px solid var(--border); }
+    .clinic-card.international { background: #f0f7ff; border-color: #b3d1f7; }
+    .clinic-card.public { background: var(--mist); }
+    .clinic-card-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .clinic-card-sub { font-size: 0.78rem; color: #888; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .clinic-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; font-size: 0.85rem; padding: 0.4rem 0; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .clinic-row:last-child { border-bottom: none; }
+    .clinic-row-label { color: #888; font-size: 0.82rem; flex-shrink: 0; }
+    .clinic-row-value { color: var(--ink-soft); font-weight: 500; text-align: right; }
+    .badge { display: inline-block; font-size: 0.72rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 20px; }
+    .badge-green { background: #e8f5e9; color: #2e7d32; }
+    .badge-yellow { background: #fff8e1; color: #f57f17; }
+    .badge-red { background: #ffebee; color: #c62828; }
+
+    /* ── INSURANCE HIGHLIGHT ── */
+    .insurance-box {
+      background: linear-gradient(135deg, #1a1a1a, #2d1a1a);
+      border-radius: 14px; padding: 1.6rem 1.8rem;
+      margin: 1.5rem 0; color: white;
+      display: flex; gap: 1.2rem; align-items: flex-start;
+    }
+    .insurance-icon { font-size: 2.2rem; flex-shrink: 0; }
+    .insurance-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .insurance-text { font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.6; }
+    .insurance-text strong { color: var(--gold); font-weight: 600; }
+
+    /* ── PHRASE BOXES ── */
+    .phrase-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0.7rem; margin: 1.2rem 0; }
+    .phrase-box { background: var(--mist); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem; }
+    .phrase-box .zh { font-size: 1.1rem; font-weight: 600; color: var(--red); margin-bottom: 0.1rem; }
+    .phrase-box .pinyin { font-size: 0.78rem; color: #999; font-style: italic; margin-bottom: 0.1rem; }
+    .phrase-box .en { font-size: 0.82rem; color: var(--ink-soft); }
+
+    /* ── FAQ ── */
+    .faq { margin: 1.5rem 0; }
+    .faq-item { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 0.6rem; overflow: hidden; }
+    .faq-q { width: 100%; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.2rem; font-family: 'DM Sans', sans-serif; font-size: 0.93rem; font-weight: 600; color: var(--ink); text-align: left; gap: 1rem; }
+    .faq-q:hover { background: var(--mist); }
+    .faq-arrow { font-size: 1rem; color: var(--gold); transition: transform 0.25s; flex-shrink: 0; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0.8rem 1.2rem 1rem; font-size: 0.9rem; color: var(--ink-soft); border-top: 1px solid var(--border); line-height: 1.65; }
+    .faq-item.open .faq-a { display: block; }
+
+    .h3-style { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin: 1.8rem 0 0.8rem; }
+    .vpn-warning { color: var(--red); font-weight: 600; }
+
+    /* ── INSURANCE CHECKLIST ── */
+    .insurance-list { list-style: none; margin: 1rem 0; display: flex; flex-direction: column; gap: 0.7rem; }
+    .insurance-list li { background: var(--mist); border-radius: 10px; padding: 0.9rem 1.1rem 0.9rem 1rem; border-left: 3px solid var(--gold); }
+    .insurance-list li strong { display: block; color: var(--ink); font-size: 0.95rem; margin-bottom: 0.25rem; }
+    .insurance-list li span { font-size: 0.87rem; color: var(--ink-soft); line-height: 1.55; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links { display: none; }
+      .page-wrap { padding: 0 1rem 4rem; }
+      .hero { padding: 3.5rem 1rem 3rem; }
+      .clinic-grid { grid-template-columns: 1fr; }
+      .phrase-grid { grid-template-columns: 1fr; }
+      .emergency-divider { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">China Awaits</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="pre-arrival.html">Before You Arrive</a></li>
+    <li><a href="transport.html">Transport</a></li>
+    <li><a href="food.html">Food</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-pattern"></div>
+  <p class="hero-tag">Health & Safety</p>
+  <h1>Medical & <span>Health</span></h1>
+  <p class="hero-sub">China has good hospitals and pharmacies — but navigating them as a foreigner takes some preparation. Here's what you need to know before and during your trip.</p>
+  <div class="jump-nav">
+    <a href="#insurance">🛡️ Travel Insurance</a>
+    <a href="#where">🏥 Where to Go</a>
+    <a href="#hospital">📋 Hospital Process</a>
+    <a href="#emergency">🚨 Emergencies</a>
+    <a href="#medicine">💊 Medicine & Pharmacies</a>
+    <a href="#reference">📖 Medicine Reference</a>
+    <a href="#faq">❓ FAQ</a>
+  </div>
+</div>
+
+<!-- EMERGENCY NUMBERS BANNER -->
+<div class="emergency-banner">
+  <div class="emergency-number">
+    <span class="num">120</span>
+    <span class="label">Ambulance</span>
+  </div>
+  <div class="emergency-divider"></div>
+  <div class="emergency-number">
+    <span class="num">110</span>
+    <span class="label">Police</span>
+  </div>
+  <div class="emergency-divider"></div>
+  <div class="emergency-number">
+    <span class="num">119</span>
+    <span class="label">Fire</span>
+  </div>
+  <div class="emergency-divider"></div>
+  <div class="emergency-number">
+    <span class="num">122</span>
+    <span class="label">Traffic accident</span>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- ① TRAVEL INSURANCE -->
+  <section class="section" id="insurance">
+    <div class="section-header">
+      <div class="section-icon">🛡️</div>
+      <div class="section-title-group">
+        <h2>Travel Insurance</h2>
+        <p>The single most important thing to sort before you go</p>
+      </div>
+    </div>
+
+    <div class="insurance-box">
+      <div class="insurance-icon">🛡️</div>
+      <div>
+        <div class="insurance-title">Get travel insurance. Full stop.</div>
+        <p class="insurance-text">Medical care in China is not free for foreign visitors. A hospital visit at a public hospital is inexpensive by Western standards, but serious illness or an accident — and the potential medical evacuation back home — can cost <strong>tens of thousands of dollars</strong> without insurance. This is non-negotiable advice.</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Most travel insurance policies cover medical expenses, emergency evacuation, and repatriation. Read the fine print before you buy — specifically check that it covers the activities you plan to do (hiking, cycling, adventure sports) and that it includes emergency medical evacuation, which is the most expensive scenario.</p>
+    </div>
+
+    <h3 class="h3-style">What your policy should cover</h3>
+    <ul class="insurance-list">
+      <li><strong>Emergency medical treatment</strong><span>Hospitalisation, surgery, and medication costs.</span></li>
+      <li><strong>Medical evacuation</strong><span>Airlifting to a better-equipped hospital or back home. This alone can cost $50,000–$100,000 uninsured — the most important thing to check.</span></li>
+      <li><strong>Trip cancellation</strong><span>Covers costs if you need to cut your trip short due to illness or injury.</span></li>
+      <li><strong>Pre-existing conditions</strong><span>Check whether yours are covered. Many basic policies exclude them entirely.</span></li>
+      <li><strong>24-hour emergency assistance line</strong><span>A phone number you can call from China at any hour to get help in English — essential in a crisis.</span></li>
+    </ul>
+
+    <div class="tip-box">
+      Save your insurer's 24-hour emergency number in your phone before you travel. In a medical emergency, this is the first call to make — they can direct you to the nearest appropriate hospital and in some cases pre-authorise payment so you don't need to pay upfront.
+    </div>
+
+    <div class="tip-box">
+      If your credit card includes travel insurance as a benefit, read the terms carefully. Coverage limits are often lower than standalone policies, and medical evacuation may not be included.
+    </div>
+
+  </section>
+
+  <!-- ② WHERE TO GO -->
+  <section class="section" id="where">
+    <div class="section-header">
+      <div class="section-icon">🏥</div>
+      <div class="section-title-group">
+        <h2>Where to Go</h2>
+        <p>International clinics vs public hospitals</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>For most non-emergency situations, foreign visitors have two options: international clinics, or public hospitals. Each has genuine advantages depending on your situation.</p>
+    </div>
+
+    <div class="clinic-grid">
+      <div class="clinic-card international">
+        <div class="clinic-card-title">🌐 International Clinics</div>
+        <div class="clinic-card-sub">Recommended for most visitors</div>
+        <div class="clinic-row"><span class="clinic-row-label">Language</span><span class="clinic-row-value"><span class="badge badge-green">English-speaking doctors</span></span></div>
+        <div class="clinic-row"><span class="clinic-row-label">Wait time</span><span class="clinic-row-value">Short — often same day</span></div>
+        <div class="clinic-row"><span class="clinic-row-label">Cost</span><span class="clinic-row-value">¥800–¥2,000+ per visit</span></div>
+        <div class="clinic-row"><span class="clinic-row-label">Insurance</span><span class="clinic-row-value">Usually billed directly</span></div>
+        <div class="clinic-row"><span class="clinic-row-label">Availability</span><span class="clinic-row-value">Major cities only</span></div>
+        <div class="clinic-row"><span class="clinic-row-label">Best for</span><span class="clinic-row-value">Non-emergencies, GP visits, prescriptions</span></div>
+      </div>
+
+      <div class="clinic-card public">
+        <div class="clinic-card-title">🏥 Public Hospitals</div>
+        <div class="clinic-card-sub">Use for emergencies or serious illness</div>
+        <div class="clinic-row"><span class="clinic-row-label">Language</span><span class="clinic-row-value"><span class="badge badge-yellow">Very limited English</span></span></div>
+        <div class="clinic-row"><span class="clinic-row-label">Wait time</span><span class="clinic-row-value">Can be several hours</span></div>
+        <div class="clinic-row"><span class="clinic-row-label">Cost</span><span class="clinic-row-value">¥50–¥500 per visit</span></div>
+        <div class="clinic-row"><span class="clinic-row-label">Insurance</span><span class="clinic-row-value">Pay upfront, claim later</span></div>
+        <div class="clinic-row"><span class="clinic-row-label">Availability</span><span class="clinic-row-value">Everywhere in China</span></div>
+        <div class="clinic-row"><span class="clinic-row-label">Best for</span><span class="clinic-row-value">Emergencies, serious conditions, smaller cities</span></div>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <strong>In smaller cities:</strong> international clinics simply don't exist. If you're travelling outside major urban centres and need medical care, you'll be going to a public hospital. Download a translation app before your trip and have your symptoms written down in Chinese if possible — see the phrases section below.
+    </div>
+
+    <h3 class="h3-style">International clinic chains in China</h3>
+    <ul class="bullet-list">
+      <li><strong>United Family Healthcare (和睦家)</strong> — the largest network, with hospitals and clinics in Beijing, Shanghai, Guangzhou, Chengdu and more</li>
+      <li><strong>Parkway Health</strong> — strong presence in Shanghai</li>
+      <li><strong>International SOS</strong> — clinics in major cities, strong evacuation support</li>
+      <li><strong>Raffles Medical</strong> — good coverage in tier-one cities</li>
+    </ul>
+
+    <div class="tip-box">
+      Search "[city name] international clinic" before your trip and save the address and phone number. Having this information ready means you're not scrambling if something goes wrong.
+    </div>
+
+  </section>
+
+  <!-- ③ HOSPITAL PROCESS -->
+  <section class="section" id="hospital">
+    <div class="section-header">
+      <div class="section-icon">📋</div>
+      <div class="section-title-group">
+        <h2>The Hospital Process</h2>
+        <p>How Chinese hospitals actually work</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Chinese public hospitals operate very differently from Western ones. Understanding the process before you arrive makes an already stressful experience significantly more manageable. The system is efficient once you know how it flows — it just looks chaotic from the outside.</p>
+    </div>
+
+    <ol class="steps">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <strong>Register and pay the registration fee (挂号 guà hào)</strong>
+          Go to the registration desk and tell them your symptoms. You'll be directed to the appropriate department — internal medicine (内科), surgery (外科), emergency (急诊), etc. You must pay a small registration fee here (usually ¥10–¥50) and show your passport — both are required before you can see a doctor. Do not skip this step and go straight to waiting, or you won't be in the system.<br><br>
+          <strong>In major cities:</strong> many large hospitals now offer mobile pre-registration via their WeChat mini-program or official app. If you have WeChat set up, search the hospital name to see if this is available — it can significantly cut your wait time.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <strong>Wait to see the doctor</strong>
+          Chinese hospitals can be extremely busy. Wait times in the outpatient department of a major public hospital can be 1–3 hours. Emergency departments (急诊) are faster for genuine emergencies. Bring water and be patient.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <strong>See the doctor</strong>
+          Consultations are typically short — 5 to 10 minutes. The doctor will examine you, may order tests (blood work, X-rays), and write a prescription or referral. If you don't speak Chinese, show your symptoms written down. Translation apps work reasonably well for basic medical communication.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-text">
+          <strong>Pay for tests and treatment (收费处 shōu fèi chù)</strong>
+          Unlike Western systems where billing happens afterward, in Chinese hospitals you pay before each step. After the doctor orders tests, go to the payment window, pay, then take the receipt back to get the tests done. Keep all receipts for insurance claims.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">5</div>
+        <div class="step-text">
+          <strong>Collect your medicine (取药 qǔ yào)</strong>
+          Prescriptions are filled on-site at the hospital pharmacy. Take your prescription slip to the pharmacy counter (药房), pay, and collect your medication. The pharmacist will explain dosage — have a translation app ready if needed.
+        </div>
+      </li>
+    </ol>
+
+    <div class="warning-box">
+      Keep every single receipt from your hospital visit. Chinese hospitals issue separate receipts for registration, each test, treatment, and medication. Your insurer will need all of them to process a claim. Ask for an itemised invoice (发票 fāpiào) at the end.
+    </div>
+
+    <h3 class="h3-style">Useful phrases at the hospital</h3>
+    <div class="phrase-grid">
+      <div class="phrase-box">
+        <div class="zh">我需要看医生。</div>
+        <div class="pinyin">Wǒ xūyào kàn yīshēng.</div>
+        <div class="en">I need to see a doctor.</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">我这里痛。</div>
+        <div class="pinyin">Wǒ zhèlǐ tòng.</div>
+        <div class="en">It hurts here. (point to location)</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">我对___过敏。</div>
+        <div class="pinyin">Wǒ duì ___ guòmǐn.</div>
+        <div class="en">I am allergic to ___.</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">请给我发票。</div>
+        <div class="pinyin">Qǐng gěi wǒ fāpiào.</div>
+        <div class="en">Please give me an invoice/receipt.</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">有会说英语的医生吗？</div>
+        <div class="pinyin">Yǒu huì shuō Yīngyǔ de yīshēng ma?</div>
+        <div class="en">Is there a doctor who speaks English?</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">我需要救护车。</div>
+        <div class="pinyin">Wǒ xūyào jiùhùchē.</div>
+        <div class="en">I need an ambulance.</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ④ EMERGENCIES -->
+  <section class="section" id="emergency">
+    <div class="section-header">
+      <div class="section-icon">🚨</div>
+      <div class="section-title-group">
+        <h2>Emergencies</h2>
+        <p>What to do when it's urgent</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>China's emergency services work well in urban areas. Response times in major cities are generally fast. The main challenge is communication — operators may not speak English. Having a plan before something goes wrong is the best preparation.</p>
+    </div>
+
+    <div class="highlight">
+      <strong>Emergency department (急诊) process:</strong> Even in the emergency room, you generally still need to register and pay a registration fee before being seen — the process mirrors the regular outpatient flow, just faster. Go directly to the 急诊 desk, show your passport, pay the fee, and you'll be triaged by a nurse. Genuinely life-threatening cases are seen immediately regardless of paperwork.
+    </div>
+
+    <h3 class="h3-style">Calling an ambulance (120)</h3>
+    <ol class="steps">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <strong>Call 120</strong>
+          This works from any phone including foreign SIM cards, and is free. The operator may not speak English — speak slowly and clearly, or hand the phone to a local bystander if possible.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <strong>State your location clearly</strong>
+          Give the full address including the city, district, street, and building number. If you don't know the address, describe a nearby landmark or read out the Chinese characters on the nearest building or street sign. Having your hotel's Chinese address saved on your phone is invaluable here.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <strong>Describe the emergency</strong>
+          State what happened and the number of people affected. Stay on the line. If there's no English operator available, use a translation app to communicate or ask a bystander to speak on your behalf.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-text">
+          <strong>Also call your insurer's emergency line</strong>
+          Do this as soon as the immediate emergency is under control. Your insurer can advise on the best hospital, arrange direct payment, and begin coordinating evacuation if needed.
+        </div>
+      </li>
+    </ol>
+
+    <div class="tip-box">
+      Save your hotel's full Chinese address (中文地址) as a screenshot or note on your phone. Every hotel has this — ask the front desk to write it for you. This single piece of information can make calling an ambulance or taking a taxi to hospital much easier.
+    </div>
+
+    <h3 class="h3-style">Getting yourself to the emergency room</h3>
+    <div class="prose">
+      <p>If the situation is serious but not immediately life-threatening, getting yourself to hospital quickly is often faster than waiting for an ambulance in busy urban areas.</p>
+    </div>
+    <ul class="bullet-list">
+      <li><strong>Didi</strong> — the fastest option; show the driver your phone with the hospital name in Chinese</li>
+      <li><strong>Taxi</strong> — show a written note with the hospital name in Chinese; say "急诊" (jí zhěn, emergency) to make urgency clear</li>
+      <li><strong>Metro</strong> — in a few cities, major hospitals are directly on metro lines; only practical for non-critical situations</li>
+    </ul>
+
+    <div class="highlight">
+      <strong>Tell the hospital it's an emergency:</strong> when you arrive, say "急诊" (jí zhěn) and go directly to the emergency department (急诊室). You do not need to queue at registration for genuine emergencies — walk straight to the emergency desk.
+    </div>
+
+    <h3 class="h3-style">Emergency phrases</h3>
+    <div class="phrase-grid">
+      <div class="phrase-box">
+        <div class="zh">救命！</div>
+        <div class="pinyin">Jiùmìng!</div>
+        <div class="en">Help! (emergency)</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">请叫救护车！</div>
+        <div class="pinyin">Qǐng jiào jiùhùchē!</div>
+        <div class="en">Please call an ambulance!</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">急诊在哪里？</div>
+        <div class="pinyin">Jízhěn zài nǎlǐ?</div>
+        <div class="en">Where is the emergency room?</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">我需要帮助。</div>
+        <div class="pinyin">Wǒ xūyào bāngzhù.</div>
+        <div class="en">I need help.</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ⑤ MEDICINE & PHARMACIES -->
+  <section class="section" id="medicine">
+    <div class="section-header">
+      <div class="section-icon">💊</div>
+      <div class="section-title-group">
+        <h2>Medicine & Pharmacies</h2>
+        <p>What to bring and what you can buy in China</p>
+      </div>
+    </div>
+
+    <h3 class="h3-style">Bring these from home</h3>
+    <div class="prose">
+      <p>Many common Western medications are either unavailable in China, sold under completely different names, or exist only in different formulations. Bring adequate supply of anything you rely on regularly, plus a sensible travel kit for common ailments.</p>
+    </div>
+
+    <ul class="bullet-list">
+      <li><strong>All prescription medication</strong> — bring more than you need, keep in original packaging, carry a doctor's letter if controlled</li>
+      <li><strong>Your usual painkiller</strong> — ibuprofen and paracetamol are available in China but under different brand names; bring your preferred brand to avoid confusion</li>
+      <li><strong>Antihistamines</strong> — useful for allergic reactions; brands differ significantly</li>
+      <li><strong>Diarrhoea medication</strong> — traveller's stomach is common; bring loperamide (Imodium)</li>
+      <li><strong>Rehydration sachets</strong> — ORS sachets; very useful if you get sick</li>
+      <li><strong>Antacids</strong> — Chinese food is rich and oily; useful for sensitive stomachs</li>
+      <li><strong>Insect repellent</strong> — especially if visiting rural or southern areas; DEET-based products can be hard to find</li>
+      <li><strong>Sunscreen</strong> — available widely in China, though formulations differ from Western brands; bring your preferred product if you have a specific routine</li>
+      <li><strong>Any sleep medication</strong> — time zone adjustment can be significant</li>
+    </ul>
+
+    <div class="warning-box">
+      Some medications legal in your home country are controlled or prohibited in China. If you're carrying any controlled substance (strong painkillers, certain ADHD medications, some anxiety medications), carry a doctor's prescription and a translated letter explaining your condition. Check with the Chinese embassy before travelling.
+    </div>
+
+    <h3 class="h3-style">Chinese pharmacies (药店)</h3>
+    <div class="prose">
+      <p>China has pharmacies everywhere — look for the green cross sign (绿十字). The two largest chains are <strong>Guoda (国大药房)</strong> and <strong>Yifeng (益丰大药房)</strong>, though many independent pharmacies exist. Most are well-stocked and inexpensive.</p>
+      <p>Pharmacists cannot be expected to speak English, but they can often read the international drug name if you write it down or show it on your phone. Showing the packaging of what you need also works well.</p>
+    </div>
+
+    <div class="tip-box">
+      Basic medications in China are extremely cheap compared to Western countries. A box of paracetamol, antacids, or cold medicine typically costs ¥5–¥30.
+    </div>
+
+  </section>
+
+  <!-- ⑥ MEDICINE REFERENCE -->
+  <section class="section" id="reference">
+    <div class="section-header">
+      <div class="section-icon">📖</div>
+      <div class="section-title-group">
+        <h2>Medicine Reference</h2>
+        <p>Common medications in English and Chinese</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Use this table to identify or ask for common medications at a Chinese pharmacy. Show the Chinese name or characters to the pharmacist — this is more reliable than trying to explain the drug by description.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Condition / Use</th>
+            <th>English name</th>
+            <th>Chinese name</th>
+            <th>Characters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pain / Fever</td>
+            <td>Paracetamol / Acetaminophen</td>
+            <td>Duì yǐ xiān ān fēn</td>
+            <td>对乙酰氨基酚</td>
+          </tr>
+          <tr>
+            <td>Pain / Inflammation</td>
+            <td>Ibuprofen</td>
+            <td>Bù luò fēn</td>
+            <td>布洛芬</td>
+          </tr>
+          <tr>
+            <td>Diarrhoea</td>
+            <td>Loperamide (Imodium)</td>
+            <td>Luò pèi ān àn</td>
+            <td>洛哌丁胺</td>
+          </tr>
+          <tr>
+            <td>Antacid / Heartburn</td>
+            <td>Omeprazole</td>
+            <td>Àomǎlāzuò</td>
+            <td>奥美拉唑</td>
+          </tr>
+          <tr>
+            <td>Allergy / Hay fever</td>
+            <td>Loratadine (Claritin)</td>
+            <td>Lùo lā tā dīng</td>
+            <td>氯雷他定</td>
+          </tr>
+          <tr>
+            <td>Allergy / Hay fever</td>
+            <td>Cetirizine (Zyrtec)</td>
+            <td>Xī tì lì qín</td>
+            <td>西替利嗪</td>
+          </tr>
+          <tr>
+            <td>Cold / Flu</td>
+            <td>Cold medicine (combination)</td>
+            <td>Gǎn mào líng</td>
+            <td>感冒灵</td>
+          </tr>
+          <tr>
+            <td>Sore throat</td>
+            <td>Throat lozenges</td>
+            <td>Hóu piàn</td>
+            <td>喉片</td>
+          </tr>
+          <tr>
+            <td>Constipation</td>
+            <td>Lactulose / Laxative</td>
+            <td>Rǔ guǒ táng</td>
+            <td>乳果糖</td>
+          </tr>
+          <tr>
+            <td>Motion sickness</td>
+            <td>Dimenhydrinate (Dramamine)</td>
+            <td>Chéng yùn níng</td>
+            <td>乘晕宁</td>
+          </tr>
+          <tr>
+            <td>Rehydration</td>
+            <td>Oral rehydration salts</td>
+            <td>Kǒu fú bǔ yè yán</td>
+            <td>口服补液盐</td>
+          </tr>
+          <tr>
+            <td>Eye drops (dry eyes)</td>
+            <td>Artificial tears</td>
+            <td>Rén zào lèi yè</td>
+            <td>人造泪液</td>
+          </tr>
+          <tr>
+            <td>Antiseptic</td>
+            <td>Iodine / Betadine</td>
+            <td>Diǎn fú</td>
+            <td>碘伏</td>
+          </tr>
+          <tr>
+            <td>Plasters / Band-aids</td>
+            <td>Adhesive bandage</td>
+            <td>Chuāng kě tiē</td>
+            <td>创可贴</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tip-box">
+      Chinese pharmacies also stock many traditional Chinese medicine (TCM) products alongside Western drugs. If you're unsure which product is the Western medication equivalent, ask for the "西药" (xīyào, Western medicine) section.
+    </div>
+
+  </section>
+
+  <!-- ⑦ FAQ -->
+  <section class="section" id="faq">
+    <div class="section-header">
+      <div class="section-icon">❓</div>
+      <div class="section-title-group">
+        <h2>Frequently Asked Questions</h2>
+        <p>Common health questions for visitors to China</p>
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do I need any vaccinations before visiting China?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">
+          China does not currently require proof of vaccination for entry (as of 2025). However, standard travel vaccinations are recommended by most health authorities: Hepatitis A and B, Typhoid, and being up to date on routine vaccines (MMR, tetanus, etc.). If you're visiting rural areas, your doctor may also recommend Japanese Encephalitis or Rabies vaccines. Consult your GP or a travel clinic at least 4–6 weeks before departure.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is the tap water safe to drink?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">
+          No. Do not drink tap water in China. It is not treated to drinking standards in most areas. Stick to bottled water, which is cheap and available everywhere. Hot water (开水, kāi shuǐ) served in hotels and restaurants is boiled and safe to drink. Ice in restaurants is generally made from purified water in established venues, but use your judgment.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What if I need prescription medication that isn't available in China?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">
+          Bring enough from home. Importing prescription drugs from abroad is technically restricted but carrying personal supplies in your luggage is generally fine — keep medication in original packaging with your name on it, and carry a copy of your prescription. International clinics in China can sometimes prescribe equivalent alternatives if you run out, so this is another good reason to know where your nearest international clinic is.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How bad is the air quality in Chinese cities?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">
+          It varies significantly by city, season, and weather. Beijing and northern cities tend to have worse air quality in winter when coal heating is in use. Southern cities like Shenzhen and Guangzhou generally have better air. Shanghai is moderate. Check the AQI (Air Quality Index) via apps like AirVisual or IQAir before and during your trip. If you have asthma or respiratory conditions, bring your medication and consider an N95 mask for high-pollution days.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can Chinese hospitals read my medical records from home?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">
+          No. Chinese hospitals have no access to foreign medical systems. If you have a complex medical history, carry a brief written summary of your conditions, current medications, allergies, and blood type. International clinics are better placed to understand and use this information. For routine visits, a translation app can help bridge the gap for simpler consultations.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is food safety a concern in China?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">
+          Food safety has improved significantly in China over the past decade, and traveller's stomach is not as common as many visitors fear. The main risks are from raw or undercooked food, unwashed fruit, and tap water. Cooked street food from busy stalls with high turnover is generally very safe — the food is freshly cooked and served immediately. Avoid raw salads in lower-end restaurants and always peel fruit yourself.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What if I have a medical emergency and no one speaks English?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">
+          First, call your travel insurer's 24-hour emergency line — they can provide real-time interpreter support and direct you to the right facility. If the situation is immediately life-threatening, call 120 and hand the phone to any nearby local to explain your location. At the hospital, show written Chinese phrases on your phone (screenshot the phrases on this page). Chinese doctors are trained professionals — communication is the challenge, not competence.
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</div>
+
+<script>
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    item.classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>
