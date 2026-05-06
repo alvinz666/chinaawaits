@@ -137,19 +137,17 @@
 
   /* ── ALERT BANNER ── */
   .alert-banner {
-    background: var(--gold-light);
-    border-left: 4px solid var(--gold);
-    padding: 1rem 1.5rem;
-    max-width: 860px;
-    margin: 2rem auto 0;
-    border-radius: 0 8px 8px 0;
-    display: flex;
-    gap: 0.75rem;
-    align-items: flex-start;
+    display: flex; align-items: flex-start; gap: 0.9rem;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    max-width: 680px;
+    margin-top: 0.5rem;
   }
-  .alert-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; }
-  .alert-text { font-size: 0.9rem; color: var(--ink-mid); }
-  .alert-text strong { color: var(--ink); }
+  .alert-icon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+  .alert-text { font-size: 0.88rem; color: rgba(255,255,255,0.7); line-height: 1.6; }
+  .alert-text strong { color: var(--gold); font-weight: 500; }
 
   /* ── MAIN LAYOUT ── */
   main {
@@ -585,16 +583,11 @@
       <a href="#packing">🧳 Packing Tips</a>
     </div>
   </div>
-</header>
-
-<!-- ALERT BANNER -->
-<div style="background: var(--ink); padding: 0 2rem;">
   <div class="alert-banner" role="note">
     <span class="alert-icon">⚠️</span>
     <p class="alert-text"><strong>Do this before you leave home.</strong> Many of the apps and services on this page — especially VPNs and mobile payment setup — cannot be downloaded or configured once you're inside China. Don't leave it until the airport.</p>
   </div>
-</div>
-<div style="background: var(--ink); height: 2rem;"></div>
+</header>
 
 <!-- MAIN -->
 <main>
