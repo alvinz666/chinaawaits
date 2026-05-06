@@ -27,8 +27,8 @@
 
   /* NAV */
   nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: #FDFAF7; backdrop-filter: blur(12px);
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.97); backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border);
     padding: 0 2rem; height: 60px;
     display: flex; align-items: center; justify-content: space-between;
@@ -39,7 +39,7 @@
   .nav-links a:hover { color: var(--red); }
 
   /* HERO */
-  .hero { padding-top: 60px; background: var(--ink); position: relative; overflow: hidden; }
+  .hero { background: var(--ink); position: relative; overflow: hidden; }
   .hero-bg-pattern {
     position: absolute; inset: 0; opacity: 0.05;
     background-image: repeating-linear-gradient(45deg, rgba(201,168,76,0.8) 0, rgba(201,168,76,0.8) 1px, transparent 0, transparent 50%);
