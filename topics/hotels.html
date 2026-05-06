@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hotels & Accommodation in China — China Awaits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #C0392B;
+      --red-dark: #96281B;
+      --gold: #C9A84C;
+      --gold-light: #e8c96a;
+      --ink: #1a1a1a;
+      --ink-soft: #3d3d3d;
+      --mist: #f7f4f0;
+      --mist-dark: #ede9e3;
+      --white: #ffffff;
+      --border: #e0d9d0;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,0.14);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); line-height: 1.7; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.97); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 60px;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--red); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-size: 0.88rem; font-weight: 500; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--red); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--ink); position: relative; overflow: hidden;
+      padding: 5rem 2rem 4rem; text-align: center;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 60%, rgba(192,57,43,0.25) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 35%, rgba(201,168,76,0.15) 0%, transparent 55%);
+    }
+    .hero-pattern {
+      position: absolute; inset: 0; opacity: 0.035;
+      background-image: repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%);
+      background-size: 20px 20px;
+    }
+    .hero-tag {
+      display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,0.4);
+      padding: 0.3rem 0.9rem; border-radius: 2px; margin-bottom: 1.5rem; position: relative;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 1rem; position: relative;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.65); max-width: 540px; margin: 0 auto 2.5rem; position: relative; }
+    .jump-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; position: relative; }
+    .jump-nav a {
+      display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 500;
+      color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15); padding: 0.45rem 1rem; border-radius: 40px;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .jump-nav a:hover { background: rgba(201,168,76,0.2); border-color: var(--gold); color: var(--gold); }
+
+    /* ── LAYOUT ── */
+    .page-wrap { max-width: 860px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+    /* ── SECTION ── */
+    .section { margin-top: 4.5rem; scroll-margin-top: 80px; }
+    .section-header {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1.8rem;
+      padding-bottom: 1rem; border-bottom: 2px solid var(--border);
+    }
+    .section-icon {
+      width: 48px; height: 48px; background: var(--red); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;
+    }
+    .section-title-group h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+    .section-title-group p { font-size: 0.88rem; color: #888; margin-top: 0.1rem; }
+
+    /* ── PROSE ── */
+    .prose p { font-size: 0.97rem; color: var(--ink-soft); margin-bottom: 1rem; }
+    .prose strong { color: var(--ink); font-weight: 600; }
+
+    /* ── BOXES ── */
+    .highlight { background: var(--mist); border-left: 3px solid var(--gold); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1.2rem 0; font-size: 0.93rem; color: var(--ink-soft); }
+    .highlight strong { color: var(--ink); }
+    .tip-box { background: #fff8ee; border: 1px solid #f0d990; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #6b5b1a; }
+    .tip-box::before { content: '💡 Tip: '; font-weight: 600; }
+    .warning-box { background: #fff5f5; border: 1px solid #f5c6c6; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #7a2020; }
+    .warning-box::before { content: '⚠️ Note: '; font-weight: 600; }
+
+    /* ── BULLET LIST ── */
+    .bullet-list { list-style: none; margin: 1rem 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .bullet-list li { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.93rem; color: var(--ink-soft); }
+    .bullet-list li::before { content: '—'; color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+
+    /* ── STEPS ── */
+    .steps { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; margin: 1.2rem 0; }
+    .steps li { display: flex; align-items: flex-start; gap: 1rem; background: var(--mist); border-radius: 10px; padding: 0.9rem 1.1rem; }
+    .step-num { width: 28px; height: 28px; background: var(--red); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .step-text { font-size: 0.93rem; color: var(--ink-soft); }
+    .step-text strong { color: var(--ink); display: block; margin-bottom: 0.1rem; }
+
+    /* ── TABLE ── */
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    thead { background: var(--ink); color: white; }
+    thead th { padding: 0.85rem 1rem; text-align: left; font-weight: 600; font-size: 0.83rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:nth-child(even) { background: var(--mist); }
+    tbody td { padding: 0.85rem 1rem; color: var(--ink-soft); vertical-align: top; }
+    tbody td:first-child { font-weight: 600; color: var(--ink); }
+
+    /* ── PLATFORM CARDS ── */
+    .platform-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .platform-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: 14px;
+      padding: 1.4rem; transition: all 0.2s;
+    }
+    .platform-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+    .platform-card-top { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 0.9rem; }
+    .platform-logo { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+    .platform-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; }
+    .platform-tag { font-size: 0.75rem; color: #888; margin-top: 0.1rem; }
+    .platform-desc { font-size: 0.87rem; color: var(--ink-soft); line-height: 1.55; margin-bottom: 1rem; }
+    .platform-pros { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; }
+    .platform-pros li { font-size: 0.83rem; color: var(--ink-soft); display: flex; gap: 0.5rem; align-items: flex-start; }
+    .platform-pros li::before { content: '✓'; color: #2e7d32; font-weight: 700; flex-shrink: 0; }
+
+    /* ── HOTEL TYPE CARDS ── */
+    .type-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .type-card { background: var(--mist); border: 1px solid var(--border); border-radius: 14px; padding: 1.3rem; }
+    .type-icon { font-size: 2rem; margin-bottom: 0.6rem; }
+    .type-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .type-price { font-size: 0.8rem; color: var(--gold); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0.6rem; }
+    .type-desc { font-size: 0.87rem; color: var(--ink-soft); line-height: 1.5; }
+    .type-badge { display: inline-block; font-size: 0.72rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 20px; margin-top: 0.7rem; }
+    .badge-green { background: #e8f5e9; color: #2e7d32; }
+    .badge-yellow { background: #fff8e1; color: #f57f17; }
+    .badge-red { background: #ffebee; color: #c62828; }
+
+    /* ── LOCATION TIPS ── */
+    .location-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .location-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; }
+    .location-card h3 { font-family: 'Playfair Display', serif; font-size: 0.98rem; font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+    .location-card p { font-size: 0.87rem; color: var(--ink-soft); line-height: 1.5; }
+
+    /* ── CHECKIN PHRASE BOX ── */
+    .phrase-box { background: var(--mist); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem; margin: 0.5rem 0; }
+    .phrase-box .zh { font-size: 1.1rem; font-weight: 600; color: var(--red); margin-bottom: 0.1rem; }
+    .phrase-box .pinyin { font-size: 0.78rem; color: #999; font-style: italic; margin-bottom: 0.1rem; }
+    .phrase-box .en { font-size: 0.82rem; color: var(--ink-soft); }
+
+    /* ── FAQ ── */
+    .faq { margin: 1.5rem 0; }
+    .faq-item { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 0.6rem; overflow: hidden; }
+    .faq-q { width: 100%; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.2rem; font-family: 'DM Sans', sans-serif; font-size: 0.93rem; font-weight: 600; color: var(--ink); text-align: left; gap: 1rem; }
+    .faq-q:hover { background: var(--mist); }
+    .faq-arrow { font-size: 1rem; color: var(--gold); transition: transform 0.25s; flex-shrink: 0; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0.8rem 1.2rem 1rem; font-size: 0.9rem; color: var(--ink-soft); border-top: 1px solid var(--border); line-height: 1.65; }
+    .faq-item.open .faq-a { display: block; }
+
+    .h3-style { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin: 1.5rem 0 0.8rem; }
+
+    /* ── PRICE TABLE BADGE ── */
+    .price-badge { display: inline-block; font-size: 0.78rem; font-weight: 600; padding: 0.15rem 0.6rem; border-radius: 20px; }
+    .price-budget { background: #e8f5e9; color: #2e7d32; }
+    .price-mid { background: #fff8e1; color: #f57f17; }
+    .price-luxury { background: #fce4ec; color: #c2185b; }
+
+    /* ── VPN WARNING ── */
+    .vpn-warning { color: var(--red); font-weight: 600; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links { display: none; }
+      .page-wrap { padding: 0 1rem 4rem; }
+      .hero { padding: 3.5rem 1rem 3rem; }
+      .platform-grid { grid-template-columns: 1fr; }
+      .type-grid { grid-template-columns: 1fr; }
+      .location-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">China Awaits</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="pre-arrival.html">Before You Arrive</a></li>
+    <li><a href="transport.html">Transport</a></li>
+    <li><a href="food.html">Food</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-pattern"></div>
+  <p class="hero-tag">Where to Stay</p>
+  <h1>Hotels & <span>Accommodation</span></h1>
+  <p class="hero-sub">China has world-class hotels at every price point — but booking and checking in as a foreigner comes with a few things worth knowing in advance.</p>
+  <div class="jump-nav">
+    <a href="#platforms">🔍 Booking Platforms</a>
+    <a href="#types">🏨 Hotel Types</a>
+    <a href="#checkin">📋 Check-in Process</a>
+    <a href="#location">📍 Choosing Location</a>
+    <a href="#prices">💰 Price Guide</a>
+    <a href="#airbnb">🏠 Guesthouses & Hostels</a>
+    <a href="#faq">❓ FAQ</a>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- ① BOOKING PLATFORMS -->
+  <section class="section" id="platforms">
+    <div class="section-header">
+      <div class="section-icon">🔍</div>
+      <div class="section-title-group">
+        <h2>Booking Platforms</h2>
+        <p>Where to find and book your hotel</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Most major international booking platforms work in China, but some have better selection and foreign-card support than others. The most important thing: book before you arrive, and confirm the hotel accepts foreign guests.</p>
+    </div>
+
+    <div class="platform-grid">
+      <div class="platform-card">
+        <div class="platform-card-top">
+          <div class="platform-logo" style="background:#f0f7ff;">🌐</div>
+          <div>
+            <div class="platform-name">Booking.com</div>
+            <div class="platform-tag">Best overall for foreigners</div>
+          </div>
+        </div>
+        <p class="platform-desc">The most reliable option for international travellers. Strong English interface, foreign card support, free cancellation on most properties, and a good mix of international chains and local hotels.</p>
+        <ul class="platform-pros">
+          <li>Accepts all major foreign cards</li>
+          <li>Full English interface</li>
+          <li>Free cancellation widely available</li>
+          <li>Good customer support</li>
+        </ul>
+      </div>
+
+      <div class="platform-card">
+        <div class="platform-card-top">
+          <div class="platform-logo" style="background:#fff3e0;">✈️</div>
+          <div>
+            <div class="platform-name">Trip.com</div>
+            <div class="platform-tag">Best selection in China</div>
+          </div>
+        </div>
+        <p class="platform-desc">Originally a Chinese platform (Ctrip), now with a strong English interface. Has the widest inventory of Chinese hotels, often with lower prices than international platforms. Foreign card support has improved significantly.</p>
+        <ul class="platform-pros">
+          <li>Largest hotel inventory in China</li>
+          <li>Often cheaper than competitors</li>
+          <li>Good English app and website</li>
+          <li>Also books trains and flights</li>
+        </ul>
+      </div>
+
+      <div class="platform-card">
+        <div class="platform-card-top">
+          <div class="platform-logo" style="background:#f3e5f5;">🏨</div>
+          <div>
+            <div class="platform-name">Hotel Direct</div>
+            <div class="platform-tag">International chains</div>
+          </div>
+        </div>
+        <p class="platform-desc">For international chains (Marriott, Hilton, Hyatt, IHG), booking direct on their own website often gets you the best price, loyalty points, and the most reliable foreigner-friendly experience at check-in.</p>
+        <ul class="platform-pros">
+          <li>Earn loyalty points</li>
+          <li>Best price guarantee on most chains</li>
+          <li>Staff trained in international service</li>
+          <li>Simplest check-in for foreigners</li>
+        </ul>
+      </div>
+
+      <div class="platform-card">
+        <div class="platform-card-top">
+          <div class="platform-logo" style="background:#e8f5e9;">🌍</div>
+          <div>
+            <div class="platform-name">Agoda</div>
+            <div class="platform-tag">Good Asia coverage</div>
+          </div>
+        </div>
+        <p class="platform-desc">Strong in Asia, often competitive on price. Good for budget and mid-range options. Interface is fully in English and accepts foreign cards, though customer support can be slower to respond than Booking.com.</p>
+        <ul class="platform-pros">
+          <li>Competitive pricing</li>
+          <li>Good budget hotel selection</li>
+          <li>Foreign card support</li>
+          <li>Asia-focused with strong China coverage</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="warning-box">
+      Chinese platforms like Meituan (美团) and Qunar (去哪儿) have much larger selections and lower prices, but require a Chinese phone number, Chinese ID verification, and Chinese payment methods. They are not practical for most foreign visitors.
+    </div>
+
+    <div class="tip-box">
+      Always cross-check prices across at least two platforms. Trip.com often has the lowest price on Chinese-brand hotels, while Booking.com is often best for international chains.
+    </div>
+
+  </section>
+
+  <!-- ② HOTEL TYPES -->
+  <section class="section" id="types">
+    <div class="section-header">
+      <div class="section-icon">🏨</div>
+      <div class="section-title-group">
+        <h2>Hotel Types</h2>
+        <p>What to expect at each tier</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>China's hotel market ranges from world-class five-star properties at surprisingly reasonable prices, to budget options that are clean and functional but may have limited English-speaking staff. Understanding the tiers helps you set expectations.</p>
+    </div>
+
+    <div class="type-grid">
+      <div class="type-card">
+        <div class="type-icon">🌟</div>
+        <div class="type-name">International 5-Star Chains</div>
+        <div class="type-price">¥800 – ¥2,500+ / night</div>
+        <p class="type-desc">Marriott, Hilton, Hyatt, IHG, Accor and others operate extensively across China. Staff speak English, foreign card payment is seamless, and the check-in process is the same as anywhere in the world.</p>
+        <span class="type-badge badge-green">Most foreigner-friendly</span>
+      </div>
+
+      <div class="type-card">
+        <div class="type-icon">🏢</div>
+        <div class="type-name">Chinese Luxury Chains</div>
+        <div class="type-price">¥500 – ¥1,500 / night</div>
+        <p class="type-desc">Brands like Shangri-La (Hong Kong origin), Jin Jiang, and Wanda offer excellent quality at lower prices than international chains. English is usually available at the front desk, and foreign card support is generally reliable.</p>
+        <span class="type-badge badge-green">Generally foreigner-friendly</span>
+      </div>
+
+      <div class="type-card">
+        <div class="type-icon">🏩</div>
+        <div class="type-name">Boutique & Design Hotels</div>
+        <div class="type-price">¥400 – ¥1,200 / night</div>
+        <p class="type-desc">China has a growing boutique scene, especially in cities like Shanghai, Chengdu and Hangzhou. Many are beautifully designed with local character. English levels vary — check reviews from foreign guests before booking.</p>
+        <span class="type-badge badge-yellow">Check reviews first</span>
+      </div>
+
+      <div class="type-card">
+        <div class="type-icon">🏬</div>
+        <div class="type-name">Mid-Range Business Hotels</div>
+        <div class="type-price">¥200 – ¥500 / night</div>
+        <p class="type-desc">Chinese chains like Hanting, Ji Hotel, and Holiday Inn Express offer clean, reliable rooms at good value. Front desk English is limited but functional. Payment is often cash or WeChat Pay — confirm foreign card acceptance before booking.</p>
+        <span class="type-badge badge-yellow">Limited English, confirm payment</span>
+      </div>
+
+      <div class="type-card">
+        <div class="type-icon">🛏️</div>
+        <div class="type-name">Budget Hotels</div>
+        <div class="type-price">¥80 – ¥200 / night</div>
+        <p class="type-desc">Very basic accommodation, often with no English at all. Clean and functional but no frills. Some budget properties do not accept foreign passport holders — this is a real issue and worth checking in reviews before booking.</p>
+        <span class="type-badge badge-red">May not accept foreigners</span>
+      </div>
+
+      <div class="type-card">
+        <div class="type-icon">🏯</div>
+        <div class="type-name">Guesthouses & Inns (客栈)</div>
+        <div class="type-price">¥150 – ¥600 / night</div>
+        <p class="type-desc">Traditional-style guesthouses are common near tourist areas, especially in Guilin, Lijiang, and Hangzhou. Very atmospheric, often great value. English varies widely. Many cannot legally host foreign guests — check specifically.</p>
+        <span class="type-badge badge-red">Many cannot host foreigners</span>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <strong>Why some hotels can't accept foreigners:</strong> Chinese law requires hotels to be registered with local police to host foreign nationals. Many smaller properties never completed this registration. It's not personal — they simply aren't licensed to take your passport details.
+    </div>
+
+  </section>
+
+  <!-- ③ CHECK-IN PROCESS -->
+  <section class="section" id="checkin">
+    <div class="section-header">
+      <div class="section-icon">📋</div>
+      <div class="section-title-group">
+        <h2>The Check-in Process</h2>
+        <p>What happens when you arrive</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Checking into a Chinese hotel as a foreigner is straightforward at international chains, and manageable elsewhere if you know what to expect. The key difference from Western countries: <strong>passport registration is mandatory and happens at every hotel, every stay.</strong></p>
+    </div>
+
+    <ol class="steps">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <strong>Present your passport</strong>
+          The front desk will ask for your passport immediately. This is required by law — they must scan and register your details with the local police within 24 hours of your arrival. This is non-negotiable and applies to everyone.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <strong>Provide your visa / entry stamp</strong>
+          They'll need to see your visa type and validity. If you're in China visa-free, show them your entry stamp. Some hotels will photocopy your entire passport — this is standard practice.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <strong>Pay a deposit (押金)</strong>
+          Most hotels require a cash or card hold of ¥200–¥1,000 depending on the property. This covers incidentals and is refunded on checkout. At budget hotels, cash deposits are common even if you're paying for the room by card.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-text">
+          <strong>Pay for the room</strong>
+          International chains accept foreign cards without issue. Mid-range and budget hotels increasingly prefer WeChat Pay or Alipay. Some will accept foreign cards with varying success — it's worth having a backup payment method ready.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">5</div>
+        <div class="step-text">
+          <strong>Collect your key card and room info</strong>
+          You'll receive a physical key card. Note that in China, you often need to insert the key card into a slot inside the room to activate the electricity. Remove it when you leave — everything turns off.
+        </div>
+      </li>
+    </ol>
+
+    <div class="warning-box">
+      <strong>If you're staying with a friend or family in China:</strong> the person hosting you is legally required to register you with the local police within 24 hours. In practice, many people don't know this rule — but if you're staying for more than a day or two, it's worth mentioning.
+    </div>
+
+    <h3 class="h3-style">Useful phrases at check-in</h3>
+
+    <div class="phrase-box">
+      <div class="zh">我有预订。</div>
+      <div class="pinyin">Wǒ yǒu yùdìng.</div>
+      <div class="en">I have a reservation.</div>
+    </div>
+    <div class="phrase-box">
+      <div class="zh">这是我的护照。</div>
+      <div class="pinyin">Zhè shì wǒ de hùzhào.</div>
+      <div class="en">This is my passport.</div>
+    </div>
+    <div class="phrase-box">
+      <div class="zh">我可以用信用卡付款吗？</div>
+      <div class="pinyin">Wǒ kěyǐ yòng xìnyòngkǎ fùkuǎn ma?</div>
+      <div class="en">Can I pay by credit card?</div>
+    </div>
+    <div class="phrase-box">
+      <div class="zh">几点退房？</div>
+      <div class="pinyin">Jǐ diǎn tuì fáng?</div>
+      <div class="en">What time is checkout?</div>
+    </div>
+
+  </section>
+
+  <!-- ④ CHOOSING LOCATION -->
+  <section class="section" id="location">
+    <div class="section-header">
+      <div class="section-icon">📍</div>
+      <div class="section-title-group">
+        <h2>Choosing Your Location</h2>
+        <p>Where to stay in Chinese cities</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Chinese cities are large — far larger than most Western visitors expect. A hotel that looks close to your sights on a map might be an hour away in traffic. The single most important factor in choosing where to stay is <strong>proximity to a metro station.</strong></p>
+    </div>
+
+    <div class="tip-box">
+      When browsing hotels, filter for properties within 500m of a metro station. China's metro systems are fast, cheap, and extensive in all major cities. A well-located budget hotel beats a luxury hotel with a bad commute.
+    </div>
+
+    <div class="location-grid">
+      <div class="location-card">
+        <h3>🚇 Metro Access</h3>
+        <p>Prioritise being within easy walking distance of a metro station above everything else. Check which line serves the station and whether it connects to the areas you plan to visit.</p>
+      </div>
+      <div class="location-card">
+        <h3>🏙️ City Centre vs Outskirts</h3>
+        <p>City centres in China are safe and convenient, but not always cheaper. Outskirt hotels can be good value but add significant daily commute time. For short trips, pay for centrality.</p>
+      </div>
+      <div class="location-card">
+        <h3>🗺️ Research the District</h3>
+        <p>Chinese cities have distinct districts with different characters. In Shanghai, Jing'an and the Former French Concession are popular with visitors. In Beijing, Dongcheng puts you near most major sights.</p>
+      </div>
+      <div class="location-card">
+        <h3>🌙 Check Nightlife Proximity</h3>
+        <p>Some areas popular with tourists — like Shanghai's The Bund — can be noisy at night. If you're a light sleeper, check reviews that specifically mention noise levels.</p>
+      </div>
+      <div class="location-card">
+        <h3>🍜 Eating Options Nearby</h3>
+        <p>Being close to a variety of restaurants makes daily life much easier. Use the hotel's map pin and check what's around it in Baidu Maps or Google Maps before booking.</p>
+      </div>
+      <div class="location-card">
+        <h3>🛫 Airport Distance</h3>
+        <p>Chinese cities often have multiple airports and extremely long airport transfer times. If you have an early departure, factor in whether your hotel is on the right side of the city.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ⑤ PRICE GUIDE -->
+  <section class="section" id="prices">
+    <div class="section-header">
+      <div class="section-icon">💰</div>
+      <div class="section-title-group">
+        <h2>Price Guide</h2>
+        <p>What to expect to pay per night</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>China offers remarkable value at the mid and upper tiers — a five-star hotel in Beijing or Chengdu often costs significantly less than an equivalent property in Paris or New York. Budget options exist everywhere but come with more uncertainty for foreign guests.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Tier</th>
+            <th>Beijing / Shanghai</th>
+            <th>Chengdu / Xi'an</th>
+            <th>Smaller Cities</th>
+            <th>What you get</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="price-badge price-luxury">Luxury</span></td>
+            <td>¥1,200 – ¥3,000+</td>
+            <td>¥800 – ¥2,000</td>
+            <td>¥600 – ¥1,500</td>
+            <td>International 5-star chain, English-speaking staff, all amenities</td>
+          </tr>
+          <tr>
+            <td><span class="price-badge price-mid">Mid-range</span></td>
+            <td>¥400 – ¥1,000</td>
+            <td>¥300 – ¥700</td>
+            <td>¥200 – ¥500</td>
+            <td>Chinese 4-star or international 3-star, decent English, reliable</td>
+          </tr>
+          <tr>
+            <td><span class="price-badge price-budget">Budget</span></td>
+            <td>¥150 – ¥400</td>
+            <td>¥100 – ¥300</td>
+            <td>¥80 – ¥200</td>
+            <td>Basic chain hotel, functional, limited English, may require cash</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="highlight">
+      Prices spike significantly during Chinese public holidays — especially Golden Week in early October and the Spring Festival period (late January / February). Book well in advance if your trip overlaps with these dates, and expect to pay 2–3× normal rates.
+    </div>
+
+    <div class="tip-box">
+      Chinese hotel prices often don't include breakfast, unlike European hotels where it's frequently bundled. Double-check what's included when comparing prices across platforms.
+    </div>
+
+  </section>
+
+  <!-- ⑥ GUESTHOUSES & HOSTELS -->
+  <section class="section" id="airbnb">
+    <div class="section-header">
+      <div class="section-icon">🏠</div>
+      <div class="section-title-group">
+        <h2>Guesthouses & Hostels</h2>
+        <p>Alternative accommodation for foreign visitors</p>
+      </div>
+    </div>
+
+    <h3 class="h3-style">A note on Airbnb</h3>
+    <div class="prose">
+      <p>Airbnb exited the Chinese mainland market in 2022 and no longer operates there. Do not rely on it for accommodation in China — it simply isn't available. If you see listings that appear to be in China on Airbnb, they are likely in Hong Kong, Macau, or Taiwan, where the service still operates normally.</p>
+    </div>
+
+    <div class="warning-box">
+      There is no reliable Airbnb alternative accessible to foreign visitors without a Chinese phone number and domestic payment methods. Stick to hotels booked through Booking.com, Trip.com, or international chain websites.
+    </div>
+
+    <h3 class="h3-style">Guesthouses & Inns (民宿 / 客栈)</h3>
+    <div class="prose">
+      <p>China has a rich tradition of characterful guesthouses — known as mínsu (民宿) or kèzhàn (客栈) depending on the region. These are often beautifully designed with local architecture and a far more personal atmosphere than chain hotels. They are particularly common in scenic areas like Guilin, Lijiang, Dali, Hangzhou, and the water towns outside Shanghai.</p>
+      <p>The main caveat is the same as for budget hotels: <strong>many guesthouses are not registered to host foreign nationals.</strong> This is especially common in rural and heritage areas. Always check reviews from foreign guests before booking, and confirm directly if possible.</p>
+    </div>
+
+    <ul class="bullet-list">
+      <li>Book through Booking.com or Trip.com — filter for properties with foreign guest reviews</li>
+      <li>Prices typically run ¥150–¥600 per night for a private room</li>
+      <li>Owners are often locals with genuine knowledge of the area — a real advantage for getting off the beaten path</li>
+      <li>English is variable; a translation app goes a long way</li>
+      <li>Courtyard-style guesthouses in Beijing's hutongs offer a genuinely unique experience unavailable at any chain hotel</li>
+    </ul>
+
+    <h3 class="h3-style">Hostels</h3>
+    <div class="prose">
+      <p>China has a solid hostel scene, especially in cities popular with backpackers — Yangshuo, Chengdu, Kunming, Xi'an, and Chongqing all have well-established hostel communities. Many are specifically set up for international travellers and handle the foreign check-in process smoothly. Both Hostelworld and Booking.com list Chinese hostels.</p>
+    </div>
+
+    <ul class="bullet-list">
+      <li>Dormitory beds typically run ¥50–¥120 per night; private rooms ¥150–¥350</li>
+      <li>Staff in tourist-area hostels usually speak functional English</li>
+      <li>Many offer organised tours, transport bookings, and travel advice — especially useful for solo travellers</li>
+      <li>Social common areas make it easy to meet other travellers</li>
+      <li>Still confirm they can host foreign passport holders — not all can</li>
+    </ul>
+
+  </section>
+
+  <!-- ⑦ FAQ -->
+  <section class="section" id="faq">
+    <div class="section-header">
+      <div class="section-icon">❓</div>
+      <div class="section-title-group">
+        <h2>Frequently Asked Questions</h2>
+        <p>Common questions about staying in China</p>
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Why did my hotel say they can't accept me?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">
+          Hotels in China must be registered with local police to legally host foreign nationals. Smaller hotels, guesthouses, and many Airbnb hosts never completed this registration. This is not a personal rejection — they simply don't have the licence. Book through Booking.com or Trip.com and filter for properties with reviews from foreign travellers to minimise this risk.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do I need to do anything with the police after arriving?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">
+          If you're staying in a hotel, the hotel handles police registration on your behalf — you don't need to do anything. If you're staying with a local friend or family member, they are responsible for registering you at the local police station within 24 hours. This is a legal requirement but rarely checked for short tourist stays. Hotels take this very seriously.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can I pay for my hotel with a foreign credit card?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">
+          International 5-star chains and platforms like Booking.com and Trip.com accept foreign cards reliably. Mid-range and budget Chinese hotels are inconsistent — some accept Visa and Mastercard, many prefer WeChat Pay or Alipay. It's worth setting up Alipay before your trip (it now supports foreign cards) so you always have a backup payment option. See the <a href="pre-arrival.html#payment" style="color: var(--red);">mobile payment guide</a>.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is it safe to stay in Chinese hotels?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">
+          Yes. China has very low rates of theft and crime, and hotels are generally secure. Your passport will be scanned at check-in (not kept) and returned to you. Keep it somewhere safe in your room — the in-room safe is fine for this purpose. China is generally one of the safer countries to travel in as a tourist.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What voltage and plug type does China use?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">
+          China uses 220V / 50Hz. The plug type is Type A (two flat parallel pins) and Type I (two diagonal flat pins in a V shape). Most modern hotels have universal sockets that accept Type A, B, C, and I plugs. If you're coming from the US, your devices will work (same plug) but check the voltage rating. UK and European visitors will need an adapter. Most modern electronics (laptops, phones) handle 100–240V automatically.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Will my hotel have Wi-Fi? Can I access it normally?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">
+          All hotels have Wi-Fi, but it is subject to China's internet restrictions — meaning Google, Instagram, WhatsApp and many Western services won't work without a VPN. <span class="vpn-warning">Set up your VPN before you arrive</span> — it cannot be downloaded from inside China. Hotel Wi-Fi itself is reliable; the issue is purely the content filter, not connection quality. See the <a href="pre-arrival.html#vpn" style="color: var(--red);">VPN guide</a>.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Should I book everything in advance or can I walk in?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-a">
+          Book in advance, especially in major cities and during holidays. Walk-in availability exists outside peak periods, but you lose the ability to confirm that the property accepts foreign guests, compare prices, and read English-language reviews. Booking ahead also gives you a reference number for check-in — useful when there's a language barrier.
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</div>
+
+<script>
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    item.classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>
