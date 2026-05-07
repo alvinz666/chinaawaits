@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apps & SIM Cards in China — China Awaits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #C0392B;
+      --red-dark: #96281B;
+      --gold: #C9A84C;
+      --gold-light: #e8c96a;
+      --ink: #1a1a1a;
+      --ink-soft: #3d3d3d;
+      --mist: #f7f4f0;
+      --mist-dark: #ede9e3;
+      --white: #ffffff;
+      --border: #e0d9d0;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,0.14);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); line-height: 1.7; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.97); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 60px;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--red); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-size: 0.88rem; font-weight: 500; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--red); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--ink); position: relative; overflow: hidden;
+      padding: 5rem 2rem 4rem; text-align: center;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 60%, rgba(192,57,43,0.28) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 35%, rgba(201,168,76,0.16) 0%, transparent 55%);
+    }
+    .hero-pattern {
+      position: absolute; inset: 0; opacity: 0.035;
+      background-image: repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%);
+      background-size: 20px 20px;
+    }
+    .hero-tag {
+      display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,0.4);
+      padding: 0.3rem 0.9rem; border-radius: 2px; margin-bottom: 1.5rem; position: relative;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 1rem; position: relative;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.65); max-width: 560px; margin: 0 auto 2.5rem; position: relative; }
+    .jump-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; position: relative; }
+    .jump-nav a {
+      display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 500;
+      color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15); padding: 0.45rem 1rem; border-radius: 40px;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .jump-nav a:hover { background: rgba(201,168,76,0.2); border-color: var(--gold); color: var(--gold); }
+
+    /* ── LAYOUT ── */
+    .page-wrap { max-width: 860px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+    /* ── SECTION ── */
+    .section { margin-top: 4.5rem; scroll-margin-top: 80px; }
+    .section-header {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1.8rem;
+      padding-bottom: 1rem; border-bottom: 2px solid var(--border);
+    }
+    .section-icon {
+      width: 48px; height: 48px; background: var(--red); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;
+    }
+    .section-title-group h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+    .section-title-group p { font-size: 0.88rem; color: #888; margin-top: 0.1rem; }
+
+    /* ── PROSE ── */
+    .prose p { font-size: 0.97rem; color: var(--ink-soft); margin-bottom: 1rem; }
+    .prose strong { color: var(--ink); font-weight: 600; }
+
+    /* ── BOXES ── */
+    .highlight { background: var(--mist); border-left: 3px solid var(--gold); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1.2rem 0; font-size: 0.93rem; color: var(--ink-soft); }
+    .highlight strong { color: var(--ink); }
+    .tip-box { background: #fff8ee; border: 1px solid #f0d990; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #6b5b1a; }
+    .tip-box::before { content: '💡 Tip: '; font-weight: 600; }
+    .warning-box { background: #fff5f5; border: 1px solid #f5c6c6; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #7a2020; }
+    .warning-box::before { content: '⚠️ Note: '; font-weight: 600; }
+    .vpn-warning { color: #C0392B; font-weight: 700; }
+
+    /* ── TABLE ── */
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    thead { background: var(--ink); color: white; }
+    thead th { padding: 0.85rem 1rem; text-align: left; font-weight: 600; font-size: 0.83rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:nth-child(even) { background: var(--mist); }
+    tbody td { padding: 0.85rem 1rem; color: var(--ink-soft); vertical-align: top; }
+    tbody td:first-child { font-weight: 600; color: var(--ink); }
+
+    /* ── CARD GRID ── */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; transition: box-shadow 0.2s, transform 0.2s; }
+    .card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+    .card-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+    .card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .card p { font-size: 0.87rem; color: #666; line-height: 1.5; }
+    .card-badge { display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 0.15rem 0.6rem; border-radius: 20px; margin-bottom: 0.5rem; letter-spacing: 0.04em; }
+    .badge-free { background: #dcfce7; color: #166534; }
+    .badge-vpn { background: #fee2e2; color: #991b1b; }
+    .badge-china { background: #fef9c3; color: #854d0e; }
+    .badge-paid { background: #ede9fe; color: #5b21b6; }
+
+    /* ── APP CATEGORY HEADER ── */
+    .cat-label {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gold); margin: 2rem 0 0.8rem;
+    }
+
+    /* ── SIM COMPARE CARDS ── */
+    .sim-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .sim-card {
+      background: var(--white); border: 2px solid var(--border); border-radius: 14px;
+      padding: 1.3rem; transition: all 0.2s;
+    }
+    .sim-card:hover { border-color: var(--gold); box-shadow: var(--shadow); }
+    .sim-card.recommended { border-color: var(--gold); background: #fffdf5; }
+    .sim-card .rec-label { font-size: 0.72rem; font-weight: 700; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.6rem; }
+    .sim-card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .sim-card .sim-desc { font-size: 0.85rem; color: #666; line-height: 1.5; margin-bottom: 0.8rem; }
+    .sim-pros { list-style: none; font-size: 0.83rem; color: var(--ink-soft); }
+    .sim-pros li { display: flex; gap: 0.5rem; margin-bottom: 0.3rem; }
+    .sim-pros li::before { content: '✓'; color: #16a34a; font-weight: 700; flex-shrink: 0; }
+    .sim-cons { list-style: none; font-size: 0.83rem; color: var(--ink-soft); margin-top: 0.4rem; }
+    .sim-cons li { display: flex; gap: 0.5rem; margin-bottom: 0.3rem; }
+    .sim-cons li::before { content: '✗'; color: #dc2626; font-weight: 700; flex-shrink: 0; }
+
+    /* ── STEPS ── */
+    .steps { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; margin: 1.2rem 0; }
+    .steps li { display: flex; align-items: flex-start; gap: 1rem; background: var(--mist); border-radius: 10px; padding: 0.9rem 1.1rem; }
+    .step-num { width: 28px; height: 28px; background: var(--red); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .step-text { font-size: 0.93rem; color: var(--ink-soft); }
+    .step-text strong { color: var(--ink); display: block; margin-bottom: 0.1rem; }
+
+    /* ── VPN BANNER ── */
+    .vpn-banner {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d1515 100%);
+      border: 1px solid rgba(192,57,43,0.4);
+      border-radius: 14px; padding: 1.8rem; margin: 2rem 0;
+      display: flex; gap: 1.2rem; align-items: flex-start;
+    }
+    .vpn-banner-icon { font-size: 2.2rem; flex-shrink: 0; }
+    .vpn-banner h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
+    .vpn-banner p { font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.6; margin-bottom: 1rem; }
+    .vpn-banner-cta {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--red); color: #fff; text-decoration: none;
+      padding: 0.55rem 1.2rem; border-radius: 30px; font-size: 0.88rem; font-weight: 600;
+      transition: background 0.2s;
+    }
+    .vpn-banner-cta:hover { background: var(--red-dark); }
+
+    /* ── ANDROID SECTION ── */
+    .android-box {
+      background: #f0fdf4; border: 1px solid #86efac; border-radius: 12px;
+      padding: 1.4rem; margin: 1.5rem 0;
+    }
+    .android-box h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; color: #15803d; display: flex; align-items: center; gap: 0.5rem; }
+    .android-box p { font-size: 0.9rem; color: #166534; line-height: 1.6; margin-bottom: 0.6rem; }
+    .android-box p:last-child { margin-bottom: 0; }
+
+    /* ── FAQ ── */
+    .faq { margin: 1.5rem 0; }
+    .faq-item { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 0.6rem; overflow: hidden; }
+    .faq-q { width: 100%; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.2rem; font-family: 'DM Sans', sans-serif; font-size: 0.93rem; font-weight: 600; color: var(--ink); text-align: left; gap: 1rem; }
+    .faq-q:hover { background: var(--mist); }
+    .faq-arrow { font-size: 1rem; color: var(--gold); transition: transform 0.25s; flex-shrink: 0; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0.8rem 1.2rem 1rem; font-size: 0.9rem; color: var(--ink-soft); border-top: 1px solid var(--border); line-height: 1.6; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── RELATED ── */
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .related-card {
+      display: block; text-decoration: none; background: var(--mist);
+      border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem;
+      transition: all 0.2s;
+    }
+    .related-card:hover { border-color: var(--red); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .related-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 0.3rem; }
+    .related-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; }
+    .related-desc { font-size: 0.82rem; color: #888; line-height: 1.4; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .page-wrap { padding: 0 1rem 4rem; }
+      .hero { padding: 3.5rem 1rem 3rem; }
+      .sim-grid { grid-template-columns: 1fr 1fr; }
+      .card-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo">China Awaits</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="pre-arrival.html">Before You Arrive</a></li>
+    <li><a href="transport.html">Transport</a></li>
+    <li><a href="internet.html">VPN & Internet</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-tag">Apps & Connectivity</div>
+  <h1>Apps & <span>SIM Cards</span></h1>
+  <p class="hero-sub">China's digital ecosystem is unlike anywhere else in the world. Here's exactly what to install, which SIM to get, and how to stay connected from day one.</p>
+  <div class="jump-nav">
+    <a href="#sim">📶 SIM Cards</a>
+    <a href="#esim">🌐 eSIM Options</a>
+    <a href="#operators">📡 Operators</a>
+    <a href="#apps">📱 Essential Apps</a>
+    <a href="#android">🤖 Android Users</a>
+    <a href="#downloads">⬇️ How to Download</a>
+    <a href="#faq">❓ FAQ</a>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- ① SIM CARDS -->
+  <section class="section" id="sim">
+    <div class="section-header">
+      <div class="section-icon">📶</div>
+      <div class="section-title-group">
+        <h2>SIM Cards — What Are Your Options?</h2>
+        <p>Physical SIM, eSIM, or your home roaming plan — here's what works best</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Staying connected in China requires some advance planning. Google, WhatsApp, and most Western apps are blocked — so what you put in your phone before and after landing matters a lot. The good news: connectivity itself is easy and cheap.</p>
+    </div>
+
+    <div class="sim-grid">
+      <div class="sim-card recommended">
+        <div class="rec-label">⭐ Most Popular</div>
+        <h3>eSIM (International)</h3>
+        <div class="sim-desc">Buy before you leave — installs instantly, no physical swap needed. Works alongside your home SIM.</div>
+        <ul class="sim-pros">
+          <li>Set up before you board</li>
+          <li>Keep your home number active</li>
+          <li>Easy to top up via app</li>
+          <li>Works from the moment you land</li>
+        </ul>
+        <ul class="sim-cons">
+          <li>Requires an eSIM-compatible phone</li>
+          <li>Usually more expensive per GB</li>
+        </ul>
+      </div>
+
+      <div class="sim-card recommended">
+        <div class="rec-label">⭐ Best Value</div>
+        <h3>Chinese SIM (local)</h3>
+        <div class="sim-desc">Buy at the airport or a carrier store on arrival. Cheapest data rates, longest validity.</div>
+        <ul class="sim-pros">
+          <li>Best data prices (¥100–200/month)</li>
+          <li>Reliable coverage nationwide</li>
+          <li>Available at most airports</li>
+        </ul>
+        <ul class="sim-cons">
+          <li>Need passport to register</li>
+          <li>Must swap physical SIM</li>
+          <li>Setup may be in Chinese</li>
+        </ul>
+      </div>
+
+      <div class="sim-card">
+        <h3>Home Roaming</h3>
+        <div class="sim-desc">Use your existing plan abroad. Convenient but expensive — only practical for short stays.</div>
+        <ul class="sim-pros">
+          <li>No setup required</li>
+          <li>Keep your number</li>
+        </ul>
+        <ul class="sim-cons">
+          <li>Can cost £5–15/day</li>
+          <li>Blocked apps still blocked</li>
+          <li>Not practical for 1+ weeks</li>
+        </ul>
+      </div>
+
+      <div class="sim-card">
+        <h3>Pocket Wi-Fi</h3>
+        <div class="sim-desc">Rent a portable hotspot device — good for groups or short trips.</div>
+        <ul class="sim-pros">
+          <li>Share with travel companions</li>
+          <li>Good for groups</li>
+        </ul>
+        <ul class="sim-cons">
+          <li>Extra device to carry & charge</li>
+          <li>Dead if battery runs out</li>
+          <li>Usually pricier than eSIM</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tip-box">Most travellers find the best setup is an eSIM for data (bought before departure) plus WeChat and Alipay registered in advance. This way you're connected the second you touch down.</div>
+  </section>
+
+  <!-- ② eSIM -->
+  <section class="section" id="esim">
+    <div class="section-header">
+      <div class="section-icon">🌐</div>
+      <div class="section-title-group">
+        <h2>eSIM Options for China</h2>
+        <p>Buy before you fly — these work in mainland China</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Not all international eSIMs work well in China — some route traffic through servers that get blocked. The ones below are known to work reliably for data access, including for VPN use.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Provider</th>
+            <th>Coverage</th>
+            <th>Price (approx.)</th>
+            <th>Best For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Airalo</td>
+            <td>China only or Asia regional</td>
+            <td>$5–18 / 1–10 GB</td>
+            <td>Most travellers — easy app, reliable</td>
+          </tr>
+          <tr>
+            <td>Nomad</td>
+            <td>China + Asia options</td>
+            <td>$6–20 / 1–10 GB</td>
+            <td>Good app, multi-country plans</td>
+          </tr>
+          <tr>
+            <td>Holafly</td>
+            <td>China unlimited data</td>
+            <td>$27–59 / 5–30 days</td>
+            <td>Heavy users, unlimited plans</td>
+          </tr>
+          <tr>
+            <td>China Unicom eSIM</td>
+            <td>Mainland China</td>
+            <td>¥80–150 / month</td>
+            <td>Long stays, best local speeds</td>
+          </tr>
+          <tr>
+            <td>GigSky</td>
+            <td>China + global</td>
+            <td>$10–30 / 1–5 GB</td>
+            <td>Multi-country trips through Asia</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="highlight">
+      <strong>Check your phone first.</strong> To use an eSIM, your phone must support it and must be unlocked. Most iPhones from XS (2018) onward support eSIM. Android varies by model — check your settings under "Mobile Network" or "SIM & Network." Phones bought directly from some carriers may be locked.
+    </div>
+
+    <ol class="steps">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-text"><strong>Download the provider's app</strong> (e.g. Airalo) before leaving home, while you have reliable internet.</div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-text"><strong>Purchase a China data plan</strong> — pick your duration and data amount. Have your passport handy as some require ID.</div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-text"><strong>Install the eSIM profile</strong> via QR code or directly in the app. Do this at home on Wi-Fi.</div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-text"><strong>Set data roaming ON</strong> for the eSIM line in your phone settings. Keep your home SIM for calls and texts.</div>
+      </li>
+      <li>
+        <div class="step-num">5</div>
+        <div class="step-text"><strong>Activate when you land</strong> — turn on the eSIM line. Data usually kicks in within a few minutes of arrival.</div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ③ OPERATORS -->
+  <section class="section" id="operators">
+    <div class="section-header">
+      <div class="section-icon">📡</div>
+      <div class="section-title-group">
+        <h2>Chinese Mobile Operators</h2>
+        <p>Buying a local SIM on arrival — the cheapest option</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>If you're staying more than a week, a local Chinese SIM is the most economical option. All three major operators have counters at major international airports. You'll need your passport to register.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Operator</th>
+            <th>English</th>
+            <th>Coverage</th>
+            <th>Foreigner-Friendly</th>
+            <th>Approx. Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>China Mobile 中国移动</td>
+            <td>Basic</td>
+            <td>⭐⭐⭐ Best rural</td>
+            <td>✅ Yes</td>
+            <td>¥100–200 / 30 days</td>
+          </tr>
+          <tr>
+            <td>China Unicom 中国联通</td>
+            <td>Good</td>
+            <td>⭐⭐⭐ Strong cities</td>
+            <td>✅ Yes — best English support</td>
+            <td>¥99–188 / 30 days</td>
+          </tr>
+          <tr>
+            <td>China Telecom 中国电信</td>
+            <td>Limited</td>
+            <td>⭐⭐ Major cities</td>
+            <td>⚠️ Some locations</td>
+            <td>¥99–168 / 30 days</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tip-box">China Unicom is the most recommended for foreigners — staff at their airport counters often speak some English, and their tourist SIM packages (sometimes called "overseas visitor" SIMs) are straightforward to set up.</div>
+
+    <div class="warning-box">All SIM cards in China must be registered to a real identity. You'll need to present your passport and may need to have a photo taken. This is standard procedure — don't be alarmed.</div>
+  </section>
+
+  <!-- ④ APPS -->
+  <section class="section" id="apps">
+    <div class="section-header">
+      <div class="section-icon">📱</div>
+      <div class="section-title-group">
+        <h2>Essential Apps for China</h2>
+        <p>Install these before you fly — some require a VPN to download once in China</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>China's app ecosystem is completely different from the West. Most apps you rely on at home won't work, and the apps you need in China are often unavailable or awkward to install once you're inside the country. Download everything below <strong>before you board</strong>.</p>
+    </div>
+
+    <!-- PAYMENTS -->
+    <div class="cat-label">💳 Payments</div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-badge badge-china">China only</div>
+        <div class="card-icon">🟦</div>
+        <h3>Alipay 支付宝</h3>
+        <p>The primary payment app for foreigners. Since 2023, international cards can be linked directly — Visa, Mastercard, and others. Essential for restaurants, shops, taxis, and almost everything in China. Set it up at home before departure.</p>
+      </div>
+      <div class="card">
+        <div class="card-badge badge-china">China only</div>
+        <div class="card-icon">🟩</div>
+        <h3>WeChat Pay 微信支付</h3>
+        <p>Built into WeChat. You can link an international card, but setup is more complex than Alipay. Worth having as a backup — and WeChat itself is essential for communication regardless of whether you use the payment feature.</p>
+      </div>
+    </div>
+
+    <!-- COMMUNICATION -->
+    <div class="cat-label">💬 Communication</div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-badge badge-china">Works without VPN</div>
+        <div class="card-icon">🟩</div>
+        <h3>WeChat 微信</h3>
+        <p>China's all-in-one superapp — messaging, payments, mini-programs, and social. Hotels, restaurants, guides, and local contacts all communicate via WeChat. Create an account before you arrive (registration can be tricky in China). This is non-negotiable.</p>
+      </div>
+      <div class="card">
+        <div class="card-badge badge-vpn">⚠️ Needs VPN</div>
+        <div class="card-icon">💬</div>
+        <h3>WhatsApp / iMessage</h3>
+        <p>WhatsApp is blocked in China. iMessage works but can be unreliable on Chinese networks. Use them with a VPN, or switch to WeChat for communication with locals. Tell people you're travelling to China before you go so they expect WhatsApp delays.</p>
+      </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <div class="cat-label">🗺️ Maps & Navigation</div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-badge badge-china">Works without VPN</div>
+        <div class="card-icon">🔵</div>
+        <h3>Baidu Maps 百度地图</h3>
+        <p>The most accurate maps app for China — Google Maps data is often outdated or wrong for Chinese addresses. Has English mode. Essential for transit directions, walking routes, and finding restaurants. Download it before arrival.</p>
+      </div>
+      <div class="card">
+        <div class="card-badge badge-free">Free · Offline</div>
+        <div class="card-icon">🗺️</div>
+        <h3>Maps.me</h3>
+        <p>Download China map packs for fully offline navigation. No internet needed once downloaded. Great for walking around unfamiliar areas and doesn't require a Chinese account. Download city packs at home on Wi-Fi.</p>
+      </div>
+      <div class="card">
+        <div class="card-badge badge-vpn">⚠️ Needs VPN</div>
+        <div class="card-icon">📍</div>
+        <h3>Google Maps</h3>
+        <p>Blocked in China without a VPN. Even with a VPN, data quality for China is significantly worse than Baidu Maps. Use it for planning before you arrive, then switch to Baidu on the ground.</p>
+      </div>
+    </div>
+
+    <!-- TRANSPORT -->
+    <div class="cat-label">🚄 Transport & Ride-Hailing</div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-badge badge-china">Works without VPN</div>
+        <div class="card-icon">🚕</div>
+        <h3>DiDi 滴滴</h3>
+        <p>China's dominant ride-hailing app. Has an English interface and accepts international cards. Download and register before arrival — you'll use it constantly. See our <a href="transport.html#didi" style="color:var(--red)">Transport guide</a> for the full setup walkthrough.</p>
+      </div>
+      <div class="card">
+        <div class="card-badge badge-china">Works without VPN</div>
+        <div class="card-icon">🚄</div>
+        <h3>Trip.com</h3>
+        <p>The best app for booking high-speed trains and domestic flights as a foreigner. English interface, accepts international cards, and shows real-time availability. Also useful for hotel bookings. The 12306 official rail app exists but is Chinese-only.</p>
+      </div>
+    </div>
+
+    <!-- TRANSLATION -->
+    <div class="cat-label">🌐 Translation</div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-badge badge-free">Best All-Rounder</div>
+        <div class="card-icon">💙</div>
+        <h3>Microsoft Translator</h3>
+        <p>Works in China without a VPN. Supports camera OCR (point at menus, signs), voice conversation mode, and offline language packs. Download the Simplified Chinese offline pack before you fly. Free on iOS and Android — the safest primary translation choice.</p>
+      </div>
+      <div class="card">
+        <div class="card-badge badge-china">Works without VPN</div>
+        <div class="card-icon">🔴</div>
+        <h3>Baidu Translate 百度翻译</h3>
+        <p>China's best local translator — no VPN needed, and output sounds the most natural to Chinese locals. Best for showing written text to a taxi driver or shopkeeper. Interface is partly in Chinese but manageable. iOS and Android.</p>
+      </div>
+      <div class="card">
+        <div class="card-badge badge-free">iPhone Built-in</div>
+        <div class="card-icon">🍎</div>
+        <h3>Apple Translate</h3>
+        <p>Already on your iPhone. Solid for everyday travel phrases, works offline with downloaded packs. No VPN needed. Download the Chinese language pack in Settings before you go. Great backup to Microsoft Translator.</p>
+      </div>
+      <div class="card">
+        <div class="card-badge badge-vpn">⚠️ Needs VPN</div>
+        <div class="card-icon">🌐</div>
+        <h3>Google Translate</h3>
+        <p>Blocked in China without a VPN. The offline mode (downloaded language packs) still works for basic text translation, but live camera translation and voice features need internet. Pre-download Chinese packs before arrival as a backup.</p>
+      </div>
+    </div>
+
+    <!-- FOOD -->
+    <div class="cat-label">🍜 Food & Dining</div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-badge badge-china">Works without VPN</div>
+        <div class="card-icon">⭐</div>
+        <h3>大众点评 Dianping</h3>
+        <p>China's Yelp — restaurant reviews, photos, and ratings. Mostly in Chinese but the star ratings and photos are universally readable. Essential for finding good food in any city. See our <a href="food.html#apps" style="color:var(--red)">Food guide</a> for more.</p>
+      </div>
+      <div class="card">
+        <div class="card-badge badge-china">Works without VPN</div>
+        <div class="card-icon">🛵</div>
+        <h3>Meituan 美团</h3>
+        <p>Food delivery and restaurant bookings. Also covers hotels, cinema tickets, and attractions. Primarily in Chinese, but Alipay and WeChat mini-programs can help navigate it. Useful if you want food delivered to your hotel.</p>
+      </div>
+    </div>
+
+    <div class="tip-box">WeChat and Alipay both have built-in translation tools. In WeChat, long-press any Chinese message and tap "Translate." In Alipay, the Scan feature can translate menus and signs in real time. You often won't need to switch to a separate translation app.</div>
+  </section>
+
+  <!-- ⑤ ANDROID -->
+  <section class="section" id="android">
+    <div class="section-header">
+      <div class="section-icon">🤖</div>
+      <div class="section-title-group">
+        <h2>Android Users — Special Considerations</h2>
+        <p>Google Play doesn't work in China — here's what to do</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>iPhone users have it slightly easier in China — the App Store still works (though some apps are removed from the China region). Android users face a bigger challenge: Google Play is completely blocked, and most Chinese apps aren't on it to begin with.</p>
+    </div>
+
+    <div class="android-box">
+      <h3>🤖 The Android Problem</h3>
+      <p>Google Play Services are blocked in China. This means apps that rely on Google services (notifications, maps, authentication) may behave unexpectedly even if you download them elsewhere.</p>
+      <p><strong>The solution:</strong> Download all your apps before you arrive, using Wi-Fi at home. This is the single most important thing Android users can do before travelling to China.</p>
+    </div>
+
+    <div class="cat-label">🛒 Where to Download Android Apps in China</div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">📦</div>
+        <h3>APK Direct Download</h3>
+        <p>Many Chinese apps (WeChat, Alipay, DiDi) offer direct APK downloads from their official websites. Download these before arrival or via VPN. Only use official sources — never third-party APK sites.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏪</div>
+        <h3>Chinese App Stores</h3>
+        <p>Huawei AppGallery, Xiaomi GetApps, and other Chinese manufacturer stores work in China. If your phone is a Chinese-market Android, you may already have one pre-installed.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔒</div>
+        <h3>Via VPN</h3>
+        <p>With a working VPN you can access the Google Play Store. But VPNs must be installed <em>before</em> you arrive — you can't download a VPN once in China without already having one.</p>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-badge badge-free">Samsung Built-in</div>
+        <div class="card-icon">🎙️</div>
+        <h3>Samsung Interpreter</h3>
+        <p>Samsung devices have a built-in Interpreter app for real-time spoken conversation — genuinely useful face-to-face with locals. Works offline for Chinese-English without internet.</p>
+      </div>
+      <div class="card">
+        <div class="card-badge badge-free">Android Built-in</div>
+        <div class="card-icon">🔍</div>
+        <h3>Google Lens (offline)</h3>
+        <p>Pre-download Chinese language packs while at home. The camera translation feature then works offline in China. Live camera translation won't work without internet/VPN, but point-and-translate with downloaded packs does.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ HOW TO DOWNLOAD -->
+  <section class="section" id="downloads">
+    <div class="section-header">
+      <div class="section-icon">⬇️</div>
+      <div class="section-title-group">
+        <h2>How to Download Apps in China</h2>
+        <p>What needs a VPN, what doesn't, and how to prepare</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Many essential apps for China — including the ones you need for payment and communication — can be downloaded normally from the App Store or Google Play <em>outside</em> China. Some, however, are restricted once you're inside the country.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>App</th>
+            <th>Works in China?</th>
+            <th>Download in China?</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>WeChat</td>
+            <td>✅ Yes</td>
+            <td>✅ App Store / Direct APK</td>
+            <td>Download before arrival</td>
+          </tr>
+          <tr>
+            <td>Alipay</td>
+            <td>✅ Yes</td>
+            <td>✅ App Store / Direct APK</td>
+            <td>Download before arrival</td>
+          </tr>
+          <tr>
+            <td>DiDi</td>
+            <td>✅ Yes</td>
+            <td>✅ App Store / Direct APK</td>
+            <td>Download before arrival</td>
+          </tr>
+          <tr>
+            <td>Trip.com</td>
+            <td>✅ Yes</td>
+            <td>✅ App Store</td>
+            <td>Download before arrival</td>
+          </tr>
+          <tr>
+            <td>Baidu Maps</td>
+            <td>✅ Yes</td>
+            <td>✅ App Store / Direct APK</td>
+            <td>Download before arrival</td>
+          </tr>
+          <tr>
+            <td>Microsoft Translator</td>
+            <td>✅ Yes</td>
+            <td>✅ App Store</td>
+            <td>Download + offline pack before arrival</td>
+          </tr>
+          <tr>
+            <td>Google Maps</td>
+            <td><span class="vpn-warning">⚠️ VPN needed</span></td>
+            <td><span class="vpn-warning">⚠️ VPN needed</span></td>
+            <td>Download before arrival, use with VPN</td>
+          </tr>
+          <tr>
+            <td>Google Translate</td>
+            <td><span class="vpn-warning">⚠️ VPN needed</span></td>
+            <td><span class="vpn-warning">⚠️ VPN needed</span></td>
+            <td>Download + offline pack before arrival</td>
+          </tr>
+          <tr>
+            <td>WhatsApp</td>
+            <td><span class="vpn-warning">⚠️ VPN needed</span></td>
+            <td><span class="vpn-warning">⚠️ VPN needed</span></td>
+            <td>Download before arrival, use with VPN</td>
+          </tr>
+          <tr>
+            <td>Instagram / Facebook</td>
+            <td><span class="vpn-warning">⚠️ VPN needed</span></td>
+            <td><span class="vpn-warning">⚠️ VPN needed</span></td>
+            <td>Already installed? Use with VPN</td>
+          </tr>
+          <tr>
+            <td>Your VPN app</td>
+            <td>✅ If installed</td>
+            <td>❌ Cannot download in China</td>
+            <td><strong>MUST download before arrival</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="warning-box">Your VPN is the one app you absolutely cannot download once you're in China. The VPN providers' own websites are blocked, and search results for VPNs are censored. Install your VPN at home — this is non-negotiable.</div>
+
+    <!-- VPN BANNER -->
+    <div class="vpn-banner">
+      <div class="vpn-banner-icon">🔒</div>
+      <div>
+        <h3>Need a VPN for China?</h3>
+        <p>The Great Firewall blocks Google, WhatsApp, Instagram, most Western news, and thousands of other sites. A VPN lets you access them — but it must be set up before you arrive. Our Internet & VPN guide covers which VPNs work in China, how to set them up, and what to expect.</p>
+        <a href="internet.html" class="vpn-banner-cta">VPN & Internet Guide →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="section-header">
+      <div class="section-icon">❓</div>
+      <div class="section-title-group">
+        <h2>Frequently Asked Questions</h2>
+        <p>Common questions about apps and connectivity in China</p>
+      </div>
+    </div>
+
+    <div class="faq">
+
+      <div class="faq-item">
+        <button class="faq-q">Can I use my iPhone normally in China? <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">Mostly yes — your phone works fine, calls and texts work, and the App Store is accessible. The main difference is that many apps you use at home (Google apps, WhatsApp, Instagram) are blocked. You'll need a VPN to use them, and a few China-specific apps installed to replace your usual navigation, payment, and maps tools.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Will my phone work on Chinese networks? <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">Almost certainly yes. Chinese networks use standard 4G/LTE and 5G bands that modern international phones support. Check your phone's supported bands if you're unsure — most flagship phones sold globally (iPhone, Samsung Galaxy, Pixel) work fine. Budget or older phones may not support all Chinese 5G bands, but 4G coverage is excellent nationwide.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Do I need to bring an adapter for charging? <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">China uses Type A (two flat pins) and Type I (two angled pins) sockets at 220V/50Hz. Most hotels have universal sockets in the bathroom and by the desk. A universal travel adaptor covers you everywhere — pack one to be safe. Modern chargers (USB-C, laptop bricks) are usually dual-voltage and just need an adaptor, not a converter.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Is there free Wi-Fi in China? <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">Yes, widely. Most hotels, cafes, restaurants, and shopping malls offer free Wi-Fi. Airports and high-speed train stations also have it. However, the same blocking rules apply on Chinese Wi-Fi — you'll still need a VPN to access Google and Western sites. Hotel Wi-Fi is often slower than a good local SIM card for data.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Can I use Alipay or WeChat Pay as a foreigner? <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">Yes — since 2023, both apps allow foreigners to link international Visa or Mastercard cards. Alipay is generally easier to set up. You'll need a working phone number for verification, and setup is smoother if done before arrival. See our <a href="pre-arrival.html#payment" style="color:var(--red)">Before You Arrive</a> guide for the step-by-step setup.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">What if I can't get WeChat to register? <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">WeChat's registration is notoriously tricky — it requires verification by an existing WeChat user. The easiest fix: ask a friend who already has WeChat to scan your QR code and verify you. Do this before you leave. If you're registering from scratch without help, try using a non-Chinese phone number and avoid registering on Chinese Wi-Fi or a Chinese SIM — this sometimes triggers additional checks.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">How much mobile data do I need per day in China? <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">For normal travel use (maps, messaging, occasional social media via VPN), 1–2 GB per day is comfortable. If you're streaming video, video calling frequently, or using a VPN constantly (which adds overhead), budget 3–5 GB/day. A local Chinese SIM with 30 GB for ¥100–200 is more than enough for most trips. eSIM plans of 5–10 GB are fine for short stays.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RELATED -->
+  <section style="margin-top: 3rem;">
+    <p style="font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:#888; font-weight:600; margin-bottom:1rem;">Keep Reading</p>
+    <div class="related-grid">
+      <a class="related-card" href="internet.html">
+        <div class="related-label">VPN & Firewall</div>
+        <div class="related-title">Internet & VPN Guide</div>
+        <div class="related-desc">Which VPNs work in China, setup instructions, and what to expect from the Great Firewall.</div>
+      </a>
+      <a class="related-card" href="pre-arrival.html">
+        <div class="related-label">Before You Fly</div>
+        <div class="related-title">Before You Arrive</div>
+        <div class="related-desc">Full pre-departure checklist — SIM, payments, documents and more.</div>
+      </a>
+      <a class="related-card" href="money.html">
+        <div class="related-label">Payments</div>
+        <div class="related-title">Money & Payments</div>
+        <div class="related-desc">Deep dive into Alipay, WeChat Pay, cash, and budgeting in China.</div>
+      </a>
+      <a class="related-card" href="transport.html">
+        <div class="related-label">Getting Around</div>
+        <div class="related-title">Transport</div>
+        <div class="related-desc">High-speed trains, metro, DiDi, flights and more.</div>
+      </a>
+    </div>
+  </section>
+
+</div><!-- end page-wrap -->
+
+<footer style="background:var(--ink); color:rgba(255,255,255,0.45); font-size:0.8rem; padding:2rem; text-align:center; margin-top:4rem;">
+  <p style="font-family:'Playfair Display',serif; font-size:1rem; color:rgba(255,255,255,0.8); margin-bottom:0.5rem;">China Awaits</p>
+  <p>Information is updated regularly but always verify with official sources before travel.</p>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+</body>
+</html>
