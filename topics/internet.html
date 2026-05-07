@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VPN & Internet in China — China Awaits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #C0392B;
+      --red-dark: #96281B;
+      --gold: #C9A84C;
+      --gold-light: #e8c96a;
+      --ink: #1a1a1a;
+      --ink-soft: #3d3d3d;
+      --mist: #f7f4f0;
+      --mist-dark: #ede9e3;
+      --white: #ffffff;
+      --border: #e0d9d0;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,0.14);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); line-height: 1.7; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.97); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 60px;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--red); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-size: 0.88rem; font-weight: 500; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--red); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--ink); position: relative; overflow: hidden;
+      padding: 5rem 2rem 4rem; text-align: center;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 15% 55%, rgba(192,57,43,0.25) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 40%, rgba(201,168,76,0.14) 0%, transparent 55%);
+    }
+    .hero-pattern {
+      position: absolute; inset: 0; opacity: 0.035;
+      background-image: repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%);
+      background-size: 20px 20px;
+    }
+    .hero-tag {
+      display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,0.4);
+      padding: 0.3rem 0.9rem; border-radius: 2px; margin-bottom: 1.5rem; position: relative;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 1rem; position: relative;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.65); max-width: 560px; margin: 0 auto 2.5rem; position: relative; }
+    .jump-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; position: relative; }
+    .jump-nav a {
+      display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 500;
+      color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15); padding: 0.45rem 1rem; border-radius: 40px;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .jump-nav a:hover { background: rgba(201,168,76,0.2); border-color: var(--gold); color: var(--gold); }
+
+    /* ── LAYOUT ── */
+    .page-wrap { max-width: 860px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+    /* ── SECTION ── */
+    .section { margin-top: 4.5rem; scroll-margin-top: 80px; }
+    .section-header {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1.8rem;
+      padding-bottom: 1rem; border-bottom: 2px solid var(--border);
+    }
+    .section-icon {
+      width: 48px; height: 48px; background: var(--red); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;
+    }
+    .section-title-group h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+    .section-title-group p { font-size: 0.88rem; color: #888; margin-top: 0.1rem; }
+
+    /* ── PROSE ── */
+    .prose p { font-size: 0.97rem; color: var(--ink-soft); margin-bottom: 1rem; }
+    .prose strong { color: var(--ink); font-weight: 600; }
+
+    /* ── BOXES ── */
+    .highlight { background: var(--mist); border-left: 3px solid var(--gold); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1.2rem 0; font-size: 0.93rem; color: var(--ink-soft); }
+    .highlight strong { color: var(--ink); }
+    .tip-box { background: #fff8ee; border: 1px solid #f0d990; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #6b5b1a; }
+    .tip-box::before { content: '💡 Tip: '; font-weight: 600; }
+    .warning-box { background: #fff5f5; border: 1px solid #f5c6c6; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #7a2020; }
+    .warning-box::before { content: '⚠️ '; font-weight: 600; }
+    .vpn-warning { color: #C0392B; font-weight: 700; }
+
+    /* ── CRITICAL BANNER ── */
+    .critical-banner {
+      background: linear-gradient(135deg, #1a0a0a 0%, #2d1515 100%);
+      border: 1px solid rgba(192,57,43,0.5);
+      border-radius: 14px; padding: 1.6rem 1.8rem; margin: 1.5rem 0;
+      display: flex; gap: 1.2rem; align-items: flex-start;
+    }
+    .critical-banner-icon { font-size: 2rem; flex-shrink: 0; }
+    .critical-banner h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
+    .critical-banner p { font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.6; margin: 0; }
+    .critical-banner strong { color: #ffb3b3; }
+
+    /* ── STEPS ── */
+    .steps { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; margin: 1.2rem 0; }
+    .steps li { display: flex; align-items: flex-start; gap: 1rem; background: var(--mist); border-radius: 10px; padding: 0.9rem 1.1rem; }
+    .step-num { width: 28px; height: 28px; background: var(--red); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .step-text { font-size: 0.93rem; color: var(--ink-soft); }
+    .step-text strong { color: var(--ink); display: block; margin-bottom: 0.1rem; }
+
+    /* ── TABLE ── */
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    thead { background: var(--ink); color: white; }
+    thead th { padding: 0.85rem 1rem; text-align: left; font-weight: 600; font-size: 0.83rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:nth-child(even) { background: var(--mist); }
+    tbody td { padding: 0.85rem 1rem; color: var(--ink-soft); vertical-align: top; }
+    tbody td:first-child { font-weight: 600; color: var(--ink); }
+    .tag-works { display: inline-block; background: #dcfce7; color: #166534; font-size: 0.75rem; font-weight: 700; padding: 0.15rem 0.55rem; border-radius: 12px; }
+    .tag-blocked { display: inline-block; background: #fee2e2; color: #991b1b; font-size: 0.75rem; font-weight: 700; padding: 0.15rem 0.55rem; border-radius: 12px; }
+    .tag-partial { display: inline-block; background: #fef9c3; color: #854d0e; font-size: 0.75rem; font-weight: 700; padding: 0.15rem 0.55rem; border-radius: 12px; }
+
+    /* ── VPN CARDS ── */
+    .vpn-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .vpn-card {
+      background: var(--white); border: 2px solid var(--border); border-radius: 14px;
+      padding: 1.3rem; transition: all 0.2s; position: relative;
+    }
+    .vpn-card:hover { border-color: var(--gold); box-shadow: var(--shadow); }
+    .vpn-card.top-pick { border-color: var(--gold); background: #fffdf5; }
+    .vpn-card .pick-label { font-size: 0.72rem; font-weight: 700; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .vpn-card h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .vpn-card .vpn-rating { font-size: 0.85rem; color: var(--gold); margin-bottom: 0.5rem; }
+    .vpn-card .vpn-desc { font-size: 0.85rem; color: #666; line-height: 1.5; margin-bottom: 0.8rem; }
+    .vpn-pros { list-style: none; font-size: 0.83rem; color: var(--ink-soft); }
+    .vpn-pros li { display: flex; gap: 0.5rem; margin-bottom: 0.25rem; }
+    .vpn-pros li::before { content: '✓'; color: #16a34a; font-weight: 700; flex-shrink: 0; }
+    .vpn-cons { list-style: none; font-size: 0.83rem; color: var(--ink-soft); margin-top: 0.35rem; }
+    .vpn-cons li { display: flex; gap: 0.5rem; margin-bottom: 0.25rem; }
+    .vpn-cons li::before { content: '✗'; color: #dc2626; font-weight: 700; flex-shrink: 0; }
+    .vpn-price { margin-top: 0.8rem; font-size: 0.82rem; color: #888; }
+    .vpn-price strong { color: var(--ink); }
+
+    /* ── BLOCKED APP GRID ── */
+    .blocked-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.7rem; margin: 1.2rem 0; }
+    .blocked-item {
+      display: flex; align-items: center; gap: 0.6rem;
+      background: var(--mist); border: 1px solid var(--border);
+      border-radius: 8px; padding: 0.6rem 0.9rem; font-size: 0.85rem; color: var(--ink-soft);
+    }
+    .blocked-item .b-icon { font-size: 1.1rem; flex-shrink: 0; }
+    .blocked-item.works { background: #f0fdf4; border-color: #86efac; }
+
+    /* ── ALTERNATIVES TABLE ── */
+    .alt-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0.6rem; align-items: center; margin: 1.2rem 0; }
+    .alt-from { background: #fee2e2; border: 1px solid #fca5a5; border-radius: 8px; padding: 0.6rem 0.9rem; font-size: 0.88rem; font-weight: 600; color: #991b1b; text-align: center; }
+    .alt-arrow { font-size: 1.2rem; color: #bbb; text-align: center; }
+    .alt-to { background: #f0fdf4; border: 1px solid #86efac; border-radius: 8px; padding: 0.6rem 0.9rem; font-size: 0.88rem; font-weight: 600; color: #166534; text-align: center; }
+
+    /* ── FAQ ── */
+    .faq { margin: 1.5rem 0; }
+    .faq-item { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 0.6rem; overflow: hidden; }
+    .faq-q { width: 100%; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.2rem; font-family: 'DM Sans', sans-serif; font-size: 0.93rem; font-weight: 600; color: var(--ink); text-align: left; gap: 1rem; }
+    .faq-q:hover { background: var(--mist); }
+    .faq-arrow { font-size: 1rem; color: var(--gold); transition: transform 0.25s; flex-shrink: 0; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0.8rem 1.2rem 1rem; font-size: 0.9rem; color: var(--ink-soft); border-top: 1px solid var(--border); line-height: 1.6; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── RELATED ── */
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .related-card {
+      display: block; text-decoration: none; background: var(--mist);
+      border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem;
+      transition: all 0.2s;
+    }
+    .related-card:hover { border-color: var(--red); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .related-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 0.3rem; }
+    .related-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; }
+    .related-desc { font-size: 0.82rem; color: #888; line-height: 1.4; }
+
+    /* ── CARD GRID ── */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; transition: box-shadow 0.2s, transform 0.2s; }
+    .card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+    .card-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+    .card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .card p { font-size: 0.87rem; color: #666; line-height: 1.5; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .page-wrap { padding: 0 1rem 4rem; }
+      .hero { padding: 3.5rem 1rem 3rem; }
+      .vpn-grid { grid-template-columns: 1fr; }
+      .alt-grid { grid-template-columns: 1fr; }
+      .alt-arrow { transform: rotate(90deg); }
+      .blocked-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo">China Awaits</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="pre-arrival.html">Before You Arrive</a></li>
+    <li><a href="apps.html">Apps & SIM</a></li>
+    <li><a href="internet.html" style="color:var(--red)">VPN & Internet</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-tag">Internet & Connectivity</div>
+  <h1>VPN & <span>Internet</span> in China</h1>
+  <p class="hero-sub">China's Great Firewall blocks thousands of Western sites and apps. Here's everything you need to stay connected — and what you must set up before you board.</p>
+  <div class="jump-nav">
+    <a href="#firewall">🧱 The Firewall</a>
+    <a href="#vpn-pick">🔒 Choosing a VPN</a>
+    <a href="#setup">⚙️ Setup Guide</a>
+    <a href="#blocked">🚫 Blocked Sites</a>
+    <a href="#alternatives">🔄 China Alternatives</a>
+    <a href="#wifi">📶 Wi-Fi in China</a>
+    <a href="#faq">❓ FAQ</a>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- CRITICAL WARNING -->
+  <div style="margin-top: 2.5rem;">
+    <div class="critical-banner">
+      <div class="critical-banner-icon">🚨</div>
+      <div>
+        <h3>Install Your VPN Before You Arrive — No Exceptions</h3>
+        <p>VPN provider websites are blocked in China. You <strong>cannot download or purchase a VPN once you're inside the country</strong>. If you arrive without one, you're stuck. Set it up at home, test it works, then board your flight. Everything else on this page assumes you've done this first.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ① THE FIREWALL -->
+  <section class="section" id="firewall">
+    <div class="section-header">
+      <div class="section-icon">🧱</div>
+      <div class="section-title-group">
+        <h2>The Great Firewall — What Is It?</h2>
+        <p>Understanding China's internet censorship system</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>The Golden Shield Project — universally known as the "Great Firewall" — is China's national internet censorship and surveillance system. It blocks access to thousands of foreign websites, apps, and services, and filters content across all internet connections within mainland China.</p>
+      <p>It is not a glitch, a regional issue, or something that varies by hotel. It applies everywhere in mainland China, on all networks — hotel Wi-Fi, local SIM cards, mobile data, everything. Hong Kong and Macau are exempt.</p>
+      <p>The practical effect for foreign travellers: Google, WhatsApp, Instagram, most Western news sites, and thousands of other services are completely inaccessible without a VPN. This affects everything from looking up directions to messaging family at home.</p>
+    </div>
+
+    <div class="highlight">
+      <strong>Hong Kong and Macau are different.</strong> The Great Firewall does not apply in Hong Kong or Macau — these operate under "one country, two systems" with unrestricted internet. If you're visiting both mainland China and HK/Macau, your VPN is only needed for the mainland portion.
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">📵</div>
+        <h3>What's blocked</h3>
+        <p>Google (all services), Facebook, Instagram, WhatsApp, Twitter/X, YouTube, Netflix, Spotify, most Western news sites, many VPN websites, and thousands more.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">✅</div>
+        <h3>What works fine</h3>
+        <p>WeChat, Alipay, Baidu, all Chinese apps, TikTok's Chinese version (Douyin), local streaming, and most international apps not based on Google infrastructure.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚖️</div>
+        <h3>Is VPN use legal?</h3>
+        <p>Technically, only government-approved VPNs are legal in China. In practice, foreign tourists using VPNs are not prosecuted. Millions of Chinese people also use VPNs without legal consequence. No tourist has ever been prosecuted for personal VPN use.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ② CHOOSING A VPN -->
+  <section class="section" id="vpn-pick">
+    <div class="section-header">
+      <div class="section-icon">🔒</div>
+      <div class="section-title-group">
+        <h2>Choosing a VPN for China</h2>
+        <p>Not all VPNs work in China — these ones do</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>China's firewall actively detects and blocks VPN traffic. Many popular VPNs that work everywhere else in the world simply don't work in China. The VPNs below have a consistent track record of working — though no VPN is 100% reliable 100% of the time, especially around sensitive political dates.</p>
+    </div>
+
+    <div class="vpn-grid">
+
+      <div class="vpn-card top-pick">
+        <div class="pick-label">⭐ Most Reliable</div>
+        <h3>Astrill VPN</h3>
+        <div class="vpn-rating">★★★★★</div>
+        <div class="vpn-desc">The go-to choice for people who need reliable China connectivity. StealthVPN protocol is specifically designed to bypass the firewall. Consistently rated the best-performing VPN in China by expats and frequent visitors.</div>
+        <ul class="vpn-pros">
+          <li>StealthVPN protocol beats the firewall</li>
+          <li>Fast speeds, good for streaming</li>
+          <li>Reliable even during sensitive periods</li>
+          <li>Good apps for all platforms</li>
+        </ul>
+        <ul class="vpn-cons">
+          <li>More expensive than competitors</li>
+          <li>No free trial</li>
+        </ul>
+        <div class="vpn-price"><strong>~$10–15/month</strong> (cheaper on longer plans)</div>
+      </div>
+
+      <div class="vpn-card top-pick">
+        <div class="pick-label">⭐ Best Value</div>
+        <h3>ExpressVPN</h3>
+        <div class="vpn-rating">★★★★½</div>
+        <div class="vpn-desc">Consistently works in China with their Lightway protocol. One of the most widely used VPNs globally — large server network, easy apps, and a 30-day money-back guarantee makes it low-risk to try.</div>
+        <ul class="vpn-pros">
+          <li>Works reliably in China</li>
+          <li>Very easy to use</li>
+          <li>30-day money-back guarantee</li>
+          <li>Fast global servers</li>
+        </ul>
+        <ul class="vpn-cons">
+          <li>Occasionally slower during firewall crackdowns</li>
+          <li>Slightly pricier than NordVPN</li>
+        </ul>
+        <div class="vpn-price"><strong>~$6–13/month</strong> depending on plan</div>
+      </div>
+
+      <div class="vpn-card">
+        <h3>NordVPN</h3>
+        <div class="vpn-rating">★★★★</div>
+        <div class="vpn-desc">One of the most popular VPNs worldwide. Works in China but can be inconsistent — some servers work better than others. Obfuscated servers (found in settings) are essential for China use.</div>
+        <ul class="vpn-pros">
+          <li>Affordable pricing</li>
+          <li>Large server network</li>
+          <li>Good apps</li>
+        </ul>
+        <ul class="vpn-cons">
+          <li>Must use obfuscated servers in China</li>
+          <li>Reliability varies more than Astrill/Express</li>
+        </ul>
+        <div class="vpn-price"><strong>~$3–5/month</strong> on longer plans</div>
+      </div>
+
+      <div class="vpn-card">
+        <h3>Surfshark</h3>
+        <div class="vpn-rating">★★★½</div>
+        <div class="vpn-desc">Budget-friendly option that works in China. Not as consistently reliable as the top two, but a reasonable choice for short trips or budget travellers. Enable NoBorders mode for China.</div>
+        <ul class="vpn-pros">
+          <li>Very cheap on long plans</li>
+          <li>Unlimited devices</li>
+          <li>NoBorders mode for China</li>
+        </ul>
+        <ul class="vpn-cons">
+          <li>Less reliable than premium options</li>
+          <li>Speeds can be slower</li>
+        </ul>
+        <div class="vpn-price"><strong>~$2–5/month</strong> on 2-year plan</div>
+      </div>
+
+    </div>
+
+    <div class="warning-box">Free VPNs do not reliably work in China and many have serious privacy concerns. During politically sensitive periods (major holidays, party meetings, anniversaries), even the best VPNs can experience slowdowns. This is temporary — reliability returns to normal after a few days.</div>
+
+    <div class="tip-box">Buy a plan with a money-back guarantee (ExpressVPN, NordVPN, Surfshark all offer 30 days). Test it thoroughly before your trip — connect to a server, check that Google loads, try a YouTube video. If it doesn't work, get a refund and try another provider.</div>
+  </section>
+
+  <!-- ③ SETUP GUIDE -->
+  <section class="section" id="setup">
+    <div class="section-header">
+      <div class="section-icon">⚙️</div>
+      <div class="section-title-group">
+        <h2>Step-by-Step Setup Guide</h2>
+        <p>Do all of this at home before you travel</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Setting up a VPN for China is straightforward — the only rule is that everything must be done before you arrive. Once you're in China, the provider's website is blocked and you can't purchase, download, or configure anything.</p>
+    </div>
+
+    <ol class="steps">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <strong>Choose and purchase a VPN</strong>
+          Pick one of the recommended providers above (Astrill or ExpressVPN for reliability). Purchase at least a 1-month plan. Use a credit card — easier to claim a refund if needed.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <strong>Download the app on all your devices</strong>
+          Install the VPN app on your phone, tablet, and laptop. Do this while you still have unrestricted internet access. Log in and confirm your account works.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <strong>Enable the China-specific settings</strong>
+          Most VPNs have a special mode for China — Astrill's "StealthVPN", ExpressVPN's "Lightway", NordVPN's "Obfuscated servers", Surfshark's "NoBorders". Find and enable this before your trip, not after.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-text">
+          <strong>Test it — actually test it</strong>
+          Connect to a server and open Google, YouTube, and Instagram. If they load, your VPN is working. Try servers in nearby countries (Japan, Singapore, Hong Kong, South Korea) — these tend to work best from China.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">5</div>
+        <div class="step-text">
+          <strong>Save the VPN app to your home screen</strong>
+          Make it easy to find and activate when you land. Also note your VPN login details somewhere offline (e.g. a note in your phone) — you don't want to need your email to log in while already in China.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">6</div>
+        <div class="step-text">
+          <strong>Know which servers to try if one doesn't work</strong>
+          If your usual server stops working in China, switch to another country. Japan, South Korea, Singapore, and Taiwan typically offer the best speeds from China. Having 2–3 server options saved is smart.
+        </div>
+      </li>
+    </ol>
+
+    <div class="highlight">
+      <strong>On arrival:</strong> Connect to your VPN as soon as you're on Chinese Wi-Fi or data. You don't need to turn it on for everything — WeChat, Alipay, DiDi, and Chinese apps all work better <em>without</em> the VPN. Turn it on only when you need to access blocked sites, and turn it off when you're done.
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🍎</div>
+        <h3>iPhone / iPad</h3>
+        <p>Download VPN from the App Store before departure. iOS VPN apps work well — the VPN runs system-wide. You can also set up a VPN profile in Settings → VPN if your provider supports IKEv2.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🤖</div>
+        <h3>Android</h3>
+        <p>Download from Google Play before arrival. If you forget, download the APK directly from the provider's website via a non-Chinese connection. Some providers also offer OpenVPN config files as a backup.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💻</div>
+        <h3>Laptop (Mac / Windows)</h3>
+        <p>Download the desktop app before departure. Also save the provider's OpenVPN or WireGuard config files offline — these work as a backup if the main app stops connecting.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ BLOCKED SITES -->
+  <section class="section" id="blocked">
+    <div class="section-header">
+      <div class="section-icon">🚫</div>
+      <div class="section-title-group">
+        <h2>What's Blocked in China</h2>
+        <p>A practical guide to what works and what doesn't</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Service / App</th>
+            <th>Status</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Google Search</td>
+            <td><span class="tag-blocked">Blocked</span></td>
+            <td>All Google services are blocked — Search, Maps, Drive, Gmail, Translate, Meet</td>
+          </tr>
+          <tr>
+            <td>YouTube</td>
+            <td><span class="tag-blocked">Blocked</span></td>
+            <td>Use Bilibili (哔哩哔哩) as an alternative for video content</td>
+          </tr>
+          <tr>
+            <td>WhatsApp</td>
+            <td><span class="tag-blocked">Blocked</span></td>
+            <td>Switch to WeChat for local communication; use WhatsApp with VPN</td>
+          </tr>
+          <tr>
+            <td>Instagram</td>
+            <td><span class="tag-blocked">Blocked</span></td>
+            <td>Xiaohongshu (小红书 / RedNote) is China's equivalent</td>
+          </tr>
+          <tr>
+            <td>Facebook</td>
+            <td><span class="tag-blocked">Blocked</span></td>
+            <td>Blocked since 2009</td>
+          </tr>
+          <tr>
+            <td>Twitter / X</td>
+            <td><span class="tag-blocked">Blocked</span></td>
+            <td>Blocked since 2009; Weibo (微博) is the Chinese equivalent</td>
+          </tr>
+          <tr>
+            <td>TikTok</td>
+            <td><span class="tag-blocked">Blocked</span></td>
+            <td>TikTok is not available in China — Douyin (抖音) is the separate Chinese version</td>
+          </tr>
+          <tr>
+            <td>Netflix / Spotify</td>
+            <td><span class="tag-blocked">Blocked</span></td>
+            <td>Use iQiyi, Youku (video) or NetEase Cloud Music (audio) locally</td>
+          </tr>
+          <tr>
+            <td>BBC / NYT / Guardian</td>
+            <td><span class="tag-blocked">Blocked</span></td>
+            <td>Most major Western news sites are blocked</td>
+          </tr>
+          <tr>
+            <td>Gmail</td>
+            <td><span class="tag-blocked">Blocked</span></td>
+            <td>Access via VPN, or use the Gmail mobile app (sometimes works via IMAP)</td>
+          </tr>
+          <tr>
+            <td>Dropbox / Google Drive</td>
+            <td><span class="tag-blocked">Blocked</span></td>
+            <td>Download files before arrival or use Baidu Cloud (百度网盘) locally</td>
+          </tr>
+          <tr>
+            <td>Telegram</td>
+            <td><span class="tag-blocked">Blocked</span></td>
+            <td>Use WeChat or Signal (with VPN) instead</td>
+          </tr>
+          <tr>
+            <td>WeChat</td>
+            <td><span class="tag-works">Works</span></td>
+            <td>Works without VPN — essential for China travel</td>
+          </tr>
+          <tr>
+            <td>Alipay</td>
+            <td><span class="tag-works">Works</span></td>
+            <td>Works without VPN — essential for payments</td>
+          </tr>
+          <tr>
+            <td>Zoom</td>
+            <td><span class="tag-partial">Partial</span></td>
+            <td>The Zoom.us version works, but can be slow. Zoom's China-specific app (Zoom.com.cn) works natively</td>
+          </tr>
+          <tr>
+            <td>iMessage / FaceTime</td>
+            <td><span class="tag-partial">Partial</span></td>
+            <td>Usually works but can be unreliable. FaceTime calls may drop. Works better with VPN.</td>
+          </tr>
+          <tr>
+            <td>LinkedIn</td>
+            <td><span class="tag-partial">Partial</span></td>
+            <td>Professional features work; some content may be filtered</td>
+          </tr>
+          <tr>
+            <td>Microsoft Teams / Outlook</td>
+            <td><span class="tag-works">Works</span></td>
+            <td>Microsoft services generally work in China without VPN</td>
+          </tr>
+          <tr>
+            <td>Slack</td>
+            <td><span class="tag-partial">Partial</span></td>
+            <td>Mostly works but can be slow or intermittent without VPN</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tip-box">Download offline content before your trip — Netflix titles, Spotify playlists, Kindle books, podcast episodes. These play locally on your device without needing any internet connection.</div>
+  </section>
+
+  <!-- ⑤ ALTERNATIVES -->
+  <section class="section" id="alternatives">
+    <div class="section-header">
+      <div class="section-icon">🔄</div>
+      <div class="section-title-group">
+        <h2>Chinese Alternatives to Western Apps</h2>
+        <p>What locals use instead — and how useful they are for tourists</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>China has built a parallel digital ecosystem over the past two decades. Many Chinese apps are genuinely excellent and worth using on their own merits — not just as replacements for blocked services. Here's what's worth knowing about.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Instead of…</th>
+            <th>Use in China</th>
+            <th>English support</th>
+            <th>Worth using?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Google Search</td>
+            <td>Baidu 百度</td>
+            <td>Limited</td>
+            <td>Useful for local results; poor for English queries</td>
+          </tr>
+          <tr>
+            <td>Google Maps</td>
+            <td>Baidu Maps 百度地图</td>
+            <td>English mode available</td>
+            <td>✅ Essential — far more accurate for China</td>
+          </tr>
+          <tr>
+            <td>WhatsApp</td>
+            <td>WeChat 微信</td>
+            <td>Full English interface</td>
+            <td>✅ Essential — everyone in China uses it</td>
+          </tr>
+          <tr>
+            <td>Uber</td>
+            <td>DiDi 滴滴</td>
+            <td>Full English interface</td>
+            <td>✅ Essential — dominant ride-hailing app</td>
+          </tr>
+          <tr>
+            <td>Google Translate</td>
+            <td>Baidu Translate / Microsoft Translator</td>
+            <td>Full English</td>
+            <td>✅ Both work great without VPN</td>
+          </tr>
+          <tr>
+            <td>YouTube</td>
+            <td>Bilibili 哔哩哔哩</td>
+            <td>Limited</td>
+            <td>Interesting but mostly Chinese content</td>
+          </tr>
+          <tr>
+            <td>Instagram</td>
+            <td>Xiaohongshu 小红书</td>
+            <td>Minimal</td>
+            <td>Fun for travel inspiration, mostly Chinese</td>
+          </tr>
+          <tr>
+            <td>Yelp / TripAdvisor</td>
+            <td>大众点评 Dianping</td>
+            <td>Minimal (photos readable)</td>
+            <td>✅ Useful — star ratings and photos universal</td>
+          </tr>
+          <tr>
+            <td>Booking.com (payments)</td>
+            <td>Trip.com / Ctrip 携程</td>
+            <td>Full English</td>
+            <td>✅ Essential for trains and domestic flights</td>
+          </tr>
+          <tr>
+            <td>Spotify</td>
+            <td>NetEase Cloud Music 网易云音乐</td>
+            <td>Partial</td>
+            <td>Large Chinese music library; limited international</td>
+          </tr>
+          <tr>
+            <td>Netflix</td>
+            <td>iQiyi 爱奇艺 / Youku 优酷</td>
+            <td>Limited</td>
+            <td>Mostly Chinese content; some international with subtitles</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ⑥ WI-FI IN CHINA -->
+  <section class="section" id="wifi">
+    <div class="section-header">
+      <div class="section-icon">📶</div>
+      <div class="section-title-group">
+        <h2>Wi-Fi in China</h2>
+        <p>What to expect and how to connect</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Free Wi-Fi is widely available in China — hotels, cafes, restaurants, malls, airports, and train stations almost always offer it. The same firewall rules apply on all Wi-Fi networks. You'll still need a VPN to access blocked content.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🏨</div>
+        <h3>Hotel Wi-Fi</h3>
+        <p>International hotels generally have reliable Wi-Fi in rooms and lobbies. Password is usually at check-in or on a card in your room. Speed varies — typically fine for messaging, slower for streaming. International 5-star hotels sometimes offer faster speeds.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">☕</div>
+        <h3>Cafes & Restaurants</h3>
+        <p>Starbucks, local coffee chains, and many restaurants offer free Wi-Fi. You often need to scan a QR code to connect, which may require a Chinese phone number for verification. Have your SIM ready or just use your mobile data instead.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚂</div>
+        <h3>Trains & Stations</h3>
+        <p>High-speed train stations have free Wi-Fi. On the trains themselves, Wi-Fi is available on some routes but can be slow and unreliable. Mobile data often works better on the train than the on-board Wi-Fi.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">✈️</div>
+        <h3>Airports</h3>
+        <p>All major Chinese airports have free Wi-Fi. Beijing Capital and Pudong have strong, reliable networks. Registration usually requires a passport scan or phone verification. Useful for activating your VPN and getting connected immediately on arrival.</p>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <strong>Pro tip:</strong> When you first land, connect to airport Wi-Fi, activate your VPN, and get everything working before you leave the terminal. It's much easier to troubleshoot connectivity issues with stable airport Wi-Fi than in the back of a taxi.
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="section-header">
+      <div class="section-icon">❓</div>
+      <div class="section-title-group">
+        <h2>Frequently Asked Questions</h2>
+        <p>Common questions about internet and VPNs in China</p>
+      </div>
+    </div>
+
+    <div class="faq">
+
+      <div class="faq-item">
+        <button class="faq-q">Is using a VPN in China illegal? Could I get in trouble? <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">Technically, only government-approved VPNs are legal under Chinese law. In practice, no foreign tourist has ever been prosecuted for personal VPN use. Millions of Chinese citizens also use VPNs daily without legal consequences. The restrictions are primarily aimed at Chinese internet companies and individuals distributing VPN software commercially, not tourists checking Instagram. The realistic risk for a foreign tourist is essentially zero.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">My VPN stopped working in China — what do I do? <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">First, try switching servers — connect to Japan, South Korea, Singapore, or Taiwan instead of your current server. These tend to work best from China. Next, try changing the VPN protocol in settings (look for "Stealth", "Obfuscated", or "Shadowsocks" modes). If one protocol doesn't work, try another. If your main VPN is completely down, this sometimes happens temporarily during sensitive political dates — it typically resolves within a day or two.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Do I need the VPN on all the time? <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">No — and it's actually better not to. Chinese apps like WeChat, Alipay, Baidu Maps, and DiDi all work better without the VPN. Turn the VPN on when you need to access blocked services (Google, WhatsApp, Instagram), then turn it off when you're done. Running the VPN constantly also drains your battery faster and can slow down Chinese apps.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Can I use a free VPN for China? <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">We strongly advise against it. Free VPNs are almost universally unreliable in China — the firewall identifies and blocks them quickly. More importantly, many free VPNs make money by selling your browsing data, which creates a serious privacy risk. The cost of a reliable VPN for a 2-week trip (roughly $5–15) is trivial compared to the peace of mind. If cost is the concern, use a service with a money-back guarantee and cancel after your trip.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Will my work VPN work in China? <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">Corporate VPNs vary significantly. Some enterprise VPNs (especially those using older protocols like L2TP or PPTP) are reliably blocked. Others using modern protocols with obfuscation may work. If you need to work remotely from China, test your work VPN before you travel — and have a personal VPN as backup. Check with your IT team whether they have China-compatible settings.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Can I watch Netflix in China with a VPN? <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">Yes — with a working VPN connected to a server in a Netflix-supported country (US, UK, etc.), Netflix works in China. Download shows for offline viewing before you travel as a backup. Note that Netflix actively tries to block VPN use, so performance can vary. ExpressVPN and NordVPN are generally the most reliable for Netflix access.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">What happens if I forget to install a VPN before arriving? <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">You have a few options, though none are ideal. Ask someone already in China (friend, hotel staff, expat) to send you the VPN APK file via WeChat or email — some provider APKs can be shared directly. Some hotels, particularly international 5-star properties, offer "international internet access" through their own network that bypasses the firewall. A final option: buy a SIM card from Hong Kong or Macau before crossing into mainland China — these may route traffic differently. Prevention is far easier than the cure.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RELATED -->
+  <section style="margin-top: 3rem;">
+    <p style="font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:#888; font-weight:600; margin-bottom:1rem;">Keep Reading</p>
+    <div class="related-grid">
+      <a class="related-card" href="apps.html">
+        <div class="related-label">Apps & Connectivity</div>
+        <div class="related-title">Apps & SIM Cards</div>
+        <div class="related-desc">Which apps to install, eSIM options, and how to download apps in China.</div>
+      </a>
+      <a class="related-card" href="pre-arrival.html">
+        <div class="related-label">Before You Fly</div>
+        <div class="related-title">Before You Arrive</div>
+        <div class="related-desc">Full pre-departure checklist — SIM, payments, documents and more.</div>
+      </a>
+      <a class="related-card" href="money.html">
+        <div class="related-label">Payments</div>
+        <div class="related-title">Money & Payments</div>
+        <div class="related-desc">Setting up Alipay and WeChat Pay as a foreigner.</div>
+      </a>
+      <a class="related-card" href="transport.html">
+        <div class="related-label">Getting Around</div>
+        <div class="related-title">Transport</div>
+        <div class="related-desc">High-speed trains, metro, DiDi, and flights across China.</div>
+      </a>
+    </div>
+  </section>
+
+</div><!-- end page-wrap -->
+
+<footer style="background:var(--ink); color:rgba(255,255,255,0.45); font-size:0.8rem; padding:2rem; text-align:center; margin-top:4rem;">
+  <p style="font-family:'Playfair Display',serif; font-size:1rem; color:rgba(255,255,255,0.8); margin-bottom:0.5rem;">China Awaits</p>
+  <p>Information is updated regularly but always verify with official sources before travel.</p>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+</body>
+</html>
