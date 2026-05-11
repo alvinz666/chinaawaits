@@ -106,9 +106,10 @@
 
     /* ── BULLET LIST ── */
     .bullet-list { list-style: none; margin: 1rem 0; display: flex; flex-direction: column; gap: 0.5rem; }
-    .bullet-list li { display: grid; grid-template-columns: 1rem 1fr; column-gap: 0.7rem; font-size: 0.93rem; color: var(--ink-soft); }
+    .bullet-list li { display: grid; grid-template-columns: 1rem 1fr; column-gap: 0.7rem; font-size: 0.93rem; color: var(--ink-soft); align-items: start; }
     .bullet-list li::before { content: '—'; color: var(--gold); font-weight: 700; margin-top: 2px; }
-    .bullet-list li .sub { grid-column: 2; display: block; font-size: 0.83rem; color: #999; margin-top: 0.2rem; }
+    .bullet-list li .li-content { display: block; }
+    .bullet-list li .sub { display: block; font-size: 0.83rem; color: #999; margin-top: 0.2rem; }
 
     /* ── TABLE ── */
     .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
@@ -311,11 +312,11 @@
 
     <h3 class="h3-style">What to Do if Something Goes Wrong</h3>
     <ul class="bullet-list">
-      <li>For theft: call 110 and ask to be connected to a tourist police unit<span class="sub">Many cities have dedicated tourist police who speak some English</span></li>
-      <li>Get a police report (报案证明 bào àn zhèngmíng)<span class="sub">Your travel insurer will require this for any claim</span></li>
-      <li>For medical emergencies: call 120 or go directly to the nearest hospital's emergency department (急诊 jí zhěn)</li>
-      <li>Contact your travel insurer's 24-hour line as soon as possible after any incident</li>
-      <li>If your passport is lost or stolen, report it to local police first, then contact your embassy</li>
+      <li><span class="li-content">For theft: call 110 and ask to be connected to a tourist police unit<span class="sub">Many cities have dedicated tourist police who speak some English</span></span></li>
+      <li><span class="li-content">Get a police report (报案证明 bào àn zhèngmíng)<span class="sub">Your travel insurer will require this for any claim</span></span></li>
+      <li><span class="li-content">For medical emergencies: call 120 or go directly to the nearest hospital's emergency department (急诊 jí zhěn)</span></li>
+      <li><span class="li-content">Contact your travel insurer's 24-hour line as soon as possible after any incident</span></li>
+      <li><span class="li-content">If your passport is lost or stolen, report it to local police first, then contact your embassy</span></li>
     </ul>
   </div>
 
@@ -383,29 +384,29 @@
       <p>Traffic is the most genuine physical safety risk in China. Road rules exist but are applied inconsistently — expect vehicles to run red lights, scooters to ride on pavements, and right-turning cars to ignore pedestrians with the green signal. This is not hyperbole; adjust your habits accordingly.</p>
     </div>
     <ul class="bullet-list">
-      <li><strong>Look both ways before crossing, even on a green signal</strong><span class="sub">Turning vehicles have legal priority in some situations and often don't stop</span></li>
-      <li>Electric scooters are silent and fast<span class="sub">They frequently appear on pavements and in bike lanes with no warning</span></li>
-      <li>Use pedestrian overpasses and underpasses when available<span class="sub">Much safer than crossing at ground level on busy roads</span></li>
-      <li>Be especially careful at night, when visibility is lower and some drivers ignore traffic rules more freely</li>
-      <li>Never assume a vehicle will stop for you — even at a clearly marked crossing</li>
+      <li><span class="li-content"><strong>Look both ways before crossing, even on a green signal</strong><span class="sub">Turning vehicles have legal priority in some situations and often don't stop</span></span></li>
+      <li><span class="li-content">Electric scooters are silent and fast<span class="sub">They frequently appear on pavements and in bike lanes with no warning</span></span></li>
+      <li><span class="li-content">Use pedestrian overpasses and underpasses when available<span class="sub">Much safer than crossing at ground level on busy roads</span></span></li>
+      <li><span class="li-content">Be especially careful at night, when visibility is lower and some drivers ignore traffic rules more freely</span></li>
+      <li><span class="li-content">Never assume a vehicle will stop for you — even at a clearly marked crossing</span></li>
     </ul>
 
     <div class="warning-box">Electric scooters are one of the leading causes of pedestrian injuries in Chinese cities. They move fast, make no noise, and often come from unexpected directions. This is worth taking seriously.</div>
 
     <h3 class="h3-style">Metro &amp; Public Transport</h3>
     <ul class="bullet-list">
-      <li>Chinese metro systems are generally very safe<span class="sub">Well-lit, staffed, and with security screening at every station entrance</span></li>
-      <li>Watch for pickpockets in very crowded carriages, especially on popular tourist lines</li>
-      <li>Keep bags in front of you during rush hour on packed trains</li>
-      <li>Long-distance trains are safe and reliable<span class="sub">Lock your bag to the luggage rack if travelling overnight in a sleeper</span></li>
+      <li><span class="li-content">Chinese metro systems are generally very safe<span class="sub">Well-lit, staffed, and with security screening at every station entrance</span></span></li>
+      <li><span class="li-content">Watch for pickpockets in very crowded carriages, especially on popular tourist lines</span></li>
+      <li><span class="li-content">Keep bags in front of you during rush hour on packed trains</span></li>
+      <li><span class="li-content">Long-distance trains are safe and reliable<span class="sub">Lock your bag to the luggage rack if travelling overnight in a sleeper</span></span></li>
     </ul>
 
     <h3 class="h3-style">Taxis &amp; Ride-Hailing</h3>
     <ul class="bullet-list">
-      <li>Use <strong>DiDi</strong> for all ride-hailing<span class="sub">Shows the driver's name, plate number, and live route tracking, with an emergency button built in</span></li>
-      <li>If taking an official metered taxi, make sure the meter is running before you set off</li>
-      <li>Share your live DiDi trip with a friend or family member for longer or late-night journeys</li>
-      <li>Sit in the back seat<span class="sub">Easier to exit and standard practice in China</span></li>
+      <li><span class="li-content">Use <strong>DiDi</strong> for all ride-hailing<span class="sub">Shows the driver's name, plate number, and live route tracking, with an emergency button built in</span></span></li>
+      <li><span class="li-content">If taking an official metered taxi, make sure the meter is running before you set off</span></li>
+      <li><span class="li-content">Share your live DiDi trip with a friend or family member for longer or late-night journeys</span></li>
+      <li><span class="li-content">Sit in the back seat<span class="sub">Easier to exit and standard practice in China</span></span></li>
     </ul>
   </div>
 
@@ -429,17 +430,17 @@
       <p>Air quality varies significantly by city, season, and weather conditions. Beijing and some northern cities can experience heavy smog, particularly in winter. Cities like Chengdu, Chongqing, and parts of the northeast can also have poor air quality periods. Coastal cities like Shanghai and Shenzhen tend to have better air.</p>
     </div>
     <ul class="bullet-list">
-      <li>Check the AQI (Air Quality Index) for your destination on apps like <strong>AQIcn</strong> or <strong>IQAir</strong></li>
-      <li>AQI above 150 is "Unhealthy"<span class="sub">Consider limiting strenuous outdoor activity</span></li>
-      <li>AQI above 200 is "Very Unhealthy"<span class="sub">Wear an N95 or KN95 mask if going outside — widely available at pharmacies (药店 yàodiàn)</span></li>
+      <li><span class="li-content">Check the AQI (Air Quality Index) for your destination on apps like <strong>AQIcn</strong> or <strong>IQAir</strong></span></li>
+      <li><span class="li-content">AQI above 150 is "Unhealthy"<span class="sub">Consider limiting strenuous outdoor activity</span></span></li>
+      <li><span class="li-content">AQI above 200 is "Very Unhealthy"<span class="sub">Wear an N95 or KN95 mask if going outside — widely available at pharmacies (药店 yàodiàn)</span></span></li>
     </ul>
 
     <h3 class="h3-style">Food Safety</h3>
     <ul class="bullet-list">
-      <li>Street food from busy, high-turnover stalls is generally safe<span class="sub">Avoid anything that looks like it's been sitting out for hours</span></li>
-      <li>Cooked food served hot is almost always fine; raw salads and cold dishes carry more risk</li>
-      <li>Ice in drinks can be made from tap water<span class="sub">Exercise caution at very basic establishments</span></li>
-      <li>Bring basic anti-diarrhea medication (e.g. loperamide) as a precaution<span class="sub">Stomach upsets can happen when adjusting to unfamiliar ingredients</span></li>
+      <li><span class="li-content">Street food from busy, high-turnover stalls is generally safe<span class="sub">Avoid anything that looks like it's been sitting out for hours</span></span></li>
+      <li><span class="li-content">Cooked food served hot is almost always fine; raw salads and cold dishes carry more risk</span></li>
+      <li><span class="li-content">Ice in drinks can be made from tap water<span class="sub">Exercise caution at very basic establishments</span></span></li>
+      <li><span class="li-content">Bring basic anti-diarrhea medication (e.g. loperamide) as a precaution<span class="sub">Stomach upsets can happen when adjusting to unfamiliar ingredients</span></span></li>
     </ul>
 
     <h3 class="h3-style">Medical Care</h3>
@@ -465,11 +466,11 @@
     </div>
 
     <ul class="bullet-list">
-      <li>Solo women travelling overnight by train should book a berth in a full multi-person sleeper car<span class="sub">Avoid booking a private cabin with an unknown stranger</span></li>
-      <li>DiDi has a dedicated women-only mode (女性安全专属服务) in major cities<span class="sub">Matches female passengers with female drivers during late hours</span></li>
-      <li>Staring and unsolicited photography of visibly foreign women does happen, particularly in smaller cities<span class="sub">Almost always curiosity rather than threatening behaviour</span></li>
-      <li>Trust your instincts as you would anywhere — if a situation feels uncomfortable, leave it</li>
-      <li>Hostels in major cities are social and well-connected<span class="sub">A good option for meeting other travellers and getting current on-the-ground safety tips</span></li>
+      <li><span class="li-content">Solo women travelling overnight by train should book a berth in a full multi-person sleeper car<span class="sub">Avoid booking a private cabin with an unknown stranger</span></span></li>
+      <li><span class="li-content">DiDi has a dedicated women-only mode (女性安全专属服务) in major cities<span class="sub">Matches female passengers with female drivers during late hours</span></span></li>
+      <li><span class="li-content">Staring and unsolicited photography of visibly foreign women does happen, particularly in smaller cities<span class="sub">Almost always curiosity rather than threatening behaviour</span></span></li>
+      <li><span class="li-content">Trust your instincts as you would anywhere — if a situation feels uncomfortable, leave it</span></li>
+      <li><span class="li-content">Hostels in major cities are social and well-connected<span class="sub">A good option for meeting other travellers and getting current on-the-ground safety tips</span></span></li>
     </ul>
 
     <div class="highlight"><strong>On the whole:</strong> Female travellers consistently rate China as one of the more comfortable destinations in Asia for solo travel. The low rate of street harassment and the ease of getting around independently stand out as particular positives.</div>
@@ -489,11 +490,11 @@
     </div>
 
     <ul class="bullet-list">
-      <li><strong>Use a VPN</strong> to protect your internet traffic<span class="sub">Install before you arrive — downloading VPN apps inside China is not possible. See our <a href="internet.html" style="color:var(--red);">VPN &amp; Internet guide</a> for recommendations</span></li>
-      <li>Avoid accessing sensitive accounts on public Wi-Fi without a VPN active<span class="sub">This includes banking, work email, and personal cloud storage</span></li>
-      <li>Some travellers use a "travel phone" with minimal personal data for China trips<span class="sub">Not essential for most tourists, but worth considering for longer stays</span></li>
-      <li>Border control may ask to inspect your devices in some circumstances<span class="sub">Rare for tourists, but has been reported at airports and land crossings</span></li>
-      <li>WeChat messages are stored on Chinese servers<span class="sub">Be mindful of what you discuss on the platform</span></li>
+      <li><span class="li-content"><strong>Use a VPN</strong> to protect your internet traffic<span class="sub">Install before you arrive — downloading VPN apps inside China is not possible. See our <a href="internet.html" style="color:var(--red);">VPN &amp; Internet guide</a> for recommendations</span></span></li>
+      <li><span class="li-content">Avoid accessing sensitive accounts on public Wi-Fi without a VPN active<span class="sub">This includes banking, work email, and personal cloud storage</span></span></li>
+      <li><span class="li-content">Some travellers use a "travel phone" with minimal personal data for China trips<span class="sub">Not essential for most tourists, but worth considering for longer stays</span></span></li>
+      <li><span class="li-content">Border control may ask to inspect your devices in some circumstances<span class="sub">Rare for tourists, but has been reported at airports and land crossings</span></span></li>
+      <li><span class="li-content">WeChat messages are stored on Chinese servers<span class="sub">Be mindful of what you discuss on the platform</span></span></li>
     </ul>
 
     <div class="warning-box">Photographs of military installations, government buildings, and certain border areas are prohibited and can result in detention. Don't photograph anything with visible military personnel or signage saying photography is restricted.</div>
