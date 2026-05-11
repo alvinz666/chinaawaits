@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Culture & Customs in China — China Awaits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #C0392B;
+      --red-dark: #96281B;
+      --gold: #C9A84C;
+      --gold-light: #e8c96a;
+      --ink: #1a1a1a;
+      --ink-soft: #3d3d3d;
+      --mist: #f7f4f0;
+      --mist-dark: #ede9e3;
+      --white: #ffffff;
+      --border: #e0d9d0;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,0.14);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); line-height: 1.7; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.97); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 60px;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--red); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-size: 0.88rem; font-weight: 500; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--red); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--ink); position: relative; overflow: hidden;
+      padding: 5rem 2rem 4rem; text-align: center;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 15% 55%, rgba(192,57,43,0.28) 0%, transparent 55%),
+        radial-gradient(ellipse at 82% 38%, rgba(201,168,76,0.18) 0%, transparent 55%);
+    }
+    .hero-pattern {
+      position: absolute; inset: 0; opacity: 0.035;
+      background-image: repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%);
+      background-size: 20px 20px;
+    }
+    .hero-tag {
+      display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,0.4);
+      padding: 0.3rem 0.9rem; border-radius: 2px; margin-bottom: 1.5rem; position: relative;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 1rem; position: relative;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.65); max-width: 540px; margin: 0 auto 2.5rem; position: relative; }
+    .jump-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; position: relative; }
+    .jump-nav a {
+      display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 500;
+      color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15); padding: 0.45rem 1rem; border-radius: 40px;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .jump-nav a:hover { background: rgba(201,168,76,0.2); border-color: var(--gold); color: var(--gold); }
+
+    /* ── LAYOUT ── */
+    .page-wrap { max-width: 860px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+    /* ── SECTION ── */
+    .section { margin-top: 4.5rem; scroll-margin-top: 80px; }
+    .section-header {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1.8rem;
+      padding-bottom: 1rem; border-bottom: 2px solid var(--border);
+    }
+    .section-icon {
+      width: 48px; height: 48px; background: var(--red); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;
+    }
+    .section-title-group h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+    .section-title-group p { font-size: 0.88rem; color: #888; margin-top: 0.1rem; }
+
+    /* ── PROSE ── */
+    .prose p { font-size: 0.97rem; color: var(--ink-soft); margin-bottom: 1rem; }
+    .prose strong { color: var(--ink); font-weight: 600; }
+
+    /* ── BOXES ── */
+    .highlight { background: var(--mist); border-left: 3px solid var(--gold); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1.2rem 0; font-size: 0.93rem; color: var(--ink-soft); }
+    .highlight strong { color: var(--ink); }
+    .tip-box { background: #fff8ee; border: 1px solid #f0d990; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #6b5b1a; }
+    .tip-box::before { content: '💡 Tip: '; font-weight: 600; }
+    .warning-box { background: #fff5f5; border: 1px solid #f5c6c6; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #7a2020; }
+    .warning-box::before { content: '⚠️ Note: '; font-weight: 600; }
+
+    /* ── BULLET LIST ── */
+    .bullet-list { list-style: none; margin: 1rem 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .bullet-list li { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.93rem; color: var(--ink-soft); }
+    .bullet-list li::before { content: '—'; color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+
+    /* ── TABLE ── */
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    thead { background: var(--ink); color: white; }
+    thead th { padding: 0.85rem 1rem; text-align: left; font-weight: 600; font-size: 0.83rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:nth-child(even) { background: var(--mist); }
+    tbody td { padding: 0.85rem 1rem; color: var(--ink-soft); vertical-align: top; }
+    tbody td:first-child { font-weight: 600; color: var(--ink); }
+
+    /* ── CARD GRID ── */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; transition: box-shadow 0.2s, transform 0.2s; }
+    .card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+    .card-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+    .card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .card p { font-size: 0.87rem; color: #666; line-height: 1.5; }
+
+    /* ── DO / DON'T GRID ── */
+    .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.2rem 0; }
+    .do-col { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 1.2rem; }
+    .dont-col { background: #fff5f5; border: 1px solid #fecaca; border-radius: 12px; padding: 1.2rem; }
+    .do-col h4, .dont-col h4 { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.9rem; }
+    .do-col h4 { color: #166534; }
+    .dont-col h4 { color: #991b1b; }
+    .do-col ul, .dont-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .do-col li, .dont-col li { font-size: 0.88rem; display: flex; align-items: flex-start; gap: 0.6rem; line-height: 1.5; }
+    .do-col li { color: #14532d; }
+    .dont-col li { color: #7f1d1d; }
+    .do-col li::before { content: '✓'; font-weight: 700; color: #16a34a; flex-shrink: 0; }
+    .dont-col li::before { content: '✗'; font-weight: 700; color: #dc2626; flex-shrink: 0; }
+
+    /* ── PHRASE BOX ── */
+    .phrase-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 0.8rem; margin: 1.2rem 0; }
+    .phrase-box { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 0.9rem 1.1rem; }
+    .phrase-box .zh { font-size: 1.2rem; font-weight: 700; color: var(--red); margin-bottom: 0.1rem; }
+    .phrase-box .pinyin { font-size: 0.8rem; color: #999; font-style: italic; margin-bottom: 0.15rem; }
+    .phrase-box .en { font-size: 0.85rem; color: var(--ink-soft); font-weight: 500; }
+    .phrase-box .usage { font-size: 0.78rem; color: #aaa; margin-top: 0.3rem; line-height: 1.4; }
+
+    /* ── NUMBER / TABOO CARDS ── */
+    .taboo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .taboo-card { border-radius: 12px; padding: 1.1rem; border: 1px solid var(--border); }
+    .taboo-card.bad { background: #fff5f5; border-color: #fecaca; }
+    .taboo-card.good { background: #f0fdf4; border-color: #bbf7d0; }
+    .taboo-card.neutral { background: var(--mist); }
+    .taboo-num { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 700; line-height: 1; margin-bottom: 0.4rem; }
+    .taboo-card.bad .taboo-num { color: #dc2626; }
+    .taboo-card.good .taboo-num { color: #16a34a; }
+    .taboo-card.neutral .taboo-num { color: var(--gold); }
+    .taboo-card h4 { font-size: 0.85rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .taboo-card.bad h4 { color: #991b1b; }
+    .taboo-card.good h4 { color: #166534; }
+    .taboo-card p { font-size: 0.82rem; color: #666; line-height: 1.45; }
+
+    /* ── FAQ ── */
+    .faq { margin: 1.5rem 0; }
+    .faq-item { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 0.6rem; overflow: hidden; }
+    .faq-q { width: 100%; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.2rem; font-family: 'DM Sans', sans-serif; font-size: 0.93rem; font-weight: 600; color: var(--ink); text-align: left; gap: 1rem; }
+    .faq-q:hover { background: var(--mist); }
+    .faq-arrow { font-size: 1rem; color: var(--gold); transition: transform 0.25s; flex-shrink: 0; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0.8rem 1.2rem 1rem; font-size: 0.9rem; color: var(--ink-soft); border-top: 1px solid var(--border); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── BACK LINK ── */
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.88rem; font-weight: 500; color: var(--red); text-decoration: none; margin-top: 3rem; }
+    .back-link:hover { text-decoration: underline; }
+
+    .h3-style { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin: 1.5rem 0 0.8rem; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .page-wrap { padding: 0 1rem 4rem; }
+      .hero { padding: 3.5rem 1rem 3rem; }
+      .do-dont { grid-template-columns: 1fr; }
+      .taboo-grid { grid-template-columns: repeat(3, 1fr); }
+      .phrase-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo">China Awaits</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="pre-arrival.html">Before You Arrive</a></li>
+    <li><a href="food.html">Food</a></li>
+    <li><a href="culture.html" class="active">Culture</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-tag">Culture &amp; Customs</div>
+  <h1>Understanding <span>Chinese Culture</span></h1>
+  <p class="hero-sub">A little cultural awareness goes a long way — here's what every visitor should know before arriving.</p>
+  <div class="jump-nav">
+    <a href="#overview">🌏 Overview</a>
+    <a href="#greetings">🤝 Greetings</a>
+    <a href="#dining">🍜 Dining Etiquette</a>
+    <a href="#gifts">🎁 Gift Giving</a>
+    <a href="#taboos">🔢 Numbers &amp; Taboos</a>
+    <a href="#temples">🏯 Temples &amp; Sites</a>
+    <a href="#phrases">💬 Useful Phrases</a>
+    <a href="#faq">❓ FAQ</a>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- ══════════════════════ OVERVIEW ══════════════════════ -->
+  <div class="section" id="overview">
+    <div class="section-header">
+      <div class="section-icon">🌏</div>
+      <div class="section-title-group">
+        <h2>Culture at a Glance</h2>
+        <p>Key ideas that shape everyday life in China</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>China has one of the world's oldest continuous civilisations, and that history shapes everything — from how people greet each other to how business is done. Most Chinese people are genuinely delighted when foreign visitors make an effort to understand their culture, even imperfectly.</p>
+      <p>A few core concepts underpin much of what you'll encounter:</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">😌</div>
+        <h3>Face (面子 Miànzi)</h3>
+        <p>Social reputation and dignity matter deeply. Avoid embarrassing someone publicly — criticism, corrections, or saying "no" bluntly can cause loss of face for both parties.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🤝</div>
+        <h3>Guanxi (关系)</h3>
+        <p>Relationships and social networks are the foundation of Chinese society. Trust is built through time and mutual favours, not contracts. Being warm and reciprocal goes a long way.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏠</div>
+        <h3>Collectivism</h3>
+        <p>Group harmony often takes priority over individual expression. Loud, disruptive, or conspicuously self-centred behaviour is generally frowned upon in public spaces.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎎</div>
+        <h3>Respect for Elders</h3>
+        <p>Confucian values place great importance on age and seniority. Greeting the oldest person first, offering your seat, and deferring to elders are all signs of good character.</p>
+      </div>
+    </div>
+
+    <div class="highlight"><strong>The golden rule:</strong> Most minor cultural missteps will be forgiven with a smile. Chinese people are accustomed to visitors not knowing all the customs — genuine effort and politeness matter far more than perfection.</div>
+  </div>
+
+  <!-- ══════════════════════ GREETINGS ══════════════════════ -->
+  <div class="section" id="greetings">
+    <div class="section-header">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <h2>Greetings &amp; Social Norms</h2>
+        <p>How to meet, greet, and make a good first impression</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Chinese greetings are generally more reserved than in Western cultures — handshakes are common in cities, but hugs and kisses on the cheek are not. A nod or slight bow is always appropriate. Smiling warmly and making eye contact is universally welcome.</p>
+    </div>
+
+    <h3 class="h3-style">Names and Titles</h3>
+    <ul class="bullet-list">
+      <li>Chinese names put the <strong>family name first</strong> — Wang Fang's family name is Wang, not Fang</li>
+      <li>Address people formally using their title and family name (e.g. "Director Wang", "Dr. Li") unless invited to use given names</li>
+      <li>Many Chinese professionals adopt an English name for foreign interactions — use it if offered</li>
+      <li>Never shorten or nickname someone's name without their invitation</li>
+    </ul>
+
+    <h3 class="h3-style">General Social Etiquette</h3>
+    <div class="do-dont">
+      <div class="do-col">
+        <h4>✓ Do</h4>
+        <ul>
+          <li>Greet the eldest or most senior person first</li>
+          <li>Present and receive business cards with both hands</li>
+          <li>Accept compliments modestly ("not at all, you're too kind")</li>
+          <li>Queue patiently — though queuing norms vary by city</li>
+          <li>Remove shoes when entering someone's home</li>
+        </ul>
+      </div>
+      <div class="dont-col">
+        <h4>✗ Don't</h4>
+        <ul>
+          <li>Point with your index finger — gesture with an open hand instead</li>
+          <li>Write on or stuff a business card in your back pocket</li>
+          <li>Show strong public displays of affection</li>
+          <li>Loudly criticise or argue with someone in front of others</li>
+          <li>Address someone by their given name alone on first meeting</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tip-box">Saying a few words in Mandarin — even just "nǐ hǎo" (hello) or "xièxiè" (thank you) — is almost always met with delight and can instantly warm up any interaction.</div>
+  </div>
+
+  <!-- ══════════════════════ DINING ETIQUETTE ══════════════════════ -->
+  <div class="section" id="dining">
+    <div class="section-header">
+      <div class="section-icon">🍜</div>
+      <div class="section-title-group">
+        <h2>Dining Etiquette</h2>
+        <p>The rules and rhythms of eating together in China</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Sharing a meal is one of the most important social rituals in Chinese culture. If a Chinese host invites you to dinner, it's a genuine gesture of respect — and they will almost certainly order far more food than anyone can eat, on purpose. Abundance at the table signals generosity.</p>
+    </div>
+
+    <div class="do-dont">
+      <div class="do-col">
+        <h4>✓ Do</h4>
+        <ul>
+          <li>Wait for the host to invite everyone to eat before starting</li>
+          <li>Try everything — refusing food can seem impolite</li>
+          <li>Pour tea or drinks for others before refilling your own glass</li>
+          <li>Tap two fingers on the table to silently thank someone for pouring tea</li>
+          <li>Accept the host's offer to order — it's an honour</li>
+          <li>Compliment the food generously</li>
+        </ul>
+      </div>
+      <div class="dont-col">
+        <h4>✗ Don't</h4>
+        <ul>
+          <li>Stick chopsticks vertically into rice — it resembles funeral incense</li>
+          <li>Pass food directly chopstick-to-chopstick (also a funeral custom)</li>
+          <li>Insist on splitting the bill — offering once is polite, but the host will usually insist on paying; accept graciously</li>
+          <li>Flip a whole fish over at the table in some regions (bad luck)</li>
+          <li>Blow your nose at the table</li>
+          <li>Clean your plate entirely in all situations — in many northern and home-dining settings, finishing everything shows respect; at a formal banquet, leaving a little can signal you've had enough, but follow your host's lead</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="h3-style">Toasting &amp; Drinking</h3>
+    <ul class="bullet-list">
+      <li>The host usually initiates the first toast — wait for it before drinking</li>
+      <li><strong>Gānbēi</strong> (干杯) literally means "bottoms up" — in formal or business settings you're expected to drain your glass, but among friends and younger people it often just means clinking glasses; read the room</li>
+      <li>Hold your glass slightly lower than someone more senior when clinking</li>
+      <li>It's perfectly acceptable to decline alcohol politely — saying you're driving or have a health condition is always respected</li>
+      <li>Tea is the safe non-alcoholic alternative at any formal meal</li>
+    </ul>
+
+    <div class="tip-box">If you're the guest of honour, expect to be served the best pieces of food directly — a fish head, the first dumpling, or the crispiest piece of duck skin. Accepting graciously is the right move.</div>
+  </div>
+
+  <!-- ══════════════════════ GIFT GIVING ══════════════════════ -->
+  <div class="section" id="gifts">
+    <div class="section-header">
+      <div class="section-icon">🎁</div>
+      <div class="section-title-group">
+        <h2>Gift Giving</h2>
+        <p>What to bring, what to avoid, and how to give</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Gift giving is an important part of Chinese social and business culture, especially around festivals and first meetings. The gesture matters as much as the gift itself — presentation, wrapping, and the act of offering with two hands all count.</p>
+    </div>
+
+    <div class="do-dont">
+      <div class="do-col">
+        <h4>✓ Good Gifts</h4>
+        <ul>
+          <li>Quality food items — premium teas, chocolates, local specialties from your home country</li>
+          <li>Fruit, especially in sets of even numbers</li>
+          <li>Alcohol (baijiu, whisky, wine) for men in social settings</li>
+          <li>Gifts from well-known brands in your home country</li>
+          <li>Red envelopes (红包, hóngbāo) with money for children or at festivals</li>
+        </ul>
+      </div>
+      <div class="dont-col">
+        <h4>✗ Avoid</h4>
+        <ul>
+          <li><strong>Clocks</strong> (送钟 sòng zhōng sounds like "attending a funeral")</li>
+          <li><strong>Green hats</strong> (implies infidelity)</li>
+          <li><strong>Pears</strong> (梨 lí sounds like "separate")</li>
+          <li><strong>Shoes</strong> (implies you want someone to walk away from you)</li>
+          <li><strong>Umbrellas</strong> (伞 sǎn sounds like "scatter/break apart")</li>
+          <li>Sets of <strong>4 items</strong> (四 sì sounds like "death")</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="h3-style">How to Give and Receive</h3>
+    <ul class="bullet-list">
+      <li>Always offer and receive gifts with <strong>both hands</strong><br><span style="font-size:0.85em;color:#888;">One hand is considered casual or dismissive</span></li>
+      <li>The recipient will often <strong>not open the gift immediately</strong><br><span style="font-size:0.85em;color:#888;">This is polite, not rude — opening on the spot can seem greedy</span></li>
+      <li>Wrap gifts nicely in red, gold, or bright colours<br><span style="font-size:0.85em;color:#888;">Avoid black or white wrapping — these are mourning colours</span></li>
+      <li>Expect a brief refusal before acceptance<br><span style="font-size:0.85em;color:#888;">This is customary modesty, not a genuine "no" — gently insist once or twice</span></li>
+    </ul>
+
+    <div class="tip-box">Bringing a small gift from your home country — a local snack, a small craft, or something branded with your city — is always a thoughtful and well-received gesture when visiting someone's home.</div>
+  </div>
+
+  <!-- ══════════════════════ NUMBERS & TABOOS ══════════════════════ -->
+  <div class="section" id="taboos">
+    <div class="section-header">
+      <div class="section-icon">🔢</div>
+      <div class="section-title-group">
+        <h2>Numbers, Colours &amp; Taboos</h2>
+        <p>Lucky and unlucky symbols — and why they matter</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Many Chinese superstitions stem from homophones — words that sound like something lucky or unlucky. These beliefs are taken seriously in everyday life, from apartment prices to wedding dates to phone numbers.</p>
+    </div>
+
+    <h3 class="h3-style">Key Numbers</h3>
+    <div class="taboo-grid">
+      <div class="taboo-card bad">
+        <div class="taboo-num">4</div>
+        <h4>Unlucky</h4>
+        <p>四 (sì) sounds like 死 (sǐ), "death." Many buildings skip floor 4 entirely. Avoid giving 4 of anything.</p>
+      </div>
+      <div class="taboo-card good">
+        <div class="taboo-num">8</div>
+        <h4>Very Lucky</h4>
+        <p>八 (bā) sounds like 发 (fā), "to prosper." Phone numbers, prices, and dates with 8s command a premium.</p>
+      </div>
+      <div class="taboo-card good">
+        <div class="taboo-num">6</div>
+        <h4>Lucky</h4>
+        <p>六 (liù) sounds like 流 (liú), suggesting smooth progress. Often used in business contexts and blessings.</p>
+      </div>
+      <div class="taboo-card good">
+        <div class="taboo-num">9</div>
+        <h4>Lucky</h4>
+        <p>九 (jiǔ) sounds like 久 (jiǔ), "long-lasting." Associated with longevity and eternal love — common in weddings.</p>
+      </div>
+      <div class="taboo-card bad">
+        <div class="taboo-num">7</div>
+        <h4>Mixed</h4>
+        <p>七 (qī) can sound like 欺 (qī), "to deceive," but is also associated with the Ghost Festival in the 7th lunar month.</p>
+      </div>
+      <div class="taboo-card neutral">
+        <div class="taboo-num">2</div>
+        <h4>Positive</h4>
+        <p>好事成双 — "good things come in pairs." Give fruit, candles, or decorations in even numbers.</p>
+      </div>
+    </div>
+
+    <h3 class="h3-style">Colours</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Colour</th><th>Meaning</th><th>Context</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>🔴 Red</td><td>Luck, prosperity, celebration</td><td>Weddings, New Year, red envelopes — wear it freely</td></tr>
+          <tr><td>🟡 Gold / Yellow</td><td>Wealth, imperial power</td><td>Gifts, packaging — very positive</td></tr>
+          <tr><td>⚪ White</td><td>Mourning, death</td><td>Avoid at weddings and celebrations; don't give white flowers</td></tr>
+          <tr><td>⚫ Black</td><td>Mourning (in some contexts)</td><td>Fine for everyday wear, but avoid at funerals as a statement colour</td></tr>
+          <tr><td>🟢 Green (hat)</td><td>Infidelity (specifically green hats)</td><td>Never give a man a green hat</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="h3-style">Other Common Taboos</h3>
+    <ul class="bullet-list">
+      <li>Don't tap or drum on a bowl with chopsticks — it's what beggars do</li>
+      <li>Avoid writing someone's name in red ink — it implies a death wish</li>
+      <li>Don't whistle indoors at night in traditional households</li>
+      <li>Avoid discussing death, funerals, or bad omens before important events</li>
+      <li>Mirrors facing the front door are considered bad feng shui in many homes</li>
+    </ul>
+  </div>
+
+  <!-- ══════════════════════ TEMPLES & SITES ══════════════════════ -->
+  <div class="section" id="temples">
+    <div class="section-header">
+      <div class="section-icon">🏯</div>
+      <div class="section-title-group">
+        <h2>Temples &amp; Sacred Sites</h2>
+        <p>How to visit respectfully</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>China has thousands of active temples — Buddhist, Taoist, and Confucian — as well as mosques and churches. Most welcome visitors, but these are places of genuine worship, not just tourist attractions. Quiet and respectful behaviour is expected.</p>
+    </div>
+
+    <div class="do-dont">
+      <div class="do-col">
+        <h4>✓ Do</h4>
+        <ul>
+          <li>Dress modestly — cover shoulders and knees where possible</li>
+          <li>Avoid walking through the central gate — it's traditionally reserved for deities and clergy; use the side gates instead (the convention varies by temple: some say right/dragon gate in, left/tiger gate out; others say left in, right out — when in doubt, follow what locals do)</li>
+          <li>Step over the raised threshold at entrances — not on it</li>
+          <li>Speak quietly and move calmly</li>
+          <li>Ask permission before photographing worshippers or ceremonies</li>
+          <li>Follow any shoe-removal signs at the entrance</li>
+        </ul>
+      </div>
+      <div class="dont-col">
+        <h4>✗ Don't</h4>
+        <ul>
+          <li>Point at statues or sacred objects</li>
+          <li>Touch altar items or offerings</li>
+          <li>Photograph where signs say not to</li>
+          <li>Eat, drink, or smoke on temple grounds</li>
+          <li>Turn your back on the main altar for a selfie</li>
+          <li>Mimic or mock religious rituals</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tip-box">If you'd like to light incense at a temple, it's usually sold on-site and you're welcome to participate. Watch what locals do and follow along — it's a warm way to engage with the culture.</div>
+  </div>
+
+  <!-- ══════════════════════ USEFUL PHRASES ══════════════════════ -->
+  <div class="section" id="phrases">
+    <div class="section-header">
+      <div class="section-icon">💬</div>
+      <div class="section-title-group">
+        <h2>Useful Phrases</h2>
+        <p>A handful of Mandarin phrases that go a long way</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>You don't need to speak Mandarin to get around China — but a few key phrases will open doors, warm people up, and earn you genuine respect. Don't worry about tones too much; context and goodwill carry you a long way.</p>
+    </div>
+
+    <h3 class="h3-style">Essentials</h3>
+    <div class="phrase-grid">
+      <div class="phrase-box">
+        <div class="zh">你好</div>
+        <div class="pinyin">Nǐ hǎo</div>
+        <div class="en">Hello</div>
+        <div class="usage">Standard greeting, suitable for everyone</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">谢谢</div>
+        <div class="pinyin">Xièxiè</div>
+        <div class="en">Thank you</div>
+        <div class="usage">Use constantly — always appreciated</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">不好意思</div>
+        <div class="pinyin">Bù hǎoyìsi</div>
+        <div class="en">Excuse me / Sorry</div>
+        <div class="usage">Getting attention, squeezing past, minor apologies</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">请</div>
+        <div class="pinyin">Qǐng</div>
+        <div class="en">Please</div>
+        <div class="usage">Add before any request to soften it</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">好的</div>
+        <div class="pinyin">Hǎo de</div>
+        <div class="en">OK / Sure / Alright</div>
+        <div class="usage">Agreeing to something, or acknowledging information</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">再见</div>
+        <div class="pinyin">Zàijiàn</div>
+        <div class="en">Goodbye</div>
+        <div class="usage">Formal farewell — 拜拜 (bàibài) is the casual version</div>
+      </div>
+    </div>
+
+    <h3 class="h3-style">Getting Around</h3>
+    <div class="phrase-grid">
+      <div class="phrase-box">
+        <div class="zh">…在哪里？</div>
+        <div class="pinyin">… zài nǎlǐ?</div>
+        <div class="en">Where is …?</div>
+        <div class="usage">Point at a map or name on your phone and say this</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">多少钱？</div>
+        <div class="pinyin">Duōshǎo qián?</div>
+        <div class="en">How much does it cost?</div>
+        <div class="usage">Markets, street food, taxis — essential</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">我要去…</div>
+        <div class="pinyin">Wǒ yào qù …</div>
+        <div class="en">I want to go to …</div>
+        <div class="usage">Show the destination on your phone, say this to the driver</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">太贵了</div>
+        <div class="pinyin">Tài guì le</div>
+        <div class="en">Too expensive!</div>
+        <div class="usage">Your opening move at any market bargain</div>
+      </div>
+    </div>
+
+    <h3 class="h3-style">At the Table</h3>
+    <div class="phrase-grid">
+      <div class="phrase-box">
+        <div class="zh">好吃！</div>
+        <div class="pinyin">Hǎo chī!</div>
+        <div class="en">Delicious!</div>
+        <div class="usage">The highest compliment you can pay a host or chef</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">干杯！</div>
+        <div class="pinyin">Gānbēi!</div>
+        <div class="en">Cheers! (Bottoms up)</div>
+        <div class="usage">Formal toast meaning "bottoms up" — drain your glass in business settings; among friends it's often just a clink</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">我吃饱了</div>
+        <div class="pinyin">Wǒ chī bǎo le</div>
+        <div class="en">I'm full</div>
+        <div class="usage">Polite way to signal you've had enough food</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">不辣，谢谢</div>
+        <div class="pinyin">Bù là, xièxiè</div>
+        <div class="en">Not spicy, please</div>
+        <div class="usage">Ask when ordering — not always guaranteed, but worth trying</div>
+      </div>
+    </div>
+
+    <div class="tip-box">Screenshot these phrases or save this page for offline use. Even pulling out your phone and showing the Chinese characters to someone — without saying anything — will usually get you exactly what you need.</div>
+  </div>
+
+  <!-- ══════════════════════ FAQ ══════════════════════ -->
+  <div class="section" id="faq">
+    <div class="section-header">
+      <div class="section-icon">❓</div>
+      <div class="section-title-group">
+        <h2>Frequently Asked Questions</h2>
+        <p>Common culture questions from visitors</p>
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">Will Chinese people be offended if I make cultural mistakes? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Almost never. Chinese people are very accustomed to foreign visitors not knowing local customs, and most will find your attempt to engage with the culture endearing rather than offensive. The exceptions are genuinely disrespectful behaviour at sacred sites or deliberate mockery — both easy to avoid. A smile and a genuine apology fixes almost any accidental misstep.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is it rude to ask Chinese people about their salary or age? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Not as rude as it might be in Western cultures. Questions about age, salary, marital status, and whether you've eaten yet are common small talk in China — they're expressions of interest rather than intrusions. That said, younger urban Chinese people are increasingly adopting Western norms around privacy, so gauge the situation. You can always deflect with a smile if you're asked something you don't want to answer.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I take photos of people on the street? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Generally yes in public spaces, but asking first is always more respectful. Most people in tourist areas are happy to be photographed. Avoid photographing people who look uncomfortable, or in sensitive contexts (protests, poverty, etc.). At temples and heritage sites, follow posted signage about photography restrictions.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What topics should I avoid in conversation? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">The three Ts — Taiwan, Tibet, and Tiananmen — are politically sensitive and can create genuine discomfort or awkwardness, particularly with people you've just met. Other topics to handle carefully include criticism of the Chinese government, comparisons that imply China is inferior, and anything touching on the COVID-19 origin debate. None of these are taboo among close friends, but they're best avoided in casual or new acquaintances.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I need to bow when meeting Chinese people? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Bowing is more of a Japanese and Korean custom. In China, a firm handshake is the standard professional greeting in cities. A friendly nod or slight incline of the head is also fine. Among older people or in more traditional settings, a small bow shows extra respect but is never required of a foreign visitor.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is it true that people stare at foreigners in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">In major cities like Beijing, Shanghai, and Guangzhou, you'll barely turn a head — international visitors are common. In smaller cities and rural areas, you may attract more attention, particularly if you look visibly foreign. It's almost always curiosity rather than hostility. A smile and a "nǐ hǎo" usually results in an immediate friendly response.</div>
+      </div>
+    </div>
+  </div>
+
+  <a href="../index.html" class="back-link">← Back to Home</a>
+
+</div><!-- /page-wrap -->
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+</body>
+</html>
