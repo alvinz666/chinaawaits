@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Money & Payments in China — China Awaits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #C0392B;
+      --red-dark: #96281B;
+      --gold: #C9A84C;
+      --gold-light: #e8c96a;
+      --ink: #1a1a1a;
+      --ink-soft: #3d3d3d;
+      --mist: #f7f4f0;
+      --mist-dark: #ede9e3;
+      --white: #ffffff;
+      --border: #e0d9d0;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,0.14);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); line-height: 1.7; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.97); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 60px;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--red); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-size: 0.88rem; font-weight: 500; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--red); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--ink); position: relative; overflow: hidden;
+      padding: 5rem 2rem 4rem; text-align: center;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 60%, rgba(192,57,43,0.3) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 35%, rgba(201,168,76,0.18) 0%, transparent 55%);
+    }
+    .hero-pattern {
+      position: absolute; inset: 0; opacity: 0.035;
+      background-image: repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%);
+      background-size: 20px 20px;
+    }
+    .hero-tag {
+      display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,0.4);
+      padding: 0.3rem 0.9rem; border-radius: 2px; margin-bottom: 1.5rem; position: relative;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 1rem; position: relative;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.65); max-width: 540px; margin: 0 auto 2.5rem; position: relative; }
+    .jump-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; position: relative; }
+    .jump-nav a {
+      display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 500;
+      color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15); padding: 0.45rem 1rem; border-radius: 40px;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .jump-nav a:hover { background: rgba(201,168,76,0.2); border-color: var(--gold); color: var(--gold); }
+
+    /* ── LAYOUT ── */
+    .page-wrap { max-width: 860px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+    /* ── SECTION ── */
+    .section { margin-top: 4.5rem; scroll-margin-top: 80px; }
+    .section-header {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1.8rem;
+      padding-bottom: 1rem; border-bottom: 2px solid var(--border);
+    }
+    .section-icon {
+      width: 48px; height: 48px; background: var(--red); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;
+    }
+    .section-title-group h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+    .section-title-group p { font-size: 0.88rem; color: #888; margin-top: 0.1rem; }
+
+    /* ── PROSE ── */
+    .prose p { font-size: 0.97rem; color: var(--ink-soft); margin-bottom: 1rem; }
+    .prose strong { color: var(--ink); font-weight: 600; }
+
+    /* ── BOXES ── */
+    .highlight { background: var(--mist); border-left: 3px solid var(--gold); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1.2rem 0; font-size: 0.93rem; color: var(--ink-soft); }
+    .highlight strong { color: var(--ink); }
+    .tip-box { background: #fff8ee; border: 1px solid #f0d990; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #6b5b1a; }
+    .tip-box::before { content: '💡 Tip: '; font-weight: 600; }
+    .warning-box { background: #fff5f5; border: 1px solid #f5c6c6; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #7a2020; }
+    .warning-box::before { content: '⚠️ Note: '; font-weight: 600; }
+
+    /* ── BULLET LIST ── */
+    .bullet-list { list-style: none; margin: 1rem 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .bullet-list li { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.93rem; color: var(--ink-soft); }
+    .bullet-list li::before { content: '—'; color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+
+    /* ── STEPS ── */
+    .steps { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; margin: 1.2rem 0; }
+    .steps li { display: flex; align-items: flex-start; gap: 1rem; background: var(--mist); border-radius: 10px; padding: 0.9rem 1.1rem; }
+    .step-num { width: 28px; height: 28px; background: var(--red); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .step-text { font-size: 0.93rem; color: var(--ink-soft); }
+    .step-text strong { color: var(--ink); display: block; margin-bottom: 0.1rem; }
+
+    /* ── TABLE ── */
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    thead { background: var(--ink); color: white; }
+    thead th { padding: 0.85rem 1rem; text-align: left; font-weight: 600; font-size: 0.83rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:nth-child(even) { background: var(--mist); }
+    tbody td { padding: 0.85rem 1rem; color: var(--ink-soft); vertical-align: top; }
+    tbody td:first-child { font-weight: 600; color: var(--ink); }
+
+    /* ── STATUS TAGS ── */
+    .tag { display: inline-block; font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.55rem; border-radius: 4px; }
+    .tag-green { background: #e6f9ee; color: #1a6e3a; }
+    .tag-red { background: #ffeaea; color: #b91c1c; }
+    .tag-orange { background: #fff3e0; color: #b45309; }
+
+    /* ── CARD GRID ── */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; transition: box-shadow 0.2s, transform 0.2s; }
+    .card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+    .card-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+    .card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .card p { font-size: 0.87rem; color: #666; line-height: 1.5; }
+    .card .card-badge { display: inline-block; margin-top: 0.7rem; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.2rem 0.55rem; border-radius: 4px; }
+    .badge-green { background: #e6f9ee; color: #1a6e3a; }
+    .badge-gold  { background: #fef9e7; color: #8a6000; }
+    .badge-red   { background: #ffeaea; color: #b91c1c; }
+    .card.featured { background: var(--white); border: 2px solid var(--gold); }
+    .card.featured::before { content: '⭐ Best for Foreigners'; display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+
+    /* ── METHOD CARD ── */
+    .method-card {
+      background: var(--mist); border: 1px solid var(--border); border-radius: 14px;
+      padding: 1.5rem; margin-bottom: 1rem;
+      display: grid; grid-template-columns: 56px 1fr; gap: 1.2rem; align-items: start;
+    }
+    .method-card.featured { background: var(--white); border: 2px solid var(--gold); }
+    .method-icon { width: 56px; height: 56px; border-radius: 12px; background: var(--white); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; flex-shrink: 0; }
+    .method-card.featured .method-icon { background: #fffdf5; border-color: var(--gold-light); }
+    .method-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.2rem; }
+    .method-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .method-desc { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.6; margin-bottom: 0.8rem; }
+    .method-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .meta-item { font-size: 0.78rem; background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 0.2rem 0.65rem; color: var(--ink-soft); }
+
+    /* ── FAQ ── */
+    .faq { margin: 1.5rem 0; }
+    .faq-item { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 0.6rem; overflow: hidden; }
+    .faq-q { width: 100%; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.2rem; font-family: 'DM Sans', sans-serif; font-size: 0.93rem; font-weight: 600; color: var(--ink); text-align: left; gap: 1rem; }
+    .faq-q:hover { background: var(--mist); }
+    .faq-arrow { font-size: 1rem; color: var(--gold); transition: transform 0.25s; flex-shrink: 0; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0.8rem 1.2rem 1rem; font-size: 0.9rem; color: var(--ink-soft); border-top: 1px solid var(--border); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── BACK LINK ── */
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.88rem; font-weight: 500; color: var(--red); text-decoration: none; margin-top: 3rem; }
+    .back-link:hover { text-decoration: underline; }
+
+    .h3-style { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin: 1.5rem 0 0.8rem; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .page-wrap { padding: 0 1rem 4rem; }
+      .hero { padding: 3.5rem 1rem 3rem; }
+      .method-card { grid-template-columns: 1fr; }
+      .card-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo">China Awaits</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="pre-arrival.html">Before You Arrive</a></li>
+    <li><a href="apps.html">Apps &amp; SIM</a></li>
+    <li><a href="money.html" class="active">Money</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-tag">Money &amp; Payments</div>
+  <h1>Paying Your Way Through <span>China</span></h1>
+  <p class="hero-sub">China is nearly cashless — here's everything you need to know about mobile payments, ATMs, cards, and currency before you arrive.</p>
+  <div class="jump-nav">
+    <a href="#overview">💡 Overview</a>
+    <a href="#alipay">📱 Alipay</a>
+    <a href="#wechat">💚 WeChat Pay</a>
+    <a href="#cash">💵 Cash &amp; ATMs</a>
+    <a href="#cards">💳 Foreign Cards</a>
+    <a href="#exchange">💱 Currency Exchange</a>
+    <a href="#faq">❓ FAQ</a>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- ══════════════════════ OVERVIEW ══════════════════════ -->
+  <div class="section" id="overview">
+    <div class="section-header">
+      <div class="section-icon">💡</div>
+      <div class="section-title-group">
+        <h2>The Big Picture</h2>
+        <p>How money works in modern China</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>China runs almost entirely on <strong>mobile payments</strong> — Alipay and WeChat Pay are accepted everywhere from five-star hotels to street food vendors. Cash still exists, but many places in cities prefer digital payments, and some smaller restaurants no longer accept it at all.</p>
+      <p>As a foreign visitor, the single most important thing you can do is <strong>set up Alipay before you land</strong>. It accepts foreign Visa and Mastercard cards and works without a Chinese bank account.</p>
+    </div>
+
+    <div class="warning-box">Be prepared before you arrive — setting up Alipay or WeChat Pay is much easier at home on a reliable connection than scrambling at the airport.</div>
+
+    <div class="card-grid">
+      <div class="card featured">
+        <div class="card-icon">📱</div>
+        <h3>Alipay</h3>
+        <p>Accepts foreign Visa/Mastercard directly. No Chinese bank account needed. The easiest option for tourists.</p>
+        <span class="card-badge badge-green">Recommended</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">💚</div>
+        <h3>WeChat Pay</h3>
+        <p>Now supports foreign cards via the app. Especially useful if you're already using WeChat to message locals.</p>
+        <span class="card-badge badge-gold">Good Option</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">💵</div>
+        <h3>Cash (RMB)</h3>
+        <p>Still accepted everywhere by law, and essential in rural areas and smaller towns. Keep some as a backup.</p>
+        <span class="card-badge badge-gold">Backup</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">💳</div>
+        <h3>Foreign Cards</h3>
+        <p>Visa and Mastercard work at international hotels and some larger stores. Rarely accepted at restaurants or smaller shops.</p>
+        <span class="card-badge badge-red">Limited Use</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ ALIPAY ══════════════════════ -->
+  <div class="section" id="alipay">
+    <div class="section-header">
+      <div class="section-icon">📱</div>
+      <div class="section-title-group">
+        <h2>Alipay</h2>
+        <p>Recommended for foreign visitors — no Chinese bank account required</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Alipay has made a genuine effort to welcome international visitors. The app lets you link a foreign Visa, Mastercard, or JCB card and pay anywhere Alipay is accepted — which is virtually everywhere in China.</p>
+    </div>
+
+    <h3 class="h3-style">How to Set Up Alipay as a Foreigner</h3>
+    <ol class="steps">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <strong>Download Alipay</strong>
+          Search "Alipay" on the App Store or Google Play. The international version now fully supports foreign users — no separate app needed.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <strong>Register with your home phone number</strong>
+          Alipay supports international numbers (+1, +44, +49, etc.). Verify via SMS as usual.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <strong>Add your foreign card</strong>
+          Go to Account → Manage Cards → Add Card. Visa, Mastercard, Maestro, and JCB are all supported. A ~3% fee applies on foreign cards.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-text">
+          <strong>Verify your identity (recommended)</strong>
+          Scan your passport in-app to raise your spending limit. Without verification, you're capped at around ¥1,000 per transaction.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">5</div>
+        <div class="step-text">
+          <strong>Pay — scan or show your QR code</strong>
+          Open Alipay → tap "Pay" → show your QR code to the merchant, or scan theirs. Done.
+        </div>
+      </li>
+    </ol>
+
+    <div class="tip-box">Alipay also covers DiDi (ride-hailing), food delivery, and some hotel bookings — making it a surprisingly complete tool for daily life in China.</div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Feature</th><th>Details</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Cards accepted</td><td>Visa, Mastercard, Maestro, JCB, Diners Club</td></tr>
+          <tr><td>Transaction fee</td><td>~3% on foreign cards</td></tr>
+          <tr><td>Spending limit (unverified)</td><td>~¥1,000 per transaction / ¥50,000 per year</td></tr>
+          <tr><td>Spending limit (verified)</td><td>Higher — verify in-app with passport scan</td></tr>
+          <tr><td>App language</td><td>English available</td></tr>
+          <tr><td>Chinese SIM required?</td><td><span class="tag tag-green">No</span></td></tr>
+          <tr><td>VPN required?</td><td><span class="tag tag-green">No</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ WECHAT PAY ══════════════════════ -->
+  <div class="section" id="wechat">
+    <div class="section-header">
+      <div class="section-icon">💚</div>
+      <div class="section-title-group">
+        <h2>WeChat Pay</h2>
+        <p>Social app and payment in one — now with foreign card support</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>WeChat is China's dominant messaging and social platform, with WeChat Pay built right in. Since 2023, international visitors can link a foreign Visa or Mastercard directly via the app's Pay section — no Chinese bank account required for basic payments.</p>
+      <p>WeChat Pay is worth setting up if you're already using WeChat to stay in touch with local contacts, since it keeps messaging and payments in one place.</p>
+    </div>
+
+    <div class="highlight"><strong>Recommendation:</strong> Use Alipay as your primary payment method and WeChat Pay as a backup. If you're messaging locals on WeChat anyway, having Pay set up too costs you nothing extra.</div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">✅</div>
+        <h3>Best Uses</h3>
+        <p>Paying at restaurants and shops, splitting bills with Chinese friends, and QR code payments at markets.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚠️</div>
+        <h3>Limitations</h3>
+        <p>Some merchants' mini-programs require a verified Chinese ID. Foreign card linking can occasionally be finicky depending on your issuing bank.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ CASH & ATMs ══════════════════════ -->
+  <div class="section" id="cash">
+    <div class="section-header">
+      <div class="section-icon">💵</div>
+      <div class="section-title-group">
+        <h2>Cash &amp; ATMs</h2>
+        <p>Still useful — essential outside major cities</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>While Beijing and Shanghai are largely cashless, <strong>Renminbi (RMB, also called Yuan, ¥)</strong> is legally required to be accepted everywhere. Cash remains important in rural areas, older markets, small towns, and as an emergency backup. Carry ¥500–1,000 at all times.</p>
+    </div>
+
+    <div class="warning-box">Tell your bank you're travelling to China before you leave. Many banks block foreign ATM withdrawals as fraud prevention — your card can be frozen mid-trip if you don't notify them in advance.</div>
+
+    <h3 class="h3-style">Finding and Using ATMs</h3>
+    <ul class="bullet-list">
+      <li>Bank of China, ICBC, and China Construction Bank ATMs reliably accept foreign cards — look for the Visa/Mastercard logo on the machine</li>
+      <li>ATMs are common at airports, international hotels, major shopping malls, and bank branches</li>
+      <li>Withdrawal limits: typically ¥2,500–3,000 per transaction, up to ~¥20,000/day</li>
+      <li>Fees: a local ATM fee of ¥15–30 plus whatever your home bank charges for international withdrawals</li>
+      <li>Always use ATMs inside bank branches or hotel lobbies — avoid standalone machines in convenience stores</li>
+    </ul>
+
+    <div class="tip-box">Some international banks reimburse foreign ATM fees — Charles Schwab (US), Starling (UK), and Wise are popular choices among frequent travellers. Worth checking before you go.</div>
+
+    <h3 class="h3-style">Getting Cash at a Bank Branch</h3>
+    <div class="prose">
+      <p>Bank of China branches can exchange foreign currency and process cash advances on foreign cards. Always bring your <strong>passport</strong> — it's required for all transactions. Bank branches are typically open Monday–Friday, 9am–5pm, with shorter Saturday hours at larger branches.</p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ FOREIGN CARDS ══════════════════════ -->
+  <div class="section" id="cards">
+    <div class="section-header">
+      <div class="section-icon">💳</div>
+      <div class="section-title-group">
+        <h2>Foreign Cards in China</h2>
+        <p>Where they work — and where they don't</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Don't expect to use your foreign credit or debit card for everyday purchases — but it does work in specific situations. International hotels and larger department stores are your best bet. UnionPay has the widest domestic acceptance of any card network in China.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Venue</th>
+            <th>Visa / Mastercard</th>
+            <th>UnionPay</th>
+            <th>Amex</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>International hotels (4–5 star)</td>
+            <td><span class="tag tag-green">Yes</span></td>
+            <td><span class="tag tag-green">Yes</span></td>
+            <td><span class="tag tag-orange">Usually</span></td>
+          </tr>
+          <tr>
+            <td>Major department stores</td>
+            <td><span class="tag tag-orange">Sometimes</span></td>
+            <td><span class="tag tag-green">Yes</span></td>
+            <td><span class="tag tag-red">Rare</span></td>
+          </tr>
+          <tr>
+            <td>Restaurants</td>
+            <td><span class="tag tag-red">Rarely</span></td>
+            <td><span class="tag tag-orange">Sometimes</span></td>
+            <td><span class="tag tag-red">No</span></td>
+          </tr>
+          <tr>
+            <td>Street food / small shops</td>
+            <td><span class="tag tag-red">No</span></td>
+            <td><span class="tag tag-red">No</span></td>
+            <td><span class="tag tag-red">No</span></td>
+          </tr>
+          <tr>
+            <td>Convenience stores (7-Eleven etc.)</td>
+            <td><span class="tag tag-red">Rarely</span></td>
+            <td><span class="tag tag-green">Yes</span></td>
+            <td><span class="tag tag-red">No</span></td>
+          </tr>
+          <tr>
+            <td>Airports &amp; train stations</td>
+            <td><span class="tag tag-orange">Sometimes</span></td>
+            <td><span class="tag tag-green">Yes</span></td>
+            <td><span class="tag tag-red">Rare</span></td>
+          </tr>
+          <tr>
+            <td>Luxury retail / flagship stores</td>
+            <td><span class="tag tag-green">Yes</span></td>
+            <td><span class="tag tag-green">Yes</span></td>
+            <td><span class="tag tag-green">Yes</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tip-box">If your bank offers a UnionPay card (or a co-branded Visa/UnionPay card), it'll have the widest acceptance in China. Wise and Revolut cards also work at Chinese ATMs with lower fees than most traditional banks.</div>
+  </div>
+
+  <!-- ══════════════════════ CURRENCY EXCHANGE ══════════════════════ -->
+  <div class="section" id="exchange">
+    <div class="section-header">
+      <div class="section-icon">💱</div>
+      <div class="section-title-group">
+        <h2>Currency &amp; Exchange</h2>
+        <p>Getting RMB — rates, options, and what to avoid</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>China's currency is the <strong>Renminbi (RMB)</strong>, officially denominated in <strong>Yuan (CNY / ¥)</strong>. The colloquial term is <em>kuài</em> (块). Notes come in ¥1, ¥5, ¥10, ¥20, ¥50, and ¥100 denominations.</p>
+    </div>
+
+    <h3 class="h3-style">Where to Exchange Money</h3>
+
+    <div class="method-card featured">
+      <div class="method-icon">🏦</div>
+      <div>
+        <div class="method-label">Best Rate</div>
+        <div class="method-name">Bank of China</div>
+        <div class="method-desc">Official exchange rates with minimal markup. Branches at all major airports and city centres. Bring your passport. The most reliable option — slightly slower but worth it for larger amounts.</div>
+        <div class="method-meta">
+          <span class="meta-item">✅ Best rate</span>
+          <span class="meta-item">🛂 Passport required</span>
+          <span class="meta-item">🕐 Mon–Fri 9am–5pm</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="method-card">
+      <div class="method-icon">✈️</div>
+      <div>
+        <div class="method-label">Convenient but costly</div>
+        <div class="method-name">Airport Exchange Booths</div>
+        <div class="method-desc">Exchange a small amount on arrival for taxis and transport. Rates are typically 3–6% worse than bank rates — change the minimum needed, then get better rates in the city.</div>
+        <div class="method-meta">
+          <span class="meta-item">⚡ Available on arrival</span>
+          <span class="meta-item">📉 Poor rates</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="method-card">
+      <div class="method-icon">🏨</div>
+      <div>
+        <div class="method-label">Quick top-up</div>
+        <div class="method-name">Hotel Front Desk</div>
+        <div class="method-desc">Most international hotels offer currency exchange. Rates are 2–5% worse than banks but convenient for small amounts when you need cash quickly.</div>
+        <div class="method-meta">
+          <span class="meta-item">🕐 Usually 24/7</span>
+          <span class="meta-item">📉 Moderate rates</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="warning-box">Never exchange money with street changers — it's illegal, and you'll almost certainly receive counterfeit notes or be shortchanged. Always use a bank or hotel exchange.</div>
+
+    <h3 class="h3-style">Approximate Exchange Rates</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Currency</th><th>Approx. Rate to ¥ CNY</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>USD — US Dollar</td><td>~¥7.2</td><td>Most commonly exchanged; easy everywhere</td></tr>
+          <tr><td>EUR — Euro</td><td>~¥7.8</td><td>Widely accepted at all exchange points</td></tr>
+          <tr><td>GBP — British Pound</td><td>~¥9.1</td><td>Available at Bank of China branches</td></tr>
+          <tr><td>JPY — Japanese Yen</td><td>~¥0.047</td><td>Easy to exchange in major cities</td></tr>
+          <tr><td>HKD — Hong Kong Dollar</td><td>~¥0.92</td><td>Easy to exchange everywhere</td></tr>
+          <tr><td>AUD — Australian Dollar</td><td>~¥4.7</td><td>Available at main branches</td></tr>
+          <tr><td>CAD — Canadian Dollar</td><td>~¥5.3</td><td>Available at Bank of China</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip-box">Rates change daily. Check the current mid-market rate on <a href="https://www.xe.com" target="_blank" rel="noopener" style="color:var(--red);font-weight:600;">XE.com</a> before you travel so you know what's fair when exchanging.</div>
+
+    <h3 class="h3-style">Taking Money In and Out of China</h3>
+    <ul class="bullet-list">
+      <li>You can bring up to <strong>¥20,000 in RMB</strong> in or out of China without declaration</li>
+      <li>Foreign currency up to <strong>$5,000 USD equivalent</strong> can enter without declaration; larger amounts must be declared at customs</li>
+      <li>Unused RMB can be exchanged back at the airport when leaving — save your original exchange receipts as proof</li>
+    </ul>
+  </div>
+
+  <!-- ══════════════════════ FAQ ══════════════════════ -->
+  <div class="section" id="faq">
+    <div class="section-header">
+      <div class="section-icon">❓</div>
+      <div class="section-title-group">
+        <h2>Frequently Asked Questions</h2>
+        <p>Common money questions from foreign visitors</p>
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">Can I survive in China using only cash? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Technically yes — but it will be frustrating in cities. Many small restaurants and food stalls in Beijing and Shanghai now only accept Alipay or WeChat Pay, and staff may struggle to process cash. Larger supermarkets, convenience stores, and all hotels will still take it. We strongly recommend setting up Alipay before you go so you're not relying on cash alone.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Will Google Pay or Apple Pay work in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Generally no. Apple Pay works at some NFC-enabled terminals, but coverage is inconsistent and rare. Google Pay is not widely supported. Neither replaces Alipay or WeChat Pay for everyday spending in China.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How much cash should I carry day-to-day? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">¥200–500 is a comfortable daily buffer if you have Alipay set up. If you're relying primarily on cash, ¥500–1,000 gives more flexibility. Withdraw in larger amounts to minimise ATM fees, and keep a small emergency reserve separate from your main wallet.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I use cryptocurrency in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">No — cryptocurrency trading and transactions are banned in mainland China. Do not attempt to use crypto for payments. China has its own digital currency (Digital Yuan / e-CNY) being trialled in some cities, but it's not widely accessible to tourists and Alipay will cover everything you need.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if I can't set up Alipay before I arrive? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Don't panic. You can set it up after landing — connect to airport or hotel Wi-Fi first, then follow the registration steps. Cash from a Bank of China ATM will cover you in the meantime. Get Alipay working as soon as you have a stable internet connection.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Are there fees when paying with Alipay using a foreign card? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes — Alipay charges approximately 3% on transactions made with a foreign card. Your own bank may also add a foreign transaction fee (typically 1–3%). To minimise costs, use a card with no foreign transaction fees — Wise or Revolut are popular options among travellers — linked to Alipay.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">My card was declined at a Chinese ATM — what do I do? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">First, try a different ATM — Bank of China and ICBC are most reliable with foreign cards. If it still fails, call your bank's international support line (on the back of your card) to check if the card has been blocked for foreign use — this is the most common cause. Also check your daily withdrawal limit hasn't been reached. As a last resort, a Bank of China branch can process a manual cash advance with your passport.</div>
+      </div>
+    </div>
+  </div>
+
+  <a href="../index.html" class="back-link">← Back to Home</a>
+
+</div><!-- /page-wrap -->
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+</body>
+</html>
