@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ — China Awaits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #C0392B;
+      --red-dark: #96281B;
+      --gold: #C9A84C;
+      --gold-light: #e8c96a;
+      --ink: #1a1a1a;
+      --ink-soft: #3d3d3d;
+      --mist: #f7f4f0;
+      --mist-dark: #ede9e3;
+      --white: #ffffff;
+      --border: #e0d9d0;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); line-height: 1.7; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.97); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 60px;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--red); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-size: 0.88rem; font-weight: 500; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--red); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--ink); position: relative; overflow: hidden;
+      padding: 5rem 2rem 4rem; text-align: center;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 18% 58%, rgba(192,57,43,0.28) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 35%, rgba(201,168,76,0.18) 0%, transparent 55%);
+    }
+    .hero-pattern {
+      position: absolute; inset: 0; opacity: 0.035;
+      background-image: repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%);
+      background-size: 20px 20px;
+    }
+    .hero-tag {
+      display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,0.4);
+      padding: 0.3rem 0.9rem; border-radius: 2px; margin-bottom: 1.5rem; position: relative;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 1rem; position: relative;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.65); max-width: 540px; margin: 0 auto 2.5rem; position: relative; }
+    .jump-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; position: relative; }
+    .jump-nav a {
+      display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 500;
+      color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15); padding: 0.45rem 1rem; border-radius: 40px;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .jump-nav a:hover { background: rgba(201,168,76,0.2); border-color: var(--gold); color: var(--gold); }
+
+    /* ── LAYOUT ── */
+    .page-wrap { max-width: 860px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+    /* ── SECTION ── */
+    .section { margin-top: 4rem; scroll-margin-top: 80px; }
+    .section-header {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;
+      padding-bottom: 1rem; border-bottom: 2px solid var(--border);
+    }
+    .section-icon {
+      width: 48px; height: 48px; background: var(--red); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;
+    }
+    .section-title-group h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; }
+    .section-title-group p { font-size: 0.88rem; color: #888; margin-top: 0.1rem; }
+
+    /* ── FAQ ── */
+    .faq { margin: 0; }
+    .faq-item { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 0.6rem; overflow: hidden; }
+    .faq-q {
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.2rem; font-family: 'DM Sans', sans-serif;
+      font-size: 0.93rem; font-weight: 600; color: var(--ink); text-align: left; gap: 1rem;
+    }
+    .faq-q:hover { background: var(--mist); }
+    .faq-arrow { font-size: 1rem; color: var(--gold); transition: transform 0.25s; flex-shrink: 0; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a {
+      display: none; padding: 0.8rem 1.2rem 1rem;
+      font-size: 0.9rem; color: var(--ink-soft);
+      border-top: 1px solid var(--border); line-height: 1.7;
+    }
+    .faq-item.open .faq-a { display: block; }
+    .faq-a a { color: var(--red); }
+
+    /* ── SEARCH ── */
+    .faq-search-wrap {
+      margin: 2rem 0 0.5rem;
+      position: relative;
+    }
+    .faq-search {
+      width: 100%; padding: 0.85rem 1rem 0.85rem 2.8rem;
+      border: 1px solid var(--border); border-radius: 10px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+      color: var(--ink); background: var(--white); outline: none;
+      transition: border-color 0.2s;
+    }
+    .faq-search:focus { border-color: var(--gold); }
+    .faq-search-icon {
+      position: absolute; left: 0.9rem; top: 50%; transform: translateY(-50%);
+      font-size: 1rem; color: #aaa; pointer-events: none;
+    }
+    .faq-count { font-size: 0.82rem; color: #aaa; margin-bottom: 1.5rem; }
+
+    /* ── BACK LINK ── */
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.88rem; font-weight: 500; color: var(--red); text-decoration: none; margin-top: 3rem; }
+    .back-link:hover { text-decoration: underline; }
+
+    /* ── RELATED ── */
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .related-card {
+      display: block; background: var(--white); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem 1.1rem; text-decoration: none;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .related-card:hover { border-color: var(--red); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .related-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 0.3rem; }
+    .related-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; }
+    .related-desc { font-size: 0.82rem; color: #888; line-height: 1.4; }
+
+    .no-results { text-align: center; padding: 2rem; color: #aaa; font-size: 0.9rem; display: none; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .page-wrap { padding: 0 1rem 4rem; }
+      .hero { padding: 3.5rem 1rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">China Awaits</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="pre-arrival.html">Before You Arrive</a></li>
+    <li><a href="safety.html">Safety</a></li>
+    <li><a href="faq.html" class="active">FAQ</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-tag">Frequently Asked Questions</div>
+  <h1>Your China Travel <span>Questions Answered</span></h1>
+  <p class="hero-sub">Everything foreign visitors commonly ask — all in one place, organised by topic.</p>
+  <div class="jump-nav">
+    <a href="#visa">🛂 Visa</a>
+    <a href="#money">💰 Money</a>
+    <a href="#internet">📡 Internet</a>
+    <a href="#transport">🚄 Transport</a>
+    <a href="#hotels">🏨 Hotels</a>
+    <a href="#health">🏥 Health</a>
+    <a href="#food">🍜 Food</a>
+    <a href="#safety">🛡️ Safety</a>
+    <a href="#culture">🎭 Culture</a>
+    <a href="#shopping">🛍️ Shopping</a>
+    <a href="#apps">📱 Apps</a>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- SEARCH -->
+  <div class="faq-search-wrap">
+    <span class="faq-search-icon">🔍</span>
+    <input class="faq-search" type="text" placeholder="Search questions…" id="faqSearch" oninput="filterFAQ()" />
+  </div>
+  <p class="faq-count" id="faqCount"></p>
+  <p class="no-results" id="noResults">No questions match your search. Try a different keyword.</p>
+
+  <!-- ══════════════════════ VISA ══════════════════════ -->
+  <div class="section" id="visa">
+    <div class="section-header">
+      <div class="section-icon">🛂</div>
+      <div class="section-title-group">
+        <h2>Visa &amp; Entry</h2>
+        <p>See full guide: <a href="visa.html" style="color:var(--red);">Visa & Entry →</a></p>
+      </div>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">Which countries can enter China visa-free? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">As of 2025, China offers visa-free entry to citizens of 59+ countries for stays of up to 30 or 90 days depending on nationality. The list is expanding — check the <a href="visa.html">Visa & Entry guide</a> for the current full list and your specific conditions.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I extend my stay inside China if I'm visa-free? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">In limited circumstances, yes. You can apply for a stay extension at a local Public Security Bureau (PSB) Entry-Exit Administration office. Extensions are not guaranteed and are granted at the officer's discretion. It's far easier to plan your trip within the allowed period.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Does my visa-free allowance reset if I leave and re-enter? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Technically yes, but immigration has discretion to refuse re-entry if they believe you're trying to live in China on repeated visa-free stays. A short trip to Hong Kong, Macau, or a neighbouring country and returning the same day is generally not recommended as a "visa run" strategy.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is Hong Kong or Macau the same as mainland China for visa purposes? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">No — Hong Kong and Macau are Special Administrative Regions with their own separate entry rules. Most nationalities can enter Hong Kong visa-free for 90 days and Macau for 30–90 days. Entering the mainland from Hong Kong or Macau requires the correct mainland visa or visa-free eligibility.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">I have a connecting flight through China. Do I need a visa? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">If you stay airside (in the international transit area without passing through immigration), no visa is needed. If you want to exit the airport and explore the city during a layover, you'll need either a standard visa or to qualify for the 72/144-hour transit visa-free policy.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I work or study on a tourist visa or visa-free entry? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">No. Working or studying in China requires the appropriate visa category (Z for work, X for study). Using a tourist visa or visa-free entry for work or study is illegal and can result in serious penalties including deportation and bans on future entry.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How long does my passport need to be valid? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">China requires your passport to be valid for at least 6 months beyond your intended stay. If your passport expires in less than 6 months from your travel date, renew it before applying for a visa or travelling.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ MONEY ══════════════════════ -->
+  <div class="section" id="money">
+    <div class="section-header">
+      <div class="section-icon">💰</div>
+      <div class="section-title-group">
+        <h2>Money &amp; Payments</h2>
+        <p>See full guide: <a href="money.html" style="color:var(--red);">Money & Payments →</a></p>
+      </div>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">Can I survive in China using only cash? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Technically yes — but it will be frustrating in cities. Many small restaurants and food stalls now only accept Alipay or WeChat Pay, and staff may struggle to process cash. Larger supermarkets, convenience stores, and all hotels still take it. We strongly recommend setting up Alipay before you go.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Will Google Pay or Apple Pay work in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Generally no. Apple Pay works at some NFC-enabled terminals but coverage is inconsistent and rare. Google Pay is not widely supported. Neither replaces Alipay or WeChat Pay for everyday spending in China.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How much cash should I carry day-to-day? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">¥200–500 is a comfortable daily buffer if you have Alipay set up. If you're relying primarily on cash, ¥500–1,000 gives more flexibility. Withdraw in larger amounts to minimise ATM fees, and keep a small emergency reserve separate from your main wallet.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I use cryptocurrency in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">No — cryptocurrency trading and transactions are banned in mainland China. Do not attempt to use crypto for payments. China has its own digital currency (Digital Yuan / e-CNY) being trialled in some cities, but it's not widely accessible to tourists and Alipay will cover everything you need.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if I can't set up Alipay before I arrive? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Don't panic. You can set it up after landing — connect to airport or hotel Wi-Fi first, then follow the registration steps. Cash from a Bank of China ATM will cover you in the meantime. Get Alipay working as soon as you have a stable internet connection.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Are there fees when paying with Alipay using a foreign card? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes — Alipay charges approximately 3% on transactions made with a foreign card. Your own bank may also add a foreign transaction fee (typically 1–3%). To minimise costs, use a card with no foreign transaction fees — Wise or Revolut are popular options — linked to Alipay.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">My card was declined at a Chinese ATM — what do I do? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">First, try a different ATM — Bank of China and ICBC are most reliable with foreign cards. If it still fails, call your bank's international support line to check if the card has been blocked for foreign use — this is the most common cause. As a last resort, a Bank of China branch can process a manual cash advance with your passport.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ INTERNET ══════════════════════ -->
+  <div class="section" id="internet">
+    <div class="section-header">
+      <div class="section-icon">📡</div>
+      <div class="section-title-group">
+        <h2>Internet &amp; VPN</h2>
+        <p>See full guide: <a href="internet.html" style="color:var(--red);">Internet & VPN →</a></p>
+      </div>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">Is using a VPN in China legal? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Technically, only government-approved VPNs are legal under Chinese law. In practice, no foreign tourist has ever been prosecuted for personal VPN use. Millions of Chinese citizens also use VPNs daily without legal consequences. The restrictions are primarily aimed at companies distributing VPN software commercially, not tourists checking Instagram. The realistic risk for a foreign tourist is essentially zero.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">My VPN stopped working in China — what do I do? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">First, try switching servers — connect to Japan, South Korea, Singapore, or Taiwan instead of your current server. These tend to work best from China. Next, try changing the VPN protocol in settings (look for "Stealth", "Obfuscated", or "Shadowsocks" modes). If your VPN is completely down, it sometimes happens temporarily around sensitive political dates and typically resolves within a day or two.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Should I keep my VPN on all the time in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">No — and it's actually better not to. Chinese apps like WeChat, Alipay, Baidu Maps, and DiDi all work better without the VPN. Turn the VPN on when you need to access blocked services (Google, WhatsApp, Instagram), then turn it off when you're done. Running the VPN constantly also drains your battery faster.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Are free VPNs reliable in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">We strongly advise against them. Free VPNs are almost universally unreliable in China — the firewall identifies and blocks them quickly. Many also make money by selling your browsing data, creating a serious privacy risk. The cost of a reliable VPN for a 2-week trip (roughly $5–15) is trivial compared to the peace of mind.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Will my work VPN work in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Corporate VPNs vary significantly. Some enterprise VPNs (especially those using older protocols like L2TP or PPTP) are reliably blocked. Others using modern protocols with obfuscation may work. If you need to work remotely from China, test your work VPN before you travel — and have a personal VPN as backup.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I watch Netflix in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes — with a working VPN connected to a server in a Netflix-supported country (US, UK, etc.), Netflix works in China. Download shows for offline viewing before you travel as a backup. ExpressVPN and NordVPN are generally the most reliable for Netflix access.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">I forgot to install a VPN before arriving — what can I do? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">You have a few options, though none are ideal. Ask someone already in China (friend, hotel staff, expat) to send you the VPN APK via WeChat or email. Some international 5-star hotels offer "international internet access" through their own network. Prevention is far easier than the cure — always install your VPN before arriving.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ TRANSPORT ══════════════════════ -->
+  <div class="section" id="transport">
+    <div class="section-header">
+      <div class="section-icon">🚄</div>
+      <div class="section-title-group">
+        <h2>Transport</h2>
+        <p>See full guide: <a href="transport.html" style="color:var(--red);">Transport →</a></p>
+      </div>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">Do I need to book train tickets in advance? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">For popular routes (Beijing–Shanghai, Beijing–Xi'an, Shanghai–Hangzhou) during public holidays or Golden Week, yes — book as far ahead as possible, ideally 30 days out when tickets open. For less popular routes and off-peak travel, same-day or next-day tickets are usually available. Use Trip.com or the 12306 app to check availability and book.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I use Uber in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">No — Uber does not operate in mainland China. The equivalent is DiDi (滴滴), which works almost identically. Download DiDi before you arrive, link it to Alipay or a foreign card, and you're set. DiDi has an English interface and is the safest, most reliable way to get a car in Chinese cities.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is it safe to take taxis in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Official metered taxis are safe — always make sure the meter is running before you set off. Avoid unofficial taxis or drivers who approach you at airports and stations; they often charge vastly inflated prices. DiDi is generally safer than street taxis because the driver and route are tracked and logged.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do metro stations have English signs? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes — all major city metro systems (Beijing, Shanghai, Guangzhou, Shenzhen, Chengdu, etc.) have bilingual Chinese/English signage throughout. Station names, line maps, and exit numbers are all in English. Announcements on trains are also made in both languages. Getting around by metro as a non-Chinese speaker is straightforward.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I drive in China with a foreign licence? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">No — foreign driving licences are not valid in mainland China, and international driving permits (IDPs) are also not recognised. To drive in China, you would need a Chinese driving licence. For most tourists, DiDi, taxis, and public transport are far more practical anyway.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How do I get from the airport to the city centre? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Most major Chinese airports have a direct metro link to the city — this is almost always the cheapest and most reliable option. Airport express trains are clearly signed and straightforward to use. Alternatively, DiDi from the airport is reliable (use the official DiDi pickup zone). Avoid unlicensed drivers who approach you in the arrivals hall.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What's the cheapest way to travel between cities? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">For distances up to ~800km, second-class high-speed rail (G/D trains) is often cheaper than flying once you factor in airport time and transit costs. For longer distances, domestic flights can be competitive — especially with budget carriers like Spring Airlines. Overnight sleeper trains are a good budget option for scenic routes and save on accommodation.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ HOTELS ══════════════════════ -->
+  <div class="section" id="hotels">
+    <div class="section-header">
+      <div class="section-icon">🏨</div>
+      <div class="section-title-group">
+        <h2>Hotels &amp; Accommodation</h2>
+        <p>See full guide: <a href="hotels.html" style="color:var(--red);">Hotels →</a></p>
+      </div>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">Why did my hotel say they can't accept me? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Some Chinese hotels — particularly budget guesthouses and smaller properties — are not licensed to host foreign guests. This is a real and common issue. Always filter for properties with foreign guest reviews when booking, or book through international platforms like Booking.com which generally only lists compliant properties. International hotel chains never have this issue.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I need to register with the police after arriving? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Technically yes — all foreigners are required to register their accommodation with local police within 24 hours of arrival. In practice, hotels do this automatically on your behalf when you check in. If you're staying with friends or in a private rental, the host is required to register you at the local police station. This is rarely enforced for short stays but is worth being aware of.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I pay for my hotel with a foreign credit card? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">At international hotels (4–5 star chains), yes — Visa and Mastercard are reliably accepted. At local guesthouses and budget hotels, mobile payment (Alipay or WeChat Pay) or cash is expected. Always confirm the payment method when booking if you're not staying at an international brand.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is it safe to stay in Chinese hotels? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes — hotels in China are safe. Security is generally good, rooms are locked and monitored, and theft from rooms is uncommon. As anywhere, use the in-room safe for passports and valuables. International brand hotels offer the highest level of security and service consistency.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What voltage and plug type does China use? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">China uses 220V/50Hz. Plug types are Type A (two flat pins) and Type I (two angled pins). Most hotels have universal sockets in the bathroom and by the desk. A universal travel adaptor covers you everywhere — pack one to be safe. Modern chargers (USB-C, laptop bricks) are usually dual-voltage and just need an adaptor, not a converter.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Will my hotel have Wi-Fi? Can I access it normally? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes, hotels widely offer free Wi-Fi. However, the same blocking rules apply — you'll still need a VPN to access Google and Western sites on hotel Wi-Fi. Hotel Wi-Fi is often slower than a good local SIM card for data. Some premium international hotels offer a "global internet" option that bypasses the firewall through their own network.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Should I book everything in advance or can I walk in? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Book in advance, especially in major cities and during public holidays. Walk-in availability exists outside peak periods, but you lose the ability to confirm that the property accepts foreign guests, compare prices, and read English-language reviews. Booking ahead also gives you a reference number for check-in — useful when there's a language barrier.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ HEALTH ══════════════════════ -->
+  <div class="section" id="health">
+    <div class="section-header">
+      <div class="section-icon">🏥</div>
+      <div class="section-title-group">
+        <h2>Health &amp; Medical</h2>
+        <p>See full guide: <a href="medical.html" style="color:var(--red);">Medical & Health →</a></p>
+      </div>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">Do I need any vaccinations before visiting China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">No vaccinations are legally required for entry to China (unless arriving from a yellow fever zone). However, most travel health advisors recommend being up to date on routine vaccinations (MMR, tetanus, hepatitis A and B), and potentially typhoid if you're eating adventurously in rural areas. Consult a travel medicine clinic 4–6 weeks before departure.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is the tap water safe to drink? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">No — never drink tap water anywhere in China, cities or rural areas alike. Tap water is used for bathing and cooking at high heat, but not for drinking. Bottled water is cheap and available everywhere; hotels provide it in rooms. Most visitors use tap water for brushing teeth without issue, but if you're cautious, use bottled.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if I need prescription medication that isn't available in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Bring adequate supply of all prescription medication from home — more than you think you'll need. Keep medication in original packaging and carry a doctor's letter if the medication is controlled. Some medications legal in your home country are controlled or prohibited in China — check with the Chinese embassy before travelling.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How bad is the air quality in Chinese cities? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">It varies significantly. Beijing and some northern cities can experience heavy smog, particularly in winter. Coastal cities like Shanghai and Shenzhen tend to have better air. Check the AQI (Air Quality Index) daily using apps like AQIcn or IQAir. Above 150 is "Unhealthy" — consider limiting outdoor exertion. Above 200, wear an N95 or KN95 mask outside.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can Chinese hospitals read my medical records from home? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Not directly — Chinese hospitals are not connected to foreign medical record systems. Bring printed copies of any relevant medical history, current prescriptions, known allergies, and your blood type. If you have a complex medical history, carry a brief summary in both English and Chinese (your doctor or a translation service can help with this).</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is food safety a concern in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Food safety standards have improved dramatically over the past decade, especially at restaurants frequented by locals. Street food with high turnover and a visible cooking process is generally very safe. Avoid pre-cooked food that has been sitting out for a long time, raw salads at basic establishments, and tap water in drinks.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if I have a medical emergency and no one speaks English? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Call your travel insurer's 24-hour emergency line first — they can provide real-time interpreter support and direct you to the right facility. If the situation is immediately life-threatening, call 120. At the hospital, show written Chinese phrases on your phone. For non-emergencies, seek out an international clinic where English-speaking doctors are available. See the <a href="medical.html">Medical guide</a> for clinic contacts by city.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ FOOD ══════════════════════ -->
+  <div class="section" id="food">
+    <div class="section-header">
+      <div class="section-icon">🍜</div>
+      <div class="section-title-group">
+        <h2>Food &amp; Dining</h2>
+        <p>See full guide: <a href="food.html" style="color:var(--red);">Food & Dining →</a></p>
+      </div>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">Is street food safe to eat in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes — street food with high turnover and a visible cooking process is generally very safe. Food safety standards in China have improved dramatically. Avoid pre-cooked food that has been sitting out for a long time, and don't drink tap water.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if I can't use chopsticks? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Almost every restaurant will have forks and spoons available — just ask. Nobody will be offended. Many restaurants in tourist areas proactively offer forks to foreign visitors. You'll be absolutely fine.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How much does food cost in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">China is exceptional value for food at every level. Street food: ¥5–20 per item. A proper sit-down meal at a local restaurant: ¥30–80 per person. Mid-range restaurant: ¥80–200 per person. High-end (Peking duck, fine dining): ¥300–800+ per person. International food tends to be more expensive — ¥100–300 per person.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is Western food available in Chinese cities? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">In major cities (Beijing, Shanghai, Guangzhou, Shenzhen, Chengdu), yes — there are excellent Western restaurants, international chains, Japanese, Korean, and Southeast Asian restaurants. In smaller cities and rural areas, options become limited quickly. McDonald's, KFC, and Pizza Hut are ubiquitous nationwide as a familiar fallback.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Will I be served unusual or exotic meats? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">The vast majority of Chinese food is completely familiar: chicken, pork, beef, lamb, fish, and tofu. You will not accidentally eat something unusual at a normal restaurant. If you're concerned, stick to dishes you can identify from the photos on the menu.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I need to book restaurants in advance? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">For popular restaurants and special experiences (Peking duck, famous hot pot chains like Haidilao, dim sum institutions in Guangzhou), booking ahead is strongly recommended — queues can be hours long. For everyday local restaurants, just walk in. Booking is done via Dianping or WeChat mini-programs; asking your hotel to call ahead is the easiest option for foreigners.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if I have a bad reaction to food in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Mild stomach issues are common for first-time visitors as your gut adjusts to new ingredients — usually passes within 1–2 days. Stay hydrated with bottled water. For allergic reactions or more serious symptoms, go directly to the nearest hospital emergency department (急诊室). International hospitals in major cities have English-speaking staff. See our <a href="medical.html">Medical guide</a>.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ SAFETY ══════════════════════ -->
+  <div class="section" id="safety">
+    <div class="section-header">
+      <div class="section-icon">🛡️</div>
+      <div class="section-title-group">
+        <h2>Safety</h2>
+        <p>See full guide: <a href="safety.html" style="color:var(--red);">Safety →</a></p>
+      </div>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">Is China safe for tourists? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes — China consistently ranks as one of the safer countries for international visitors. Violent crime against tourists is rare, and most people complete their trip without any incident. The main things to watch are tourist scams in busy areas and road safety (traffic rules are applied loosely). With normal awareness, China is a very comfortable destination.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I need travel insurance for China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Strongly recommended. Medical care at international hospitals is good but expensive for foreigners — a hospital stay or emergency evacuation can run to tens of thousands of dollars without coverage. Make sure your policy includes medical evacuation, and save your insurer's 24-hour emergency number in your phone.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What should I do if I'm arrested or detained? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Stay calm and ask to contact your embassy or consulate immediately — this is your legal right under the Vienna Convention. Do not sign any documents you don't understand. Contact your embassy's emergency line as soon as possible; they can provide a list of local lawyers and monitor your situation.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Are there areas of China I should avoid? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Most of China is safe and open to tourists. Some areas have specific considerations: Xinjiang has heightened security measures and may require additional registration with police on arrival. Tibet requires a special Tibet Travel Permit in addition to your visa. Check your government's travel advisory for the most current information before you go.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is it safe to use ATMs in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes — ATM skimming and card cloning are much less common in China than in many other countries. Stick to ATMs inside bank branches (Bank of China, ICBC, China Construction Bank) rather than standalone machines in convenience stores. Notify your bank before you travel so your card isn't blocked for foreign use.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ CULTURE ══════════════════════ -->
+  <div class="section" id="culture">
+    <div class="section-header">
+      <div class="section-icon">🎭</div>
+      <div class="section-title-group">
+        <h2>Culture &amp; Customs</h2>
+        <p>See full guide: <a href="culture.html" style="color:var(--red);">Culture Tips →</a></p>
+      </div>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">Will Chinese people be offended if I make cultural mistakes? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Almost never. Chinese people are very accustomed to foreign visitors not knowing local customs, and most will find your attempt to engage with the culture endearing rather than offensive. A smile and a genuine apology fixes almost any accidental misstep.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is it rude to ask Chinese people about their salary or age? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Not as rude as it might be in Western cultures. Questions about age, salary, marital status, and whether you've eaten yet are common small talk in China — they're expressions of interest rather than intrusions. Younger urban Chinese people are increasingly adopting Western norms around privacy, so gauge the situation.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I take photos of people on the street? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Generally yes in public spaces, but asking first is always more respectful. Most people in tourist areas are happy to be photographed. Avoid photographing people who look uncomfortable, or in sensitive contexts. At temples and heritage sites, follow posted signage about photography restrictions.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What topics should I avoid in conversation? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">The three Ts — Taiwan, Tibet, and Tiananmen — are politically sensitive and can create genuine discomfort, particularly with people you've just met. Criticism of the Chinese government and anything touching on the COVID-19 origin debate are also best avoided in casual or new acquaintances.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I need to bow when meeting Chinese people? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Bowing is more of a Japanese and Korean custom. In China, a firm handshake is the standard professional greeting in cities. A friendly nod or slight incline of the head is also fine. Among older people or in more traditional settings, a small bow shows extra respect but is never required of a foreign visitor.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is it true that people stare at foreigners in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">In major cities like Beijing, Shanghai, and Guangzhou, you'll barely turn a head — international visitors are common. In smaller cities and rural areas, you may attract more attention. It's almost always curiosity rather than hostility. A smile and a "nǐ hǎo" usually results in an immediate friendly response.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ SHOPPING ══════════════════════ -->
+  <div class="section" id="shopping">
+    <div class="section-header">
+      <div class="section-icon">🛍️</div>
+      <div class="section-title-group">
+        <h2>Shopping</h2>
+        <p>See full guide: <a href="shopping.html" style="color:var(--red);">Shopping →</a></p>
+      </div>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">Is it rude to bargain in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Not at all — in markets and street shops, bargaining is entirely normal and expected. Vendors build negotiation room into their prices from the start. What would be rude is agreeing to a price and then not buying, or trying to bargain at a fixed-price store like a supermarket or chain retailer.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How do I know if something is fake? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">If the price is dramatically below what you'd expect to pay for a branded item, it's almost certainly a replica. Common fakes include luxury bags, watches, electronics, and sports clothing. Buying knowingly for personal use is a grey area; attempting to bring quantities through customs or resell them is illegal.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I use my foreign credit card in shops? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">In large malls, international hotels, and luxury stores — yes. In markets, street shops, and most everyday retail — no. Alipay or WeChat Pay linked to your foreign card is the most practical solution. See our <a href="money.html">Money guide</a> for setup instructions.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is it safe to buy electronics in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">From reputable stores and official brand outlets, yes — and often at better prices than at home. From markets or unofficial vendors, quality can be inconsistent. Check that voltage is compatible with your home country (China uses 220V/50Hz), and that devices have the right plug or adaptor.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I ship purchases home from China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes — international shipping from China is well-developed and relatively affordable. Major courier services (DHL, FedEx, SF Express) operate from most cities. Factor in customs duties in your home country on the total value shipped.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ APPS ══════════════════════ -->
+  <div class="section" id="apps">
+    <div class="section-header">
+      <div class="section-icon">📱</div>
+      <div class="section-title-group">
+        <h2>Apps &amp; Language</h2>
+        <p>See full guide: <a href="apps.html" style="color:var(--red);">Apps & SIM →</a></p>
+      </div>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">Will my phone work normally in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Mostly yes — calls, texts, and the App Store are accessible. The main difference is that many apps you use at home (Google apps, WhatsApp, Instagram) are blocked. You'll need a VPN to use them, and a few China-specific apps to replace navigation, payment, and maps tools.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is my phone compatible with Chinese networks? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Almost certainly yes. Chinese networks use standard 4G/LTE and 5G bands that modern international phones support. Most flagship phones sold globally (iPhone, Samsung Galaxy, Pixel) work fine. Budget or older phones may not support all Chinese 5G bands, but 4G coverage is excellent nationwide.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is Wi-Fi available in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes, widely — hotels, cafes, restaurants, shopping malls, airports, and high-speed train stations all offer free Wi-Fi. However, the same blocking rules apply — you'll still need a VPN to access Google and Western sites. Hotel Wi-Fi is often slower than a good local SIM card.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How do I set up WeChat if I'm new to it? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">WeChat's registration requires verification by an existing WeChat user. The easiest fix: ask a friend who already has WeChat to scan your QR code and verify you. Do this before you leave. If registering from scratch without help, try using a non-Chinese phone number and avoid registering on Chinese Wi-Fi or a Chinese SIM — this sometimes triggers additional checks.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I need to speak Mandarin to get around China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">No — with a good translation app and a few simple tactics (showing your destination as a map pin, using photo menus, typing requests to show locals), you can navigate most situations without speaking Mandarin. That said, knowing a handful of basics — nǐ hǎo (hello), xièxiè (thank you) — will get you a noticeably warmer reception everywhere.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Which translation app works best in China without a VPN? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Microsoft Translator is the best all-rounder — it works without a VPN, supports camera translation, voice conversation mode, and offline packs. Baidu Translate produces the most natural-sounding Chinese output, which is useful when showing text to locals. Pre-download the Simplified Chinese offline pack on whichever app you choose before you arrive.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RELATED -->
+  <section style="margin-top: 3rem;">
+    <p style="font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:#888; font-weight:600; margin-bottom:1rem;">Explore Full Guides</p>
+    <div class="related-grid">
+      <a class="related-card" href="pre-arrival.html">
+        <div class="related-label">Before You Fly</div>
+        <div class="related-title">Before You Arrive</div>
+        <div class="related-desc">Complete pre-departure checklist — everything to do before you land.</div>
+      </a>
+      <a class="related-card" href="visa.html">
+        <div class="related-label">Entry</div>
+        <div class="related-title">Visa & Entry</div>
+        <div class="related-desc">Visa-free countries, how to apply, and what to expect at the border.</div>
+      </a>
+      <a class="related-card" href="money.html">
+        <div class="related-label">Payments</div>
+        <div class="related-title">Money & Payments</div>
+        <div class="related-desc">Alipay, WeChat Pay, ATMs, and currency exchange explained.</div>
+      </a>
+      <a class="related-card" href="safety.html">
+        <div class="related-label">Staying Safe</div>
+        <div class="related-title">Safety Guide</div>
+        <div class="related-desc">Scams, emergency numbers, health, and digital safety.</div>
+      </a>
+    </div>
+  </section>
+
+  <a href="../index.html" class="back-link">← Back to Home</a>
+
+</div><!-- /page-wrap -->
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // FAQ search/filter
+  function filterFAQ() {
+    const q = document.getElementById('faqSearch').value.toLowerCase().trim();
+    const items = document.querySelectorAll('.faq-item');
+    let visible = 0;
+
+    items.forEach(item => {
+      const text = item.textContent.toLowerCase();
+      const match = !q || text.includes(q);
+      item.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+
+    // Hide section headers if all items in that section are hidden
+    document.querySelectorAll('.section').forEach(section => {
+      const visibleItems = section.querySelectorAll('.faq-item:not([style*="none"])');
+      section.style.display = visibleItems.length === 0 && q ? 'none' : '';
+    });
+
+    const total = items.length;
+    const countEl = document.getElementById('faqCount');
+    const noResults = document.getElementById('noResults');
+    if (q) {
+      countEl.textContent = `${visible} of ${total} questions match`;
+      noResults.style.display = visible === 0 ? 'block' : 'none';
+    } else {
+      countEl.textContent = '';
+      noResults.style.display = 'none';
+    }
+  }
+</script>
+
+</body>
+</html>

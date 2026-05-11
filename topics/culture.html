@@ -191,18 +191,6 @@
       .taboo-grid { grid-template-columns: repeat(3, 1fr); }
       .phrase-grid { grid-template-columns: 1fr; }
     }
-
-    /* ── RELATED ── */
-    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; margin-top: 1rem; }
-    .related-card {
-      display: block; background: var(--white); border: 1px solid var(--border);
-      border-radius: 12px; padding: 1rem 1.1rem; text-decoration: none;
-      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-    }
-    .related-card:hover { border-color: var(--red); transform: translateY(-2px); box-shadow: var(--shadow); }
-    .related-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 0.3rem; }
-    .related-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; }
-    .related-desc { font-size: 0.82rem; color: #888; line-height: 1.4; }
   </style>
 </head>
 <body>
@@ -293,10 +281,10 @@
 
     <h3 class="h3-style">Names and Titles</h3>
     <ul class="bullet-list">
-      <li>Chinese names put the <strong>family name first</strong> — Wang Fang's family name is Wang, not Fang</li>
-      <li>Address people formally using their title and family name (e.g. "Director Wang", "Dr. Li") unless invited to use given names</li>
-      <li>Many Chinese professionals adopt an English name for foreign interactions — use it if offered</li>
-      <li>Never shorten or nickname someone's name without their invitation</li>
+      <li><span class="li-content">Chinese names put the <strong>family name first</strong><span class="sub">Wang Fang's family name is Wang, not Fang — the reverse of Western convention.</span></span></li>
+      <li><span class="li-content">Address people formally using their title and family name<span class="sub">e.g. "Director Wang" or "Dr. Li" — unless they specifically invite you to use given names.</span></span></li>
+      <li><span class="li-content">Many Chinese professionals adopt an English name for foreign interactions<span class="sub">Use it if offered — it's a gesture of welcome and makes things easier for both of you.</span></span></li>
+      <li><span class="li-content">Never shorten or nickname someone's name without their invitation</span></li>
     </ul>
 
     <h3 class="h3-style">General Social Etiquette</h3>
@@ -366,11 +354,11 @@
 
     <h3 class="h3-style">Toasting &amp; Drinking</h3>
     <ul class="bullet-list">
-      <li>The host usually initiates the first toast — wait for it before drinking</li>
-      <li><strong>Gānbēi</strong> (干杯) literally means "bottoms up" — in formal or business settings you're expected to drain your glass, but among friends and younger people it often just means clinking glasses; read the room</li>
-      <li>Hold your glass slightly lower than someone more senior when clinking</li>
-      <li>It's perfectly acceptable to decline alcohol politely — saying you're driving or have a health condition is always respected</li>
-      <li>Tea is the safe non-alcoholic alternative at any formal meal</li>
+      <li><span class="li-content">The host usually initiates the first toast — wait for it before drinking</span></li>
+      <li><span class="li-content"><strong>Gānbēi</strong> (干杯) literally means "bottoms up"<span class="sub">In formal or business settings you're expected to drain your glass. Among friends and younger people it often just means clinking glasses — read the room.</span></span></li>
+      <li><span class="li-content">Hold your glass slightly lower than someone more senior when clinking</span></li>
+      <li><span class="li-content">It's perfectly acceptable to decline alcohol politely<span class="sub">Saying you're driving or have a health condition is always respected — no further explanation needed.</span></span></li>
+      <li><span class="li-content">Tea is the safe non-alcoholic alternative at any formal meal</span></li>
     </ul>
 
     <div class="tip-box">If you're the guest of honour, expect to be served the best pieces of food directly — a fish head, the first dumpling, or the crispiest piece of duck skin. Accepting graciously is the right move.</div>
@@ -415,10 +403,10 @@
 
     <h3 class="h3-style">How to Give and Receive</h3>
     <ul class="bullet-list">
-      <li><span class="li-content">Always offer and receive gifts with <strong>both hands</strong><span class="sub">One hand is considered casual or dismissive</span></span></li>
-      <li><span class="li-content">The recipient will often <strong>not open the gift immediately</strong><span class="sub">This is polite, not rude — opening on the spot can seem greedy</span></span></li>
-      <li><span class="li-content">Wrap gifts nicely in red, gold, or bright colours<span class="sub">Avoid black or white wrapping — these are mourning colours</span></span></li>
-      <li><span class="li-content">Expect a brief refusal before acceptance<span class="sub">This is customary modesty, not a genuine "no" — gently insist once or twice</span></span></li>
+      <li>Always offer and receive gifts with <strong>both hands</strong><br><span style="font-size:0.85em;color:#888;">One hand is considered casual or dismissive</span></li>
+      <li>The recipient will often <strong>not open the gift immediately</strong><br><span style="font-size:0.85em;color:#888;">This is polite, not rude — opening on the spot can seem greedy</span></li>
+      <li>Wrap gifts nicely in red, gold, or bright colours<br><span style="font-size:0.85em;color:#888;">Avoid black or white wrapping — these are mourning colours</span></li>
+      <li>Expect a brief refusal before acceptance<br><span style="font-size:0.85em;color:#888;">This is customary modesty, not a genuine "no" — gently insist once or twice</span></li>
     </ul>
 
     <div class="tip-box">Bringing a small gift from your home country — a local snack, a small craft, or something branded with your city — is always a thoughtful and well-received gesture when visiting someone's home.</div>
@@ -687,33 +675,6 @@
       </div>
     </div>
   </div>
-
-  <!-- RELATED -->
-  <section style="margin-top: 3rem;">
-    <p style="font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:#888; font-weight:600; margin-bottom:1rem;">Keep Reading</p>
-    <div class="related-grid">
-      <a class="related-card" href="food.html">
-        <div class="related-label">Eating Out</div>
-        <div class="related-title">Food & Dining</div>
-        <div class="related-desc">Regional cuisines, dining etiquette, must-try dishes and how to order.</div>
-      </a>
-      <a class="related-card" href="safety.html">
-        <div class="related-label">Staying Safe</div>
-        <div class="related-title">Safety Guide</div>
-        <div class="related-desc">Scams to avoid, emergency numbers, and health tips for visitors.</div>
-      </a>
-      <a class="related-card" href="money.html">
-        <div class="related-label">Payments</div>
-        <div class="related-title">Money & Payments</div>
-        <div class="related-desc">Alipay, WeChat Pay, cash, ATMs, and currency exchange.</div>
-      </a>
-      <a class="related-card" href="apps.html">
-        <div class="related-label">Communication</div>
-        <div class="related-title">Language Help</div>
-        <div class="related-desc">Translation tools, useful phrases, and how to get by without Mandarin.</div>
-      </a>
-    </div>
-  </section>
 
   <a href="../index.html" class="back-link">← Back to Home</a>
 

@@ -204,18 +204,6 @@
       .phrase-grid { grid-template-columns: 1fr; }
       .emergency-divider { display: none; }
     }
-
-    /* ── RELATED ── */
-    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; margin-top: 1rem; }
-    .related-card {
-      display: block; background: var(--white); border: 1px solid var(--border);
-      border-radius: 12px; padding: 1rem 1.1rem; text-decoration: none;
-      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-    }
-    .related-card:hover { border-color: var(--red); transform: translateY(-2px); box-shadow: var(--shadow); }
-    .related-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 0.3rem; }
-    .related-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; }
-    .related-desc { font-size: 0.82rem; color: #888; line-height: 1.4; }
   </style>
 </head>
 <body>
@@ -225,8 +213,8 @@
   <ul class="nav-links">
     <li><a href="../index.html">Home</a></li>
     <li><a href="pre-arrival.html">Before You Arrive</a></li>
-    <li><a href="safety.html">Safety</a></li>
-    <li><a href="medical.html" class="active">Medical</a></li>
+    <li><a href="transport.html">Transport</a></li>
+    <li><a href="food.html">Food</a></li>
   </ul>
 </nav>
 
@@ -357,10 +345,10 @@
 
     <h3 class="h3-style">International clinic chains in China</h3>
     <ul class="bullet-list">
-      <li><strong>United Family Healthcare (和睦家)</strong> — the largest network, with hospitals and clinics in Beijing, Shanghai, Guangzhou, Chengdu and more</li>
-      <li><strong>Parkway Health</strong> — strong presence in Shanghai</li>
-      <li><strong>International SOS</strong> — clinics in major cities, strong evacuation support</li>
-      <li><strong>Raffles Medical</strong> — good coverage in tier-one cities</li>
+      <li><span class="li-content"><strong>United Family Healthcare (和睦家)</strong><span class="sub">The largest international network, with hospitals and clinics in Beijing, Shanghai, Guangzhou, Chengdu and more.</span></span></li>
+      <li><span class="li-content"><strong>Parkway Health</strong><span class="sub">Strong presence in Shanghai; multiple clinics across the city.</span></span></li>
+      <li><span class="li-content"><strong>International SOS</strong><span class="sub">Clinics in major cities; particularly strong on medical evacuation support.</span></span></li>
+      <li><span class="li-content"><strong>Raffles Medical</strong><span class="sub">Good coverage in tier-one cities; English-speaking staff throughout.</span></span></li>
     </ul>
 
     <div class="tip-box">
@@ -572,15 +560,15 @@
     </div>
 
     <ul class="bullet-list">
-      <li><strong>All prescription medication</strong> — bring more than you need, keep in original packaging, carry a doctor's letter if controlled</li>
-      <li><strong>Your usual painkiller</strong> — ibuprofen and paracetamol are available in China but under different brand names; bring your preferred brand to avoid confusion</li>
-      <li><strong>Antihistamines</strong> — useful for allergic reactions; brands differ significantly</li>
-      <li><strong>Diarrhoea medication</strong> — traveller's stomach is common; bring loperamide (Imodium)</li>
-      <li><strong>Rehydration sachets</strong> — ORS sachets; very useful if you get sick</li>
-      <li><strong>Antacids</strong> — Chinese food is rich and oily; useful for sensitive stomachs</li>
-      <li><strong>Insect repellent</strong> — especially if visiting rural or southern areas; DEET-based products can be hard to find</li>
-      <li><strong>Sunscreen</strong> — available widely in China, though formulations differ from Western brands; bring your preferred product if you have a specific routine</li>
-      <li><strong>Any sleep medication</strong> — time zone adjustment can be significant</li>
+      <li><span class="li-content"><strong>All prescription medication</strong><span class="sub">Bring more than you need, keep in original packaging, and carry a doctor's letter if the medication is controlled.</span></span></li>
+      <li><span class="li-content"><strong>Your usual painkiller</strong><span class="sub">Ibuprofen and paracetamol are available in China but under different brand names — bring your preferred brand to avoid confusion.</span></span></li>
+      <li><span class="li-content"><strong>Antihistamines</strong><span class="sub">Useful for allergic reactions; brands differ significantly from Western equivalents.</span></span></li>
+      <li><span class="li-content"><strong>Diarrhoea medication</strong><span class="sub">Traveller's stomach is common — bring loperamide (Imodium) as a precaution.</span></span></li>
+      <li><span class="li-content"><strong>Rehydration sachets</strong><span class="sub">ORS sachets are very useful if you get sick and can't keep fluids down.</span></span></li>
+      <li><span class="li-content"><strong>Antacids</strong><span class="sub">Chinese food is rich and oily — useful for sensitive stomachs.</span></span></li>
+      <li><span class="li-content"><strong>Insect repellent</strong><span class="sub">Especially important if visiting rural or southern areas — DEET-based products can be hard to find in China.</span></span></li>
+      <li><span class="li-content"><strong>Sunscreen</strong><span class="sub">Available widely in China, though formulations differ from Western brands — bring your preferred product if you have a specific routine.</span></span></li>
+      <li><span class="li-content"><strong>Sleep medication</strong><span class="sub">Time zone adjustment can be significant — worth having if you're sensitive to jet lag.</span></span></li>
     </ul>
 
     <div class="warning-box">
@@ -800,33 +788,6 @@
       </div>
     </div>
 
-  </section>
-
-  <!-- RELATED -->
-  <section style="margin-top: 3rem; padding: 0 1.5rem;">
-    <p style="font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:#888; font-weight:600; margin-bottom:1rem;">Keep Reading</p>
-    <div class="related-grid">
-      <a class="related-card" href="safety.html">
-        <div class="related-label">Staying Safe</div>
-        <div class="related-title">Safety Guide</div>
-        <div class="related-desc">Scams, traffic risks, digital safety, and emergency contacts.</div>
-      </a>
-      <a class="related-card" href="pre-arrival.html">
-        <div class="related-label">Before You Fly</div>
-        <div class="related-title">Before You Arrive</div>
-        <div class="related-desc">Insurance checklist, vaccinations, and what to pack.</div>
-      </a>
-      <a class="related-card" href="apps.html">
-        <div class="related-label">Apps</div>
-        <div class="related-title">Apps & SIM</div>
-        <div class="related-desc">Translation apps for communicating symptoms at hospitals.</div>
-      </a>
-      <a class="related-card" href="money.html">
-        <div class="related-label">Payments</div>
-        <div class="related-title">Money & Payments</div>
-        <div class="related-desc">How to pay at hospitals and what insurance covers.</div>
-      </a>
-    </div>
   </section>
 
 </div>
