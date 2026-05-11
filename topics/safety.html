@@ -185,6 +185,18 @@
       .emergency-grid { grid-template-columns: 1fr 1fr; }
       .card-grid { grid-template-columns: 1fr 1fr; }
     }
+
+    /* ── RELATED ── */
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .related-card {
+      display: block; background: var(--white); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem 1.1rem; text-decoration: none;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .related-card:hover { border-color: var(--red); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .related-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 0.3rem; }
+    .related-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; }
+    .related-desc { font-size: 0.82rem; color: #888; line-height: 1.4; }
   </style>
 </head>
 <body>
@@ -543,6 +555,33 @@
       </div>
     </div>
   </div>
+
+  <!-- RELATED -->
+  <section style="margin-top: 3rem;">
+    <p style="font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:#888; font-weight:600; margin-bottom:1rem;">Keep Reading</p>
+    <div class="related-grid">
+      <a class="related-card" href="medical.html">
+        <div class="related-label">Health</div>
+        <div class="related-title">Medical & Healthcare</div>
+        <div class="related-desc">Hospitals, pharmacies, insurance, and what to do if you get sick.</div>
+      </a>
+      <a class="related-card" href="internet.html">
+        <div class="related-label">VPN & Firewall</div>
+        <div class="related-title">Internet & VPN Guide</div>
+        <div class="related-desc">Protect your data and stay connected with the right VPN.</div>
+      </a>
+      <a class="related-card" href="transport.html">
+        <div class="related-label">Getting Around</div>
+        <div class="related-title">Transport</div>
+        <div class="related-desc">Safe ways to get around — DiDi, metro, trains, and taxis.</div>
+      </a>
+      <a class="related-card" href="money.html">
+        <div class="related-label">Payments</div>
+        <div class="related-title">Money & Payments</div>
+        <div class="related-desc">ATM safety, currency exchange, and avoiding money scams.</div>
+      </a>
+    </div>
+  </section>
 
   <a href="../index.html" class="back-link">← Back to Home</a>
 

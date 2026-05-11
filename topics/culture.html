@@ -106,8 +106,10 @@
 
     /* ── BULLET LIST ── */
     .bullet-list { list-style: none; margin: 1rem 0; display: flex; flex-direction: column; gap: 0.5rem; }
-    .bullet-list li { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.93rem; color: var(--ink-soft); }
-    .bullet-list li::before { content: '—'; color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .bullet-list li { display: grid; grid-template-columns: 1rem 1fr; column-gap: 0.7rem; font-size: 0.93rem; color: var(--ink-soft); align-items: start; }
+    .bullet-list li::before { content: '—'; color: var(--gold); font-weight: 700; margin-top: 2px; }
+    .bullet-list li .li-content { display: block; }
+    .bullet-list li .sub { display: block; font-size: 0.83rem; color: #999; margin-top: 0.2rem; }
 
     /* ── TABLE ── */
     .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
@@ -189,6 +191,18 @@
       .taboo-grid { grid-template-columns: repeat(3, 1fr); }
       .phrase-grid { grid-template-columns: 1fr; }
     }
+
+    /* ── RELATED ── */
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .related-card {
+      display: block; background: var(--white); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem 1.1rem; text-decoration: none;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .related-card:hover { border-color: var(--red); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .related-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 0.3rem; }
+    .related-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; }
+    .related-desc { font-size: 0.82rem; color: #888; line-height: 1.4; }
   </style>
 </head>
 <body>
@@ -401,10 +415,10 @@
 
     <h3 class="h3-style">How to Give and Receive</h3>
     <ul class="bullet-list">
-      <li>Always offer and receive gifts with <strong>both hands</strong><br><span style="font-size:0.85em;color:#888;">One hand is considered casual or dismissive</span></li>
-      <li>The recipient will often <strong>not open the gift immediately</strong><br><span style="font-size:0.85em;color:#888;">This is polite, not rude — opening on the spot can seem greedy</span></li>
-      <li>Wrap gifts nicely in red, gold, or bright colours<br><span style="font-size:0.85em;color:#888;">Avoid black or white wrapping — these are mourning colours</span></li>
-      <li>Expect a brief refusal before acceptance<br><span style="font-size:0.85em;color:#888;">This is customary modesty, not a genuine "no" — gently insist once or twice</span></li>
+      <li><span class="li-content">Always offer and receive gifts with <strong>both hands</strong><span class="sub">One hand is considered casual or dismissive</span></span></li>
+      <li><span class="li-content">The recipient will often <strong>not open the gift immediately</strong><span class="sub">This is polite, not rude — opening on the spot can seem greedy</span></span></li>
+      <li><span class="li-content">Wrap gifts nicely in red, gold, or bright colours<span class="sub">Avoid black or white wrapping — these are mourning colours</span></span></li>
+      <li><span class="li-content">Expect a brief refusal before acceptance<span class="sub">This is customary modesty, not a genuine "no" — gently insist once or twice</span></span></li>
     </ul>
 
     <div class="tip-box">Bringing a small gift from your home country — a local snack, a small craft, or something branded with your city — is always a thoughtful and well-received gesture when visiting someone's home.</div>
@@ -673,6 +687,33 @@
       </div>
     </div>
   </div>
+
+  <!-- RELATED -->
+  <section style="margin-top: 3rem;">
+    <p style="font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:#888; font-weight:600; margin-bottom:1rem;">Keep Reading</p>
+    <div class="related-grid">
+      <a class="related-card" href="food.html">
+        <div class="related-label">Eating Out</div>
+        <div class="related-title">Food & Dining</div>
+        <div class="related-desc">Regional cuisines, dining etiquette, must-try dishes and how to order.</div>
+      </a>
+      <a class="related-card" href="safety.html">
+        <div class="related-label">Staying Safe</div>
+        <div class="related-title">Safety Guide</div>
+        <div class="related-desc">Scams to avoid, emergency numbers, and health tips for visitors.</div>
+      </a>
+      <a class="related-card" href="money.html">
+        <div class="related-label">Payments</div>
+        <div class="related-title">Money & Payments</div>
+        <div class="related-desc">Alipay, WeChat Pay, cash, ATMs, and currency exchange.</div>
+      </a>
+      <a class="related-card" href="apps.html">
+        <div class="related-label">Communication</div>
+        <div class="related-title">Language Help</div>
+        <div class="related-desc">Translation tools, useful phrases, and how to get by without Mandarin.</div>
+      </a>
+    </div>
+  </section>
 
   <a href="../index.html" class="back-link">← Back to Home</a>
 
