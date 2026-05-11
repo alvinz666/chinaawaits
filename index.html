@@ -160,6 +160,19 @@
     .city-gz .city-bg { background: linear-gradient(135deg,#1a3322,#15803d); }
     .city-sz .city-bg { background: linear-gradient(135deg,#1c1040,#7c3aed); }
     .city-cd .city-bg { background: linear-gradient(135deg,#3b1010,#c0392b); }
+    .city-cq .city-bg { background: linear-gradient(135deg,#1a0a30,#6d28d9); }
+    .city-hz .city-bg { background: linear-gradient(135deg,#0a2a1a,#059669); }
+    .city-xa .city-bg { background: linear-gradient(135deg,#2a1500,#b45309); }
+    .city-nj .city-bg { background: linear-gradient(135deg,#1a0020,#9333ea); }
+    .city-wh .city-bg { background: linear-gradient(135deg,#2a1010,#dc2626); }
+    .city-tj .city-bg { background: linear-gradient(135deg,#0a1a2a,#0369a1); }
+    .city-su .city-bg { background: linear-gradient(135deg,#0a2010,#16a34a); }
+    .city-km .city-bg { background: linear-gradient(135deg,#1a2000,#84cc16); }
+    .city-gl .city-bg { background: linear-gradient(135deg,#001a2a,#0e7490); }
+    .city-qd .city-bg { background: linear-gradient(135deg,#001520,#0284c7); }
+    .city-xm .city-bg { background: linear-gradient(135deg,#00152a,#0891b2); }
+    .city-hb .city-bg { background: linear-gradient(135deg,#001030,#1d4ed8); }
+    .city-dl .city-bg { background: linear-gradient(135deg,#001525,#0f766e); }
 
     /* CATEGORIES */
     .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 10px; }
@@ -173,90 +186,6 @@
     .cat-icon { font-size: 24px; }
     .cat-label { font-size: 12px; color: var(--text2); text-align: center; line-height: 1.3; }
 
-    /* AI WIDGET */
-    .ai-box {
-      background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--red);
-      border-radius: var(--radius); padding: 1.5rem; display: flex; gap: 1rem;
-    }
-    .ai-avatar {
-      width: 44px; height: 44px; border-radius: 50%; background: var(--red);
-      display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;
-    }
-    .ai-name { font-size: 12px; font-weight: 500; color: var(--red); margin-bottom: 5px; letter-spacing: .5px; text-transform: uppercase; }
-    .ai-text { font-size: 15px; color: var(--text); line-height: 1.6; margin-bottom: 12px; }
-    .ai-chips { display: flex; flex-wrap: wrap; gap: 7px; }
-    .ai-chip {
-      background: var(--bg2); border: 1px solid var(--border); border-radius: 20px;
-      padding: 6px 13px; font-size: 12px; color: var(--text2); cursor: pointer;
-      text-decoration: none; transition: border-color .2s, color .2s;
-    }
-    .ai-chip:hover { border-color: var(--red); color: var(--red); }
-
-    /* INFO STRIPS */
-    .info-list { display: flex; flex-direction: column; gap: 10px; }
-    .info-item {
-      display: flex; align-items: center; gap: 14px; padding: 14px 16px;
-      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
-      text-decoration: none; color: inherit; transition: border-color .2s, transform .2s;
-    }
-    .info-item:hover { border-color: var(--red); transform: translateX(3px); }
-    .info-icon { font-size: 22px; width: 30px; text-align: center; flex-shrink: 0; }
-    .info-title { font-size: 15px; font-weight: 500; }
-    .info-desc { font-size: 13px; color: var(--text2); margin-top: 2px; }
-    .info-arrow { margin-left: auto; color: var(--text3); font-size: 20px; }
-
-    /* DIVIDER */
-    .divider { border: none; border-top: 1px solid var(--border); margin: 0 2rem; }
-
-    /* FOOTER */
-    footer {
-      background: #111; color: rgba(255,255,255,.5);
-      text-align: center; padding: 3rem 2rem;
-    }
-    .footer-logo { font-family: 'Playfair Display', serif; color: var(--red); font-size: 22px; margin-bottom: 8px; }
-    .footer-tagline { font-size: 13px; margin-bottom: 1.5rem; }
-    .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
-    .footer-links a { color: rgba(255,255,255,.4); font-size: 13px; text-decoration: none; }
-    .footer-links a:hover { color: #fff; }
-
-    /* AI CHAT OVERLAY */
-    #ai-overlay {
-      display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5);
-      z-index: 1000; align-items: flex-end; justify-content: center;
-    }
-    #ai-overlay.open { display: flex; }
-    .ai-panel {
-      background: #fff; width: 100%; max-width: 600px; border-radius: 20px 20px 0 0;
-      padding: 1.5rem; max-height: 85vh; display: flex; flex-direction: column;
-    }
-    .ai-panel-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
-    .ai-panel-title { font-family: 'Playfair Display', serif; font-size: 18px; }
-    .ai-close { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--text2); }
-    .ai-messages { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; margin-bottom: 1rem; min-height: 200px; }
-    .msg { max-width: 80%; padding: 10px 14px; border-radius: 14px; font-size: 14px; line-height: 1.5; }
-    .msg-ai { background: var(--bg2); color: var(--text); align-self: flex-start; border-radius: 4px 14px 14px 14px; }
-    .msg-user { background: var(--red); color: #fff; align-self: flex-end; border-radius: 14px 4px 14px 14px; }
-    .ai-input-row { display: flex; gap: 8px; }
-    .ai-input-row input {
-      flex: 1; border: 1px solid var(--border); border-radius: 24px;
-      padding: 10px 16px; font-size: 14px; font-family: 'DM Sans', sans-serif; outline: none;
-    }
-    .ai-input-row input:focus { border-color: var(--red); }
-    .ai-send {
-      background: var(--red); color: #fff; border: none; border-radius: 50%;
-      width: 42px; height: 42px; font-size: 18px; cursor: pointer; flex-shrink: 0;
-    }
-    .ai-typing { font-size: 13px; color: var(--text3); padding: 8px 14px; }
-
-    /* RESPONSIVE */
-    @media (max-width: 640px) {
-      .nav-links { display: none; }
-      .nav-mobile-toggle { display: block; }
-      .hero-lanterns { display: none; }
-      .hero h1 { font-size: 36px; }
-      .hero-stats { gap: 1.5rem; }
-      .stat-n { font-size: 22px; }
-    }
   </style>
 </head>
 <body>
@@ -268,11 +197,7 @@
     <li><a href="#cities">Cities</a></li>
     <li><a href="#topics">Topics</a></li>
     <li><a href="#essentials">Essentials</a></li>
-    <li><a href="#ai">AI Guide</a></li>
   </ul>
-  <a class="nav-cta" href="#ai" onclick="openAI()">
-    <span class="pulse"></span> Ask AI
-  </a>
 </nav>
 
 <!-- HERO -->
@@ -288,7 +213,7 @@
   <div class="hero-stats">
     <div class="stat"><div class="stat-n">10+</div><div class="stat-l">Cities</div></div>
     <div class="stat"><div class="stat-n">500+</div><div class="stat-l">Guides</div></div>
-    <div class="stat"><div class="stat-n">24/7</div><div class="stat-l">AI Help</div></div>
+    <div class="stat"><div class="stat-n">Free</div><div class="stat-l">to Use</div></div>
   </div>
 </section>
 
@@ -300,29 +225,76 @@
   </div>
   <div class="cities-grid">
     <a href="cities/beijing.html" class="city-card city-bj">
-      <div class="city-bg">🏯</div>
-      <div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Beijing</div><div class="city-tag">Capital · History · Culture</div></div>
+      <div class="city-bg">🏯</div><div class="city-overlay"></div>
+      <div class="city-info"><div class="city-name">Beijing</div><div class="city-tag">Capital · History</div></div>
     </a>
     <a href="cities/shanghai.html" class="city-card city-sh">
-      <div class="city-bg">🌆</div>
-      <div class="city-overlay"></div>
+      <div class="city-bg">🌆</div><div class="city-overlay"></div>
       <div class="city-info"><div class="city-name">Shanghai</div><div class="city-tag">Modern · Cosmopolitan</div></div>
     </a>
     <a href="cities/guangzhou.html" class="city-card city-gz">
-      <div class="city-bg">🌺</div>
-      <div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Guangzhou</div><div class="city-tag">Food Capital · Dim Sum</div></div>
+      <div class="city-bg">🌺</div><div class="city-overlay"></div>
+      <div class="city-info"><div class="city-name">Guangzhou</div><div class="city-tag">Food · Dim Sum</div></div>
     </a>
     <a href="cities/shenzhen.html" class="city-card city-sz">
-      <div class="city-bg">💻</div>
-      <div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Shenzhen</div><div class="city-tag">Tech Hub · Innovation</div></div>
+      <div class="city-bg">💻</div><div class="city-overlay"></div>
+      <div class="city-info"><div class="city-name">Shenzhen</div><div class="city-tag">Tech · Innovation</div></div>
     </a>
     <a href="cities/chengdu.html" class="city-card city-cd">
-      <div class="city-bg">🐼</div>
-      <div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Chengdu</div><div class="city-tag">Pandas · Spicy Food</div></div>
+      <div class="city-bg">🐼</div><div class="city-overlay"></div>
+      <div class="city-info"><div class="city-name">Chengdu</div><div class="city-tag">Pandas · Sichuan</div></div>
+    </a>
+    <a href="cities/chongqing.html" class="city-card city-cq">
+      <div class="city-bg">🌉</div><div class="city-overlay"></div>
+      <div class="city-info"><div class="city-name">Chongqing</div><div class="city-tag">Hotpot · Mountainside</div></div>
+    </a>
+    <a href="cities/hangzhou.html" class="city-card city-hz">
+      <div class="city-bg">🏞️</div><div class="city-overlay"></div>
+      <div class="city-info"><div class="city-name">Hangzhou</div><div class="city-tag">West Lake · Silk</div></div>
+    </a>
+    <a href="cities/xian.html" class="city-card city-xa">
+      <div class="city-bg">🏺</div><div class="city-overlay"></div>
+      <div class="city-info"><div class="city-name">Xi'an</div><div class="city-tag">Terracotta · Silk Road</div></div>
+    </a>
+    <a href="cities/nanjing.html" class="city-card city-nj">
+      <div class="city-bg">🏛️</div><div class="city-overlay"></div>
+      <div class="city-info"><div class="city-name">Nanjing</div><div class="city-tag">History · Ming Dynasty</div></div>
+    </a>
+    <a href="cities/wuhan.html" class="city-card city-wh">
+      <div class="city-bg">🌸</div><div class="city-overlay"></div>
+      <div class="city-info"><div class="city-name">Wuhan</div><div class="city-tag">Yangtze · Hot Dry Noodles</div></div>
+    </a>
+    <a href="cities/tianjin.html" class="city-card city-tj">
+      <div class="city-bg">🎭</div><div class="city-overlay"></div>
+      <div class="city-info"><div class="city-name">Tianjin</div><div class="city-tag">Colonial · Street Food</div></div>
+    </a>
+    <a href="cities/suzhou.html" class="city-card city-su">
+      <div class="city-bg">🪷</div><div class="city-overlay"></div>
+      <div class="city-info"><div class="city-name">Suzhou</div><div class="city-tag">Gardens · Canals</div></div>
+    </a>
+    <a href="cities/kunming.html" class="city-card city-km">
+      <div class="city-bg">🌻</div><div class="city-overlay"></div>
+      <div class="city-info"><div class="city-name">Kunming</div><div class="city-tag">Eternal Spring · Yunnan</div></div>
+    </a>
+    <a href="cities/guilin.html" class="city-card city-gl">
+      <div class="city-bg">⛰️</div><div class="city-overlay"></div>
+      <div class="city-info"><div class="city-name">Guilin</div><div class="city-tag">Karst · Li River</div></div>
+    </a>
+    <a href="cities/qingdao.html" class="city-card city-qd">
+      <div class="city-bg">🍺</div><div class="city-overlay"></div>
+      <div class="city-info"><div class="city-name">Qingdao</div><div class="city-tag">Beer · Beaches</div></div>
+    </a>
+    <a href="cities/xiamen.html" class="city-card city-xm">
+      <div class="city-bg">🌊</div><div class="city-overlay"></div>
+      <div class="city-info"><div class="city-name">Xiamen</div><div class="city-tag">Coastal · Gulangyu</div></div>
+    </a>
+    <a href="cities/harbin.html" class="city-card city-hb">
+      <div class="city-bg">❄️</div><div class="city-overlay"></div>
+      <div class="city-info"><div class="city-name">Harbin</div><div class="city-tag">Ice Festival · Northeast</div></div>
+    </a>
+    <a href="cities/dalian.html" class="city-card city-dl">
+      <div class="city-bg">⚓</div><div class="city-overlay"></div>
+      <div class="city-info"><div class="city-name">Dalian</div><div class="city-tag">Port · Seafood</div></div>
     </a>
   </div>
 </section>
@@ -349,6 +321,7 @@
     <a href="topics/internet.html" class="cat-item"><div class="cat-icon">📡</div><div class="cat-label">Internet & VPN</div></a>
     <a href="topics/shopping.html" class="cat-item"><div class="cat-icon">🛍️</div><div class="cat-label">Shopping</div></a>
     <a href="topics/apps.html#language" class="cat-item"><div class="cat-icon">💬</div><div class="cat-label">Language Help</div></a>
+    <a href="topics/faq.html" class="cat-item"><div class="cat-icon">❓</div><div class="cat-label">FAQ</div></a>
   </div>
 </section>
 
@@ -389,30 +362,7 @@
   </div>
 </section>
 
-<hr class="divider" />
-
-<!-- AI SECTION -->
-<section class="section" id="ai">
-  <div class="section-header">
-    <div class="section-title">Ask Our AI Assistant</div>
-    <div class="section-sub">Get instant answers about traveling in China — available 24/7</div>
-  </div>
-  <div class="ai-box">
-    <div class="ai-avatar">🤖</div>
-    <div style="flex:1">
-      <div class="ai-name">China Awaits AI Guide</div>
-      <div class="ai-text">Hi! I know everything about traveling in China — visas, food, transport, safety, culture, hospitals, mobile payments and more. Ask me anything!</div>
-      <div class="ai-chips">
-        <a class="ai-chip" onclick="askAI('Do I need a visa to visit China?')">Do I need a visa?</a>
-        <a class="ai-chip" onclick="askAI('How do foreigners pay in China?')">How to pay in China?</a>
-        <a class="ai-chip" onclick="askAI('What are the best foods to try in Beijing?')">Best food in Beijing?</a>
-        <a class="ai-chip" onclick="askAI('Is China safe for tourists?')">Is it safe?</a>
-        <a class="ai-chip" onclick="askAI('How do I get a SIM card in China as a foreigner?')">Getting a SIM card?</a>
-        <a class="ai-chip" onclick="askAI('How does the high-speed train system work in China?')">High-speed trains?</a>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- AI REMOVED -->
 
 <!-- FOOTER -->
 <footer>
@@ -424,115 +374,72 @@
     <a href="topics/food.html">Food</a>
     <a href="topics/transport.html">Transport</a>
     <a href="topics/medical.html">Medical</a>
-    <a href="#ai">AI Guide</a>
   </div>
 </footer>
 
-<!-- AI CHAT OVERLAY -->
-<div id="ai-overlay" onclick="closeAIOnBg(event)">
-  <div class="ai-panel">
-    <div class="ai-panel-header">
-      <div class="ai-panel-title">China Awaits AI Guide</div>
-      <button class="ai-close" onclick="closeAI()">✕</button>
-    </div>
-    <div class="ai-messages" id="ai-messages">
-      <div class="msg msg-ai">Hi! I'm your China travel guide. Ask me anything about visiting China — visas, food, transport, safety, culture, and more!</div>
-    </div>
-    <div class="ai-input-row">
-      <input type="text" id="ai-input" placeholder="Ask anything about China..." onkeydown="handleAIKey(event)" />
-      <button class="ai-send" onclick="sendAI()">↑</button>
-    </div>
-  </div>
-</div>
-
 <script>
-  const ANTHROPIC_API_URL = "https://api.anthropic.com/v1/messages";
-
-  function openAI() {
-    document.getElementById('ai-overlay').classList.add('open');
-    setTimeout(() => document.getElementById('ai-input').focus(), 100);
-  }
-  function closeAI() {
-    document.getElementById('ai-overlay').classList.remove('open');
-  }
-  function closeAIOnBg(e) {
-    if (e.target === document.getElementById('ai-overlay')) closeAI();
-  }
-  function askAI(q) {
-    openAI();
-    document.getElementById('ai-input').value = q;
-    setTimeout(sendAI, 200);
-  }
   function handleSearch(e) {
     if (e.key === 'Enter') triggerSearch();
   }
+  // Search index — maps keywords to topic pages
+  const SEARCH_INDEX = [
+    { keywords: ['visa','entry','passport','border','transit','72 hour','144 hour','visa free','visafree'], title: 'Visa & Entry', url: 'topics/visa.html', icon: '🛂' },
+    { keywords: ['before','arrive','arrival','checklist','prepare','preparation','pre-arrival','prearrival','sim card','vpn setup','download'], title: 'Before You Arrive', url: 'topics/pre-arrival.html', icon: '✈️' },
+    { keywords: ['food','eat','restaurant','dish','cuisine','dumplings','noodles','peking duck','hotpot','dim sum','street food','vegetarian','vegan','menu','dining'], title: 'Food & Dining', url: 'topics/food.html', icon: '🍜' },
+    { keywords: ['transport','train','metro','subway','didi','taxi','flight','bus','high speed','hsr','crh','airport','bullet train','travel between','getting around'], title: 'Transport', url: 'topics/transport.html', icon: '🚄' },
+    { keywords: ['hotel','hostel','accommodation','stay','book','airbnb','guesthouse','check in','registration','foreign guest'], title: 'Hotels', url: 'topics/hotels.html', icon: '🏨' },
+    { keywords: ['hospital','clinic','doctor','sick','medical','health','medicine','pharmacy','ambulance','emergency','insurance','vaccine','vaccination'], title: 'Medical & Health', url: 'topics/medical.html', icon: '🏥' },
+    { keywords: ['app','apps','wechat','alipay','baidu','dianping','meituan','maps','esim','sim','mobile data','phone','download','android','iphone'], title: 'Apps & SIM', url: 'topics/apps.html', icon: '📱' },
+    { keywords: ['money','pay','payment','cash','atm','yuan','rmb','exchange','currency','card','credit card','alipay','wechat pay','withdraw'], title: 'Money & Payments', url: 'topics/money.html', icon: '💰' },
+    { keywords: ['culture','custom','etiquette','tip','tips','face','mianzi','guanxi','gift','bow','chopstick','temple','taboo','superstition','polite'], title: 'Culture Tips', url: 'topics/culture.html', icon: '🎭' },
+    { keywords: ['safe','safety','scam','crime','emergency','police','steal','pickpocket','danger','risk','woman','solo','traffic'], title: 'Safety', url: 'topics/safety.html', icon: '🛡️' },
+    { keywords: ['internet','vpn','firewall','great firewall','blocked','google','instagram','facebook','whatsapp','blocked sites','wifi','network'], title: 'Internet & VPN', url: 'topics/internet.html', icon: '📡' },
+    { keywords: ['shopping','shop','buy','market','bargain','haggle','taobao','mall','souvenir','silk','tea','antique','counterfeit','fake'], title: 'Shopping', url: 'topics/shopping.html', icon: '🛍️' },
+    { keywords: ['language','mandarin','chinese','translate','translation','phrase','speak','word','hello','xie xie','pinyin','app'], title: 'Language Help', url: 'topics/apps.html#language', icon: '💬' },
+    { keywords: ['faq','question','questions','common','frequently','asked'], title: 'FAQ', url: 'topics/faq.html', icon: '❓' },
+    { keywords: ['beijing','capital','forbidden city','great wall','tiananmen','hutong'], title: 'Beijing', url: 'cities/beijing.html', icon: '🏯' },
+    { keywords: ['shanghai','bund','pudong','french concession','yu garden'], title: 'Shanghai', url: 'cities/shanghai.html', icon: '🌆' },
+    { keywords: ['guangzhou','canton','guangdong','dim sum'], title: 'Guangzhou', url: 'cities/guangzhou.html', icon: '🌺' },
+    { keywords: ['shenzhen','tech','huaqiangbei','electronics'], title: 'Shenzhen', url: 'cities/shenzhen.html', icon: '💻' },
+    { keywords: ['chengdu','panda','sichuan','spicy','leshan'], title: 'Chengdu', url: 'cities/chengdu.html', icon: '🐼' },
+    { keywords: ['hangzhou','xi an','xian','nanjing','chongqing','wuhan','suzhou','tianjin','harbin','kunming','guilin','qingdao','xiamen','dalian'], title: 'Other Cities', url: '#cities', icon: '🗺️' },
+  ];
+
   function triggerSearch() {
-    const q = document.getElementById('hero-search-input').value.trim();
-    if (q) askAI(q);
+    const q = document.getElementById('hero-search-input').value.trim().toLowerCase();
+    if (!q) return;
+    const results = SEARCH_INDEX.filter(item =>
+      item.keywords.some(kw => q.includes(kw) || kw.includes(q))
+    );
+    showSearchResults(q, results);
   }
-  function handleAIKey(e) {
-    if (e.key === 'Enter') sendAI();
-  }
 
-  const conversationHistory = [];
+  function showSearchResults(q, results) {
+    // Remove existing results
+    const existing = document.getElementById('search-results');
+    if (existing) existing.remove();
 
-  async function sendAI() {
-    const input = document.getElementById('ai-input');
-    const messages = document.getElementById('ai-messages');
-    const text = input.value.trim();
-    if (!text) return;
+    const box = document.createElement('div');
+    box.id = 'search-results';
+    box.style.cssText = 'position:fixed;top:60px;left:50%;transform:translateX(-50%);width:min(480px,90vw);background:#fff;border:1px solid #e0d9d0;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.15);z-index:200;max-height:400px;overflow-y:auto;';
 
-    input.value = '';
-
-    // Add user message
-    const userMsg = document.createElement('div');
-    userMsg.className = 'msg msg-user';
-    userMsg.textContent = text;
-    messages.appendChild(userMsg);
-
-    // Add to history
-    conversationHistory.push({ role: 'user', content: text });
-
-    // Typing indicator
-    const typing = document.createElement('div');
-    typing.className = 'ai-typing';
-    typing.textContent = 'Thinking...';
-    messages.appendChild(typing);
-    messages.scrollTop = messages.scrollHeight;
-
-    try {
-      const response = await fetch(ANTHROPIC_API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 1000,
-          system: `You are a friendly, knowledgeable travel guide for China Awaits (chinaawaits.com), a travel information website for foreigners visiting China. 
-You help foreign tourists with questions about: visas and entry requirements, cities (Beijing, Shanghai, Guangzhou, Shenzhen, Chengdu and more), food and dining, transportation (trains, metro, flights, taxi), hotels, mobile payments (Alipay, WeChat Pay), internet and VPN, SIM cards, hospitals with English service, safety tips, cultural etiquette, language help, and general travel tips.
-Always be warm, practical, and specific. Give actionable advice. Keep answers concise but complete. If asked about something outside China travel, gently redirect to travel topics.`,
-          messages: conversationHistory
-        })
-      });
-
-      const data = await response.json();
-      typing.remove();
-
-      const aiText = data.content?.[0]?.text || "Sorry, I couldn't get a response. Please try again.";
-      conversationHistory.push({ role: 'assistant', content: aiText });
-
-      const aiMsg = document.createElement('div');
-      aiMsg.className = 'msg msg-ai';
-      aiMsg.textContent = aiText;
-      messages.appendChild(aiMsg);
-    } catch (err) {
-      typing.remove();
-      const errMsg = document.createElement('div');
-      errMsg.className = 'msg msg-ai';
-      errMsg.textContent = 'Something went wrong. Please check your connection and try again.';
-      messages.appendChild(errMsg);
+    if (results.length === 0) {
+      box.innerHTML = `<div style="padding:1.2rem;text-align:center;color:#888;font-size:0.9rem;">No results for "<strong>${q}</strong>" — try a different keyword</div>`;
+    } else {
+      box.innerHTML = `<div style="padding:0.75rem 1rem;font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#999;border-bottom:1px solid #f0ebe3;">Results for "${q}"</div>` +
+        results.map(r => `<a href="${r.url}" style="display:flex;align-items:center;gap:0.9rem;padding:0.85rem 1rem;text-decoration:none;color:inherit;border-bottom:1px solid #f7f4f0;" onmouseover="this.style.background='#faf7f3'" onmouseout="this.style.background=''">
+          <span style="font-size:1.4rem;flex-shrink:0;">${r.icon}</span>
+          <span style="font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:#1a1a1a;">${r.title}</span>
+        </a>`).join('') +
+        `<div style="padding:0.6rem 1rem;text-align:right;"><button onclick="document.getElementById('search-results').remove()" style="font-size:0.78rem;color:#999;background:none;border:none;cursor:pointer;">Close ✕</button></div>`;
     }
-
-    messages.scrollTop = messages.scrollHeight;
+    document.body.appendChild(box);
+    document.addEventListener('click', function closeResults(e) {
+      if (!box.contains(e.target) && e.target.id !== 'hero-search-input') {
+        box.remove();
+        document.removeEventListener('click', closeResults);
+      }
+    });
   }
 </script>
 
