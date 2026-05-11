@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Safety in China — China Awaits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #C0392B;
+      --red-dark: #96281B;
+      --gold: #C9A84C;
+      --gold-light: #e8c96a;
+      --ink: #1a1a1a;
+      --ink-soft: #3d3d3d;
+      --mist: #f7f4f0;
+      --mist-dark: #ede9e3;
+      --white: #ffffff;
+      --border: #e0d9d0;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,0.14);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); line-height: 1.7; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.97); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 60px;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--red); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-size: 0.88rem; font-weight: 500; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--red); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--ink); position: relative; overflow: hidden;
+      padding: 5rem 2rem 4rem; text-align: center;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 18% 58%, rgba(192,57,43,0.28) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 35%, rgba(201,168,76,0.18) 0%, transparent 55%);
+    }
+    .hero-pattern {
+      position: absolute; inset: 0; opacity: 0.035;
+      background-image: repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%);
+      background-size: 20px 20px;
+    }
+    .hero-tag {
+      display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,0.4);
+      padding: 0.3rem 0.9rem; border-radius: 2px; margin-bottom: 1.5rem; position: relative;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 1rem; position: relative;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.65); max-width: 540px; margin: 0 auto 2.5rem; position: relative; }
+    .jump-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; position: relative; }
+    .jump-nav a {
+      display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 500;
+      color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15); padding: 0.45rem 1rem; border-radius: 40px;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .jump-nav a:hover { background: rgba(201,168,76,0.2); border-color: var(--gold); color: var(--gold); }
+
+    /* ── LAYOUT ── */
+    .page-wrap { max-width: 860px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+    /* ── SECTION ── */
+    .section { margin-top: 4.5rem; scroll-margin-top: 80px; }
+    .section-header {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1.8rem;
+      padding-bottom: 1rem; border-bottom: 2px solid var(--border);
+    }
+    .section-icon {
+      width: 48px; height: 48px; background: var(--red); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;
+    }
+    .section-title-group h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+    .section-title-group p { font-size: 0.88rem; color: #888; margin-top: 0.1rem; }
+
+    /* ── PROSE ── */
+    .prose p { font-size: 0.97rem; color: var(--ink-soft); margin-bottom: 1rem; }
+    .prose strong { color: var(--ink); font-weight: 600; }
+
+    /* ── BOXES ── */
+    .highlight { background: var(--mist); border-left: 3px solid var(--gold); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1.2rem 0; font-size: 0.93rem; color: var(--ink-soft); }
+    .highlight strong { color: var(--ink); }
+    .tip-box { background: #fff8ee; border: 1px solid #f0d990; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #6b5b1a; }
+    .tip-box::before { content: '💡 Tip: '; font-weight: 600; }
+    .warning-box { background: #fff5f5; border: 1px solid #f5c6c6; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #7a2020; }
+    .warning-box::before { content: '⚠️ Note: '; font-weight: 600; }
+
+    /* ── BULLET LIST ── */
+    .bullet-list { list-style: none; margin: 1rem 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .bullet-list li { display: grid; grid-template-columns: 1rem 1fr; column-gap: 0.7rem; font-size: 0.93rem; color: var(--ink-soft); }
+    .bullet-list li::before { content: '—'; color: var(--gold); font-weight: 700; margin-top: 2px; }
+    .bullet-list li .sub { grid-column: 2; display: block; font-size: 0.83rem; color: #999; margin-top: 0.2rem; }
+
+    /* ── TABLE ── */
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    thead { background: var(--ink); color: white; }
+    thead th { padding: 0.85rem 1rem; text-align: left; font-weight: 600; font-size: 0.83rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:nth-child(even) { background: var(--mist); }
+    tbody td { padding: 0.85rem 1rem; color: var(--ink-soft); vertical-align: top; }
+    tbody td:first-child { font-weight: 600; color: var(--ink); }
+
+    /* ── CARD GRID ── */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; transition: box-shadow 0.2s, transform 0.2s; }
+    .card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+    .card-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+    .card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .card p { font-size: 0.87rem; color: #666; line-height: 1.5; }
+    .card .card-badge { display: inline-block; margin-top: 0.7rem; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.2rem 0.55rem; border-radius: 4px; }
+    .badge-green { background: #e6f9ee; color: #1a6e3a; }
+    .badge-gold  { background: #fef9e7; color: #8a6000; }
+    .badge-red   { background: #ffeaea; color: #b91c1c; }
+
+    /* ── EMERGENCY BOX ── */
+    .emergency-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.8rem; margin: 1.2rem 0; }
+    .emergency-card {
+      background: var(--white); border: 2px solid var(--border); border-radius: 12px;
+      padding: 1.1rem 1.2rem; display: flex; align-items: center; gap: 1rem;
+    }
+    .emergency-card.police { border-color: #93c5fd; background: #eff6ff; }
+    .emergency-card.fire   { border-color: #fca5a5; background: #fff5f5; }
+    .emergency-card.ambulance { border-color: #6ee7b7; background: #f0fdf4; }
+    .emergency-card.tourist { border-color: var(--gold-light); background: #fffdf5; }
+    .emergency-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; line-height: 1; flex-shrink: 0; }
+    .emergency-card.police .emergency-num { color: #1d4ed8; }
+    .emergency-card.fire .emergency-num { color: #dc2626; }
+    .emergency-card.ambulance .emergency-num { color: #059669; }
+    .emergency-card.tourist .emergency-num { color: #92660a; }
+    .emergency-label { font-size: 0.82rem; font-weight: 700; color: var(--ink); }
+    .emergency-sub { font-size: 0.76rem; color: var(--ink-soft); margin-top: 0.1rem; line-height: 1.4; }
+
+    /* ── SCAM CARDS ── */
+    .scam-list { display: flex; flex-direction: column; gap: 0.9rem; margin: 1.2rem 0; }
+    .scam-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.1rem 1.3rem; border-left: 4px solid #fca5a5;
+    }
+    .scam-card h4 { font-family: 'Playfair Display', serif; font-size: 0.98rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; display: flex; align-items: center; gap: 0.5rem; }
+    .scam-card p { font-size: 0.87rem; color: var(--ink-soft); line-height: 1.6; }
+    .scam-card .avoid { font-size: 0.82rem; color: #991b1b; font-weight: 600; margin-top: 0.4rem; }
+
+    /* ── FAQ ── */
+    .faq { margin: 1.5rem 0; }
+    .faq-item { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 0.6rem; overflow: hidden; }
+    .faq-q { width: 100%; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.2rem; font-family: 'DM Sans', sans-serif; font-size: 0.93rem; font-weight: 600; color: var(--ink); text-align: left; gap: 1rem; }
+    .faq-q:hover { background: var(--mist); }
+    .faq-arrow { font-size: 1rem; color: var(--gold); transition: transform 0.25s; flex-shrink: 0; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0.8rem 1.2rem 1rem; font-size: 0.9rem; color: var(--ink-soft); border-top: 1px solid var(--border); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── BACK LINK ── */
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.88rem; font-weight: 500; color: var(--red); text-decoration: none; margin-top: 3rem; }
+    .back-link:hover { text-decoration: underline; }
+
+    .h3-style { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin: 1.5rem 0 0.8rem; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .page-wrap { padding: 0 1rem 4rem; }
+      .hero { padding: 3.5rem 1rem 3rem; }
+      .emergency-grid { grid-template-columns: 1fr 1fr; }
+      .card-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo">China Awaits</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="pre-arrival.html">Before You Arrive</a></li>
+    <li><a href="transport.html">Transport</a></li>
+    <li><a href="safety.html" class="active">Safety</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-tag">Safety &amp; Health</div>
+  <h1>Staying Safe in <span>China</span></h1>
+  <p class="hero-sub">China is one of the safer countries to visit as a tourist — here's what to know, what to watch out for, and how to handle the unexpected.</p>
+  <div class="jump-nav">
+    <a href="#overview">🛡️ Overview</a>
+    <a href="#emergency">🚨 Emergency Numbers</a>
+    <a href="#scams">⚠️ Common Scams</a>
+    <a href="#transport-safety">🚇 Getting Around Safely</a>
+    <a href="#health">🏥 Health</a>
+    <a href="#women">👩 Women Travellers</a>
+    <a href="#digital">🔒 Digital Safety</a>
+    <a href="#faq">❓ FAQ</a>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- ══════════════════════ OVERVIEW ══════════════════════ -->
+  <div class="section" id="overview">
+    <div class="section-header">
+      <div class="section-icon">🛡️</div>
+      <div class="section-title-group">
+        <h2>Safety at a Glance</h2>
+        <p>The honest picture for foreign visitors</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>China is a remarkably safe destination for tourists. Violent crime against foreigners is rare, public spaces are heavily surveilled, and petty theft — while it does exist — is far less common than in many Western cities. Most visitors complete their trip without any safety incident whatsoever.</p>
+      <p>The main risks to be aware of are <strong>tourist scams</strong> in busy areas, <strong>traffic</strong> (pedestrian safety is genuinely different here), <strong>air quality</strong> in some cities, and <strong>food hygiene</strong> at street level. None of these should deter you — just prepare accordingly.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">✅</div>
+        <h3>Very Low Risk</h3>
+        <p>Violent crime, terrorism, mugging, and armed robbery targeting tourists are exceptionally rare across mainland China.</p>
+        <span class="card-badge badge-green">Low Concern</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">👀</div>
+        <h3>Stay Alert</h3>
+        <p>Tourist scams, pickpocketing in crowded areas, and overcharging at unlicensed venues do happen — especially in major tourist districts.</p>
+        <span class="card-badge badge-gold">Moderate Concern</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚗</div>
+        <h3>Watch the Traffic</h3>
+        <p>Road safety is the single biggest physical risk. Traffic rules are applied loosely, scooters run red lights, and pedestrian crossings are not always respected.</p>
+        <span class="card-badge badge-red">Real Risk</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">😷</div>
+        <h3>Air &amp; Water</h3>
+        <p>Air quality varies by city and season. Tap water is not safe to drink anywhere in China — always use bottled or boiled water.</p>
+        <span class="card-badge badge-gold">Plan Ahead</span>
+      </div>
+    </div>
+
+    <div class="highlight"><strong>Context matters:</strong> China has one of the world's highest rates of CCTV coverage. This means crime is heavily deterred in public spaces, and the environment generally feels very safe to walk around — including at night in most cities.</div>
+  </div>
+
+  <!-- ══════════════════════ EMERGENCY NUMBERS ══════════════════════ -->
+  <div class="section" id="emergency">
+    <div class="section-header">
+      <div class="section-icon">🚨</div>
+      <div class="section-title-group">
+        <h2>Emergency Numbers</h2>
+        <p>Save these before you travel</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Emergency services in China use different numbers for police, fire, and ambulance — unlike the single 911 or 999 used in some countries. Save all of these in your phone before you go, and note that English-speaking operators are not always available outside major cities.</p>
+    </div>
+
+    <div class="emergency-grid">
+      <div class="emergency-card police">
+        <div class="emergency-num">110</div>
+        <div>
+          <div class="emergency-label">Police</div>
+          <div class="emergency-sub">Crime, theft, emergencies requiring law enforcement</div>
+        </div>
+      </div>
+      <div class="emergency-card fire">
+        <div class="emergency-num">119</div>
+        <div>
+          <div class="emergency-label">Fire</div>
+          <div class="emergency-sub">Fire brigade — also responds to some rescue situations</div>
+        </div>
+      </div>
+      <div class="emergency-card ambulance">
+        <div class="emergency-num">120</div>
+        <div>
+          <div class="emergency-label">Ambulance</div>
+          <div class="emergency-sub">Medical emergencies and urgent hospital transport</div>
+        </div>
+      </div>
+      <div class="emergency-card tourist">
+        <div class="emergency-num">12301</div>
+        <div>
+          <div class="emergency-label">Tourist Hotline</div>
+          <div class="emergency-sub">National tourism helpline — English assistance available</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box">Your country's embassy or consulate is your most important contact in a serious emergency — passport loss, arrest, or hospitalisation. Find and save their 24-hour emergency line before you travel. Most embassies in China are in Beijing, with consulates in Shanghai, Guangzhou, Chengdu, and other major cities.</div>
+
+    <h3 class="h3-style">What to Do if Something Goes Wrong</h3>
+    <ul class="bullet-list">
+      <li>For theft: call 110 and ask to be connected to a tourist police unit<span class="sub">Many cities have dedicated tourist police who speak some English</span></li>
+      <li>Get a police report (报案证明 bào àn zhèngmíng)<span class="sub">Your travel insurer will require this for any claim</span></li>
+      <li>For medical emergencies: call 120 or go directly to the nearest hospital's emergency department (急诊 jí zhěn)</li>
+      <li>Contact your travel insurer's 24-hour line as soon as possible after any incident</li>
+      <li>If your passport is lost or stolen, report it to local police first, then contact your embassy</li>
+    </ul>
+  </div>
+
+  <!-- ══════════════════════ SCAMS ══════════════════════ -->
+  <div class="section" id="scams">
+    <div class="section-header">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title-group">
+        <h2>Common Scams</h2>
+        <p>What to watch out for in tourist areas</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Scams targeting tourists are the most common safety issue in China, concentrated in major tourist hotspots like the Bund in Shanghai, Wangfujing in Beijing, and areas near popular temples. They're rarely dangerous — but they can be expensive and frustrating. Knowing what to look for is your best protection.</p>
+    </div>
+
+    <div class="scam-list">
+      <div class="scam-card">
+        <h4>🍵 The Tea House Scam</h4>
+        <p>Friendly strangers (often young women claiming to be students or art graduates) approach you and invite you to a "traditional tea ceremony" or their gallery show. The experience seems genuine — until the bill arrives, which can run to hundreds of dollars for a few cups of tea.</p>
+        <div class="avoid">→ Decline invitations from strangers to visit tea houses, art galleries, or bars you've never heard of.</div>
+      </div>
+      <div class="scam-card">
+        <h4>🎨 The Art Student Scam</h4>
+        <p>Similar to the tea scam — "art students" ask you to visit their exhibition and then pressure you into buying low-quality artwork at vastly inflated prices, sometimes with the claim that purchases support their graduation project.</p>
+        <div class="avoid">→ Politely decline and walk away. Legitimate art students don't cold-approach tourists.</div>
+      </div>
+      <div class="scam-card">
+        <h4>🚕 Unlicensed Taxis</h4>
+        <p>Drivers who approach you at airports, train stations, or tourist sites offering rides — often charging 5–10x the normal rate, or taking very long routes. Sometimes the meter is rigged, or one doesn't exist.</p>
+        <div class="avoid">→ Always use DiDi, the official taxi rank, or a hotel-arranged car. Never accept rides from touts.</div>
+      </div>
+      <div class="scam-card">
+        <h4>💱 Currency Exchange Tricks</h4>
+        <p>Unofficial money changers offering great rates who then switch notes, use sleight of hand, or give you counterfeit bills. This is most common near tourist areas and some hotel entrances.</p>
+        <div class="avoid">→ Only exchange money at banks, official hotel desks, or airport exchange counters.</div>
+      </div>
+      <div class="scam-card">
+        <h4>🎰 Gambling / Card Game Scams</h4>
+        <p>A group of seemingly friendly locals invite you to join a card game or gambling activity. The game is rigged, and you'll lose money rapidly no matter what you do. A variation involves watching others play before being encouraged to participate.</p>
+        <div class="avoid">→ Never join impromptu gambling activities with strangers, regardless of how friendly they seem.</div>
+      </div>
+      <div class="scam-card">
+        <h4>📸 Overpriced Photo Ops</h4>
+        <p>People dressed in traditional costumes or holding photogenic props invite you to take photos, then demand an aggressive payment after. Sometimes they physically block your exit until you pay.</p>
+        <div class="avoid">→ Agree on any price upfront before taking photos, or simply decline.</div>
+      </div>
+    </div>
+
+    <div class="warning-box">If you do fall victim to a scam, stay calm and don't escalate physically. Note the location and any details you can, then report it to tourist police (110) and get a written report for your insurer.</div>
+  </div>
+
+  <!-- ══════════════════════ TRANSPORT SAFETY ══════════════════════ -->
+  <div class="section" id="transport-safety">
+    <div class="section-header">
+      <div class="section-icon">🚇</div>
+      <div class="section-title-group">
+        <h2>Getting Around Safely</h2>
+        <p>Roads, metros, and what to watch for</p>
+      </div>
+    </div>
+
+    <h3 class="h3-style">Road &amp; Pedestrian Safety</h3>
+    <div class="prose">
+      <p>Traffic is the most genuine physical safety risk in China. Road rules exist but are applied inconsistently — expect vehicles to run red lights, scooters to ride on pavements, and right-turning cars to ignore pedestrians with the green signal. This is not hyperbole; adjust your habits accordingly.</p>
+    </div>
+    <ul class="bullet-list">
+      <li><strong>Look both ways before crossing, even on a green signal</strong><span class="sub">Turning vehicles have legal priority in some situations and often don't stop</span></li>
+      <li>Electric scooters are silent and fast<span class="sub">They frequently appear on pavements and in bike lanes with no warning</span></li>
+      <li>Use pedestrian overpasses and underpasses when available<span class="sub">Much safer than crossing at ground level on busy roads</span></li>
+      <li>Be especially careful at night, when visibility is lower and some drivers ignore traffic rules more freely</li>
+      <li>Never assume a vehicle will stop for you — even at a clearly marked crossing</li>
+    </ul>
+
+    <div class="warning-box">Electric scooters are one of the leading causes of pedestrian injuries in Chinese cities. They move fast, make no noise, and often come from unexpected directions. This is worth taking seriously.</div>
+
+    <h3 class="h3-style">Metro &amp; Public Transport</h3>
+    <ul class="bullet-list">
+      <li>Chinese metro systems are generally very safe<span class="sub">Well-lit, staffed, and with security screening at every station entrance</span></li>
+      <li>Watch for pickpockets in very crowded carriages, especially on popular tourist lines</li>
+      <li>Keep bags in front of you during rush hour on packed trains</li>
+      <li>Long-distance trains are safe and reliable<span class="sub">Lock your bag to the luggage rack if travelling overnight in a sleeper</span></li>
+    </ul>
+
+    <h3 class="h3-style">Taxis &amp; Ride-Hailing</h3>
+    <ul class="bullet-list">
+      <li>Use <strong>DiDi</strong> for all ride-hailing<span class="sub">Shows the driver's name, plate number, and live route tracking, with an emergency button built in</span></li>
+      <li>If taking an official metered taxi, make sure the meter is running before you set off</li>
+      <li>Share your live DiDi trip with a friend or family member for longer or late-night journeys</li>
+      <li>Sit in the back seat<span class="sub">Easier to exit and standard practice in China</span></li>
+    </ul>
+  </div>
+
+  <!-- ══════════════════════ HEALTH ══════════════════════ -->
+  <div class="section" id="health">
+    <div class="section-header">
+      <div class="section-icon">🏥</div>
+      <div class="section-title-group">
+        <h2>Health &amp; Medical</h2>
+        <p>Water, air, food hygiene, and getting medical help</p>
+      </div>
+    </div>
+
+    <h3 class="h3-style">Water</h3>
+    <div class="prose">
+      <p><strong>Never drink tap water in China.</strong> This applies everywhere — cities and rural areas alike. Tap water is used for bathing and cooking (at high heat) but not for drinking. Bottled water is cheap and available everywhere; hotels provide complimentary bottled water in rooms. When brushing your teeth, use bottled water if you're cautious, though most visitors use tap water for this without issue.</p>
+    </div>
+
+    <h3 class="h3-style">Air Quality</h3>
+    <div class="prose">
+      <p>Air quality varies significantly by city, season, and weather conditions. Beijing and some northern cities can experience heavy smog, particularly in winter. Cities like Chengdu, Chongqing, and parts of the northeast can also have poor air quality periods. Coastal cities like Shanghai and Shenzhen tend to have better air.</p>
+    </div>
+    <ul class="bullet-list">
+      <li>Check the AQI (Air Quality Index) for your destination on apps like <strong>AQIcn</strong> or <strong>IQAir</strong></li>
+      <li>AQI above 150 is "Unhealthy"<span class="sub">Consider limiting strenuous outdoor activity</span></li>
+      <li>AQI above 200 is "Very Unhealthy"<span class="sub">Wear an N95 or KN95 mask if going outside — widely available at pharmacies (药店 yàodiàn)</span></li>
+    </ul>
+
+    <h3 class="h3-style">Food Safety</h3>
+    <ul class="bullet-list">
+      <li>Street food from busy, high-turnover stalls is generally safe<span class="sub">Avoid anything that looks like it's been sitting out for hours</span></li>
+      <li>Cooked food served hot is almost always fine; raw salads and cold dishes carry more risk</li>
+      <li>Ice in drinks can be made from tap water<span class="sub">Exercise caution at very basic establishments</span></li>
+      <li>Bring basic anti-diarrhea medication (e.g. loperamide) as a precaution<span class="sub">Stomach upsets can happen when adjusting to unfamiliar ingredients</span></li>
+    </ul>
+
+    <h3 class="h3-style">Medical Care</h3>
+    <div class="prose">
+      <p>Major cities have international hospitals and clinics with English-speaking staff. These are significantly more expensive than local public hospitals but offer far smoother communication for foreign patients. <strong>Travel insurance that covers medical evacuation is strongly recommended.</strong></p>
+      <p>For a full guide to hospitals, clinics, pharmacies, and what to do in a medical emergency, see our dedicated <a href="medical.html" style="color:var(--red);font-weight:600;">Medical &amp; Healthcare guide →</a></p>
+    </div>
+
+    <div class="tip-box">Pharmacies (药店) are everywhere in Chinese cities and stock a wide range of over-the-counter medicines. Show the pharmacist your symptom or a translation on your phone — they can usually recommend something appropriate without a prescription.</div>
+  </div>
+
+  <!-- ══════════════════════ WOMEN TRAVELLERS ══════════════════════ -->
+  <div class="section" id="women">
+    <div class="section-header">
+      <div class="section-icon">👩</div>
+      <div class="section-title-group">
+        <h2>Women Travellers</h2>
+        <p>Safety considerations for women travelling solo or in groups</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>China is generally considered a safe destination for women travellers, including solo travellers. Harassment on the street is far less common than in many other countries, and public spaces feel safe at most hours. That said, a few things are worth knowing.</p>
+    </div>
+
+    <ul class="bullet-list">
+      <li>Solo women travelling overnight by train should book a berth in a full multi-person sleeper car<span class="sub">Avoid booking a private cabin with an unknown stranger</span></li>
+      <li>DiDi has a dedicated women-only mode (女性安全专属服务) in major cities<span class="sub">Matches female passengers with female drivers during late hours</span></li>
+      <li>Staring and unsolicited photography of visibly foreign women does happen, particularly in smaller cities<span class="sub">Almost always curiosity rather than threatening behaviour</span></li>
+      <li>Trust your instincts as you would anywhere — if a situation feels uncomfortable, leave it</li>
+      <li>Hostels in major cities are social and well-connected<span class="sub">A good option for meeting other travellers and getting current on-the-ground safety tips</span></li>
+    </ul>
+
+    <div class="highlight"><strong>On the whole:</strong> Female travellers consistently rate China as one of the more comfortable destinations in Asia for solo travel. The low rate of street harassment and the ease of getting around independently stand out as particular positives.</div>
+  </div>
+
+  <!-- ══════════════════════ DIGITAL SAFETY ══════════════════════ -->
+  <div class="section" id="digital">
+    <div class="section-header">
+      <div class="section-icon">🔒</div>
+      <div class="section-title-group">
+        <h2>Digital Safety</h2>
+        <p>Protecting your data and privacy in China</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>China has extensive digital surveillance infrastructure. This doesn't mean you're being actively monitored as a tourist, but it's worth understanding the environment and taking sensible precautions with your devices.</p>
+    </div>
+
+    <ul class="bullet-list">
+      <li><strong>Use a VPN</strong> to protect your internet traffic<span class="sub">Install before you arrive — downloading VPN apps inside China is not possible. See our <a href="internet.html" style="color:var(--red);">VPN &amp; Internet guide</a> for recommendations</span></li>
+      <li>Avoid accessing sensitive accounts on public Wi-Fi without a VPN active<span class="sub">This includes banking, work email, and personal cloud storage</span></li>
+      <li>Some travellers use a "travel phone" with minimal personal data for China trips<span class="sub">Not essential for most tourists, but worth considering for longer stays</span></li>
+      <li>Border control may ask to inspect your devices in some circumstances<span class="sub">Rare for tourists, but has been reported at airports and land crossings</span></li>
+      <li>WeChat messages are stored on Chinese servers<span class="sub">Be mindful of what you discuss on the platform</span></li>
+    </ul>
+
+    <div class="warning-box">Photographs of military installations, government buildings, and certain border areas are prohibited and can result in detention. Don't photograph anything with visible military personnel or signage saying photography is restricted.</div>
+
+    <div class="tip-box">For most tourists, digital safety simply means: use a VPN, avoid unsecured public Wi-Fi for sensitive logins, and be sensible about what you post publicly about your location. That's it.</div>
+  </div>
+
+  <!-- ══════════════════════ FAQ ══════════════════════ -->
+  <div class="section" id="faq">
+    <div class="section-header">
+      <div class="section-icon">❓</div>
+      <div class="section-title-group">
+        <h2>Frequently Asked Questions</h2>
+        <p>Common safety questions from visitors</p>
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">Is China safe for tourists? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes — China consistently ranks as one of the safer countries for international visitors. Violent crime against tourists is rare, and most people complete their trip without any incident. The main things to watch are tourist scams in busy areas and road safety (traffic rules are applied loosely). With normal awareness, China is a very comfortable destination.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I need travel insurance for China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Strongly recommended. Medical care at international hospitals in China is good but expensive for foreigners — a hospital stay or emergency evacuation can run to tens of thousands of dollars without coverage. Make sure your policy includes medical evacuation, and save your insurer's 24-hour emergency number in your phone. Check that your policy covers activities you plan to do (hiking, skiing, etc.).</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is it safe to eat street food in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Generally yes, with some common sense. Busy stalls with high turnover are your safest bet — the food is freshly cooked and the volume means ingredients don't sit around. Avoid anything that looks like it's been on display for a long time, and be cautious with raw or cold items. Stomach upsets can happen when your digestive system adjusts to new ingredients — bringing basic medication is sensible.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What should I do if I'm arrested or detained? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Stay calm and ask to contact your embassy or consulate immediately — this is your legal right under the Vienna Convention. Do not sign any documents you don't understand. Contact your embassy's emergency line as soon as possible; they can provide a list of local lawyers and monitor your situation. Avoid arguing with or obstructing law enforcement officers.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Are there areas of China I should avoid? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Most of China is safe and open to tourists. Some areas have specific considerations: Xinjiang has heightened security measures and may require additional registration with police on arrival. Tibet requires a special Tibet Travel Permit in addition to your visa. Some border regions near Myanmar and North Korea have restricted access. Check your government's travel advisory for the most current information before you go.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is it safe to use ATMs in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes — ATM skimming and card cloning are much less common in China than in many other countries. Stick to ATMs inside bank branches (Bank of China, ICBC, China Construction Bank) rather than standalone machines in convenience stores, and you'll be fine. Notify your bank before you travel so your card isn't blocked for foreign use.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What vaccinations do I need for China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">No vaccinations are legally required for entry to China (unless arriving from a yellow fever zone). However, most travel health advisors recommend being up to date on routine vaccinations (MMR, tetanus, hepatitis A and B), and potentially typhoid if you're eating adventurously in rural areas. Consult a travel medicine clinic 4–6 weeks before departure for personalised advice based on your itinerary.</div>
+      </div>
+    </div>
+  </div>
+
+  <a href="../index.html" class="back-link">← Back to Home</a>
+
+</div><!-- /page-wrap -->
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+</body>
+</html>
