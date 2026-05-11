@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopping in China — China Awaits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #C0392B;
+      --red-dark: #96281B;
+      --gold: #C9A84C;
+      --gold-light: #e8c96a;
+      --ink: #1a1a1a;
+      --ink-soft: #3d3d3d;
+      --mist: #f7f4f0;
+      --mist-dark: #ede9e3;
+      --white: #ffffff;
+      --border: #e0d9d0;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,0.14);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); line-height: 1.7; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.97); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 60px;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--red); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-size: 0.88rem; font-weight: 500; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--red); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--ink); position: relative; overflow: hidden;
+      padding: 5rem 2rem 4rem; text-align: center;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 18% 58%, rgba(192,57,43,0.28) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 35%, rgba(201,168,76,0.18) 0%, transparent 55%);
+    }
+    .hero-pattern {
+      position: absolute; inset: 0; opacity: 0.035;
+      background-image: repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%);
+      background-size: 20px 20px;
+    }
+    .hero-tag {
+      display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,0.4);
+      padding: 0.3rem 0.9rem; border-radius: 2px; margin-bottom: 1.5rem; position: relative;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 1rem; position: relative;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.65); max-width: 540px; margin: 0 auto 2.5rem; position: relative; }
+    .jump-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; position: relative; }
+    .jump-nav a {
+      display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 500;
+      color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15); padding: 0.45rem 1rem; border-radius: 40px;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .jump-nav a:hover { background: rgba(201,168,76,0.2); border-color: var(--gold); color: var(--gold); }
+
+    /* ── LAYOUT ── */
+    .page-wrap { max-width: 860px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+    /* ── SECTION ── */
+    .section { margin-top: 4.5rem; scroll-margin-top: 80px; }
+    .section-header {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1.8rem;
+      padding-bottom: 1rem; border-bottom: 2px solid var(--border);
+    }
+    .section-icon {
+      width: 48px; height: 48px; background: var(--red); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;
+    }
+    .section-title-group h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+    .section-title-group p { font-size: 0.88rem; color: #888; margin-top: 0.1rem; }
+
+    /* ── PROSE ── */
+    .prose p { font-size: 0.97rem; color: var(--ink-soft); margin-bottom: 1rem; }
+    .prose strong { color: var(--ink); font-weight: 600; }
+
+    /* ── BOXES ── */
+    .highlight { background: var(--mist); border-left: 3px solid var(--gold); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1.2rem 0; font-size: 0.93rem; color: var(--ink-soft); }
+    .highlight strong { color: var(--ink); }
+    .tip-box { background: #fff8ee; border: 1px solid #f0d990; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #6b5b1a; }
+    .tip-box::before { content: '💡 Tip: '; font-weight: 600; }
+    .warning-box { background: #fff5f5; border: 1px solid #f5c6c6; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #7a2020; }
+    .warning-box::before { content: '⚠️ Note: '; font-weight: 600; }
+
+    /* ── BULLET LIST ── */
+    .bullet-list { list-style: none; margin: 1rem 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .bullet-list li { display: grid; grid-template-columns: 1rem 1fr; column-gap: 0.7rem; font-size: 0.93rem; color: var(--ink-soft); align-items: start; }
+    .bullet-list li::before { content: '—'; color: var(--gold); font-weight: 700; margin-top: 2px; }
+    .bullet-list li .li-content { display: block; }
+    .bullet-list li .sub { display: block; font-size: 0.83rem; color: #999; margin-top: 0.2rem; }
+
+    /* ── TABLE ── */
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    thead { background: var(--ink); color: white; }
+    thead th { padding: 0.85rem 1rem; text-align: left; font-weight: 600; font-size: 0.83rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:nth-child(even) { background: var(--mist); }
+    tbody td { padding: 0.85rem 1rem; color: var(--ink-soft); vertical-align: top; }
+    tbody td:first-child { font-weight: 600; color: var(--ink); }
+
+    /* ── CARD GRID ── */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; transition: box-shadow 0.2s, transform 0.2s; }
+    .card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+    .card-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+    .card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .card p { font-size: 0.87rem; color: #666; line-height: 1.5; }
+    .card .card-badge { display: inline-block; margin-top: 0.7rem; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.2rem 0.55rem; border-radius: 4px; }
+    .badge-green { background: #e6f9ee; color: #1a6e3a; }
+    .badge-gold  { background: #fef9e7; color: #8a6000; }
+    .badge-red   { background: #ffeaea; color: #b91c1c; }
+
+    /* ── VENUE CARD ── */
+    .venue-list { display: flex; flex-direction: column; gap: 0.9rem; margin: 1.2rem 0; }
+    .venue-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.1rem 1.3rem; display: grid; grid-template-columns: 48px 1fr; gap: 1rem; align-items: start;
+    }
+    .venue-card.featured { border: 2px solid var(--gold); background: #fffdf5; }
+    .venue-icon { width: 48px; height: 48px; background: var(--mist); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+    .venue-card.featured .venue-icon { background: #fef9e7; }
+    .venue-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.2rem; }
+    .venue-tag { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; display: block; }
+    .venue-desc { font-size: 0.87rem; color: var(--ink-soft); line-height: 1.6; margin-bottom: 0.5rem; }
+    .venue-meta { font-size: 0.8rem; color: #999; }
+
+    /* ── BARGAIN STEPS ── */
+    .steps { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; margin: 1.2rem 0; }
+    .steps li { display: flex; align-items: flex-start; gap: 1rem; background: var(--mist); border-radius: 10px; padding: 0.9rem 1.1rem; }
+    .step-num { width: 28px; height: 28px; background: var(--red); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .step-text { font-size: 0.93rem; color: var(--ink-soft); }
+    .step-text strong { color: var(--ink); display: block; margin-bottom: 0.1rem; }
+
+    /* ── PHRASE BOX ── */
+    .phrase-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 0.8rem; margin: 1.2rem 0; }
+    .phrase-box { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 0.9rem 1.1rem; }
+    .phrase-box .zh { font-size: 1.2rem; font-weight: 700; color: var(--red); margin-bottom: 0.1rem; }
+    .phrase-box .pinyin { font-size: 0.8rem; color: #999; font-style: italic; margin-bottom: 0.15rem; }
+    .phrase-box .en { font-size: 0.85rem; color: var(--ink-soft); font-weight: 500; }
+    .phrase-box .usage { font-size: 0.78rem; color: #aaa; margin-top: 0.3rem; line-height: 1.4; }
+
+    /* ── FAQ ── */
+    .faq { margin: 1.5rem 0; }
+    .faq-item { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 0.6rem; overflow: hidden; }
+    .faq-q { width: 100%; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.2rem; font-family: 'DM Sans', sans-serif; font-size: 0.93rem; font-weight: 600; color: var(--ink); text-align: left; gap: 1rem; }
+    .faq-q:hover { background: var(--mist); }
+    .faq-arrow { font-size: 1rem; color: var(--gold); transition: transform 0.25s; flex-shrink: 0; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0.8rem 1.2rem 1rem; font-size: 0.9rem; color: var(--ink-soft); border-top: 1px solid var(--border); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── BACK LINK ── */
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.88rem; font-weight: 500; color: var(--red); text-decoration: none; margin-top: 3rem; }
+    .back-link:hover { text-decoration: underline; }
+
+    .h3-style { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin: 1.5rem 0 0.8rem; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .page-wrap { padding: 0 1rem 4rem; }
+      .hero { padding: 3.5rem 1rem 3rem; }
+      .card-grid { grid-template-columns: 1fr 1fr; }
+      .venue-card { grid-template-columns: 1fr; }
+      .phrase-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo">China Awaits</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="pre-arrival.html">Before You Arrive</a></li>
+    <li><a href="money.html">Money</a></li>
+    <li><a href="shopping.html" class="active">Shopping</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-tag">Shopping</div>
+  <h1>Shopping in <span>China</span></h1>
+  <p class="hero-sub">From night markets and ancient bazaars to gleaming malls and the world's biggest e-commerce platforms — China is a shopper's dream.</p>
+  <div class="jump-nav">
+    <a href="#overview">🛍️ Overview</a>
+    <a href="#where">📍 Where to Shop</a>
+    <a href="#bargaining">🤝 Bargaining</a>
+    <a href="#online">📱 Online Shopping</a>
+    <a href="#what-to-buy">🎁 What to Buy</a>
+    <a href="#customs">✈️ Customs &amp; VAT</a>
+    <a href="#phrases">💬 Useful Phrases</a>
+    <a href="#faq">❓ FAQ</a>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- ══════════════════════ OVERVIEW ══════════════════════ -->
+  <div class="section" id="overview">
+    <div class="section-header">
+      <div class="section-icon">🛍️</div>
+      <div class="section-title-group">
+        <h2>Shopping at a Glance</h2>
+        <p>What makes China's retail scene unique</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>China offers one of the most varied shopping experiences in the world — ancient markets selling handmade crafts sit a few streets away from seven-floor luxury malls stocking every major Western brand. Prices can be a fraction of what you'd pay at home, but knowing where to shop and how to pay makes all the difference.</p>
+      <p>Mobile payment (Alipay or WeChat Pay) is the norm almost everywhere. Many smaller vendors, market stalls, and street shops <strong>do not accept cash or foreign cards</strong> — set up your payment apps before you shop.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🏪</div>
+        <h3>Markets</h3>
+        <p>The best place for souvenirs, bargains, streetwear, antiques, and local crafts. Bargaining is expected and part of the fun.</p>
+        <span class="card-badge badge-gold">Bargain Expected</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏬</div>
+        <h3>Malls</h3>
+        <p>Fixed prices, international brands, air conditioning, and food courts. Great for electronics, cosmetics, and fashion.</p>
+        <span class="card-badge badge-green">Fixed Price</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">📱</div>
+        <h3>Online (Taobao / JD)</h3>
+        <p>Cheapest prices for almost everything. Requires Chinese payment setup — a great option if you're staying a while.</p>
+        <span class="card-badge badge-green">Lowest Prices</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏮</div>
+        <h3>Specialty Streets</h3>
+        <p>Every major city has streets dedicated to a single product type — tea, fabric, electronics, antiques, flowers. Worth seeking out.</p>
+        <span class="card-badge badge-gold">Worth Exploring</span>
+      </div>
+    </div>
+
+    <div class="highlight"><strong>Payment reminder:</strong> Set up Alipay or WeChat Pay before you hit the markets — many vendors won't accept cash or foreign cards. See our <a href="money.html" style="color:var(--red);font-weight:600;">Money &amp; Payments guide</a> for setup instructions.</div>
+  </div>
+
+  <!-- ══════════════════════ WHERE TO SHOP ══════════════════════ -->
+  <div class="section" id="where">
+    <div class="section-header">
+      <div class="section-icon">📍</div>
+      <div class="section-title-group">
+        <h2>Where to Shop</h2>
+        <p>Markets, malls, streets, and everything in between</p>
+      </div>
+    </div>
+
+    <h3 class="h3-style">Markets</h3>
+    <div class="prose">
+      <p>Every major Chinese city has its own market scene — antique markets, night markets, wholesale bazaars, and flea markets each with a distinct character. For specific market recommendations by city, check the individual city guides where we cover the best spots, opening hours, and what to look for.</p>
+      <p>As a general rule: antique markets are best on weekend mornings when selection is widest; night markets peak Thursday to Sunday from around 6pm; and indoor markets are open daily year-round regardless of weather.</p>
+    </div>
+
+    <h3 class="h3-style">Malls &amp; Department Stores</h3>
+    <div class="prose">
+      <p>Chinese malls are enormous, well air-conditioned, and stock everything from luxury goods to fast fashion. Major cities have multiple high-end malls — SKP in Beijing, Plaza 66 in Shanghai — as well as mid-range options like Wanda Plaza found in almost every city. Prices are fixed and receipts are standard.</p>
+    </div>
+
+    <h3 class="h3-style">Specialty Shopping Streets</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>City</th><th>Street / Area</th><th>Speciality</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Beijing</td><td>Maliandao Tea Street</td><td>Tea from across China — hundreds of specialist shops</td></tr>
+          <tr><td>Beijing</td><td>Zhongguancun / Haidian</td><td>Electronics, gadgets, computer hardware</td></tr>
+          <tr><td>Shanghai</td><td>Fabric Market (South Bund)</td><td>Tailored clothing and fabric by the metre</td></tr>
+          <tr><td>Shanghai</td><td>Tianzifang</td><td>Artisan crafts, indie design, local brands</td></tr>
+          <tr><td>Guangzhou</td><td>Yide Road</td><td>Wholesale toys, stationery, and gifts</td></tr>
+          <tr><td>Chengdu</td><td>Chunxi Road</td><td>Fashion, cosmetics, and local lifestyle brands</td></tr>
+          <tr><td>Yiwu</td><td>International Trade Market</td><td>Wholesale everything — the world's largest small commodity market</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ BARGAINING ══════════════════════ -->
+  <div class="section" id="bargaining">
+    <div class="section-header">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-group">
+        <h2>How to Bargain</h2>
+        <p>The art of negotiating a good price at markets</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Bargaining is a normal, expected part of shopping at Chinese markets, street stalls, and tourist shops. It's not rude — refusing to negotiate at all is often more awkward than haggling enthusiastically. The opening price is almost never the real price.</p>
+      <p>As a visibly foreign visitor, vendors will often start significantly higher than they would for a local — sometimes 5–10x the actual going rate. The single most effective thing you can do is <strong>bring a Chinese friend or local contact</strong> to shop with you. Prices frequently drop the moment a native speaker is involved.</p>
+    </div>
+
+    <div class="warning-box">Never bargain at supermarkets, chain stores, pharmacies, or anywhere with price tags displayed on shelves. Fixed-price retail is fixed — attempting to bargain there is genuinely inappropriate.</div>
+
+    <h3 class="h3-style">The Bargaining Process</h3>
+    <ol class="steps">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <strong>Show interest without eagerness</strong>
+          Browse casually. Pick up items without immediately asking prices. Merchants read enthusiasm and price accordingly.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <strong>Get the opening price</strong>
+          Ask "多少钱?" (Duōshǎo qián? — How much?). Note the first price — it's almost always inflated 3–10x for tourists.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <strong>Counter at 10–20% of the asking price</strong>
+          This sounds very aggressive but is often necessary, especially as a foreigner. If they ask ¥200, start at ¥20–40. React with genuine surprise — "太贵了!" (Tài guì le! — Too expensive!). Don't worry about offending anyone; vendors are used to it.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-text">
+          <strong>Negotiate back and forth</strong>
+          Meet somewhere in the middle. The final price is usually 30–50% of the opening ask. Use a calculator or your phone to show numbers if there's a language barrier.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">5</div>
+        <div class="step-text">
+          <strong>Walk away if needed</strong>
+          If the price isn't moving, start to leave. This often produces an immediate better offer. Only do this if you're genuinely willing to leave without the item.
+        </div>
+      </li>
+      <li>
+        <div class="step-num">6</div>
+        <div class="step-text">
+          <strong>Commit once you agree</strong>
+          Don't agree on a price then try to renegotiate further, or change your mind and leave — this is considered rude and causes loss of face.
+        </div>
+      </li>
+    </ol>
+
+    <div class="tip-box">Buying multiple items from the same vendor dramatically increases your leverage. "If I buy three, what's the price?" is one of the most effective bargaining moves you have.</div>
+  </div>
+
+  <!-- ══════════════════════ ONLINE SHOPPING ══════════════════════ -->
+  <div class="section" id="online">
+    <div class="section-header">
+      <div class="section-icon">📱</div>
+      <div class="section-title-group">
+        <h2>Online Shopping</h2>
+        <p>Taobao, JD, and navigating China's e-commerce world</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>China has the world's most sophisticated e-commerce ecosystem. Prices online are often far below what you'd find in any physical store, and delivery within cities is frequently same-day. For longer stays, setting up online shopping access is well worth the effort.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🟠</div>
+        <h3>Taobao (淘宝)</h3>
+        <p>China's biggest C2C marketplace — think eBay but bigger. Extraordinary range at very low prices. Quality varies; read reviews carefully. Requires Alipay to pay.</p>
+        <span class="card-badge badge-gold">Best Range</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔴</div>
+        <h3>JD.com (京东)</h3>
+        <p>More like Amazon — focused on authenticity and fast delivery. Better for electronics, branded goods, and anything where fakes are a concern. Slightly higher prices than Taobao.</p>
+        <span class="card-badge badge-green">Most Reliable</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">🟡</div>
+        <h3>Pinduoduo (拼多多)</h3>
+        <p>Group-buying platform with extremely low prices. Particularly popular in smaller cities. Quality can be very inconsistent — best for low-stakes, inexpensive items.</p>
+        <span class="card-badge badge-gold">Lowest Prices</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">📦</div>
+        <h3>Delivery (快递)</h3>
+        <p>Delivery in major cities can be same-day or next-day. Packages are left at the door or a nearby pickup locker (快递柜). Riders call when arriving — have a local number or hotel reception handle it.</p>
+        <span class="card-badge badge-green">Very Fast</span>
+      </div>
+    </div>
+
+    <div class="tip-box">Taobao's app has a built-in image search — photograph something you want to buy and it will find similar items for sale. Incredibly useful for finding copies or equivalents of things you've seen on the street.</div>
+
+    <div class="warning-box">Taobao and some other platforms are in Chinese only. Google Translate's camera mode works reasonably well for navigating the app, but it takes patience. JD.com has a more accessible international interface.</div>
+  </div>
+
+  <!-- ══════════════════════ WHAT TO BUY ══════════════════════ -->
+  <div class="section" id="what-to-buy">
+    <div class="section-header">
+      <div class="section-icon">🎁</div>
+      <div class="section-title-group">
+        <h2>What to Buy</h2>
+        <p>The best souvenirs, bargains, and things unique to China</p>
+      </div>
+    </div>
+
+    <h3 class="h3-style">Great Value in China</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Item</th><th>Why Buy in China</th><th>Where to Find It</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Tea</td><td>Extraordinary range, direct from origin, prices a fraction of abroad</td><td>Specialty tea streets, markets, tea houses</td></tr>
+          <tr><td>Silk</td><td>High quality raw and finished silk at low prices</td><td>South Bund Fabric Market (Shanghai), Suzhou</td></tr>
+          <tr><td>Tailored clothing</td><td>Custom-made garments in 24–48 hours at low cost</td><td>Fabric markets in Shanghai, Beijing</td></tr>
+          <tr><td>Electronics &amp; accessories</td><td>Competitive prices, especially for cables, cases, and gadgets</td><td>Zhongguancun (Beijing), Huaqiangbei (Shenzhen)</td></tr>
+          <tr><td>Traditional crafts</td><td>Calligraphy, ink stones, paper cuts, ceramics — authentic and affordable</td><td>Antique markets, museum shops</td></tr>
+          <tr><td>Cosmetics</td><td>Chinese skincare brands (Florasis, Perfect Diary) at domestic prices</td><td>Malls, department stores, Watsons</td></tr>
+          <tr><td>Streetwear &amp; fashion</td><td>Domestic brands like Li-Ning and Anta with designs not sold abroad</td><td>Malls, flagship stores, Taobao</td></tr>
+          <tr><td>Snacks &amp; food gifts</td><td>Regional specialties, unusual flavours, beautifully packaged gift sets</td><td>Supermarkets, airport shops, local bakeries</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="h3-style">Be Cautious With</h3>
+    <ul class="bullet-list">
+      <li><span class="li-content"><strong>Branded luxury goods at market prices</strong>
+        <span class="sub">If a "Rolex" costs ¥200 or a "Louis Vuitton" bag costs ¥300, it's a fake. Purchasing counterfeit goods is illegal and they may be confiscated at customs.</span>
+      </span></li>
+      <li><span class="li-content"><strong>Antiques and "ancient" artefacts</strong>
+        <span class="sub">Genuine antiques over 100 years old cannot legally be exported from China. Most items sold as antiques are reproductions — buy them as decorative items, not investments.</span>
+      </span></li>
+      <li><span class="li-content"><strong>Jade and gemstones</strong>
+        <span class="sub">Quality varies enormously and fakes are common. Only buy from reputable dealers if you're spending significant money, and don't trust dramatic stories about "factory closing sales."</span>
+      </span></li>
+      <li><span class="li-content"><strong>Wildlife products</strong>
+        <span class="sub">Some traditional medicine shops sell products derived from protected species. These are illegal to export and can result in serious penalties at customs.</span>
+      </span></li>
+    </ul>
+  </div>
+
+  <!-- ══════════════════════ CUSTOMS & VAT ══════════════════════ -->
+  <div class="section" id="customs">
+    <div class="section-header">
+      <div class="section-icon">✈️</div>
+      <div class="section-title-group">
+        <h2>Customs &amp; Taking Goods Home</h2>
+        <p>What you can bring back — and what to watch out for</p>
+      </div>
+    </div>
+
+    <h3 class="h3-style">Chinese Export Rules</h3>
+    <ul class="bullet-list">
+      <li><span class="li-content">Genuine antiques over 100 years old require an export permit from the State Administration of Cultural Heritage — without it, they will be confiscated</span></li>
+      <li><span class="li-content">Counterfeit goods are illegal to export and will be seized at Chinese customs or your home country's customs</span></li>
+      <li><span class="li-content">Wildlife products (ivory, certain furs, traditional medicines derived from protected species) are prohibited exports under CITES — penalties are severe</span></li>
+      <li><span class="li-content">Large amounts of cash (over $5,000 USD equivalent) must be declared when leaving China</span></li>
+    </ul>
+
+    <h3 class="h3-style">VAT Refund for Tourists</h3>
+    <div class="prose">
+      <p>China offers a VAT refund scheme for foreign visitors. You can claim back 11% VAT on purchases made at participating stores, subject to a minimum spend per receipt (typically ¥500). Look for the "Tax Refund" logo at upmarket department stores and luxury retailers.</p>
+    </div>
+    <ul class="bullet-list">
+      <li><span class="li-content">Ask for a tax refund receipt (退税单) at the point of purchase
+        <span class="sub">Not all stores participate — look for the Tax Free Shopping logo</span>
+      </span></li>
+      <li><span class="li-content">Present goods, receipts, and your passport at the Tax Refund counter at the airport before check-in
+        <span class="sub">Allow extra time — queues can be long at major airports</span>
+      </span></li>
+      <li><span class="li-content">Refunds can be issued in cash (RMB or USD) or back to your credit card</span></li>
+    </ul>
+
+    <h3 class="h3-style">Your Home Country's Import Limits</h3>
+    <div class="prose">
+      <p>Your home country will have its own limits on what you can bring back duty-free. Common limits include around $800 USD (US), £390 (UK), or €430 (EU) worth of goods. Check your customs authority's website before you shop heavily — declaring excess goods is always better than having them seized.</p>
+    </div>
+
+    <div class="tip-box">Keep all your receipts while shopping in China. If customs asks where an item came from or what you paid, having a receipt makes everything much smoother — both in China and when you arrive home.</div>
+  </div>
+
+  <!-- ══════════════════════ PHRASES ══════════════════════ -->
+  <div class="section" id="phrases">
+    <div class="section-header">
+      <div class="section-icon">💬</div>
+      <div class="section-title-group">
+        <h2>Useful Shopping Phrases</h2>
+        <p>Key Mandarin for markets and bargaining</p>
+      </div>
+    </div>
+
+    <div class="phrase-grid">
+      <div class="phrase-box">
+        <div class="zh">多少钱？</div>
+        <div class="pinyin">Duōshǎo qián?</div>
+        <div class="en">How much is it?</div>
+        <div class="usage">Your most-used phrase at any market</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">太贵了！</div>
+        <div class="pinyin">Tài guì le!</div>
+        <div class="en">Too expensive!</div>
+        <div class="usage">Say this immediately after hearing the price</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">便宜一点</div>
+        <div class="pinyin">Piányí yīdiǎn</div>
+        <div class="en">A bit cheaper, please</div>
+        <div class="usage">A polite way to open the negotiation</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">可以打折吗？</div>
+        <div class="pinyin">Kěyǐ dǎzhé ma?</div>
+        <div class="en">Can you give a discount?</div>
+        <div class="usage">More direct — works well at clothing shops</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">我要这个</div>
+        <div class="pinyin">Wǒ yào zhège</div>
+        <div class="en">I'll take this one</div>
+        <div class="usage">Point at the item when you say it</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">不要了，谢谢</div>
+        <div class="pinyin">Bú yào le, xièxiè</div>
+        <div class="en">No thank you, I don't want it</div>
+        <div class="usage">Firm but polite way to decline persistent vendors</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">能便宜到…吗？</div>
+        <div class="pinyin">Néng piányí dào… ma?</div>
+        <div class="en">Can you bring it down to …?</div>
+        <div class="usage">Show a number on your phone to name your price</div>
+      </div>
+      <div class="phrase-box">
+        <div class="zh">有没有收据？</div>
+        <div class="pinyin">Yǒu méiyǒu shōujù?</div>
+        <div class="en">Can I have a receipt?</div>
+        <div class="usage">Ask after purchase — useful for customs and returns</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ FAQ ══════════════════════ -->
+  <div class="section" id="faq">
+    <div class="section-header">
+      <div class="section-icon">❓</div>
+      <div class="section-title-group">
+        <h2>Frequently Asked Questions</h2>
+        <p>Common shopping questions from visitors</p>
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">Is it rude to bargain in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Not at all — in markets and street shops, bargaining is entirely normal and expected. Vendors build negotiation room into their prices from the start. What would be rude is agreeing to a price and then not buying, or trying to bargain at a fixed-price store like a supermarket or chain retailer.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How do I know if something is fake? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">If the price is dramatically below what you'd expect to pay for a branded item, it's almost certainly a replica. Common fakes include luxury bags, watches, electronics, sports clothing, and branded trainers. The quality of fakes varies enormously — some are near-perfect, others fall apart quickly. Buying knowingly for personal use is a grey area; attempting to bring quantities through customs or resell them is illegal.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I use my foreign credit card in shops? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">In large malls, international hotels, and luxury stores — yes. In markets, street shops, small restaurants, and most everyday retail — no. Alipay or WeChat Pay linked to your foreign card is the most practical solution for day-to-day shopping. See our Money guide for setup instructions.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is it safe to buy electronics in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">From reputable stores and official brand outlets, yes — and often at better prices than at home. From markets or unofficial vendors, quality can be very inconsistent. Check that voltage is compatible with your home country (China uses 220V/50Hz), and that devices have the right plug or that you have an adapter. Some electronics bought in China may have firmware in Chinese only.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I ship purchases home from China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes — international shipping from China is well-developed and relatively affordable. Major courier services (DHL, FedEx, SF Express) operate from most cities. Larger purchases from malls can often be shipped directly by the store. Factor in customs duties in your home country on the total value shipped.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What's the best city for shopping in China? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">It depends on what you're after. Beijing is best for antiques, traditional crafts, and tea. Shanghai is unbeatable for tailored clothing, designer brands, and contemporary fashion. Shenzhen's Huaqiangbei electronics market is unrivalled for gadgets and components. Guangzhou and Yiwu are best for wholesale buying. Every city has its own specialty street worth exploring.</div>
+      </div>
+    </div>
+  </div>
+
+  <a href="../index.html" class="back-link">← Back to Home</a>
+
+</div><!-- /page-wrap -->
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+</body>
+</html>
