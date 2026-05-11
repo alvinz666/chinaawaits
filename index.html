@@ -254,6 +254,7 @@
     <li><a href="#cities">Cities</a></li>
     <li><a href="#topics">Topics</a></li>
     <li><a href="#essentials">Essentials</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
   </ul>
 </nav>
 
@@ -431,10 +432,8 @@
       </div>
       <nav class="footer-nav">
         <a href="#cities">Cities</a>
-        <a href="topics/visa.html">Visa</a>
-        <a href="topics/food.html">Food</a>
-        <a href="topics/transport.html">Transport</a>
-        <a href="topics/medical.html">Medical</a>
+        <a href="#topics">Topics</a>
+        <a href="#essentials">Essentials</a>
         <a href="contact.html" class="footer-contact">Contact Us</a>
       </nav>
     </div>
@@ -485,31 +484,4 @@
   function showSearchResults(q, results) {
     // Remove existing results
     const existing = document.getElementById('search-results');
-    if (existing) existing.remove();
-
-    const box = document.createElement('div');
-    box.id = 'search-results';
-    box.style.cssText = 'position:fixed;top:60px;left:50%;transform:translateX(-50%);width:min(480px,90vw);background:#fff;border:1px solid #e0d9d0;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.15);z-index:200;max-height:400px;overflow-y:auto;';
-
-    if (results.length === 0) {
-      box.innerHTML = `<div style="padding:1.2rem;text-align:center;color:#888;font-size:0.9rem;">No results for "<strong>${q}</strong>" — try a different keyword</div>`;
-    } else {
-      box.innerHTML = `<div style="padding:0.75rem 1rem;font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#999;border-bottom:1px solid #f0ebe3;">Results for "${q}"</div>` +
-        results.map(r => `<a href="${r.url}" style="display:flex;align-items:center;gap:0.9rem;padding:0.85rem 1rem;text-decoration:none;color:inherit;border-bottom:1px solid #f7f4f0;" onmouseover="this.style.background='#faf7f3'" onmouseout="this.style.background=''">
-          <span style="font-size:1.4rem;flex-shrink:0;">${r.icon}</span>
-          <span style="font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:#1a1a1a;">${r.title}</span>
-        </a>`).join('') +
-        `<div style="padding:0.6rem 1rem;text-align:right;"><button onclick="document.getElementById('search-results').remove()" style="font-size:0.78rem;color:#999;background:none;border:none;cursor:pointer;">Close ✕</button></div>`;
-    }
-    document.body.appendChild(box);
-    document.addEventListener('click', function closeResults(e) {
-      if (!box.contains(e.target) && e.target.id !== 'hero-search-input') {
-        box.remove();
-        document.removeEventListener('click', closeResults);
-      }
-    });
-  }
-</script>
-
-</body>
-</html>
+    if (existing) existing.remove()
