@@ -36,8 +36,8 @@
       padding: 0 2rem; height: 60px;
     }
     .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--red); text-decoration: none; }
-    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
-    .nav-links a { font-size: 0.88rem; font-weight: 500; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a { font-size: 14px; font-weight: 400; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--red); }
 
     /* ── HERO ── */
@@ -288,6 +288,20 @@
     .related-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 0.3rem; }
     .related-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; }
     .related-desc { font-size: 0.82rem; color: #888; line-height: 1.4; }
+
+    /* FOOTER */
+    footer { background: transparent; border-top: 1px solid var(--border); padding: 2.8rem 2rem 2rem; margin-top: 2rem; }
+    .footer-inner { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.6rem; }
+    .footer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .footer-brand { display: flex; flex-direction: column; gap: .35rem; }
+    .footer-logo-text { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--red); }
+    .footer-tagline { font-size: 13px; color: var(--ink-soft); }
+    .footer-nav { display: flex; flex-wrap: wrap; gap: .5rem 1.6rem; align-items: center; }
+    .footer-nav a { text-decoration: none; font-size: 14px; color: var(--ink-soft); font-weight: 400; transition: color .2s; }
+    .footer-nav a:hover { color: var(--red); }
+    .footer-contact { background: var(--red); color: #fff !important; padding: 6px 16px; border-radius: 24px; font-size: 13px !important; font-weight: 500; }
+    .footer-contact:hover { background: var(--red-dark) !important; }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 1.2rem; font-size: 12px; color: var(--ink-soft); display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
   </style>
 </head>
 <body>
@@ -296,10 +310,10 @@
 <nav>
   <a href="../index.html" class="nav-logo">China Awaits</a>
   <ul class="nav-links">
-    <li><a href="../index.html">Home</a></li>
-    <li><a href="pre-arrival.html">Before You Arrive</a></li>
-    <li><a href="transport.html">Transport</a></li>
-    <li><a href="food.html" class="active">Food</a></li>
+    <li><a href="../index.html#cities">Cities</a></li>
+    <li><a href="../index.html#topics">Topics</a></li>
+    <li><a href="../index.html#essentials">Essentials</a></li>
+    <li><a href="../contact.html">Contact Us</a></li>
   </ul>
 </nav>
 
@@ -1297,6 +1311,27 @@
     initEChartsMap();
   });
 </script>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo-text">China Awaits</div>
+        <div class="footer-tagline">Your trusted guide for exploring China · chinaawaits.com</div>
+      </div>
+      <div class="footer-nav">
+        <a href="../index.html#cities">Cities</a>
+        <a href="../index.html#topics">Topics</a>
+        <a href="../index.html#essentials">Essentials</a>
+        <a href="../contact.html" class="footer-contact">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 China Awaits. All rights reserved.</span>
+      <span>chinaawaits.com</span>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
