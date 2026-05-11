@@ -542,6 +542,25 @@
     margin-top: 0.3rem;
   }
 
+  /* ── FOOTER ── */
+  footer {
+    background: rgba(253,250,247,0.97);
+    border-top: 1px solid var(--border);
+    padding: 2.8rem 2rem 2rem;
+    margin-top: 4rem;
+  }
+  .footer-inner { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.6rem; }
+  .footer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+  .footer-brand { display: flex; flex-direction: column; gap: .35rem; }
+  .footer-logo-text { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--red); }
+  .footer-tagline { font-size: 13px; color: var(--ink-soft); }
+  .footer-nav { display: flex; flex-wrap: wrap; gap: .5rem 1.6rem; align-items: center; }
+  .footer-nav a { text-decoration: none; font-size: 14px; color: var(--ink-mid); font-weight: 400; transition: color .2s; }
+  .footer-nav a:hover { color: var(--red); }
+  .footer-contact { background: var(--red); color: #fff !important; padding: 6px 16px; border-radius: 24px; font-size: 13px !important; font-weight: 500; }
+  .footer-contact:hover { background: var(--red-dark) !important; }
+  .footer-bottom { border-top: 1px solid var(--border); padding-top: 1.2rem; font-size: 12px; color: var(--ink-soft); display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 600px) {
     nav { padding: 0 1rem; }
@@ -559,10 +578,10 @@
 <nav>
   <a class="nav-logo" href="../index.html">China Awaits</a>
   <ul class="nav-links">
-    <li><a href="../index.html">Home</a></li>
-    <li><a href="visa.html">Visa</a></li>
-    <li><a href="transport.html">Transport</a></li>
-    <li><a href="pre-arrival.html" class="active">Before You Arrive</a></li>
+    <li><a href="../index.html#cities">Cities</a></li>
+    <li><a href="../index.html#topics">Topics</a></li>
+    <li><a href="../index.html#essentials">Essentials</a></li>
+    <li><a href="../contact.html">Contact Us</a></li>
   </ul>
 </nav>
 
@@ -866,11 +885,6 @@
 
     <div class="card-grid">
       <div class="card">
-        <div class="card-icon">🗺️</div>
-        <p class="card-title">Maps.me (offline maps)</p>
-        <p class="card-body">Download China maps for offline use. Works without internet. Good for walking navigation in cities. Free.</p>
-      </div>
-      <div class="card">
         <div class="card-icon">🚇</div>
         <p class="card-title">Baidu Maps</p>
         <p class="card-body">The most accurate maps app for China. Has transit directions, bike-share locations, and real-time traffic. English mode available.</p>
@@ -1039,9 +1053,25 @@
 
 </main>
 
-<footer style="background:var(--ink); color:rgba(255,255,255,0.45); font-size:0.8rem; padding:2rem; text-align:center; margin-top:4rem;">
-  <p style="font-family:'Playfair Display',serif; font-size:1rem; color:rgba(255,255,255,0.8); margin-bottom:0.5rem;">China Awaits</p>
-  <p>Information is updated regularly but always verify with official sources before travel.</p>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo-text">China Awaits</div>
+        <div class="footer-tagline">Your trusted guide for exploring China · chinaawaits.com</div>
+      </div>
+      <nav class="footer-nav">
+        <a href="../index.html#cities">Cities</a>
+        <a href="../index.html#topics">Topics</a>
+        <a href="../index.html#essentials">Essentials</a>
+        <a href="../contact.html" class="footer-contact">Contact Us</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 China Awaits. All rights reserved.</span>
+      <span>chinaawaits.com</span>
+    </div>
+  </div>
 </footer>
 
 <script>
