@@ -56,18 +56,8 @@
       text-decoration: none;
       letter-spacing: 0.02em;
     }
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: 0.88rem;
-      font-weight: 500;
-      color: var(--ink-soft);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a { font-size: 14px; font-weight: 400; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--red); }
 
     /* ── HERO ── */
@@ -431,6 +421,20 @@
       .hero { padding: 3.5rem 1rem 3rem; }
       .card-grid { grid-template-columns: 1fr; }
     }
+
+    /* FOOTER */
+    footer { background: transparent; border-top: 1px solid var(--border); padding: 2.8rem 2rem 2rem; margin-top: 2rem; }
+    .footer-inner { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.6rem; }
+    .footer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .footer-brand { display: flex; flex-direction: column; gap: .35rem; }
+    .footer-logo-text { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--red); }
+    .footer-tagline { font-size: 13px; color: var(--ink-soft); }
+    .footer-nav { display: flex; flex-wrap: wrap; gap: .5rem 1.6rem; align-items: center; }
+    .footer-nav a { text-decoration: none; font-size: 14px; color: var(--ink-soft); font-weight: 400; transition: color .2s; }
+    .footer-nav a:hover { color: var(--red); }
+    .footer-contact { background: var(--red); color: #fff !important; padding: 6px 16px; border-radius: 24px; font-size: 13px !important; font-weight: 500; }
+    .footer-contact:hover { background: var(--red-dark) !important; }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 1.2rem; font-size: 12px; color: var(--ink-soft); display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
   </style>
 </head>
 <body>
@@ -439,10 +443,10 @@
 <nav>
   <a href="../index.html" class="nav-logo">China Awaits</a>
   <ul class="nav-links">
-    <li><a href="../index.html">Home</a></li>
-    <li><a href="visa.html">Visa</a></li>
-    <li><a href="pre-arrival.html">Pre-Arrival</a></li>
-    <li><a href="transport.html" style="color:var(--red)">Transport</a></li>
+    <li><a href="../index.html#cities">Cities</a></li>
+    <li><a href="../index.html#topics">Topics</a></li>
+    <li><a href="../index.html#essentials">Essentials</a></li>
+    <li><a href="../contact.html">Contact Us</a></li>
   </ul>
 </nav>
 
@@ -491,35 +495,42 @@
         <div class="step-num">1</div>
         <div class="step-text">
           <strong>Option A: Book online (recommended)</strong>
-          Use <strong>Trip.com</strong> or the <strong>China Train Booking</strong> app — English interface, accepts foreign credit cards. Alternatively, the official <strong>12306</strong> app works but is Chinese-only and harder for foreigners. Tickets go on sale 15 days before departure on 12306, and up to 30 days ahead on Trip.com.
+          <br>Use <strong>Trip.com</strong> or the <strong>China Train Booking</strong> app — English interface, foreign cards accepted.
+          <br>The official <strong>12306</strong> app also works but is Chinese-only and harder to navigate.
+          <br>Tickets open 15 days ahead on 12306, and up to 30 days ahead on Trip.com.
         </div>
       </li>
       <li>
         <div class="step-num">2</div>
         <div class="step-text">
-          <strong>Option B: Buy at the station counter or machine</strong>
-          You can walk up to any train station ticket window (售票处) and buy a physical ticket on the spot using your passport. Self-service machines also have an English option and accept cash, Chinese bank cards, and in some stations foreign cards. This is especially handy for same-day or next-day travel on less busy routes.
+          <strong>Option B: Buy at the station</strong>
+          <br>Go to the ticket window (售票处) and buy in person using your passport.
+          <br>Self-service machines have an English option and take cash or Chinese bank cards.
+          <br>Best for same-day or next-day travel on less busy routes.
         </div>
       </li>
       <li>
         <div class="step-num">3</div>
         <div class="step-text">
           <strong>Your passport is your ticket</strong>
-          Whether you booked online or at the counter, your ticket is linked to your passport number. Show your passport at the gate or at a self-service kiosk to collect a boarding pass (for online bookings). Physical tickets bought at the counter are ready to use directly.
+          <br>Your booking is linked to your passport number — no need to print anything.
+          <br>Show it at the gate or at a self-service kiosk to collect your boarding pass.
         </div>
       </li>
       <li>
         <div class="step-num">4</div>
         <div class="step-text">
-          <strong>Arrive 30 minutes early</strong>
-          Train stations are large. You'll pass through security (like an airport) and need to find your platform. Gates close 5 minutes before departure — don't be late.
+          <strong>Arrive at least 30 minutes early</strong>
+          <br>Stations are large and have airport-style security screening.
+          <br>Gates close 5 minutes before departure — don't cut it close.
         </div>
       </li>
       <li>
         <div class="step-num">5</div>
         <div class="step-text">
           <strong>Find your car and seat</strong>
-          Your ticket shows 车次 (train number), 车厢 (car number), and 座位 (seat). Platform signs show which section of the platform each car stops at.
+          <br>Your ticket shows 车次 (train number), 车厢 (car number), and 座位 (seat number).
+          <br>Platform signs indicate which section each car stops at.
         </div>
       </li>
     </ul>
@@ -775,12 +786,12 @@
 
     <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;margin:1.5rem 0 0.8rem">At the Airport</h3>
     <ul class="bullet-list">
-      <li>Arrive at least <strong>2 hours before departure</strong> (domestic) — security and check-in lines can be long</li>
-      <li>Check-in counters open 2–3 hours before flights; online check-in available for most airlines</li>
-      <li>Your passport is your boarding document — you must show it at check-in and security</li>
-      <li>Airport signs are bilingual (Chinese + English); airport staff often speak basic English</li>
-      <li>Domestic departures and international departures are usually in separate terminals — check ahead</li>
-      <li>Liquids rules apply: 100ml per container, in a clear bag for carry-on</li>
+      <li><span class="li-content"><strong>Arrive at least 2 hours before departure</strong><span class="sub">Security and check-in lines at Chinese airports can be slow — don't leave it too late.</span></span></li>
+      <li><span class="li-content"><strong>Check in online if you can</strong><span class="sub">Most major airlines offer online check-in. Counters open 2–3 hours before departure.</span></span></li>
+      <li><span class="li-content"><strong>Your passport is your boarding document</strong><span class="sub">You'll need to show it at check-in, security, and again at the gate.</span></span></li>
+      <li><span class="li-content"><strong>Domestic and international terminals are separate</strong><span class="sub">Check which terminal your flight departs from before you head to the airport.</span></span></li>
+      <li><span class="li-content"><strong>Signs and staff are bilingual</strong><span class="sub">Airport signage is in Chinese and English; most staff speak enough English to help.</span></span></li>
+      <li><span class="li-content"><strong>Liquids: 100ml per container in a clear bag</strong><span class="sub">Standard international rules apply for carry-on luggage.</span></span></li>
     </ul>
 
     <div class="tip-box">China's airports frequently run on time, but delays do happen — especially in summer storm season (June–September) and during Chinese national holidays. Build buffer time into your connections.</div>
@@ -1039,5 +1050,25 @@
   });
 </script>
 
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo-text">China Awaits</div>
+        <div class="footer-tagline">Your trusted guide for exploring China · chinaawaits.com</div>
+      </div>
+      <div class="footer-nav">
+        <a href="../index.html#cities">Cities</a>
+        <a href="../index.html#topics">Topics</a>
+        <a href="../index.html#essentials">Essentials</a>
+        <a href="../contact.html" class="footer-contact">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 China Awaits. All rights reserved.</span>
+      <span>chinaawaits.com</span>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
