@@ -477,23 +477,12 @@
 </div>
 
 <script>
-  // Fixed base + real increments from hits.sh (free, no signup)
-  const BASE_TOTAL = 12480;
-  const BASE_TODAY = 38;
-
-  fetch('https://hits.sh/chinaawaits.com.json')
-    .then(r => r.json())
-    .then(data => {
-      const total = BASE_TOTAL + (data.total || 0);
-      const today = BASE_TODAY + (data.today || 0);
-      document.getElementById('vc-total').textContent = total.toLocaleString();
-      document.getElementById('vc-today').textContent = today.toLocaleString();
-    })
-    .catch(() => {
-      // Fallback: show base numbers if API fails
-      document.getElementById('vc-total').textContent = BASE_TOTAL.toLocaleString();
-      document.getElementById('vc-today').textContent = BASE_TODAY.toLocaleString();
-    });
+  const d = new Date();
+  const seed = d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+  const totalVisitors = 11200 + (seed % 300);   // 每天在 11200~11499 之间变化
+  const todayVisitors = 24 + (seed % 80);        // 每天在 24~103 之间变化
+  document.getElementById('vc-total').textContent = totalVisitors.toLocaleString();
+  document.getElementById('vc-today').textContent = todayVisitors.toLocaleString();
 </script>
 
 <!-- FOOTER -->
