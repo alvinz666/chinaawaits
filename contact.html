@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — China Awaits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C0392B;
+    --red-dark: #96281B;
+    --gold: #C9A84C;
+    --gold-light: #F5EDD6;
+    --ink: #1A1210;
+    --ink-mid: #4A3F3C;
+    --ink-soft: #8C7B77;
+    --paper: #FDFAF7;
+    --paper-warm: #F5F0EB;
+    --border: rgba(26,18,16,0.1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(253,250,247,0.97); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem; height: 60px;
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--red); text-decoration: none; }
+  .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+  .nav-links a { font-size: 14px; font-weight: 400; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--red); }
+
+  /* HERO */
+  .hero {
+    background: var(--ink);
+    position: relative; overflow: hidden;
+    padding: 5rem 2rem 4rem; text-align: center;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(201,168,76,0.03) 40px, rgba(201,168,76,0.03) 41px),
+      repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(192,57,43,0.04) 40px, rgba(192,57,43,0.04) 41px);
+  }
+  .hero-inner { position: relative; max-width: 600px; margin: 0 auto; }
+  .hero-eyebrow { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3rem); color: #fff; font-weight: 700; line-height: 1.2; margin-bottom: 1rem; }
+  .hero h1 em { color: var(--gold); font-style: italic; }
+  .hero-sub { font-size: 1rem; color: rgba(255,255,255,0.65); max-width: 480px; margin: 0 auto; }
+
+  /* MAIN */
+  main { max-width: 700px; margin: 0 auto; padding: 4rem 2rem 5rem; }
+
+  /* SECTION HEADER */
+  .section-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+  .section-icon { width: 48px; height: 48px; background: var(--red); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+  .section-title-group h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--ink); }
+  .section-title-group p { font-size: 0.9rem; color: var(--ink-soft); margin-top: 0.2rem; }
+
+  /* CONTACT FORM */
+  .form-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 2.5rem 2rem; margin-bottom: 2rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+  .form-group label { font-size: 0.85rem; font-weight: 500; color: var(--ink-mid); }
+  .form-group input, .form-group textarea {
+    background: var(--paper); border: 1px solid var(--border); border-radius: 8px;
+    padding: 0.7rem 1rem; font-size: 0.93rem; font-family: 'DM Sans', sans-serif;
+    color: var(--ink); transition: border-color 0.2s; outline: none; width: 100%;
+  }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--red); }
+  .form-group textarea { resize: vertical; min-height: 140px; }
+  .form-submit {
+    background: var(--red); color: #fff; border: none; border-radius: 30px;
+    padding: 0.8rem 2.5rem; font-size: 0.95rem; font-weight: 500;
+    font-family: 'DM Sans', sans-serif; cursor: pointer; transition: background 0.2s; width: 100%;
+  }
+  .form-submit:hover { background: var(--red-dark); }
+  .form-success { display: none; text-align: center; padding: 2rem; color: var(--ink-mid); font-size: 0.95rem; }
+  .form-success .success-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+  .form-success h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 0.5rem; }
+
+  /* INFO BOXES */
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; }
+  .info-box { background: var(--paper-warm); border-radius: 10px; padding: 1.2rem 1.3rem; }
+  .info-box-icon { font-size: 1.3rem; margin-bottom: 0.5rem; }
+  .info-box h4 { font-size: 0.9rem; font-weight: 500; color: var(--ink); margin-bottom: 0.3rem; }
+  .info-box p { font-size: 0.83rem; color: var(--ink-soft); line-height: 1.5; }
+
+  /* HIGHLIGHT */
+  .highlight { background: var(--gold-light); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; font-size: 0.93rem; color: var(--ink-mid); }
+
+  /* FOOTER */
+  footer { background: transparent; border-top: 1px solid var(--border); padding: 2.8rem 2rem 2rem; margin-top: 2rem; }
+  .footer-inner { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.6rem; }
+  .footer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+  .footer-brand { display: flex; flex-direction: column; gap: .35rem; }
+  .footer-logo-text { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--red); }
+  .footer-tagline { font-size: 13px; color: var(--ink-soft); }
+  .footer-nav { display: flex; flex-wrap: wrap; gap: .5rem 1.6rem; align-items: center; }
+  .footer-nav a { text-decoration: none; font-size: 14px; color: var(--ink-soft); font-weight: 400; transition: color .2s; }
+  .footer-nav a:hover { color: var(--red); }
+  .footer-contact { background: var(--red); color: #fff !important; padding: 6px 16px; border-radius: 24px; font-size: 13px !important; font-weight: 500; }
+  .footer-contact:hover { background: var(--red-dark) !important; }
+  .footer-bottom { border-top: 1px solid var(--border); padding-top: 1.2rem; font-size: 12px; color: var(--ink-soft); display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    .hero { padding: 3.5rem 1.25rem 3rem; }
+    main { padding: 2.5rem 1.25rem 4rem; }
+    .info-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">China Awaits</a>
+  <ul class="nav-links">
+    <li><a href="index.html#cities">Cities</a></li>
+    <li><a href="index.html#topics">Topics</a></li>
+    <li><a href="index.html#essentials">Essentials</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Get in Touch</p>
+    <h1>Contact <em>Us</em></h1>
+    <p class="hero-sub">Have a question, spotted an error, or want to share something useful? We'd love to hear from you.</p>
+  </div>
+</div>
+
+<main>
+
+  <div class="section-header">
+    <div class="section-icon">✉️</div>
+    <div class="section-title-group">
+      <h2>Send Us an Email</h2>
+      <p>We read every message and aim to reply within a few days</p>
+    </div>
+  </div>
+
+  <div class="form-card">
+    <form id="contact-form" action="https://formspree.io/f/xaqvvlkn" method="POST">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" placeholder="e.g. Sarah" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Your email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" placeholder="e.g. Question about visas">
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send Message</button>
+    </form>
+    <div class="form-success" id="form-success">
+      <div class="success-icon">✉️</div>
+      <h3>Message sent!</h3>
+      <p>Thanks for reaching out — we'll get back to you within a few days.</p>
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-box">
+      <div class="info-box-icon">🕐</div>
+      <h4>Response time</h4>
+      <p>We typically reply within 2–4 business days. During busy periods it may take a little longer.</p>
+    </div>
+    <div class="info-box">
+      <div class="info-box-icon">🌍</div>
+      <h4>We reply in English</h4>
+      <p>All replies are in English. If you write in another language we'll do our best to help.</p>
+    </div>
+    <div class="info-box">
+      <div class="info-box-icon">✏️</div>
+      <h4>Spot an error?</h4>
+      <p>China moves fast — visa rules, apps, and policies change often. Let us know and we'll update the page.</p>
+    </div>
+    <div class="info-box">
+      <div class="info-box-icon">💡</div>
+      <h4>Got a tip?</h4>
+      <p>Travelled to China recently and have something useful to add? We're always looking to improve our guides.</p>
+    </div>
+  </div>
+
+  <div class="highlight">
+    For urgent travel questions — visa requirements, entry rules, or safety — always check with your country's embassy or consulate directly. We're a travel guide, not an official government source.
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo-text">China Awaits</div>
+        <div class="footer-tagline">Your trusted guide for exploring China · chinaawaits.com</div>
+      </div>
+      <div class="footer-nav">
+        <a href="index.html#cities">Cities</a>
+        <a href="index.html#topics">Topics</a>
+        <a href="index.html#essentials">Essentials</a>
+        <a href="contact.html" class="footer-contact">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 China Awaits. All rights reserved.</span>
+      <span>chinaawaits.com</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const form = document.getElementById('contact-form');
+  const success = document.getElementById('form-success');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+    if (res.ok) {
+      form.style.display = 'none';
+      success.style.display = 'block';
+    }
+  });
+</script>
+</body>
+</html>
