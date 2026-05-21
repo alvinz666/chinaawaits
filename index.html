@@ -150,29 +150,22 @@
       box-shadow: 0 2px 8px rgba(0,0,0,.08);
     }
     .city-card:hover { transform: translateY(-5px); box-shadow: 0 12px 28px rgba(0,0,0,.15); }
-    .city-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 60px; }
+    .city-bg {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 60px;
+      background: linear-gradient(135deg,#1a2a3a,#2d4a6a);
+    }
+    .city-bg img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; opacity: 0; transition: opacity 0.5s ease;
+    }
+    .city-bg img.loaded { opacity: 1; }
+    .city-bg .city-emoji { position: relative; z-index: 1; transition: opacity 0.4s; }
+    .city-bg img.loaded ~ .city-emoji { opacity: 0; }
     .city-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.78) 0%, rgba(0,0,0,.08) 55%, transparent 100%); }
     .city-info { position: relative; z-index: 1; padding: 12px; }
     .city-name { color: #fff; font-size: 15px; font-weight: 500; }
     .city-tag { color: rgba(255,255,255,.65); font-size: 11px; margin-top: 2px; }
-    .city-bj .city-bg { background: linear-gradient(135deg,#1a3557,#1e5fa8); }
-    .city-sh .city-bg { background: linear-gradient(135deg,#0f2c40,#0e7490); }
-    .city-gz .city-bg { background: linear-gradient(135deg,#1a3322,#15803d); }
-    .city-sz .city-bg { background: linear-gradient(135deg,#1c1040,#7c3aed); }
-    .city-cd .city-bg { background: linear-gradient(135deg,#3b1010,#c0392b); }
-    .city-cq .city-bg { background: linear-gradient(135deg,#1a0a30,#6d28d9); }
-    .city-hz .city-bg { background: linear-gradient(135deg,#0a2a1a,#059669); }
-    .city-xa .city-bg { background: linear-gradient(135deg,#2a1500,#b45309); }
-    .city-nj .city-bg { background: linear-gradient(135deg,#1a0020,#9333ea); }
-    .city-wh .city-bg { background: linear-gradient(135deg,#2a1010,#dc2626); }
-    .city-tj .city-bg { background: linear-gradient(135deg,#0a1a2a,#0369a1); }
-    .city-su .city-bg { background: linear-gradient(135deg,#0a2010,#16a34a); }
-    .city-km .city-bg { background: linear-gradient(135deg,#1a2000,#84cc16); }
-    .city-gl .city-bg { background: linear-gradient(135deg,#001a2a,#0e7490); }
-    .city-qd .city-bg { background: linear-gradient(135deg,#001520,#0284c7); }
-    .city-xm .city-bg { background: linear-gradient(135deg,#00152a,#0891b2); }
-    .city-hb .city-bg { background: linear-gradient(135deg,#001030,#1d4ed8); }
-    .city-dl .city-bg { background: linear-gradient(135deg,#001525,#0f766e); }
 
     /* DIVIDER */
     .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
@@ -274,6 +267,30 @@
       display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem;
     }
 
+    /* EXPERIENCES */
+    .exp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+    }
+    .exp-card {
+      border-radius: var(--radius); border: 1px solid var(--border);
+      background: #fff; padding: 1.4rem 1.2rem;
+      display: flex; flex-direction: column; gap: 0.5rem;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+      position: relative;
+    }
+    .exp-card:hover { border-color: var(--red); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.09); }
+    .exp-icon { font-size: 2rem; }
+    .exp-name { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: var(--text); }
+    .exp-desc { font-size: 13px; color: var(--text2); line-height: 1.5; flex: 1; }
+    .exp-badge {
+      display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold);
+      padding: 2px 8px; border-radius: 20px; align-self: flex-start; margin-top: 0.3rem;
+    }
+    .exp-coming { opacity: 0.82; }
+
   </style>
 </head>
 <body>
@@ -284,6 +301,7 @@
   <ul class="nav-links">
     <li><a href="#cities">Cities</a></li>
     <li><a href="#topics">Topics</a></li>
+    <li><a href="#experiences">Experiences</a></li>
     <li><a href="#essentials">Essentials</a></li>
     <li><a href="contact.html">Contact Us</a></li>
   </ul>
@@ -294,13 +312,13 @@
   <div class="hero-lanterns"><span>🏮</span><span>🏮</span></div>
   <div class="hero-badge">Your Complete China Travel Guide</div>
   <h1>China <em>Awaits</em> You</h1>
-  <p class="hero-sub">Everything a foreign traveler needs — from visa to food, transport to hospitals, culture to tips.</p>
+  <p class="hero-sub">Everything a foreign traveler needs — plus handpicked special experiences you won't find anywhere else.</p>
   <div class="hero-search">
     <input type="text" id="hero-search-input" placeholder="Search cities, food, visa tips..." onkeydown="handleSearch(event)" />
     <button onclick="triggerSearch()">Search</button>
   </div>
   <div class="hero-stats">
-    <div class="stat"><div class="stat-n">10+</div><div class="stat-l">Cities</div></div>
+    <div class="stat"><div class="stat-n">4</div><div class="stat-l">Cities</div></div>
     <div class="stat"><div class="stat-n">500+</div><div class="stat-l">Guides</div></div>
     <div class="stat"><div class="stat-n">Free</div><div class="stat-l">to Use</div></div>
   </div>
@@ -310,81 +328,89 @@
 <section class="section" id="cities">
   <div class="section-header">
     <div class="section-title">Explore Cities</div>
-    <div class="section-sub">Pick a city and start planning your trip</div>
+    <div class="section-sub">In-depth guides to China's major destinations — more cities coming soon</div>
   </div>
-  <div class="cities-grid">
-    <a href="cities/beijing.html" class="city-card city-bj">
-      <div class="city-bg">🏯</div><div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Beijing</div><div class="city-tag">Capital · History</div></div>
-    </a>
+  <div class="cities-grid" style="grid-template-columns: repeat(4, 1fr);">
     <a href="cities/shanghai.html" class="city-card city-sh">
-      <div class="city-bg">🌆</div><div class="city-overlay"></div>
+      <div class="city-bg">
+        <img id="city-img-sh" alt="Shanghai" />
+        <span class="city-emoji">🌆</span>
+      </div>
+      <div class="city-overlay"></div>
       <div class="city-info"><div class="city-name">Shanghai</div><div class="city-tag">Modern · Cosmopolitan</div></div>
     </a>
+    <a href="cities/beijing.html" class="city-card city-bj">
+      <div class="city-bg">
+        <img id="city-img-bj" alt="Beijing" />
+        <span class="city-emoji">🏯</span>
+      </div>
+      <div class="city-overlay"></div>
+      <div class="city-info"><div class="city-name">Beijing</div><div class="city-tag" style="color:rgba(255,255,255,0.45);font-style:italic;">Coming soon</div></div>
+    </a>
     <a href="cities/guangzhou.html" class="city-card city-gz">
-      <div class="city-bg">🌺</div><div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Guangzhou</div><div class="city-tag">Food · Dim Sum</div></div>
+      <div class="city-bg">
+        <img id="city-img-gz" alt="Guangzhou" />
+        <span class="city-emoji">🌺</span>
+      </div>
+      <div class="city-overlay"></div>
+      <div class="city-info"><div class="city-name">Guangzhou</div><div class="city-tag" style="color:rgba(255,255,255,0.45);font-style:italic;">Coming soon</div></div>
     </a>
     <a href="cities/shenzhen.html" class="city-card city-sz">
-      <div class="city-bg">💻</div><div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Shenzhen</div><div class="city-tag">Tech · Innovation</div></div>
+      <div class="city-bg">
+        <img id="city-img-sz" alt="Shenzhen" />
+        <span class="city-emoji">💻</span>
+      </div>
+      <div class="city-overlay"></div>
+      <div class="city-info"><div class="city-name">Shenzhen</div><div class="city-tag" style="color:rgba(255,255,255,0.45);font-style:italic;">Coming soon</div></div>
     </a>
-    <a href="cities/chengdu.html" class="city-card city-cd">
-      <div class="city-bg">🐼</div><div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Chengdu</div><div class="city-tag">Pandas · Sichuan</div></div>
-    </a>
-    <a href="cities/chongqing.html" class="city-card city-cq">
-      <div class="city-bg">🌉</div><div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Chongqing</div><div class="city-tag">Hotpot · Mountainside</div></div>
-    </a>
-    <a href="cities/hangzhou.html" class="city-card city-hz">
-      <div class="city-bg">🏞️</div><div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Hangzhou</div><div class="city-tag">West Lake · Silk</div></div>
-    </a>
-    <a href="cities/xian.html" class="city-card city-xa">
-      <div class="city-bg">🏺</div><div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Xi'an</div><div class="city-tag">Terracotta · Silk Road</div></div>
-    </a>
-    <a href="cities/nanjing.html" class="city-card city-nj">
-      <div class="city-bg">🏛️</div><div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Nanjing</div><div class="city-tag">History · Ming Dynasty</div></div>
-    </a>
-    <a href="cities/wuhan.html" class="city-card city-wh">
-      <div class="city-bg">🌸</div><div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Wuhan</div><div class="city-tag">Yangtze · Hot Dry Noodles</div></div>
-    </a>
-    <a href="cities/tianjin.html" class="city-card city-tj">
-      <div class="city-bg">🎭</div><div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Tianjin</div><div class="city-tag">Colonial · Street Food</div></div>
-    </a>
-    <a href="cities/suzhou.html" class="city-card city-su">
-      <div class="city-bg">🪷</div><div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Suzhou</div><div class="city-tag">Gardens · Canals</div></div>
-    </a>
-    <a href="cities/kunming.html" class="city-card city-km">
-      <div class="city-bg">🌻</div><div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Kunming</div><div class="city-tag">Eternal Spring · Yunnan</div></div>
-    </a>
-    <a href="cities/guilin.html" class="city-card city-gl">
-      <div class="city-bg">⛰️</div><div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Guilin</div><div class="city-tag">Karst · Li River</div></div>
-    </a>
-    <a href="cities/qingdao.html" class="city-card city-qd">
-      <div class="city-bg">🍺</div><div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Qingdao</div><div class="city-tag">Beer · Beaches</div></div>
-    </a>
-    <a href="cities/xiamen.html" class="city-card city-xm">
-      <div class="city-bg">🌊</div><div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Xiamen</div><div class="city-tag">Coastal · Gulangyu</div></div>
-    </a>
-    <a href="cities/harbin.html" class="city-card city-hb">
-      <div class="city-bg">❄️</div><div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Harbin</div><div class="city-tag">Ice Festival · Northeast</div></div>
-    </a>
-    <a href="cities/dalian.html" class="city-card city-dl">
-      <div class="city-bg">⚓</div><div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Dalian</div><div class="city-tag">Port · Seafood</div></div>
-    </a>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- EXPERIENCES -->
+<section class="section" id="experiences">
+  <div class="section-header">
+    <div class="section-title">Experiences</div>
+    <div class="section-sub">Curated activity guides — from ancient arts to natural wonders</div>
+  </div>
+  <div class="exp-grid">
+    <div class="exp-card exp-coming">
+      <div class="exp-icon">🥋</div>
+      <div class="exp-name">Martial Arts</div>
+      <div class="exp-desc">Train with masters in Shaolin, Wudang, and beyond</div>
+      <div class="exp-badge">Coming Soon</div>
+    </div>
+    <div class="exp-card exp-coming">
+      <div class="exp-icon">🍵</div>
+      <div class="exp-name">Tea Culture</div>
+      <div class="exp-desc">Tea ceremony, Longjing gardens, and pu-erh trails</div>
+      <div class="exp-badge">Coming Soon</div>
+    </div>
+    <div class="exp-card exp-coming">
+      <div class="exp-icon">🏔️</div>
+      <div class="exp-name">Cave Exploration</div>
+      <div class="exp-desc">Karst caves, underground rivers, and limestone wonders</div>
+      <div class="exp-badge">Coming Soon</div>
+    </div>
+    <div class="exp-card exp-coming">
+      <div class="exp-icon">🎨</div>
+      <div class="exp-name">Traditional Arts</div>
+      <div class="exp-desc">Calligraphy, ink painting, porcelain, and silk weaving</div>
+      <div class="exp-badge">Coming Soon</div>
+    </div>
+    <div class="exp-card exp-coming">
+      <div class="exp-icon">🚵</div>
+      <div class="exp-name">Outdoor Adventures</div>
+      <div class="exp-desc">Cycling, trekking, and river rafting across China's landscapes</div>
+      <div class="exp-badge">Coming Soon</div>
+    </div>
+    <div class="exp-card exp-coming">
+      <div class="exp-icon">🏮</div>
+      <div class="exp-name">Festivals & Events</div>
+      <div class="exp-desc">Spring Festival, Dragon Boat, Lantern Festival and more</div>
+      <div class="exp-badge">Coming Soon</div>
+    </div>
   </div>
 </section>
 
@@ -415,8 +441,6 @@
 </section>
 
 <hr class="divider" />
-
-<!-- ESSENTIALS -->
 <section class="section" id="essentials">
   <div class="section-header">
     <div class="section-title">Essential Info</div>
@@ -470,7 +494,7 @@
     <div class="visitor-divider"></div>
     <div class="visitor-item">
       <span class="vi-icon">✈️</span>
-      <span class="vi-num">18</span>
+      <span class="vi-num">4</span>
       <span class="vi-label">Cities Covered</span>
     </div>
   </div>
@@ -496,6 +520,7 @@
       <nav class="footer-nav">
         <a href="#cities">Cities</a>
         <a href="#topics">Topics</a>
+        <a href="#experiences">Experiences</a>
         <a href="#essentials">Essentials</a>
         <a href="contact.html" class="footer-contact">Contact Us</a>
       </nav>
@@ -527,12 +552,11 @@
     { keywords: ['shopping','shop','buy','market','bargain','haggle','taobao','mall','souvenir','silk','tea','antique','counterfeit','fake'], title: 'Shopping', url: 'topics/shopping.html', icon: '🛍️' },
     { keywords: ['language','mandarin','chinese','translate','translation','phrase','speak','word','hello','xie xie','pinyin','app'], title: 'Language Help', url: 'topics/apps.html#language', icon: '💬' },
     { keywords: ['faq','question','questions','common','frequently','asked'], title: 'FAQ', url: 'topics/faq.html', icon: '❓' },
+    { keywords: ['experience','experiences','martial arts','tea','cave','festival','outdoor','adventure','shaolin','kung fu','wudang','calligraphy'], title: 'Experiences', url: '#experiences', icon: '🎭' },
     { keywords: ['beijing','capital','forbidden city','great wall','tiananmen','hutong'], title: 'Beijing', url: 'cities/beijing.html', icon: '🏯' },
     { keywords: ['shanghai','bund','pudong','french concession','yu garden'], title: 'Shanghai', url: 'cities/shanghai.html', icon: '🌆' },
     { keywords: ['guangzhou','canton','guangdong','dim sum'], title: 'Guangzhou', url: 'cities/guangzhou.html', icon: '🌺' },
     { keywords: ['shenzhen','tech','huaqiangbei','electronics'], title: 'Shenzhen', url: 'cities/shenzhen.html', icon: '💻' },
-    { keywords: ['chengdu','panda','sichuan','spicy','leshan'], title: 'Chengdu', url: 'cities/chengdu.html', icon: '🐼' },
-    { keywords: ['hangzhou','xi an','xian','nanjing','chongqing','wuhan','suzhou','tianjin','harbin','kunming','guilin','qingdao','xiamen','dalian'], title: 'Other Cities', url: '#cities', icon: '🗺️' },
   ];
 
   function triggerSearch() {
@@ -548,3 +572,26 @@
     // Remove existing results
     const existing = document.getElementById('search-results');
     if (existing) existing.remove()
+  }
+</script>
+
+<script>
+  // City photo lazy loader
+  const CITY_PHOTOS = [
+    { id: 'city-img-sh', src: 'https://plus.unsplash.com/premium_photo-1729162773996-68e1c42d77a8?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0' },
+    { id: 'city-img-bj', src: 'https://images.unsplash.com/photo-1636550230446-7632d97d1e77?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0' },
+    { id: 'city-img-gz', src: 'https://images.unsplash.com/photo-1575041764111-b407991d6826?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0' },
+    { id: 'city-img-sz', src: 'https://images.unsplash.com/photo-1608381742187-ea4b48c56630?q=80&w=1212&auto=format&fit=crop&ixlib=rb-4.1.0' },
+  ];
+  window.addEventListener('DOMContentLoaded', () => {
+    CITY_PHOTOS.forEach(({ id, src }) => {
+      const img = document.getElementById(id);
+      if (!img) return;
+      img.onload = () => img.classList.add('loaded');
+      img.onerror = () => img.remove();
+      img.src = src;
+    });
+  });
+</script>
+</body>
+</html>
