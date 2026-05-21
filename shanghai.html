@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shanghai Travel Guide — China Awaits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #C0392B; --red-dark: #96281B;
+      --gold: #C9A84C; --gold-light: #e8c96a;
+      --ink: #1a1a1a; --ink-soft: #3d3d3d;
+      --mist: #f7f4f0; --mist-dark: #ede9e3;
+      --white: #ffffff; --border: #e0d9d0;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,0.14);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); line-height: 1.7; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 60px; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--red); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a { font-size: 14px; font-weight: 400; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--red); }
+
+    /* HERO */
+    .hero { background: var(--ink); position: relative; overflow: hidden; padding: 5rem 2rem 4rem; text-align: center; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 60%, rgba(192,57,43,0.30) 0%, transparent 55%), radial-gradient(ellipse at 80% 35%, rgba(201,168,76,0.20) 0%, transparent 55%); }
+    .hero-pattern { position: absolute; inset: 0; opacity: 0.035; background-image: repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%); background-size: 20px 20px; }
+    .hero-tag { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,0.4); padding: 0.3rem 0.9rem; border-radius: 2px; margin-bottom: 1.5rem; position: relative; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 1rem; position: relative; }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.65); max-width: 560px; margin: 0 auto 2.5rem; position: relative; }
+    .jump-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; position: relative; }
+    .jump-nav a { display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 0.45rem 1rem; border-radius: 40px; text-decoration: none; transition: all 0.2s; }
+    .jump-nav a:hover { background: rgba(201,168,76,0.2); border-color: var(--gold); color: var(--gold); }
+
+    /* LAYOUT */
+    .page-wrap { max-width: 860px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+    /* SECTION */
+    .section { margin-top: 4.5rem; scroll-margin-top: 80px; }
+    .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.8rem; padding-bottom: 1rem; border-bottom: 2px solid var(--border); }
+    .section-icon { width: 48px; height: 48px; background: var(--red); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+    .section-title-group h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+    .section-title-group p { font-size: 0.88rem; color: #888; margin-top: 0.1rem; }
+
+    /* PROSE */
+    .prose p { font-size: 0.97rem; color: var(--ink-soft); margin-bottom: 1rem; }
+    .prose strong { color: var(--ink); font-weight: 600; }
+
+    /* BOXES */
+    .highlight { background: var(--mist); border-left: 3px solid var(--gold); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1.2rem 0; font-size: 0.93rem; color: var(--ink-soft); }
+    .highlight strong { color: var(--ink); }
+    .tip-box { background: #fff8ee; border: 1px solid #f0d990; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #6b5b1a; }
+    .tip-box::before { content: '💡 Tip: '; font-weight: 600; }
+    .warning-box { background: #fff5f5; border: 1px solid #f5c6c6; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #7a2020; }
+    .warning-box::before { content: '⚠️ Note: '; font-weight: 600; }
+
+    /* BULLET LIST */
+    .bullet-list { list-style: none; margin: 1rem 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .bullet-list li { display: grid; grid-template-columns: 1rem 1fr; column-gap: 0.7rem; font-size: 0.93rem; color: var(--ink-soft); align-items: start; }
+    .bullet-list li::before { content: '—'; color: var(--gold); font-weight: 700; margin-top: 2px; }
+    .bullet-list li .li-content { display: block; }
+    .bullet-list li .sub { display: block; font-size: 0.83rem; color: #999; margin-top: 0.2rem; }
+
+    /* TABLE */
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    thead { background: var(--ink); color: white; }
+    thead th { padding: 0.85rem 1rem; text-align: left; font-weight: 600; font-size: 0.83rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:nth-child(even) { background: var(--mist); }
+    tbody td { padding: 0.85rem 1rem; color: var(--ink-soft); vertical-align: top; }
+    tbody td:first-child { font-weight: 600; color: var(--ink); }
+
+    /* CARD GRID */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; transition: box-shadow 0.2s, transform 0.2s; }
+    .card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+    .card-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+    .card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .card p { font-size: 0.87rem; color: #666; line-height: 1.5; }
+
+    /* SEASON STRIP */
+    .season-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; margin: 1.2rem 0; }
+    .season-box { border-radius: 10px; padding: 0.9rem 0.8rem; text-align: center; border: 1px solid var(--border); }
+    .season-box.best  { background: #f0fdf4; border-color: #bbf7d0; }
+    .season-box.ok    { background: #fffbeb; border-color: #fde68a; }
+    .season-box.avoid { background: #fff5f5; border-color: #fecaca; }
+    .season-name { font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem; }
+    .season-box.best  .season-name { color: #166534; }
+    .season-box.ok    .season-name { color: #92400e; }
+    .season-box.avoid .season-name { color: #991b1b; }
+    .season-months { font-size: 0.75rem; color: #999; margin-bottom: 0.4rem; }
+    .season-note { font-size: 0.78rem; color: #666; line-height: 1.4; }
+
+    /* SITE PHOTOS */
+    .site-photo { position: relative; border-radius: 14px; overflow: hidden; margin: 1.4rem 0; background: linear-gradient(135deg, rgba(192,57,43,0.1), rgba(201,168,76,0.15)); }
+    .site-photo-wide { height: 300px; }
+    .site-photo-sq { height: 210px; }
+    .site-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s ease; }
+    .site-photo img.loaded { opacity: 1; }
+    .site-photo .photo-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 0.5rem 0.9rem; background: linear-gradient(transparent, rgba(0,0,0,0.55)); font-size: 0.72rem; color: rgba(255,255,255,0.9); font-style: italic; opacity: 0; transition: opacity 0.4s; }
+    .site-photo.loaded .photo-caption { opacity: 1; }
+    .site-photo .photo-fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; transition: opacity 0.3s; }
+    .site-photo.loaded .photo-fallback { opacity: 0; pointer-events: none; }
+    .img-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin: 1.4rem 0; }
+    .img-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem; margin: 1.4rem 0; }
+
+    /* NEIGHBOURHOOD BLOCK */
+    .hood-block { margin-bottom: 3rem; }
+    .hood-title-row { display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 0.3rem; flex-wrap: wrap; }
+    .hood-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--ink); }
+    .hood-zh { font-size: 0.9rem; color: var(--gold); font-weight: 600; }
+    .hood-badge { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; background: rgba(192,57,43,0.08); color: var(--red); padding: 0.2rem 0.65rem; border-radius: 20px; border: 1px solid rgba(192,57,43,0.2); }
+    .hood-desc { font-size: 0.95rem; color: var(--ink-soft); margin-bottom: 1rem; line-height: 1.65; }
+    .hood-divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+    /* ATTRACTION LIST inside hood */
+    .attraction-list { display: flex; flex-direction: column; gap: 0.7rem; margin: 0.8rem 0 1.2rem; }
+    .attraction-item { display: grid; grid-template-columns: 1fr auto; gap: 0.5rem 1rem; background: var(--mist); border: 1px solid var(--border); border-radius: 10px; padding: 0.85rem 1rem; align-items: start; }
+    .attraction-name { font-weight: 600; font-size: 0.93rem; color: var(--ink); }
+    .attraction-name .zh { font-size: 0.8rem; color: var(--gold); font-weight: 600; margin-left: 0.4rem; }
+    .attraction-desc { font-size: 0.85rem; color: #666; line-height: 1.5; margin-top: 0.2rem; grid-column: 1; }
+    .attraction-meta { text-align: right; flex-shrink: 0; display: flex; flex-direction: column; gap: 0.2rem; align-items: flex-end; }
+    .meta-price { font-size: 0.78rem; font-weight: 700; color: var(--red); background: rgba(192,57,43,0.07); padding: 0.15rem 0.55rem; border-radius: 4px; }
+    .meta-hours { font-size: 0.75rem; color: #999; }
+
+    /* ITINERARY */
+    .itinerary-block { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 1.5rem; }
+    .itinerary-header { background: var(--ink); color: var(--white); padding: 1rem 1.4rem; display: flex; align-items: center; gap: 1rem; }
+    .itinerary-day { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--gold); white-space: nowrap; }
+    .itinerary-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; color: var(--white); }
+    .itinerary-body { padding: 1.2rem 1.4rem; display: flex; flex-direction: column; gap: 1rem; }
+    .time-block { display: grid; grid-template-columns: 70px 1fr; gap: 0 1rem; }
+    .time-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); padding-top: 0.1rem; }
+    .time-content ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .time-content ul li { font-size: 0.9rem; color: var(--ink-soft); display: flex; align-items: baseline; gap: 0.5rem; }
+    .time-content ul li::before { content: '·'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+    .time-optional { font-size: 0.82rem; color: #aaa; font-style: italic; margin-top: 0.3rem; }
+
+    /* ROUTE CARDS */
+    .route-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .route-card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; }
+    .route-num { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+    .route-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .route-theme { font-size: 0.78rem; color: #888; margin-bottom: 0.7rem; font-style: italic; }
+    .route-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .route-card ul li { font-size: 0.85rem; color: var(--ink-soft); display: flex; gap: 0.5rem; }
+    .route-card ul li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
+    .route-style { margin-top: 0.8rem; font-size: 0.78rem; color: #999; font-style: italic; }
+
+    /* DAYTRIP */
+    .daytrip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .daytrip-card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; }
+    .daytrip-card h4 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .daytrip-meta { display: flex; gap: 0.6rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
+    .daytrip-meta span { font-size: 0.75rem; font-weight: 600; color: #888; }
+    .daytrip-card p { font-size: 0.85rem; color: #666; line-height: 1.5; }
+
+    /* FAQ */
+    .faq { margin: 1.5rem 0; }
+    .faq-item { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 0.6rem; overflow: hidden; }
+    .faq-q { width: 100%; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.2rem; font-family: 'DM Sans', sans-serif; font-size: 0.93rem; font-weight: 600; color: var(--ink); text-align: left; gap: 1rem; }
+    .faq-q:hover { background: var(--mist); }
+    .faq-arrow { font-size: 1rem; color: var(--gold); transition: transform 0.25s; flex-shrink: 0; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0.8rem 1.2rem 1rem; font-size: 0.9rem; color: var(--ink-soft); border-top: 1px solid var(--border); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* RELATED */
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .related-card { display: block; background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.1rem; text-decoration: none; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
+    .related-card:hover { border-color: var(--red); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .related-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 0.3rem; }
+    .related-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; }
+    .related-desc { font-size: 0.82rem; color: #888; line-height: 1.4; }
+
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.88rem; font-weight: 500; color: var(--red); text-decoration: none; margin-top: 3rem; }
+    .back-link:hover { text-decoration: underline; }
+    .h3-style { font-family: 'Playfair Display', serif; font-size: 1.15rem; margin: 1.8rem 0 0.9rem; color: var(--ink); }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .page-wrap { padding: 0 1rem 4rem; }
+      .hero { padding: 3.5rem 1rem 3rem; }
+      .season-strip { grid-template-columns: repeat(2, 1fr); }
+      .img-grid-2, .img-grid-3 { grid-template-columns: 1fr; }
+      .time-block { grid-template-columns: 60px 1fr; }
+      .attraction-item { grid-template-columns: 1fr; }
+      .attraction-meta { flex-direction: row; align-items: center; }
+    }
+
+    /* FOOTER */
+    footer { background: transparent; border-top: 1px solid var(--border); padding: 2.8rem 2rem 2rem; margin-top: 2rem; }
+    .footer-inner { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.6rem; }
+    .footer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .footer-brand { display: flex; flex-direction: column; gap: .35rem; }
+    .footer-logo-text { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--red); }
+    .footer-tagline { font-size: 13px; color: var(--ink-soft); }
+    .footer-nav { display: flex; flex-wrap: wrap; gap: .5rem 1.6rem; align-items: center; }
+    .footer-nav a { text-decoration: none; font-size: 14px; color: var(--ink-soft); font-weight: 400; transition: color .2s; }
+    .footer-nav a:hover { color: var(--red); }
+    .footer-contact { background: var(--red); color: #fff !important; padding: 6px 16px; border-radius: 24px; font-size: 13px !important; font-weight: 500; }
+    .footer-contact:hover { background: var(--red-dark) !important; }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 1.2rem; font-size: 12px; color: var(--ink-soft); display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">China Awaits</a>
+  <ul class="nav-links">
+    <li><a href="../index.html#cities">Cities</a></li>
+    <li><a href="../index.html#topics">Topics</a></li>
+    <li><a href="../index.html#essentials">Essentials</a></li>
+    <li><a href="../contact.html">Contact Us</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-tag">City Guide</div>
+  <h1><span>Shanghai</span> 上海</h1>
+  <p class="hero-sub">China's most cosmopolitan city — where Art Deco waterfronts, stone-paved alleyways, and one of the world's great skylines exist side by side.</p>
+  <div class="jump-nav">
+    <a href="#overview">🌆 Overview</a>
+    <a href="#history">🏛️ History</a>
+    <a href="#neighbourhoods">🗺️ Areas & Sights</a>
+    <a href="#itineraries">📅 Itineraries</a>
+    <a href="#niche">🎭 Niche Routes</a>
+    <a href="#getting-there">✈️ Getting There</a>
+    <a href="#getting-around">🚇 Getting Around</a>
+    <a href="#daytrips">🚄 Day Trips</a>
+    <a href="#practical">📋 Practical Info</a>
+    <a href="#faq">❓ FAQ</a>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- OVERVIEW -->
+  <div class="section" id="overview">
+    <div class="section-header">
+      <div class="section-icon">🌆</div>
+      <div class="section-title-group">
+        <h2>Welcome to Shanghai</h2>
+        <p>China's gateway to the world</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Shanghai is China's most cosmopolitan metropolis, where timeless classical architecture, futuristic skyscrapers, quiet old alleyways, and serene riverside districts blend harmoniously. Situated at the mouth of the Yangtze River, it has long stood as China's vital gateway to the globe — shaped by centuries of trade, cultural integration, and relentless reinvention.</p>
+      <p>Far beyond well-known scenic spots, Shanghai's true charm lies in its subtle daily moments: the sleek geometric outlines of Art Deco buildings on a quiet morning, the unhurried pace of traditional lilong lanes, a vintage jazz bar tucked away among lush roadside trees, or an avant-garde art museum renovated from a historic industrial venue.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🏛️</div>
+        <h3>Architecture & History</h3>
+        <p>Art Deco waterfronts, stone-gate lane houses, colonial-era concessions, and a futuristic Pudong skyline — few cities offer such architectural range in a single day's walk.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">☕</div>
+        <h3>Café & Lane Culture</h3>
+        <p>One of the world's densest specialty coffee scenes, tucked inside old villas and lilong lanes. Shanghai is a city best explored slowly, on foot, with nowhere urgent to be.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎨</div>
+        <h3>Art & Design</h3>
+        <p>A thriving contemporary art scene anchored by West Bund museums, repurposed industrial galleries, and a fashion industry that sets trends across China.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌏</div>
+        <h3>Easy for Foreigners</h3>
+        <p>More English signage, more international restaurants, and more experience handling foreign visitors than almost anywhere else in mainland China.</p>
+      </div>
+    </div>
+
+    <h3 class="h3-style">Best Time to Visit</h3>
+    <div class="season-strip">
+      <div class="season-box best">
+        <div class="season-name">✓ Spring</div>
+        <div class="season-months">Mar – May</div>
+        <div class="season-note">Mild, flowering plane trees, perfect walking weather. Best overall.</div>
+      </div>
+      <div class="season-box avoid">
+        <div class="season-name">✗ Summer</div>
+        <div class="season-months">Jun – Aug</div>
+        <div class="season-note">Hot, humid, heavy rain. Best for nightlife and rooftop bars if you must come.</div>
+      </div>
+      <div class="season-box best">
+        <div class="season-name">✓ Autumn</div>
+        <div class="season-months">Sep – Nov</div>
+        <div class="season-note">Golden streets, clear skies, ideal for architecture walks and photography.</div>
+      </div>
+      <div class="season-box ok">
+        <div class="season-name">~ Winter</div>
+        <div class="season-months">Dec – Feb</div>
+        <div class="season-note">Fewer tourists, atmospheric. Best for museums, cafés, and moody photography.</div>
+      </div>
+    </div>
+
+    <div class="highlight"><strong>Snapshot:</strong> Population ~25 million · Time zone UTC+8 · Currency RMB (¥) · Language Mandarin (some Shanghainese dialect) · Airports Pudong PVG and Hongqiao SHA</div>
+  </div>
+
+  <!-- HISTORY & ARCHITECTURE -->
+  <div class="section" id="history">
+    <div class="section-header">
+      <div class="section-icon">🏛️</div>
+      <div class="section-title-group">
+        <h2>History & Architecture</h2>
+        <p>How Shanghai became what it is today</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Before the 19th century, Shanghai was a modest riverside town. After the First Opium War (1840–1842), it opened as a treaty port, drawing foreign businesses, banks, and entire international communities from Britain, France, and beyond. By the 1920s and 1930s it had become Asia's financial capital — a hub for cinema, jazz, publishing, and fashion — earning the nickname "Paris of the East."</p>
+      <p>That golden era left a permanent mark on the city's visual identity. Today Shanghai's urban landscape functions as a living timeline, layering colonial concessions, stone-gate lane houses, Art Deco towers, and gleaming Pudong skyscrapers all within walking distance of each other. Architecture is one of the best ways to understand this city.</p>
+    </div>
+
+    <div class="site-photo site-photo-wide" id="photo-panorama">
+      <div class="photo-fallback">🌆</div>
+      <img id="img-panorama" alt="Shanghai skyline panorama" />
+      <div class="photo-caption">Shanghai — Huangpu River and Lujiazui skyline</div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🏦</div>
+        <h3>Bund Eclectic Style</h3>
+        <p>Neoclassical, Gothic Revival, Baroque, and Art Deco — all built along one waterfront between the 1920s and 1930s. The world's most concentrated collection of colonial-era financial architecture.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔷</div>
+        <h3>Art Deco Shanghai</h3>
+        <p>Shanghai holds one of the largest surviving Art Deco collections on earth. Look for geometric decoration, streamlined facades, and elegant original lobbies in former hotels and apartment buildings.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚪</div>
+        <h3>Shikumen & Lilong</h3>
+        <p>Stone-gate houses blending Western row-house layouts with Chinese courtyard living, connected by narrow lanes called lilong. Many have been converted into cafés, studios, and bookshops.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏙️</div>
+        <h3>Pudong Futurism</h3>
+        <p>Lujiazui's skyline — Shanghai Tower, Oriental Pearl, Jin Mao, SWFC — barely existed before 1990. The most vivid symbol of China's economic transformation, visible from across the river.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEIGHBOURHOODS + ATTRACTIONS -->
+  <div class="section" id="neighbourhoods">
+    <div class="section-header">
+      <div class="section-icon">🗺️</div>
+      <div class="section-title-group">
+        <h2>Areas & Sights</h2>
+        <p>Where to go and what to see in each district</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Shanghai divides into Puxi (west bank, older city — where almost all the character lives) and Pudong (east bank, modern financial district). The districts below cover everything most visitors need, in rough geographic order from the riverfront outward.</p>
+    </div>
+
+    <!-- THE BUND -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">The Bund</span>
+        <span class="hood-zh">外滩</span>
+        <span class="hood-badge">Iconic · Start Here</span>
+      </div>
+      <p class="hood-desc">Shanghai's most famous stretch — a riverside promenade lined with colonial-era banks, customs houses, and hotels facing Lujiazui's skyline across the Huangpu River. Walk it in the morning for calm light and architectural detail; return after dark for the full panoramic drama. Completely free, always open.</p>
+
+      <div class="site-photo site-photo-wide" id="photo-bund">
+        <div class="photo-fallback">🌉</div>
+        <img id="img-bund" alt="The Bund Shanghai" />
+        <div class="photo-caption">The Bund — colonial-era waterfront facing Pudong's skyline</div>
+      </div>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">The Bund Promenade <span class="zh">外滩步行街</span></div>
+            <div class="attraction-desc">The 1.5 km riverside walk. Best at sunrise (quiet, beautiful light) and after 8pm (full skyline illumination). A mandatory first evening in Shanghai.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Open 24h</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Waibaidu Bridge <span class="zh">外白渡桥</span></div>
+            <div class="attraction-desc">Shanghai's oldest steel bridge (1908), still in use. A quiet landmark at the north end of the Bund, best appreciated on foot at low traffic times.</div>
+            <div class="site-photo" id="photo-waibaidu" style="height:140px;margin-top:0.7rem;border-radius:8px;">
+              <div class="photo-fallback" style="font-size:2rem;">🌉</div>
+              <img id="img-waibaidu" alt="Waibaidu Bridge Shanghai" />
+              <div class="photo-caption">Waibaidu Bridge — the Garden Bridge, built 1908</div>
+            </div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Open 24h</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Peace Hotel <span class="zh">和平饭店</span></div>
+            <div class="attraction-desc">The crown jewel of Bund Art Deco — a 1929 Sassoon-era landmark. Have a drink in the bar or browse the lobby for free. The rooftop jazz bar runs nightly.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free (lobby)</span>
+            <span class="meta-hours">9:00–17:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Huangpu River Night Cruise <span class="zh">黄浦江夜游</span></div>
+            <div class="attraction-desc">See both banks — the Bund and Pudong — from the water. Departures every 30 minutes from the ferry terminal near the Bund. A classic Shanghai experience.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥80–150</span>
+            <span class="meta-hours">10:00–21:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="hood-divider">
+
+    <!-- FRENCH CONCESSION -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Former French Concession</span>
+        <span class="hood-zh">法租界</span>
+        <span class="hood-badge">Best for Staying</span>
+      </div>
+      <p class="hood-desc">The most liveable and atmospheric district for visitors. Tree-lined streets, plane trees overhead, shikumen lane houses converted into cafés, boutiques, and galleries. Wukang Road and Anfu Road are the spiritual centre — endlessly photogenic, full of local character, and extremely walkable. This is Shanghai's most walkable district.</p>
+
+      <div class="img-grid-2">
+        <div class="site-photo site-photo-sq" id="photo-wukang">
+          <div class="photo-fallback">🌳</div>
+          <img id="img-wukang" alt="Wukang Road Shanghai" />
+          <div class="photo-caption">Wukang Road — plane trees and Art Deco villas</div>
+        </div>
+        <div class="site-photo site-photo-sq" id="photo-lilong">
+          <div class="photo-fallback">🚪</div>
+          <img id="img-lilong" alt="Lilong lane Shanghai" />
+          <div class="photo-caption">Lilong — traditional stone-gate lane houses</div>
+        </div>
+      </div>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Wukang Mansion & Wukang Road <span class="zh">武康大楼 · 武康路</span></div>
+            <div class="attraction-desc">The flatiron-shaped 1924 Art Deco apartment building at the top of Wukang Road is Shanghai's most-photographed building. Walk north along the road — every block has something worth pausing at.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Open 24h</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Anfu Road & surrounds <span class="zh">安福路</span></div>
+            <div class="attraction-desc">The café and boutique street of the French Concession. Independent roasters, concept stores, and Japanese-influenced restaurants. Best on a weekday morning.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Open 24h</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Fuxing Park <span class="zh">复兴公园</span></div>
+            <div class="attraction-desc">A French-designed public park from 1909, surrounded by old villas. Morning crowds of elderly residents doing tai chi, dancing, and singing. An authentic slice of Shanghai daily life.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">6:00–21:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Tianzifang <span class="zh">田子坊</span></div>
+            <div class="attraction-desc">A warren of shikumen lanes in Luwan converted into boutiques, cafés, and studios. Gets crowded at weekends — go on a weekday morning. Better for browsing architecture than shopping.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Open 24h</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Blackstone Apartments <span class="zh">黑石公寓</span></div>
+            <div class="attraction-desc">A grand 1924 Gothic-influenced apartment building now converted into a cultural complex with cafés and a music venue. Free to walk around the exterior and ground floor.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free (exterior)</span>
+            <span class="meta-hours">Open 24h</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-box">The French Concession is best explored without a fixed plan — pick a direction and walk. Side streets off the main roads often turn up hidden courtyards, old villas, and independent cafés that aren't on any map.</div>
+    </div>
+    <hr class="hood-divider">
+
+    <!-- JING'AN -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Jing'an</span>
+        <span class="hood-zh">静安</span>
+        <span class="hood-badge">Upscale · Modern</span>
+      </div>
+      <p class="hood-desc">West Nanjing Road anchors this polished district — a balance between old and new Shanghai. Home to Jing'an Temple (a working Buddhist temple ringed by luxury malls), high-end fashion retail, and some of the city's best contemporary dining. Very convenient, with excellent metro access to the rest of the city.</p>
+
+      <div class="site-photo site-photo-wide" id="photo-jingan">
+        <div class="photo-fallback">🏯</div>
+        <img id="img-jingan" alt="Jing'an Temple Shanghai" />
+        <div class="photo-caption">Jing'an Temple — a Buddhist temple surrounded by luxury malls</div>
+      </div>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Jing'an Temple <span class="zh">静安寺</span></div>
+            <div class="attraction-desc">A living Buddhist temple active since the 3rd century, now surrounded by luxury shopping centres. One of Shanghai's most striking visual contrasts. Busy with worshippers on weekend mornings.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥50</span>
+            <span class="meta-hours">7:30–17:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Park Hotel <span class="zh">国际饭店</span></div>
+            <div class="attraction-desc">Built in 1934, this 24-storey Art Deco tower was the tallest building in Asia for two decades. The lobby is worth a look — free to enter. On West Nanjing Road.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free (lobby)</span>
+            <span class="meta-hours">9:00–17:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Columbia Circle <span class="zh">哥伦比亚圈</span></div>
+            <div class="attraction-desc">A cluster of renovated 1920s and 1930s American-built villas now housing upscale restaurants, galleries, and shops. A quieter, less-visited slice of concession-era Shanghai.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Open daily</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="hood-divider">
+
+    <!-- XINTIANDI & OLD CITY -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Xintiandi & the Old City</span>
+        <span class="hood-zh">新天地 · 老城厢</span>
+        <span class="hood-badge">History · Food</span>
+      </div>
+      <p class="hood-desc">Xintiandi is a beautifully restored shikumen neighbourhood — the easiest and most polished introduction to old Shanghai architecture, now lined with restaurants, bars, and cafés. Just east lies the Old City (Nanshi), centred on Yu Garden — touristy but containing some of the oldest surviving urban fabric in the city.</p>
+
+      <div class="site-photo site-photo-wide" id="photo-yuyuan">
+        <div class="photo-fallback">🏡</div>
+        <img id="img-yuyuan" alt="Yu Garden Shanghai" />
+        <div class="photo-caption">Yu Garden — a Ming-dynasty classical garden in the heart of the old city</div>
+      </div>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Xintiandi <span class="zh">新天地</span></div>
+            <div class="attraction-desc">Two blocks of restored shikumen architecture converted into upscale restaurants and bars. More polished than Tianzifang, less gritty. A good first dinner option on arrival night.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Open 24h</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Yu Garden <span class="zh">豫园</span></div>
+            <div class="attraction-desc">A classical Ming-dynasty garden from 1577 — pavilions, koi ponds, rockeries, and covered walkways. Arrive at 9am before the tour groups arrive. The bazaar outside sells decent street food.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥30–40</span>
+            <span class="meta-hours">9:00–16:30 · Closed Mon</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Shikumen Museum <span class="zh">石库门博物馆</span></div>
+            <div class="attraction-desc">A restored shikumen residence showing how these lane houses actually looked inside in the 1930s. Small but genuinely interesting. Near Xintiandi.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥20</span>
+            <span class="meta-hours">9:30–17:00 · Closed Mon</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="hood-divider">
+
+    <!-- PUDONG / LUJIAZUI -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Pudong — Lujiazui</span>
+        <span class="hood-zh">浦东 · 陆家嘴</span>
+        <span class="hood-badge">Skyline · Museums</span>
+      </div>
+      <p class="hood-desc">The Lujiazui financial district is where Shanghai's iconic skyline physically lives. Shanghai Tower, the Oriental Pearl TV Tower, Jin Mao Tower, and the SWFC all cluster here — best appreciated from across the river on the Bund, or from above on an observation deck. The wider Pudong area also has excellent museums and Shanghai Disney Resort further east.</p>
+
+      <div class="site-photo site-photo-wide" id="photo-lujiazui">
+        <div class="photo-fallback">🏙️</div>
+        <img id="img-lujiazui" alt="Lujiazui skyline Shanghai" />
+        <div class="photo-caption">Lujiazui — Shanghai Tower, Oriental Pearl, and Jin Mao Tower</div>
+      </div>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Shanghai Tower Observation Deck <span class="zh">上海中心大厦观景台</span></div>
+            <div class="attraction-desc">118th floor — the world's second-highest observation deck. Book tickets online in advance. Best on a clear day; check the weather forecast. The building itself is an architectural marvel.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥180</span>
+            <span class="meta-hours">8:30–22:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Oriental Pearl TV Tower <span class="zh">东方明珠</span></div>
+            <div class="attraction-desc">The pink spheres are Shanghai's most recognisable landmark. Multiple observation levels; the glass floor sphere is popular. Less impressive view than Shanghai Tower but more iconic from outside.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥150–220</span>
+            <span class="meta-hours">9:00–21:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Shanghai Museum (People's Square) <span class="zh">上海博物馆</span></div>
+            <div class="attraction-desc">One of the best museums in China — ancient bronzes, ceramics, jade, and calligraphy across four floors. Free but reservation required online. Located in People's Square, not Pudong.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free (reserve)</span>
+            <span class="meta-hours">9:00–17:00 · Closed Mon</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="hood-divider">
+
+    <!-- WEST BUND & HONGKOU -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">West Bund & Hongkou</span>
+        <span class="hood-zh">西岸 · 虹口</span>
+        <span class="hood-badge">Art · Off the Beaten Path</span>
+      </div>
+      <p class="hood-desc">Two distinct areas worth exploring for those with more time. The West Bund (south of the French Concession along the river) has become Shanghai's leading contemporary art district, with world-class museums in repurposed industrial buildings. Hongkou to the north was Shanghai's Japanese quarter and Jewish refugee district — a fascinating layer of the city's history.</p>
+
+      <div class="img-grid-2">
+        <div class="site-photo site-photo-sq" id="photo-longhua">
+          <div class="photo-fallback">🛕</div>
+          <img id="img-longhua" alt="Longhua Temple Shanghai" />
+          <div class="photo-caption">Longhua Temple — Shanghai's oldest Buddhist complex</div>
+        </div>
+        <div class="site-photo site-photo-sq" id="photo-disney">
+          <div class="photo-fallback">🏰</div>
+          <img id="img-disney" alt="Shanghai Disneyland" />
+          <div class="photo-caption">Shanghai Disney Resort — eastern Pudong</div>
+        </div>
+      </div>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">West Bund Museum District <span class="zh">西岸艺术区</span></div>
+            <div class="attraction-desc">A string of major institutions: Power Station of Art, Tank Shanghai, Long Museum, and the Centre Pompidou x West Bund. Plan a half day. The riverside walk between them is free and scenic.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Varies</span>
+            <span class="meta-hours">Tue–Sun</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">M50 Creative Park <span class="zh">M50创意园</span></div>
+            <div class="attraction-desc">A converted 1930s textile factory in Putuo district, now housing contemporary art galleries, studios, and independent shops. Free to enter. Most galleries open Tuesday to Sunday.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Tue–Sun</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Longhua Temple & Pagoda <span class="zh">龙华寺 · 龙华塔</span></div>
+            <div class="attraction-desc">Shanghai's oldest and largest Buddhist temple complex, founded in 242 AD. Far less touristy than Jing'an Temple, more atmospheric, and surrounded by a pleasant park. Well worth the trip.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥10</span>
+            <span class="meta-hours">7:30–17:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ITINERARIES -->
+  <div class="section" id="itineraries">
+    <div class="section-header">
+      <div class="section-icon">📅</div>
+      <div class="section-title-group">
+        <h2>Itineraries</h2>
+        <p>Day-by-day plans from a local perspective</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>The itineraries below are designed by someone who knows the city well — not a checklist of landmarks, but a paced journey through the layers that make Shanghai worth spending time in. Photos and route maps coming soon.</p>
+    </div>
+
+    <h3 class="h3-style">3-Day Classic Shanghai</h3>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 1</div>
+        <div class="itinerary-title">Historic Shanghai & The Bund</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Morning</div>
+          <div class="time-content">
+            <ul>
+              <li>Walk along The Bund — explore the historic bank buildings and customs house facades</li>
+              <li>Cross Waibaidu Bridge at the north end for a quieter view of the river</li>
+              <li>Coffee at one of the cafés just off the Bund on Yuanmingyuan Road</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Afternoon</div>
+          <div class="time-content">
+            <ul>
+              <li>Visit Yu Garden and Old Town — arrive before 11am for the main garden</li>
+              <li>Try traditional Shanghainese snacks in the bazaar: xiaolongbao, shengjianbao</li>
+              <li>Explore nearby tea houses and the old street markets</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Evening</div>
+          <div class="time-content">
+            <ul>
+              <li>Return to the Bund at dusk — watch the Pudong skyline light up</li>
+              <li>Take a Huangpu River cruise for the river perspective</li>
+              <li>Dinner at a classic Shanghainese restaurant in the area</li>
+            </ul>
+            <p class="time-optional">Optional: Rooftop bar overlooking the river for late drinks</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="site-photo site-photo-wide" id="photo-day1">
+        <div class="photo-fallback">🌆</div>
+        <img id="img-day1" alt="Shanghai Bund evening" />
+        <div class="photo-caption">Day 1 — The Bund, Yu Garden, and river cruise</div>
+      </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 2</div>
+        <div class="itinerary-title">French Concession & Urban Culture</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Morning</div>
+          <div class="time-content">
+            <ul>
+              <li>Walk Wukang Road from Wukang Mansion northward — the best morning light is here</li>
+              <li>Explore Art Deco villas and former residences along Fuxing Road</li>
+              <li>Stop at an independent café on Anfu Road for breakfast</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Afternoon</div>
+          <div class="time-content">
+            <ul>
+              <li>Visit Tianzifang or a contemporary art gallery in the area</li>
+              <li>Browse bookstores and design shops in the lilong lanes</li>
+              <li>Fuxing Park — watch the afternoon crowd of locals</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Evening</div>
+          <div class="time-content">
+            <ul>
+              <li>Jazz bar or live music venue — the French Concession has several historic ones</li>
+              <li>Night walk around Hengshan Road or into Jing'an</li>
+            </ul>
+            <p class="time-optional">Optional: Contemporary theatre or dance performance</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="site-photo site-photo-wide" id="photo-day2">
+        <div class="photo-fallback">🌳</div>
+        <img id="img-day2" alt="French Concession Shanghai" />
+        <div class="photo-caption">Day 2 — Wukang Road, lilong lanes, and the French Concession</div>
+      </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 3</div>
+        <div class="itinerary-title">Modern Shanghai & Museums</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Morning</div>
+          <div class="time-content">
+            <ul>
+              <li>Cross to Pudong — Lujiazui skyline area</li>
+              <li>Go up Shanghai Tower or the Shanghai World Financial Center observation deck</li>
+              <li>Walk the base of the towers for the surreal close-up scale</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Afternoon</div>
+          <div class="time-content">
+            <ul>
+              <li>Head to the West Bund — Power Station of Art or West Bund Museum</li>
+              <li>Walk the riverside creative parks between the museums</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Evening</div>
+          <div class="time-content">
+            <ul>
+              <li>Dinner in Jing'an — the area has excellent restaurants at all price points</li>
+              <li>Late-night city photography — the streets look best after 10pm</li>
+            </ul>
+            <p class="time-optional">Optional: Speakeasy cocktail bar — the French Concession has several worth finding</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="site-photo site-photo-wide" id="photo-day3">
+        <div class="photo-fallback">🏙️</div>
+        <img id="img-day3" alt="Pudong skyline Shanghai" />
+        <div class="photo-caption">Day 3 — Pudong skyline, West Bund museums, and Jing'an</div>
+      </div>
+
+    <h3 class="h3-style">5-Day In-Depth Shanghai</h3>
+    <div class="highlight">The 5-day plan builds on the 3-day itinerary above, adding two extra days for slower exploration and a day trip out of the city.</div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 1</div>
+        <div class="itinerary-title">The Bund & Historic Core</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Focus</div>
+          <div class="time-content">
+            <ul>
+              <li>Colonial architecture and Shanghai's treaty-port history</li>
+              <li>The Bund promenade, historic bank buildings, Waibaidu Bridge</li>
+              <li>Huangpu River cruise in the evening</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 2</div>
+        <div class="itinerary-title">French Concession — Slow Travel</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Focus</div>
+          <div class="time-content">
+            <ul>
+              <li>Art Deco architecture and lane life at a slower pace</li>
+              <li>Wukang Mansion area, Anfu Road, Fuxing Road, hidden lilong alleys</li>
+              <li>Independent cafés, bookshops, vintage stores — no agenda, just walking</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 3</div>
+        <div class="itinerary-title">Museums & Contemporary Art</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Focus</div>
+          <div class="time-content">
+            <ul>
+              <li>Contemporary Chinese art and adaptive industrial architecture</li>
+              <li>Power Station of Art, West Bund museum strip, M50 Creative Park</li>
+              <li>Photography museums and riverside creative parks</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 4</div>
+        <div class="itinerary-title">Water Town Day Trip</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Focus</div>
+          <div class="time-content">
+            <ul>
+              <li>Traditional Jiangnan water architecture, canals, and regional cuisine</li>
+              <li>Recommended: Zhujiajiao (1 hour by bus) or Suzhou (25 min by HSR)</li>
+              <li>Qibao ancient town is a closer option within the city limits</li>
+            </ul>
+            <p class="time-optional">Evening: Return to Shanghai for riverside dining and a final Bund night view</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 5</div>
+        <div class="itinerary-title">Modern Lifestyle & Hidden Shanghai</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Focus</div>
+          <div class="time-content">
+            <ul>
+              <li>Local lifestyle, independent creative culture, non-tourist neighbourhoods</li>
+              <li>Columbia Circle, Yuyuan Road, North Bund, former industrial riverfront</li>
+              <li>Suzhou Creek Industrial Trail — a free outdoor walking route through converted warehouses</li>
+            </ul>
+            <p class="time-optional">Evening: Final skyline walk from the Bund and farewell dinner</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="site-photo site-photo-wide" id="photo-5day">
+        <div class="photo-fallback">🗺️</div>
+        <img id="img-5day" alt="Shanghai panorama" />
+        <div class="photo-caption">5-Day Shanghai — from the Bund to the West Bund and beyond</div>
+      </div>
+  </div>
+
+  <!-- NICHE ROUTES -->
+  <div class="section" id="niche">
+    <div class="section-header">
+      <div class="section-icon">🎭</div>
+      <div class="section-title-group">
+        <h2>Niche Routes</h2>
+        <p>Theme-based itineraries for deeper exploration</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>These routes are designed for visitors who want to go beyond the headline sights — each one built around a single theme that rewards focused attention. Any of these can slot into a longer trip as a full day or afternoon.</p>
+    </div>
+
+    <div class="route-grid">
+      <div class="route-card">
+        <div class="route-num">Route 01</div>
+        <div class="route-name">Art Deco Shanghai</div>
+        <div class="route-theme">Architecture & Urban Elegance</div>
+        <ul>
+          <li>The Bund facade walk</li>
+          <li>Wukang Mansion</li>
+          <li>Peace Hotel exterior and lobby</li>
+          <li>Former apartment buildings in the French Concession</li>
+          <li>Old cinemas and ballrooms</li>
+        </ul>
+        <p class="route-style">Walking-heavy · Photography-focused · Best in autumn or spring</p>
+      </div>
+
+      <div class="route-card">
+        <div class="route-num">Route 02</div>
+        <div class="route-name">Hidden Lane Life</div>
+        <div class="route-theme">Everyday Shanghai</div>
+        <ul>
+          <li>Residential lilong neighbourhoods</li>
+          <li>Wet markets and local breakfast shops</li>
+          <li>Hidden cafés and independent bookstores</li>
+          <li>Yongkang Road backstreets</li>
+          <li>Yuyuan Road, Shaoxing Road, Ferguson Lane area</li>
+        </ul>
+        <p class="route-style">Slow travel · Cultural immersion · Local interaction</p>
+      </div>
+
+      <div class="route-card">
+        <div class="route-num">Route 03</div>
+        <div class="route-name">Industrial to Creative</div>
+        <div class="route-theme">Urban Transformation</div>
+        <ul>
+          <li>Power Station of Art</li>
+          <li>West Bund riverside museums</li>
+          <li>M50 Creative Park</li>
+          <li>Oil tank art spaces</li>
+          <li>Riverside cycling and walking paths</li>
+        </ul>
+        <p class="route-style">Contemporary art · Urban planning · Best for creative professionals</p>
+      </div>
+
+      <div class="route-card">
+        <div class="route-num">Route 04</div>
+        <div class="route-name">Shanghai After Dark</div>
+        <div class="route-theme">Neon, Jazz & Skyline</div>
+        <ul>
+          <li>The Bund night walk</li>
+          <li>Historic jazz bars in the French Concession</li>
+          <li>Rooftop lounges with skyline views</li>
+          <li>Night ferry on the Huangpu</li>
+          <li>Late-night noodle shops and street food</li>
+        </ul>
+        <p class="route-style">Cinematic · Atmospheric · Ideal for photography</p>
+      </div>
+    </div>
+
+    <div class="img-grid-2">
+      <div class="site-photo site-photo-sq" id="photo-niche1">
+        <div class="photo-fallback">🔷</div>
+        <img id="img-niche1" alt="Art Deco Shanghai Wukang" />
+        <div class="photo-caption">Route 01 — Art Deco architecture along Wukang Road</div>
+      </div>
+      <div class="site-photo site-photo-sq" id="photo-niche2">
+        <div class="photo-fallback">🌉</div>
+        <img id="img-niche2" alt="Shanghai Waibaidu Bridge" />
+        <div class="photo-caption">Route 04 — Shanghai after dark</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GETTING THERE -->
+  <div class="section" id="getting-there">
+    <div class="section-header">
+      <div class="section-icon">✈️</div>
+      <div class="section-title-group">
+        <h2>Getting There</h2>
+        <p>Two airports, high-speed rail, and how to reach the city centre</p>
+      </div>
+    </div>
+
+    <div class="warning-box">Shanghai has <strong>two airports</strong> — Pudong (PVG) for most international flights, and Hongqiao (SHA) for mainly domestic routes. Check carefully which one your flight uses. They are 60+ km apart.</div>
+
+    <h3 class="h3-style">From Pudong Airport (PVG)</h3>
+    <ul class="bullet-list">
+      <li><span class="li-content"><strong>Metro Line 2</strong> — cheapest<span class="sub">¥8 to People's Square, ~60–70 minutes. Runs until ~11pm. Get off at People's Square, Jing'an Temple, or Hongqiao depending on your hotel.</span></span></li>
+      <li><span class="li-content"><strong>Maglev + Metro</strong> — fastest<span class="sub">8 minutes to Longyang Road (¥40 with boarding pass), then Metro Line 2 to city centre. Total ~45 min. Worth it if you have heavy luggage.</span></span></li>
+      <li><span class="li-content"><strong>DiDi or taxi</strong> — most convenient<span class="sub">¥150–200 to city centre, 60–90 min depending on traffic. Best option late at night when metro stops running.</span></span></li>
+    </ul>
+
+    <h3 class="h3-style">From Hongqiao Airport (SHA)</h3>
+    <ul class="bullet-list">
+      <li><span class="li-content"><strong>Metro Lines 2 or 10</strong> — quick and easy<span class="sub">Line 2 runs directly to People's Square and beyond. ~30–40 minutes to city centre, ¥5–7.</span></span></li>
+      <li><span class="li-content"><strong>Hongqiao Railway Station</strong> is connected<span class="sub">If arriving by high-speed train from Beijing, Hangzhou, or Suzhou, you arrive at Hongqiao station — integrated directly with the airport terminal and metro.</span></span></li>
+    </ul>
+
+    <h3 class="h3-style">By High-Speed Rail</h3>
+    <ul class="bullet-list">
+      <li><span class="li-content"><strong>Beijing → Shanghai</strong> — 4.5 to 5.5 hours, ¥550–650 second class<span class="sub">One of China's most reliable rail routes. Book on Trip.com or the 12306 app.</span></span></li>
+      <li><span class="li-content"><strong>Hangzhou → Shanghai</strong> — ~45 minutes, multiple trains per hour<span class="sub">Makes Hangzhou an easy day trip or stopover on the way in or out.</span></span></li>
+      <li><span class="li-content"><strong>Suzhou → Shanghai</strong> — ~25 minutes, extremely frequent</span></li>
+    </ul>
+  </div>
+
+  <!-- GETTING AROUND -->
+  <div class="section" id="getting-around">
+    <div class="section-header">
+      <div class="section-icon">🚇</div>
+      <div class="section-title-group">
+        <h2>Getting Around</h2>
+        <p>Metro, DiDi, bikes — and when to just walk</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Shanghai's metro is one of the best in China — 21 lines, 500+ stations, bilingual signage throughout, and very cheap. For most journeys in the central districts it's faster than a taxi. The French Concession and Bund area are very walkable; Pudong is not — take the metro there.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Option</th><th>Best For</th><th>Cost</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>🚇 Metro</td><td>Almost everything in central Shanghai</td><td>¥3–10</td><td>Get a transport card at any station. Works on metro and most buses.</td></tr>
+          <tr><td>🚗 DiDi</td><td>Late nights, luggage, awkward locations</td><td>¥20–80</td><td>Set up the app before arriving. Have destination in Chinese characters ready.</td></tr>
+          <tr><td>🚲 Shared bikes</td><td>French Concession side streets</td><td>¥1.5/30 min</td><td>Meituan and HelloBike bikes everywhere. Scan via WeChat or Alipay.</td></tr>
+          <tr><td>🚶 Walking</td><td>French Concession, Bund area, Jing'an</td><td>Free</td><td>The best way to discover Shanghai. Most central sights are walkable from each other.</td></tr>
+          <tr><td>🚕 Street taxi</td><td>Backup when no phone</td><td>¥15–60</td><td>Show destination in Chinese. Drivers rarely speak English.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tip-box">Download Amap (高德地图) for metro directions in English. Get a Shanghai Metro transport card (交通卡) from any station service counter — ¥30 deposit, top up as needed. Saves time buying tickets every journey.</div>
+  </div>
+
+  <!-- DAY TRIPS -->
+  <div class="section" id="daytrips">
+    <div class="section-header">
+      <div class="section-icon">🚄</div>
+      <div class="section-title-group">
+        <h2>Day Trips</h2>
+        <p>Easy escapes from Shanghai — all reachable in under 2 hours</p>
+      </div>
+    </div>
+
+    <div class="daytrip-grid">
+      <div class="daytrip-card">
+        <h4>Suzhou 苏州</h4>
+        <div class="daytrip-meta"><span>🚄 25 min</span><span>Full day</span></div>
+        <p>China's classical garden capital. UNESCO-listed gardens (Humble Administrator's, Master of Nets), canals, and silk museums. Plan a full day — the gardens alone take 3–4 hours.</p>
+      </div>
+      <div class="daytrip-card">
+        <h4>Hangzhou 杭州</h4>
+        <div class="daytrip-meta"><span>🚄 45 min</span><span>Full day</span></div>
+        <p>West Lake and its surrounding tea hills are among the most beautiful landscapes in China. Rent a bike to circle the lake. Try Longjing green tea in its hometown.</p>
+      </div>
+      <div class="daytrip-card">
+        <h4>Zhujiajiao 朱家角</h4>
+        <div class="daytrip-meta"><span>🚌 1 hr</span><span>Half day</span></div>
+        <p>An ancient water town within Shanghai's city limits. Stone bridges, canal boats, old tea houses, morning markets. Go early on a weekday to avoid weekend crowds. Entry ¥60 combined ticket.</p>
+      </div>
+      <div class="daytrip-card">
+        <h4>Qibao 七宝</h4>
+        <div class="daytrip-meta"><span>🚇 30 min</span><span>Half day</span></div>
+        <p>A smaller, more local water town reachable directly by metro (Line 9). Less polished than Zhujiajiao but more authentic. Free to walk around. Good for a quick half-day addition.</p>
+      </div>
+    </div>
+
+    <div class="tip-box">For Suzhou and Hangzhou, book train tickets on Trip.com or the 12306 app a day ahead on weekends. Trains run very frequently — you rarely need to plan far in advance on weekdays.</div>
+  </div>
+
+  <!-- PRACTICAL INFO -->
+  <div class="section" id="practical">
+    <div class="section-header">
+      <div class="section-icon">📋</div>
+      <div class="section-title-group">
+        <h2>Practical Information</h2>
+        <p>Everything you need before you arrive</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Topic</th><th>Details</th></tr></thead>
+        <tbody>
+          <tr><td>Currency</td><td>Chinese Yuan (RMB / ¥). WeChat Pay and Alipay dominate — both now support international credit cards. Set one up before arriving. ATMs widely available for cash.</td></tr>
+          <tr><td>Language</td><td>Mandarin. More English than most Chinese cities — major hotels, tourist sites, and metro signage all bilingual. Save destination names in Chinese characters for taxis and shops.</td></tr>
+          <tr><td>Internet</td><td>Google, WhatsApp, Instagram, and most Western apps are blocked. Install a VPN <strong>before you arrive</strong> — it cannot be downloaded once inside China. See the <a href="../topics/internet.html" style="color:var(--red);font-weight:600;">internet guide</a>.</td></tr>
+          <tr><td>SIM Card</td><td>Buy at Pudong or Hongqiao airport on arrival — China Mobile, Unicom, and Telecom all have desks. eSIM is also available via some overseas providers.</td></tr>
+          <tr><td>Emergency</td><td>Police 110 · Fire 119 · Ambulance 120 · Tourist helpline 12301</td></tr>
+          <tr><td>Hospitals</td><td>Huashan Hospital Foreigners' Clinic and Shanghai United Family Hospital are most foreigner-friendly. Bring your passport.</td></tr>
+          <tr><td>Electricity</td><td>220V / 50Hz. Type I (Australia-style) sockets common. European two-pin also widely fits. US visitors need an adaptor.</td></tr>
+          <tr><td>Tipping</td><td>Not expected or customary anywhere in Shanghai. High-end hotels may have international tip culture but it's never required.</td></tr>
+          <tr><td>Visa</td><td>Many nationalities qualify for 144-hour transit or 30-day visa-free entry. Check the <a href="../topics/visa.html" style="color:var(--red);font-weight:600;">visa page</a> for current rules.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="highlight"><strong>Best travel pace:</strong> Shanghai is not a city to rush. The best experiences come from walking slowly, entering side streets, spending time in cafés, and observing local life. Plan fewer things per day than you think you need.</div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section" id="faq">
+    <div class="section-header">
+      <div class="section-icon">❓</div>
+      <div class="section-title-group">
+        <h2>Frequently Asked Questions</h2>
+        <p>Common questions from first-time Shanghai visitors</p>
+      </div>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">How many days do I need in Shanghai? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Three days covers the major areas without rushing. Four to five lets you explore at a more satisfying pace, include a day trip, and have time to get genuinely lost in the French Concession. Many visitors find they want more — Shanghai reveals itself gradually.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Which airport should I fly into? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Most international long-haul flights use Pudong (PVG). Hongqiao (SHA) is closer to the city centre and directly connected to the railway station — better if you're continuing by train to another city. Both are well-served by metro.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is Shanghai safe for tourists? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Very safe by international standards. Violent crime against tourists is extremely rare. The main risks are pickpocketing in crowded areas and tourist scams — particularly "art student" invitations to gallery visits or tea ceremony traps. Be sensibly alert and you'll have no problems. See the safety guide for more detail.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I need a VPN, and how do I get one? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes, if you want to use Google, Instagram, WhatsApp, Gmail, or most Western apps — all blocked in mainland China. Download and test a VPN before arriving; it cannot be installed once you're inside the country. See the <a href="../topics/internet.html" style="color:var(--red);">internet guide</a> for recommended options.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I use my credit card or do I need WeChat Pay / Alipay? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Both WeChat Pay and Alipay now support international credit cards — no Chinese bank account needed. Set one up before arriving; it makes daily life significantly easier. Cash is still accepted almost everywhere, and ATMs are widely available. See the <a href="../topics/money.html" style="color:var(--red);">money guide</a> for setup steps.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What's the best area to stay in? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">The Former French Concession (Xuhui and Changning districts) is the best overall base — central, atmospheric, full of cafés and restaurants, walkable, and well-connected by metro. Jing'an is a close second, slightly more polished. Avoid Pudong unless you have a specific reason — it's disconnected from the rest of the city's energy.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I get by without speaking Mandarin? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes — Shanghai is the most foreigner-accessible major city in mainland China. Major hotels, tourist sites, and metro systems have English support. That said, save your hotel address and destinations in Chinese characters on your phone for taxis and local shops. A few basic phrases (hello, thank you, how much) are always warmly received.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEEP READING -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">📚</div>
+      <div class="section-title-group">
+        <h2>Keep Reading</h2>
+        <p>More guides to help plan your trip</p>
+      </div>
+    </div>
+    <div class="related-grid">
+      <a href="../topics/transport.html" class="related-card">
+        <div class="related-label">Topic</div>
+        <div class="related-title">Getting Around China</div>
+        <div class="related-desc">High-speed rail, metro, DiDi — the full guide to moving around.</div>
+      </a>
+      <a href="../topics/food.html" class="related-card">
+        <div class="related-label">Topic</div>
+        <div class="related-title">Food & Dining</div>
+        <div class="related-desc">How to order, dietary needs, and China's eight regional cuisines.</div>
+      </a>
+      <a href="../topics/money.html" class="related-card">
+        <div class="related-label">Topic</div>
+        <div class="related-title">Money & Payments</div>
+        <div class="related-desc">Setting up Alipay, finding ATMs, and using foreign cards in China.</div>
+      </a>
+      <a href="../topics/internet.html" class="related-card">
+        <div class="related-label">Topic</div>
+        <div class="related-title">Internet & VPNs</div>
+        <div class="related-desc">The Great Firewall explained, and how to stay connected.</div>
+      </a>
+    </div>
+  </div>
+
+  <a href="../index.html" class="back-link">← Back to Home</a>
+</div>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // ── PHOTO LOADER ──
+  // Each entry: imgId, wrapperId, Unsplash URL
+  const PHOTOS = [
+    {
+      img: 'img-panorama', wrap: 'photo-panorama',
+      src: 'https://images.unsplash.com/photo-1661109803553-594cc5461ad0?q=80&w=2712&auto=format&fit=crop&ixlib=rb-4.1.0'
+    },
+    {
+      img: 'img-bund', wrap: 'photo-bund',
+      src: 'https://images.unsplash.com/photo-1584698048102-bbedb5811cba?q=80&w=2602&auto=format&fit=crop&ixlib=rb-4.1.0'
+    },
+    {
+      img: 'img-wukang', wrap: 'photo-wukang',
+      src: 'https://images.unsplash.com/photo-1704095981825-df894149bb6b?q=80&w=1516&auto=format&fit=crop&ixlib=rb-4.1.0'
+    },
+    {
+      img: 'img-lilong', wrap: 'photo-lilong',
+      src: 'https://images.unsplash.com/photo-1587165756566-195077b63d18?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0'
+    },
+    {
+      img: 'img-jingan', wrap: 'photo-jingan',
+      src: 'https://plus.unsplash.com/premium_photo-1692673141942-72c4b82b53a7?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0'
+    },
+    {
+      img: 'img-yuyuan', wrap: 'photo-yuyuan',
+      src: 'https://images.unsplash.com/photo-1718928376182-8c195bab294f?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0'
+    },
+    {
+      img: 'img-lujiazui', wrap: 'photo-lujiazui',
+      src: 'https://plus.unsplash.com/premium_photo-1680806490620-b5bb8b693f89?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0'
+    },
+    {
+      img: 'img-longhua', wrap: 'photo-longhua',
+      src: 'https://images.unsplash.com/photo-1707823945127-8668ac9511dc?q=80&w=726&auto=format&fit=crop&ixlib=rb-4.1.0'
+    },
+    {
+      img: 'img-disney', wrap: 'photo-disney',
+      src: 'https://images.unsplash.com/photo-1633851548815-207719ed2ed0?q=80&w=1552&auto=format&fit=crop&ixlib=rb-4.1.0'
+    },
+    // Itinerary photos reuse existing images
+    {
+      img: 'img-day1', wrap: 'photo-day1',
+      src: 'https://images.unsplash.com/photo-1584698048102-bbedb5811cba?q=80&w=2602&auto=format&fit=crop&ixlib=rb-4.1.0'
+    },
+    {
+      img: 'img-day2', wrap: 'photo-day2',
+      src: 'https://images.unsplash.com/photo-1704095981825-df894149bb6b?q=80&w=1516&auto=format&fit=crop&ixlib=rb-4.1.0'
+    },
+    {
+      img: 'img-day3', wrap: 'photo-day3',
+      src: 'https://plus.unsplash.com/premium_photo-1680806490620-b5bb8b693f89?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0'
+    },
+    {
+      img: 'img-5day', wrap: 'photo-5day',
+      src: 'https://images.unsplash.com/photo-1661109803553-594cc5461ad0?q=80&w=2712&auto=format&fit=crop&ixlib=rb-4.1.0'
+    },
+    {
+      img: 'img-niche1', wrap: 'photo-niche1',
+      src: 'https://images.unsplash.com/photo-1704095981825-df894149bb6b?q=80&w=1516&auto=format&fit=crop&ixlib=rb-4.1.0'
+    },
+    {
+      img: 'img-niche2', wrap: 'photo-niche2',
+      src: 'https://images.unsplash.com/photo-1614221330834-9399e5631af3?q=80&w=1734&auto=format&fit=crop&ixlib=rb-4.1.0'
+    },
+    {
+      img: 'img-waibaidu', wrap: 'photo-waibaidu',
+      src: 'https://images.unsplash.com/photo-1614221330834-9399e5631af3?q=80&w=1734&auto=format&fit=crop&ixlib=rb-4.1.0'
+    },
+  ];
+
+  function loadPhotos() {
+    PHOTOS.forEach(({ img: imgId, wrap: wrapId, src }) => {
+      const imgEl = document.getElementById(imgId);
+      const wrapEl = document.getElementById(wrapId);
+      if (!imgEl || !wrapEl) return;
+      imgEl.onload = () => {
+        imgEl.classList.add('loaded');
+        wrapEl.classList.add('loaded');
+      };
+      imgEl.onerror = () => imgEl.remove();
+      imgEl.src = src;
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', loadPhotos);
+</script>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo-text">China Awaits</div>
+        <div class="footer-tagline">Your trusted guide for exploring China · chinaawaits.com</div>
+      </div>
+      <div class="footer-nav">
+        <a href="../index.html#cities">Cities</a>
+        <a href="../index.html#topics">Topics</a>
+        <a href="../index.html#essentials">Essentials</a>
+        <a href="../contact.html" class="footer-contact">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 China Awaits. All rights reserved.</span>
+      <span>chinaawaits.com</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
