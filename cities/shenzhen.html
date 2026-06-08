@@ -593,12 +593,6 @@
         </div>
       </div>
 
-      <div class="site-photo site-photo-wide" id="photo-bookstore">
-        <div class="photo-fallback">📚</div>
-        <img id="img-bookstore" alt="Zhongshuge Bookstore Shenzhen" />
-        <div class="photo-caption">Zhongshuge Bookstore — one of China's most theatrical book spaces</div>
-      </div>
-
     </div>
     <hr class="hood-divider">
 
@@ -644,7 +638,7 @@
         </div>
       </div>
 
-      <div class="site-photo site-photo-wide" id="photo-metro">
+      <div class="site-photo" style="aspect-ratio: 16/9;" id="photo-metro">
         <div class="photo-fallback">🚇</div>
         <img id="img-metro" alt="Gangxia North Metro Station Shenzhen" />
         <div class="photo-caption">Gangxia North Station — one of the most spectacular metro interiors in China</div>
@@ -711,17 +705,16 @@
         <div class="photo-caption">Jiaochangwei Beach — a quieter, more local bay on the Dapeng Peninsula</div>
       </div>
 
-      <div class="img-grid-2">
-        <div class="site-photo site-photo-sq" id="photo-bridge">
-          <div class="photo-fallback">🌉</div>
-          <img id="img-bridge" alt="Shenzhen Bay Bridge" />
-          <div class="photo-caption">Shenzhen Bay Road Bridge — linking Nanshan to the eastern waterfront</div>
-        </div>
-        <div class="site-photo site-photo-sq" id="photo-wutongvillage">
-          <div class="photo-fallback">🏡</div>
-          <img id="img-wutongvillage" alt="Wutong Village Shenzhen" />
-          <div class="photo-caption">Wutong Village — a charming old settlement at the foot of Wutong Mountain</div>
-        </div>
+      <div class="site-photo site-photo-wide" id="photo-bridge">
+        <div class="photo-fallback">🌉</div>
+        <img id="img-bridge" alt="Shenzhen Bay Bridge" style="object-position: center center;" />
+        <div class="photo-caption">Shenzhen Bay Road Bridge — looking west from the Nanshan coastline</div>
+      </div>
+
+      <div class="site-photo site-photo-sq" style="max-width: 360px;" id="photo-wutongvillage">
+        <div class="photo-fallback">🏡</div>
+        <img id="img-wutongvillage" alt="Wutong Village Shenzhen" />
+        <div class="photo-caption">Wutong Village — old settlement at the foot of Wutong Mountain</div>
       </div>
     </div>
     <hr class="hood-divider">
@@ -1272,8 +1265,6 @@
   const PEXELS = [
     { img: 'img-metro', wrap: 'photo-metro',
       src: 'https://images.pexels.com/photos/37209451/pexels-photo-37209451.jpeg' },
-    { img: 'img-bookstore', wrap: 'photo-bookstore',
-      src: 'https://images.pexels.com/photos/25375715/pexels-photo-25375715.jpeg' },
   ];
 
   function loadPhotos() {
