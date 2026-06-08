@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shenzhen Travel Guide — China Awaits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #C0392B; --red-dark: #96281B;
+      --gold: #C9A84C; --gold-light: #e8c96a;
+      --ink: #1a1a1a; --ink-soft: #3d3d3d;
+      --mist: #f7f4f0; --mist-dark: #ede9e3;
+      --white: #ffffff; --border: #e0d9d0;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,0.14);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); line-height: 1.7; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 60px; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--red); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a { font-size: 14px; font-weight: 400; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--red); }
+
+    /* HERO */
+    .hero { background: var(--ink); position: relative; overflow: hidden; padding: 5rem 2rem 4rem; text-align: center; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 60%, rgba(192,57,43,0.30) 0%, transparent 55%), radial-gradient(ellipse at 80% 35%, rgba(201,168,76,0.20) 0%, transparent 55%); }
+    .hero-pattern { position: absolute; inset: 0; opacity: 0.035; background-image: repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%); background-size: 20px 20px; }
+    .hero-tag { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,0.4); padding: 0.3rem 0.9rem; border-radius: 2px; margin-bottom: 1.5rem; position: relative; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 1rem; position: relative; }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.65); max-width: 560px; margin: 0 auto 2.5rem; position: relative; }
+    .jump-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; position: relative; }
+    .jump-nav a { display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 0.45rem 1rem; border-radius: 40px; text-decoration: none; transition: all 0.2s; }
+    .jump-nav a:hover { background: rgba(201,168,76,0.2); border-color: var(--gold); color: var(--gold); }
+
+    /* LAYOUT */
+    .page-wrap { max-width: 860px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+    /* SECTION */
+    .section { margin-top: 4.5rem; scroll-margin-top: 80px; }
+    .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.8rem; padding-bottom: 1rem; border-bottom: 2px solid var(--border); }
+    .section-icon { width: 48px; height: 48px; background: var(--red); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+    .section-title-group h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+    .section-title-group p { font-size: 0.88rem; color: #888; margin-top: 0.1rem; }
+
+    /* PROSE */
+    .prose p { font-size: 0.97rem; color: var(--ink-soft); margin-bottom: 1rem; }
+    .prose strong { color: var(--ink); font-weight: 600; }
+
+    /* BOXES */
+    .highlight { background: var(--mist); border-left: 3px solid var(--gold); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1.2rem 0; font-size: 0.93rem; color: var(--ink-soft); }
+    .highlight strong { color: var(--ink); }
+    .tip-box { background: #fff8ee; border: 1px solid #f0d990; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #6b5b1a; }
+    .tip-box::before { content: '💡 Tip: '; font-weight: 600; }
+    .warning-box { background: #fff5f5; border: 1px solid #f5c6c6; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #7a2020; }
+    .warning-box::before { content: '⚠️ Note: '; font-weight: 600; }
+
+    /* BULLET LIST */
+    .bullet-list { list-style: none; margin: 1rem 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .bullet-list li { display: grid; grid-template-columns: 1rem 1fr; column-gap: 0.7rem; font-size: 0.93rem; color: var(--ink-soft); align-items: start; }
+    .bullet-list li::before { content: '—'; color: var(--gold); font-weight: 700; margin-top: 2px; }
+    .bullet-list li .li-content { display: block; }
+    .bullet-list li .sub { display: block; font-size: 0.83rem; color: #999; margin-top: 0.2rem; }
+
+    /* TABLE */
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    thead { background: var(--ink); color: white; }
+    thead th { padding: 0.85rem 1rem; text-align: left; font-weight: 600; font-size: 0.83rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:nth-child(even) { background: var(--mist); }
+    tbody td { padding: 0.85rem 1rem; color: var(--ink-soft); vertical-align: top; }
+    tbody td:first-child { font-weight: 600; color: var(--ink); }
+
+    /* CARD GRID */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; transition: box-shadow 0.2s, transform 0.2s; }
+    .card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+    .card-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+    .card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .card p { font-size: 0.87rem; color: #666; line-height: 1.5; }
+
+    /* SEASON STRIP */
+    .season-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; margin: 1.2rem 0; }
+    .season-box { border-radius: 10px; padding: 0.9rem 0.8rem; text-align: center; border: 1px solid var(--border); }
+    .season-box.best  { background: #f0fdf4; border-color: #bbf7d0; }
+    .season-box.ok    { background: #fffbeb; border-color: #fde68a; }
+    .season-box.avoid { background: #fff5f5; border-color: #fecaca; }
+    .season-name { font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem; }
+    .season-box.best  .season-name { color: #166534; }
+    .season-box.ok    .season-name { color: #92400e; }
+    .season-box.avoid .season-name { color: #991b1b; }
+    .season-months { font-size: 0.75rem; color: #999; margin-bottom: 0.4rem; }
+    .season-note { font-size: 0.78rem; color: #666; line-height: 1.4; }
+
+    /* SITE PHOTOS */
+    .site-photo { position: relative; border-radius: 14px; overflow: hidden; margin: 1.4rem 0; background: linear-gradient(135deg, rgba(192,57,43,0.1), rgba(201,168,76,0.15)); }
+    .site-photo-wide { height: 300px; }
+    .site-photo-sq { aspect-ratio: 3/4; height: auto; }
+    .site-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s ease; }
+    .site-photo img.loaded { opacity: 1; }
+    .site-photo .photo-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 0.5rem 0.9rem; background: linear-gradient(transparent, rgba(0,0,0,0.55)); font-size: 0.72rem; color: rgba(255,255,255,0.9); font-style: italic; opacity: 0; transition: opacity 0.4s; }
+    .site-photo.loaded .photo-caption { opacity: 1; }
+    .site-photo .photo-fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; transition: opacity 0.3s; }
+    .site-photo.loaded .photo-fallback { opacity: 0; pointer-events: none; }
+    .img-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin: 1.4rem 0; }
+    .img-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem; margin: 1.4rem 0; }
+
+    /* NEIGHBOURHOOD BLOCK */
+    .hood-block { margin-bottom: 3rem; }
+    .hood-title-row { display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 0.3rem; flex-wrap: wrap; }
+    .hood-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--ink); }
+    .hood-zh { font-size: 0.9rem; color: var(--gold); font-weight: 600; }
+    .hood-badge { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; background: rgba(192,57,43,0.08); color: var(--red); padding: 0.2rem 0.65rem; border-radius: 20px; border: 1px solid rgba(192,57,43,0.2); }
+    .hood-desc { font-size: 0.95rem; color: var(--ink-soft); margin-bottom: 1rem; line-height: 1.65; }
+    .hood-divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+    /* ATTRACTION LIST */
+    .attraction-list { display: flex; flex-direction: column; gap: 0.7rem; margin: 0.8rem 0 1.2rem; }
+    .attraction-item { display: grid; grid-template-columns: 1fr auto; gap: 0.5rem 1rem; background: var(--mist); border: 1px solid var(--border); border-radius: 10px; padding: 0.85rem 1rem; align-items: start; }
+    .attraction-name { font-weight: 600; font-size: 0.93rem; color: var(--ink); }
+    .attraction-name .zh { font-size: 0.8rem; color: var(--gold); font-weight: 600; margin-left: 0.4rem; }
+    .attraction-desc { font-size: 0.85rem; color: #666; line-height: 1.5; margin-top: 0.2rem; grid-column: 1; }
+    .attraction-meta { text-align: right; flex-shrink: 0; display: flex; flex-direction: column; gap: 0.2rem; align-items: flex-end; }
+    .meta-price { font-size: 0.78rem; font-weight: 700; color: var(--red); background: rgba(192,57,43,0.07); padding: 0.15rem 0.55rem; border-radius: 4px; }
+    .meta-hours { font-size: 0.75rem; color: #999; }
+
+    /* ITINERARY */
+    .itinerary-block { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 1.5rem; }
+    .itinerary-header { background: var(--ink); color: var(--white); padding: 1rem 1.4rem; display: flex; align-items: center; gap: 1rem; }
+    .itinerary-day { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--gold); white-space: nowrap; }
+    .itinerary-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; color: var(--white); }
+    .itinerary-body { padding: 1.2rem 1.4rem; display: flex; flex-direction: column; gap: 1rem; }
+    .time-block { display: grid; grid-template-columns: 70px 1fr; gap: 0 1rem; }
+    .time-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); padding-top: 0.1rem; }
+    .time-content ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .time-content ul li { font-size: 0.9rem; color: var(--ink-soft); display: flex; align-items: baseline; gap: 0.5rem; }
+    .time-content ul li::before { content: '·'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+    .time-optional { font-size: 0.82rem; color: #aaa; font-style: italic; margin-top: 0.3rem; }
+
+    /* ROUTE CARDS */
+    .route-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .route-card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; }
+    .route-num { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+    .route-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .route-theme { font-size: 0.78rem; color: #888; margin-bottom: 0.7rem; font-style: italic; }
+    .route-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .route-card ul li { font-size: 0.85rem; color: var(--ink-soft); display: flex; gap: 0.5rem; }
+    .route-card ul li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
+    .route-style { margin-top: 0.8rem; font-size: 0.78rem; color: #999; font-style: italic; }
+
+    /* DAYTRIP */
+    .daytrip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .daytrip-card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; }
+    .daytrip-card h4 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .daytrip-meta { display: flex; gap: 0.6rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
+    .daytrip-meta span { font-size: 0.75rem; font-weight: 600; color: #888; }
+    .daytrip-card p { font-size: 0.85rem; color: #666; line-height: 1.5; }
+
+    /* FAQ */
+    .faq { margin: 1.5rem 0; }
+    .faq-item { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 0.6rem; overflow: hidden; }
+    .faq-q { width: 100%; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.2rem; font-family: 'DM Sans', sans-serif; font-size: 0.93rem; font-weight: 600; color: var(--ink); text-align: left; gap: 1rem; }
+    .faq-q:hover { background: var(--mist); }
+    .faq-arrow { font-size: 1rem; color: var(--gold); transition: transform 0.25s; flex-shrink: 0; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0.8rem 1.2rem 1rem; font-size: 0.9rem; color: var(--ink-soft); border-top: 1px solid var(--border); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* RELATED */
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .related-card { display: block; background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.1rem; text-decoration: none; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
+    .related-card:hover { border-color: var(--red); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .related-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 0.3rem; }
+    .related-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; }
+    .related-desc { font-size: 0.82rem; color: #888; line-height: 1.4; }
+
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.88rem; font-weight: 500; color: var(--red); text-decoration: none; margin-top: 3rem; }
+    .back-link:hover { text-decoration: underline; }
+    .h3-style { font-family: 'Playfair Display', serif; font-size: 1.15rem; margin: 1.8rem 0 0.9rem; color: var(--ink); }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .page-wrap { padding: 0 1rem 4rem; }
+      .hero { padding: 3.5rem 1rem 3rem; }
+      .season-strip { grid-template-columns: repeat(2, 1fr); }
+      .img-grid-2, .img-grid-3 { grid-template-columns: 1fr; }
+      .time-block { grid-template-columns: 60px 1fr; }
+      .attraction-item { grid-template-columns: 1fr; }
+      .attraction-meta { flex-direction: row; align-items: center; }
+    }
+
+    /* FOOTER */
+    footer { background: transparent; border-top: 1px solid var(--border); padding: 2.8rem 2rem 2rem; margin-top: 2rem; }
+    .footer-inner { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.6rem; }
+    .footer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .footer-brand { display: flex; flex-direction: column; gap: .35rem; }
+    .footer-logo-text { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--red); }
+    .footer-tagline { font-size: 13px; color: var(--ink-soft); }
+    .footer-nav { display: flex; flex-wrap: wrap; gap: .5rem 1.6rem; align-items: center; }
+    .footer-nav a { text-decoration: none; font-size: 14px; color: var(--ink-soft); font-weight: 400; transition: color .2s; }
+    .footer-nav a:hover { color: var(--red); }
+    .footer-contact { background: var(--red); color: #fff !important; padding: 6px 16px; border-radius: 24px; font-size: 13px !important; font-weight: 500; }
+    .footer-contact:hover { background: var(--red-dark) !important; }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 1.2rem; font-size: 12px; color: var(--ink-soft); display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">China Awaits</a>
+  <ul class="nav-links">
+    <li><a href="../index.html#cities">Cities</a></li>
+    <li><a href="../index.html#topics">Topics</a></li>
+    <li><a href="../index.html#essentials">Essentials</a></li>
+    <li><a href="../contact.html">Contact Us</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-tag">City Guide</div>
+  <h1><span>Shenzhen</span> 深圳</h1>
+  <p class="hero-sub">China's innovation capital — a city that went from fishing village to tech megacity in 40 years, with a coastline, world-class Cantonese food, and a creative scene that keeps surprising.</p>
+  <div class="jump-nav">
+    <a href="#overview">🏙️ Overview</a>
+    <a href="#history">📖 History</a>
+    <a href="#neighbourhoods">🗺️ Areas &amp; Sights</a>
+    <a href="#itineraries">📅 Itineraries</a>
+    <a href="#niche">🎭 Niche Routes</a>
+    <a href="#getting-there">✈️ Getting There</a>
+    <a href="#getting-around">🚇 Getting Around</a>
+    <a href="#daytrips">🚄 Day Trips</a>
+    <a href="#practical">📋 Practical Info</a>
+    <a href="#faq">❓ FAQ</a>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- OVERVIEW -->
+  <div class="section" id="overview">
+    <div class="section-header">
+      <div class="section-icon">🏙️</div>
+      <div class="section-title-group">
+        <h2>Welcome to Shenzhen</h2>
+        <p>The world's fastest city, still accelerating</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>No city on earth has grown faster than Shenzhen. In 1980 it was a collection of Cantonese fishing villages with a population of around 30,000. Deng Xiaoping chose it as China's first Special Economic Zone, and the results were unprecedented: today it is home to 18 million people, to global technology companies like Huawei, Tencent, and DJI, and to one of the most dynamic urban cultures in Asia.</p>
+      <p>For foreign visitors, Shenzhen offers something few major Chinese cities can match: immediacy. It sits minutes from Hong Kong across a land border, making it the easiest introduction to mainland China for many travellers. But it rewards those who dig deeper — into the creative districts, the ancient walled settlements at its edges, and a food scene that draws on the full depth of Cantonese and Hakka tradition.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h3>Tech &amp; Innovation</h3>
+        <p>Home to Huawei, Tencent, DJI, and thousands of startups. Shenzhen manufactures more hardware and produces more patents per capita than almost any city in the world.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎨</div>
+        <h3>Art &amp; Design</h3>
+        <p>A UNESCO Creative City of Design. OCT Loft, Dafen Oil Painting Village, and OCAT anchor a thriving independent art and design scene built into repurposed industrial spaces.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌊</div>
+        <h3>Coast &amp; Green Space</h3>
+        <p>15 km of Shenzhen Bay promenade, sandy beaches at Dameisha, and more green space per capita than most Chinese cities. Wutong Mountain offers a genuine wilderness hike within city limits.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🇭🇰</div>
+        <h3>Gateway from Hong Kong</h3>
+        <p>The easiest major mainland Chinese city to reach from Hong Kong — a 15-minute walk across the border. Also highly accessible by high-speed rail from Guangzhou, and internationally by Bao'an Airport.</p>
+      </div>
+    </div>
+
+    <h3 class="h3-style">Best Time to Visit</h3>
+    <div class="season-strip">
+      <div class="season-box ok">
+        <div class="season-name">~ Spring</div>
+        <div class="season-months">Mar – May</div>
+        <div class="season-note">Warm and increasingly humid. Rain likely. Good for indoor culture and food.</div>
+      </div>
+      <div class="season-box avoid">
+        <div class="season-name">✗ Summer</div>
+        <div class="season-months">Jun – Sep</div>
+        <div class="season-note">Hot, very humid, typhoon risk Jul–Sep. Avoid outdoors in midday heat.</div>
+      </div>
+      <div class="season-box best">
+        <div class="season-name">✓ Autumn</div>
+        <div class="season-months">Oct – Dec</div>
+        <div class="season-note">Best weather. Sunny, cool, low humidity. Ideal for walking, hiking, beaches.</div>
+      </div>
+      <div class="season-box ok">
+        <div class="season-name">~ Winter</div>
+        <div class="season-months">Jan – Feb</div>
+        <div class="season-note">Mild and dry (18–22°C). Pleasant for sightseeing. Busy around Chinese New Year.</div>
+      </div>
+    </div>
+
+    <div class="highlight"><strong>Snapshot:</strong> Population ~18 million · Time zone UTC+8 · Currency RMB (¥) · Language Mandarin &amp; Cantonese · Airport Shenzhen Bao'an SZX · Border crossings: Luohu, Futian, Huanggang (land) · Shekou (ferry)</div>
+  </div>
+
+  <!-- HISTORY -->
+  <div class="section" id="history">
+    <div class="section-header">
+      <div class="section-icon">📖</div>
+      <div class="section-title-group">
+        <h2>History &amp; Identity</h2>
+        <p>Four decades that changed a nation</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Before 1980, Shenzhen was a cluster of Cantonese and Hakka fishing villages. Nantou Ancient City — now surrounded by modern Nanshan — had been a walled settlement since the Eastern Jin dynasty in 317 AD, serving as the administrative centre for the entire Pearl River Delta region for over a thousand years. But the land around it was rice paddies and coast.</p>
+      <p>When Deng Xiaoping designated Shenzhen as China's first Special Economic Zone, it became a laboratory for controlled capitalism. Foreign investment arrived, factories rose overnight, and migrants from across China flooded in. The phrase "Shenzhen speed" entered the language: a new skyscraper floor every three days at the height of the construction boom. Today a bronze statue of Deng stands at the summit of Lianhuashan Park, looking out over the skyline he conjured into existence.</p>
+    </div>
+
+    <div class="site-photo site-photo-wide" id="photo-panorama">
+      <div class="photo-fallback">🏙️</div>
+      <img id="img-panorama" alt="Shenzhen city panorama" />
+      <div class="photo-caption">Shenzhen — Futian CBD and the Pearl River Delta beyond</div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🏯</div>
+        <h3>Ancient Roots</h3>
+        <p>Nantou Ancient City (南头古城) has stood since 317 AD — a 1,700-year-old walled settlement now encircled by apartment towers in Nanshan, still accessible on foot.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏗️</div>
+        <h3>The SEZ Miracle</h3>
+        <p>Designated China's first Special Economic Zone in 1980. Within a decade it had become one of the fastest-growing cities in human history, with a population doubling every few years.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔌</div>
+        <h3>Electronics Capital</h3>
+        <p>Huaqiangbei became the world's largest electronics market during the 1990s–2000s manufacturing boom. It remains the best place on earth to buy components, gadgets, and hardware.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚀</div>
+        <h3>Innovation Hub</h3>
+        <p>Huawei, Tencent, and DJI all call Shenzhen home. The city now files more international patents annually than most countries, and is developing rapidly as a centre for biotech and AI.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- AREAS & SIGHTS -->
+  <div class="section" id="neighbourhoods">
+    <div class="section-header">
+      <div class="section-icon">🗺️</div>
+      <div class="section-title-group">
+        <h2>Areas &amp; Sights</h2>
+        <p>Where to go and what to see in each district</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Shenzhen's main districts stretch west to east along the coast, with Futian (the CBD) at the centre. Nanshan and Shekou sit to the west; Luohu and the Hong Kong border to the east; Dapeng Peninsula to the far east. The metro connects nearly all of them.</p>
+    </div>
+
+    <!-- FUTIAN -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Futian</span>
+        <span class="hood-zh">福田</span>
+        <span class="hood-badge">CBD · Start Here</span>
+      </div>
+      <p class="hood-desc">Shenzhen's commercial and civic heart. The Ping An Finance Centre — China's second-tallest building — dominates the skyline. Lianhuashan Park sits at the centre, offering the best free views in the city. For visitors, Futian is the most practical base: excellent metro connections, a wide choice of hotels, and the busiest concentration of restaurants, malls, and nightlife.</p>
+
+      <div class="img-grid-2">
+        <div class="site-photo site-photo-sq" id="photo-skyline">
+          <div class="photo-fallback">🌆</div>
+          <img id="img-skyline" alt="Shenzhen Futian skyline at dusk" />
+          <div class="photo-caption">Futian CBD at dusk — Ping An Finance Centre left of centre</div>
+        </div>
+        <div class="site-photo site-photo-sq" id="photo-shigupark">
+          <div class="photo-fallback">🌿</div>
+          <img id="img-shigupark" alt="Shigu Garden Shenzhen" />
+          <div class="photo-caption">Stone Valley Garden — a quiet classical garden in central Futian</div>
+        </div>
+      </div>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Ping An Finance Centre <span class="zh">平安国际金融中心</span></div>
+            <div class="attraction-desc">China's second-tallest building at 599 m. The observation deck on floor 116 gives a full 360° view across the city, Shenzhen Bay, and into Hong Kong's New Territories on clear days.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥280</span>
+            <span class="meta-hours">10:00–22:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Lianhuashan Park <span class="zh">莲花山公园</span></div>
+            <div class="attraction-desc">A broad hilltop park in the heart of Futian. Locals do tai chi here at dawn; the summit plateau holds a large bronze statue of Deng Xiaoping and the best free panorama of the CBD. 15–30 min walk to the top on shaded paths.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">6:00–22:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Shenzhen Museum <span class="zh">深圳博物馆</span></div>
+            <div class="attraction-desc">Permanent exhibitions on the city's history from ancient Baiyue culture through the SEZ era. One of the more rewarding free museums in Guangdong — well-presented in English and Chinese.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Tue–Sun 10:00–18:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Coco Park &amp; MixC <span class="zh">购物区</span></div>
+            <div class="attraction-desc">Futian's main shopping and nightlife zones. Coco Park has an open-air bar and restaurant strip that stays lively late. MixC is larger and more upscale. Both are walkable from the CBD metro stations.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free entry</span>
+            <span class="meta-hours">10:00–22:00+</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="hood-divider">
+
+    <!-- NANSHAN & SHEKOU -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Nanshan &amp; Shekou</span>
+        <span class="hood-zh">南山 · 蛇口</span>
+        <span class="hood-badge">Tech · Waterfront · Expat</span>
+      </div>
+      <p class="hood-desc">Nanshan is where Tencent's global headquarters sits alongside Shenzhen Bay, OCT Harbour, and the city's most liveable cycling path. Shekou, at the southern tip of the peninsula, is Shenzhen's most international neighbourhood — shaped by expats, maritime history, and a waterfront dining scene anchored by Sea World Plaza, built around a permanently docked cruise ship.</p>
+
+      <div class="img-grid-2">
+        <div class="site-photo site-photo-sq" id="photo-szbay">
+          <div class="photo-fallback">🌊</div>
+          <img id="img-szbay" alt="Shenzhen Bay Park" />
+          <div class="photo-caption">Shenzhen Bay Park — the promenade looking toward Hong Kong</div>
+        </div>
+        <div class="site-photo site-photo-sq" id="photo-ferriswheel">
+          <div class="photo-fallback">🎡</div>
+          <img id="img-ferriswheel" alt="OCT Harbour Ferris Wheel at night" />
+          <div class="photo-caption">OCT Harbour at night — the Ferris wheel and waterfront light show</div>
+        </div>
+      </div>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Shenzhen Bay Park <span class="zh">深圳湾公园</span></div>
+            <div class="attraction-desc">A 15 km coastal promenade running the full length of Shenzhen Bay. Free, open, and serene — locals cycle, skate, and walk dogs here daily. On clear days you can see the hills of Hong Kong's New Territories across the water. Best at golden hour.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Open 24h</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">OCT Harbour <span class="zh">欢乐港湾</span></div>
+            <div class="attraction-desc">A large waterfront development on Qianhai Bay with an aquarium, restaurants, a giant Ferris wheel, and a free nightly water and LED light show. Best visited in the evening — the light show runs around 8pm and is genuinely impressive.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free (light show) / ¥160 (aquarium)</span>
+            <span class="meta-hours">Light show ~20:00 nightly</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Sea World Plaza, Shekou <span class="zh">海上世界</span></div>
+            <div class="attraction-desc">Shenzhen's most expat-friendly nightlife zone — dining and bar streets surrounding a permanently docked cruise ship converted into a hotel. German beer halls, Japanese izakayas, Mexican cantinas, and live music venues. Relaxed and genuinely international in feel.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free to enter</span>
+            <span class="meta-hours">Best after 18:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Nantou Ancient City <span class="zh">南头古城</span></div>
+            <div class="attraction-desc">A 1,700-year-old walled settlement now encircled by apartment towers. Walk through the ancient gate into a neighbourhood of old temples, heritage buildings, galleries, and independent cafés. One of Shenzhen's most atmospheric and underrated spots.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Open daily</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">DJI Sky City &amp; Flagship Store <span class="zh">大疆天空之城</span></div>
+            <div class="attraction-desc">The global drone leader's dramatic new headquarters in Nanshan — an architectural landmark by Foster + Partners, with two towers connected by a sky bridge. The DJI flagship store nearby lets you see and try the full product range. Worth a detour for tech enthusiasts.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Store: Free</span>
+            <span class="meta-hours">10:00–21:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Enshang Wetland Park <span class="zh">恩上湿地公园</span></div>
+            <div class="attraction-desc">A serene wetland nature reserve tucked into the hills of northern Nanshan — boardwalks over still water, herons, lotus ponds, and almost no tourists. A genuine antidote to Shenzhen's relentless urbanism. Best visited on a weekday morning.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Open daily</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-photo site-photo-wide" id="photo-dji">
+        <div class="photo-fallback">🚁</div>
+        <img id="img-dji" alt="DJI flagship store Shenzhen" />
+        <div class="photo-caption">DJI Sky City — the drone giant's Nanshan headquarters and flagship store</div>
+      </div>
+
+      <div class="img-grid-2">
+        <div class="site-photo site-photo-sq" id="photo-tencent">
+          <div class="photo-fallback">🏢</div>
+          <img id="img-tencent" alt="Tencent Binhai Towers Shenzhen" />
+          <div class="photo-caption">Tencent Binhai Towers — the tech giant's striking Nanshan campus by NBBJ</div>
+        </div>
+        <div class="site-photo site-photo-sq" id="photo-wetland">
+          <div class="photo-fallback">🌿</div>
+          <img id="img-wetland" alt="Enshang Wetland Park Shenzhen" />
+          <div class="photo-caption">Enshang Wetland Park — boardwalks and lotus ponds in northern Nanshan</div>
+        </div>
+      </div>
+
+    </div>
+    <hr class="hood-divider">
+
+    <!-- OCT & CREATIVE -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">OCT Loft &amp; Overseas Chinese Town</span>
+        <span class="hood-zh">华侨城创意文化园</span>
+        <span class="hood-badge">Art · Design · Culture</span>
+      </div>
+      <p class="hood-desc">OCT Loft is Shenzhen's creative quarter — a former industrial compound redeveloped into galleries, independent bookshops, design studios, and some of the city's best independent coffee. The wider OCT district also contains the family-oriented theme park cluster (Happy Valley, Window of the World) and OCAT, one of the most ambitious contemporary art institutions in southern China.</p>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">OCT Loft Creative District <span class="zh">华侨城创意文化园</span></div>
+            <div class="attraction-desc">Wide brick courtyards, ivy-covered warehouse galleries, indie design shops, and a dense concentration of specialty coffee — Shenzhen's answer to Beijing's 798, but quieter and arguably more interesting. Free to walk around; most spaces open from 10am.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">10:00–21:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">OCAT Shenzhen <span class="zh">华·美术馆</span></div>
+            <div class="attraction-desc">The district's flagship contemporary art institution with ambitious rotating exhibitions. Programming tends toward international artists and large-scale installations. Consistently one of the better contemporary art spaces in Guangdong.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥20–50</span>
+            <span class="meta-hours">Tue–Sun 10:00–18:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Window of the World <span class="zh">世界之窗</span></div>
+            <div class="attraction-desc">130 scaled-down global landmarks — Eiffel Tower, Pyramids, Taj Mahal, Niagara Falls — crammed into a theme park. Extremely kitsch, but huge fun for the right mood. The nightly cultural performance shows are genuinely entertaining.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥230</span>
+            <span class="meta-hours">10:00–22:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Zhongshuge Bookstore <span class="zh">钟书阁书店</span></div>
+            <div class="attraction-desc">One of China's most visually spectacular bookshops — a theatrical space of floor-to-ceiling mirrored shelves, dramatic lighting, and carefully curated books. The Shenzhen branch is a design landmark in its own right. Even if you don't read Chinese, it's worth seeing.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">10:00–22:00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-photo site-photo-wide" id="photo-bookstore">
+        <div class="photo-fallback">📚</div>
+        <img id="img-bookstore" alt="Zhongshuge Bookstore Shenzhen" />
+        <div class="photo-caption">Zhongshuge Bookstore — one of China's most theatrical book spaces</div>
+      </div>
+
+    </div>
+    <hr class="hood-divider">
+
+    <!-- LUOHU & HUAQIANGBEI -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Luohu &amp; Huaqiangbei</span>
+        <span class="hood-zh">罗湖 · 华强北</span>
+        <span class="hood-badge">Shopping · HK Gateway</span>
+      </div>
+      <p class="hood-desc">Luohu is Shenzhen's historic heart — the oldest commercial district, abutting the Hong Kong border at Luohu crossing. Huaqiangbei, just north, is the world's most extraordinary electronics market: towers of components, drones, phone parts, vintage game consoles, and anything else with a circuit board. Even if you're not buying, an hour here is one of the most memorable walks in China.</p>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Huaqiangbei Electronics Market <span class="zh">华强北电子市场</span></div>
+            <div class="attraction-desc">Multiple interconnected malls — SEG Plaza, Mingtong, Saige — each packed with hundreds of stalls selling components, gadgets, drones, retro games, cables, and custom tech. The scale and variety is genuinely astonishing. Best explored on foot between buildings over 1–2 hrs.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free entry</span>
+            <span class="meta-hours">~10:00–19:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Dongmen Pedestrian Street <span class="zh">东门步行街</span></div>
+            <div class="attraction-desc">Shenzhen's oldest commercial street — a long pedestrian zone of clothing shops, street food stalls, and local restaurants. Budget-friendly and full of local energy, especially evenings and weekends. Good for a cheap lunch or people-watching.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Open 24h</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Gangxia North Metro Station <span class="zh">岗厦北站</span></div>
+            <div class="attraction-desc">One of the most architecturally striking metro stations in China — and the world. A cavernous underground interchange designed as a vast inverted cone of light. Worth riding through just to see it. Located on Lines 9 and 14 in central Futian.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Metro fare</span>
+            <span class="meta-hours">Operates 6:00–23:00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-photo site-photo-wide" id="photo-metro">
+        <div class="photo-fallback">🚇</div>
+        <img id="img-metro" alt="Gangxia North Metro Station Shenzhen" />
+        <div class="photo-caption">Gangxia North Station — one of the most spectacular metro interiors in China</div>
+      </div>
+
+    </div>
+    <hr class="hood-divider">
+
+    <!-- DAPENG -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Dapeng Peninsula</span>
+        <span class="hood-zh">大鹏半岛</span>
+        <span class="hood-badge">Beaches · Ancient Fortress · Hiking</span>
+      </div>
+      <p class="hood-desc">An hour east of the city centre, Dapeng feels like a different world entirely: sandy beaches, forested coastal hills, and a remarkably intact Ming dynasty fortress. It requires more effort to reach than central Shenzhen, but offers an experience unlike anything else in the Pearl River Delta. Go on a weekday to avoid weekend crowds from Hong Kong.</p>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Dapeng Ancient Fortress <span class="zh">大鹏所城</span></div>
+            <div class="attraction-desc">A Ming dynasty (1394) walled garrison town in near-original condition — stone gates, ancestral halls, temples, and narrow alleys that feel genuinely removed from the 21st century. One of the most underrated heritage sites in Guangdong.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥20</span>
+            <span class="meta-hours">Open daily</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Dameisha Beach <span class="zh">大梅沙海滨公园</span></div>
+            <div class="attraction-desc">Shenzhen's most accessible beach — clean, well-maintained, with calm water. Packed on summer weekends; far more relaxed on weekdays. A good combination with Dapeng Fortress as a full-day eastern trip.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Open daily</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Wutong Mountain <span class="zh">梧桐山</span></div>
+            <div class="attraction-desc">The highest peak in Shenzhen at 943 m. Well-marked forested trails lead to the summit, which offers sweeping coastal views on clear days. Full ascent takes 2.5–3 hrs. Bring water; the trailhead is near Wutong Mountain Scenic Area bus stop.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Open daily</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Jiaochangwei Beach <span class="zh">较场尾海滩</span></div>
+            <div class="attraction-desc">A quieter alternative to Dameisha — a long bay of golden sand lined with small guesthouses, seafood restaurants, and surf schools. Less commercialised and more local in feel. Popular with younger crowds and surfers in autumn and winter when the waves are best.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Open daily</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-photo site-photo-wide" id="photo-jiaochangwei">
+        <div class="photo-fallback">🏖️</div>
+        <img id="img-jiaochangwei" alt="Jiaochangwei Beach Dapeng Shenzhen" />
+        <div class="photo-caption">Jiaochangwei Beach — a quieter, more local bay on the Dapeng Peninsula</div>
+      </div>
+
+      <div class="img-grid-2">
+        <div class="site-photo site-photo-sq" id="photo-bridge">
+          <div class="photo-fallback">🌉</div>
+          <img id="img-bridge" alt="Shenzhen Bay Bridge" />
+          <div class="photo-caption">Shenzhen Bay Road Bridge — linking Nanshan to the eastern waterfront</div>
+        </div>
+        <div class="site-photo site-photo-sq" id="photo-wutongvillage">
+          <div class="photo-fallback">🏡</div>
+          <img id="img-wutongvillage" alt="Wutong Village Shenzhen" />
+          <div class="photo-caption">Wutong Village — a charming old settlement at the foot of Wutong Mountain</div>
+        </div>
+      </div>
+    </div>
+    <hr class="hood-divider">
+
+    <!-- DAFEN -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Dafen Oil Painting Village</span>
+        <span class="hood-zh">大芬油画村</span>
+        <span class="hood-badge">Art · Unique to Shenzhen</span>
+      </div>
+      <p class="hood-desc">Dafen is one of Shenzhen's most curious and compelling places — a village-turned-global-art-production-hub where thousands of painters produce hand-painted reproductions of Western masterpieces. It once supplied an estimated 60% of the world's decorative oil paintings. Today it also hosts original artists' studios and a growing contemporary scene.</p>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Gallery Lane Walking Route <span class="zh">大芬村</span></div>
+            <div class="attraction-desc">Wander through narrow alleyways lined with open studios — painters working live on Van Goghs, Monets, and Klimts, alongside original work. You can buy a reproduction from ¥50 or commission a custom portrait (¥200–500, ready in 1–2 days from a photo).</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free to browse</span>
+            <span class="meta-hours">10:00–20:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Dafen Art Museum <span class="zh">大芬美术馆</span></div>
+            <div class="attraction-desc">Rotating exhibitions by Dafen-based artists focused on contemporary and original work rather than reproductions. A good counterpoint to the commercial street outside.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Tue–Sun 10:00–18:00</span>
+          </div>
+        </div>
+      </div>
+      <div class="tip-box">Commission a portrait from a photo — most Dafen painters can complete a canvas in 1–2 days and ship internationally. Prices start around ¥200–300 for a single portrait. Arrive in the morning when painters are most willing to discuss custom work.</div>
+    </div>
+
+  </div>
+
+  <!-- ITINERARIES -->
+  <div class="section" id="itineraries">
+    <div class="section-header">
+      <div class="section-icon">📅</div>
+      <div class="section-title-group">
+        <h2>Itineraries</h2>
+        <p>How to spend 2 or 4 days in Shenzhen</p>
+      </div>
+    </div>
+
+    <div class="site-photo site-photo-wide" id="photo-itinerary">
+      <div class="photo-fallback">🌅</div>
+      <img id="img-itinerary" alt="Shenzhen Bay at dusk" />
+      <div class="photo-caption">Shenzhen Bay — a centrepiece of any Shenzhen itinerary</div>
+    </div>
+
+    <!-- 2-Day -->
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 1</div>
+        <div class="itinerary-title">Futian, Nanshan &amp; the Waterfront</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Morning</div>
+          <div class="time-content">
+            <ul>
+              <li>Lianhuashan Park — hike to the summit for the Deng Xiaoping statue and CBD panorama (free; 30 min walk)</li>
+              <li>Walk down through the Civic Center to Shenzhen Museum (free; allow 1 hr)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Afternoon</div>
+          <div class="time-content">
+            <ul>
+              <li>Lunch at a dim sum restaurant near Futian metro</li>
+              <li>Ping An Finance Centre observation deck (book in advance online)</li>
+              <li>Taxi or metro to Shenzhen Bay Park — walk or rent a bike along the promenade</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Evening</div>
+          <div class="time-content">
+            <ul>
+              <li>OCT Harbour for the 8pm light show (free), Ferris wheel if inclined</li>
+              <li>Dinner at Sea World Plaza in Shekou — wide choice of cuisines, lively atmosphere</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 2</div>
+        <div class="itinerary-title">Art, Electronics &amp; Local Culture</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Morning</div>
+          <div class="time-content">
+            <ul>
+              <li>OCT Loft Creative District — galleries, independent coffee, design shops</li>
+              <li>OCAT contemporary art museum if there's an exhibition of interest</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Afternoon</div>
+          <div class="time-content">
+            <ul>
+              <li>Huaqiangbei Electronics Market — allow 1–2 hrs to explore; even non-buyers find it fascinating</li>
+              <li>Dongmen Pedestrian Street for street food lunch or late afternoon snacks</li>
+              <li>Metro to Dafen Oil Painting Village (Line 3, Dafen station) — browse studios before closing</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Evening</div>
+          <div class="time-content">
+            <ul>
+              <li>Cantonese dinner — try claypot rice or roast goose near Luohu or Futian</li>
+            </ul>
+            <div class="time-optional">Optional: Gangxia North station — detour through on the metro for the spectacular interior</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4-Day -->
+    <h3 class="h3-style">4-Day In-Depth</h3>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 1</div>
+        <div class="itinerary-title">Futian CBD &amp; Bay Waterfront</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Morning</div>
+          <div class="time-content"><ul><li>Lianhuashan Park → Shenzhen Museum → Civic Center walk</li></ul></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Afternoon</div>
+          <div class="time-content"><ul><li>Ping An Finance Centre observation deck</li><li>Shenzhen Bay Park promenade — walk or cycle toward Shekou</li></ul></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Evening</div>
+          <div class="time-content"><ul><li>OCT Harbour light show → dinner at Sea World Plaza, Shekou</li></ul></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 2</div>
+        <div class="itinerary-title">Nanshan, OCT &amp; Nantou</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Morning</div>
+          <div class="time-content"><ul><li>Nantou Ancient City — old gates, temples, morning market feel</li><li>DJI flagship store in Nanshan (tech enthusiasts)</li></ul></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Afternoon</div>
+          <div class="time-content"><ul><li>OCT Loft for galleries and coffee</li><li>Window of the World or Happy Valley (families / theme park fans)</li></ul></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Evening</div>
+          <div class="time-content"><ul><li>Dinner at Coco Park — wide restaurant choice, lively bar strip</li></ul></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 3</div>
+        <div class="itinerary-title">Dapeng Peninsula</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Full day</div>
+          <div class="time-content">
+            <ul>
+              <li>Early start — take DiDi or taxi to Dapeng (¥80–120 from Futian; ~1 hr)</li>
+              <li>Dapeng Ancient Fortress in the morning — allow 2 hrs</li>
+              <li>Dameisha Beach for the afternoon — swim, rest, seafood lunch nearby</li>
+              <li>Return by taxi or public transport (metro + bus, allow 1.5–2 hrs)</li>
+            </ul>
+            <div class="time-optional">Note: DiDi is strongly recommended over public transport for this day — saves 1–1.5 hrs each way</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 4</div>
+        <div class="itinerary-title">Electronics, Art &amp; Farewell Dim Sum</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Morning</div>
+          <div class="time-content"><ul><li>Dafen Oil Painting Village — morning is quieter; good time to discuss commissions</li></ul></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Afternoon</div>
+          <div class="time-content"><ul><li>Huaqiangbei Electronics Market</li><li>Dongmen street food and people-watching</li></ul></div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Evening</div>
+          <div class="time-content"><ul><li>Farewell dim sum at a Cantonese teahouse — order by trolley if possible</li></ul></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- NICHE ROUTES -->
+  <div class="section" id="niche">
+    <div class="section-header">
+      <div class="section-icon">🎭</div>
+      <div class="section-title-group">
+        <h2>Niche Routes</h2>
+        <p>Off the beaten track in China's most forward-looking city</p>
+      </div>
+    </div>
+
+    <div class="route-grid">
+      <div class="route-card">
+        <div class="route-num">Route 01</div>
+        <div class="route-name">Silicon Valley of China</div>
+        <div class="route-theme">For tech enthusiasts and hardware obsessives</div>
+        <ul>
+          <li>Huaqiangbei Electronics Market — SEG Plaza and Mingtong Building</li>
+          <li>DJI flagship store and Sky City exterior in Nanshan</li>
+          <li>Tencent Binhai Towers (exterior, Nanshan)</li>
+          <li>OCT Loft for hardware and design studios</li>
+          <li>Finish: rooftop bar with views of the CBD skyline</li>
+        </ul>
+        <div class="route-style">Half or full day · mostly western Shenzhen · metro and taxi</div>
+      </div>
+
+      <div class="route-card">
+        <div class="route-num">Route 02</div>
+        <div class="route-name">Old Shenzhen Trail</div>
+        <div class="route-theme">History beneath the gleaming surface</div>
+        <ul>
+          <li>Nantou Ancient City — 1,700-year-old walled settlement in Nanshan</li>
+          <li>Shenzhen Museum — SEZ history and ancient Baiyue culture</li>
+          <li>Dapeng Ancient Fortress — Ming dynasty garrison town</li>
+          <li>Chiwan Tianhou Temple — one of the oldest in the Pearl River Delta</li>
+        </ul>
+        <div class="route-style">Full day · spread across city · DiDi recommended for Dapeng leg</div>
+      </div>
+
+      <div class="route-card">
+        <div class="route-num">Route 03</div>
+        <div class="route-name">Creative Shenzhen</div>
+        <div class="route-theme">A UNESCO City of Design</div>
+        <ul>
+          <li>OCT Loft — galleries, independent bookshops, design studios</li>
+          <li>OCAT — contemporary art institution</li>
+          <li>Dafen Oil Painting Village — studios and Dafen Art Museum</li>
+          <li>Design Societies in Shekou — design museum on the waterfront</li>
+        </ul>
+        <div class="route-style">Full day · OCT + Dafen in sequence · metro Line 1 and 3</div>
+      </div>
+
+      <div class="route-card">
+        <div class="route-num">Route 04</div>
+        <div class="route-name">Green Shenzhen</div>
+        <div class="route-theme">Outdoors in a city that hides its nature well</div>
+        <ul>
+          <li>Wutong Mountain sunrise hike — 943m, 2.5–3 hrs ascent</li>
+          <li>Shenzhen Bay Park cycle — rent a bike at the promenade</li>
+          <li>Dameisha Beach for a swim</li>
+          <li>Lianhuashan Park evening walk</li>
+        </ul>
+        <div class="route-style">Full day · early start essential for Wutong · DiDi for beach</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GETTING THERE -->
+  <div class="section" id="getting-there">
+    <div class="section-header">
+      <div class="section-icon">✈️</div>
+      <div class="section-title-group">
+        <h2>Getting There</h2>
+        <p>By air, rail, or from Hong Kong</p>
+      </div>
+    </div>
+
+    <h3 class="h3-style">Shenzhen Bao'an International Airport (SZX)</h3>
+    <p class="prose" style="font-size:0.95rem; color:var(--ink-soft); margin-bottom:1rem;">Located in Bao'an district, ~30 km west of Futian CBD. Direct international routes to Southeast Asia, the Middle East, and some European hubs — most long-haul travellers connect via Hong Kong or Guangzhou.</p>
+    <ul class="bullet-list">
+      <li><span class="li-content"><strong>Metro Line 11 (Airport Express)</strong> — fastest option; ~40 min to Futian<span class="sub">¥20–30 · departs every 6–10 min · runs approx. 6:00–midnight</span></span></li>
+      <li><span class="li-content"><strong>Taxi / DiDi</strong> — door to door; convenient for heavy luggage<span class="sub">¥90–130 to Futian · 40–60 min · metered, no haggling</span></span></li>
+      <li><span class="li-content"><strong>Airport shuttle bus</strong> — multiple lines covering districts not on Line 11<span class="sub">¥15–25 · slower but useful for Nanshan and Shekou</span></span></li>
+    </ul>
+
+    <h3 class="h3-style">From Hong Kong</h3>
+    <p class="prose" style="font-size:0.95rem; color:var(--ink-soft); margin-bottom:1rem;">Shenzhen is uniquely accessible from Hong Kong — three land border crossings and one sea route. All require a valid China visa (or applicable visa-free access).</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Crossing</th><th>How to get there (HK side)</th><th>Opens</th><th>Best for</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Luohu / Lo Wu</td><td>MTR East Rail Line to Lo Wu, then walk across</td><td>6:30–midnight</td><td>Luohu, Dongmen; most popular crossing</td></tr>
+          <tr><td>Futian / Lok Ma Chau</td><td>MTR to Lok Ma Chau, walk → Shenzhen Metro Line 4</td><td>6:30–22:30</td><td>Futian CBD; usually shorter queues</td></tr>
+          <tr><td>Huanggang</td><td>Taxi from HK (road crossing only)</td><td>24 hours</td><td>Late-night crossings</td></tr>
+          <tr><td>Shekou Ferry</td><td>Ferry from China Ferry Terminal, Tsim Sha Tsui</td><td>~7:30–21:00</td><td>Shekou / Nanshan area; scenic</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="warning-box">Border queues at Luohu can reach 1–2 hours on weekends and public holidays. Futian crossing is generally faster. Avoid crossing during Chinese New Year and Golden Week if possible.</div>
+
+    <h3 class="h3-style">High-Speed Rail</h3>
+    <ul class="bullet-list">
+      <li><span class="li-content"><strong>Guangzhou → Shenzhen</strong> — ~30 min by HSR from Guangzhou South<span class="sub">¥75–90 · trains every 10–15 min · arrives Shenzhen North or Futian station</span></span></li>
+      <li><span class="li-content"><strong>National network</strong> — Shenzhen North connects to Beijing (~8 hrs), Shanghai (~6 hrs), Xi'an (~5 hrs)<span class="sub">Book on Trip.com or 12306.cn · Futian station is the more central option for CBD hotels</span></span></li>
+    </ul>
+  </div>
+
+  <!-- GETTING AROUND -->
+  <div class="section" id="getting-around">
+    <div class="section-header">
+      <div class="section-icon">🚇</div>
+      <div class="section-title-group">
+        <h2>Getting Around</h2>
+        <p>One of China's most extensive metro networks</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Shenzhen's metro covers 18 lines and 199+ stations, connecting almost every major attraction. Fares are ¥2–9 depending on distance. Tap in and out with Alipay or WeChat Pay — no need for a separate card. Trains run approximately 6am–midnight.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Transport</th><th>Best for</th><th>Cost</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Metro</td><td>Most sights, airport, border crossings</td><td>¥2–9</td><td>Lines 1 and 2 cover most tourist areas. Tap with Alipay/WeChat.</td></tr>
+          <tr><td>DiDi</td><td>Dapeng, beach, anywhere off-metro</td><td>¥15–80</td><td>English-friendly app. Set up before arrival. Most reliable option.</td></tr>
+          <tr><td>Taxi</td><td>Short hops, luggage, late night</td><td>From ¥10</td><td>Green taxis: within SEZ only. Red: anywhere. Metered, no tipping.</td></tr>
+          <tr><td>Bus</td><td>Coastal routes, gaps in metro coverage</td><td>¥1–7</td><td>Use Amap for routes. Avoid rush hour (8–9am, 6–7:30pm).</td></tr>
+          <tr><td>Hire bike</td><td>Shenzhen Bay Park, OCT area</td><td>¥1–3/hr</td><td>Meituan and Hello Bike. Unlock with Alipay. Dedicated bay cycle lanes.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip-box">Stay near an interchange station on Line 1 (Luobao Line) or Line 2 (Shekou Line) — these connect Luohu, Futian, Nanshan, and Shekou and cover the vast majority of tourist attractions.</div>
+  </div>
+
+  <!-- DAY TRIPS -->
+  <div class="section" id="daytrips">
+    <div class="section-header">
+      <div class="section-icon">🚄</div>
+      <div class="section-title-group">
+        <h2>Day Trips</h2>
+        <p>Easy escapes within two hours of Shenzhen</p>
+      </div>
+    </div>
+
+    <div class="daytrip-grid">
+      <div class="daytrip-card">
+        <h4>Guangzhou</h4>
+        <div class="daytrip-meta"><span>🚄 ~30 min by HSR</span></div>
+        <p>China's Cantonese food capital. Dim sum, the Canton Tower, Shamian Island colonial quarter, and Xiguan's traditional shophouse streets. An easy half or full day.</p>
+      </div>
+      <div class="daytrip-card">
+        <h4>Hong Kong</h4>
+        <div class="daytrip-meta"><span>🚶 ~15 min across border</span></div>
+        <p>A completely different urban world 15 minutes away. Victoria Peak, Kowloon street markets, and the MTR to anywhere. Requires a valid Hong Kong travel document.</p>
+      </div>
+      <div class="daytrip-card">
+        <h4>Zhuhai &amp; Macau</h4>
+        <div class="daytrip-meta"><span>⛴️ ~1.5 hrs by ferry from Shekou</span></div>
+        <p>Ferry from Shekou to Zhuhai, then walk across to Macau. Portuguese architecture, egg tarts, the Historic Centre UNESCO site, and casinos if inclined.</p>
+      </div>
+      <div class="daytrip-card">
+        <h4>Kaiping Diaolou</h4>
+        <div class="daytrip-meta"><span>🚄 ~2 hrs HSR + bus</span></div>
+        <p>UNESCO-listed watchtower villages built by Cantonese emigrants in the early 20th century — a surreal fusion of Chinese and Italian Baroque architecture in the rice fields.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRACTICAL INFO -->
+  <div class="section" id="practical">
+    <div class="section-header">
+      <div class="section-icon">📋</div>
+      <div class="section-title-group">
+        <h2>Practical Info</h2>
+        <p>Everything you need to know before you go</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <tbody>
+          <tr><td>Currency</td><td>Chinese Yuan / RMB (¥). Alipay and WeChat Pay accepted almost universally. ATMs in malls and metro stations accept foreign cards.</td></tr>
+          <tr><td>Language</td><td>Mandarin official; Cantonese widely spoken among locals. English is more common in Shekou, Nanshan, and Futian CBD than most mainland cities. Metro signage is bilingual.</td></tr>
+          <tr><td>Internet &amp; VPN</td><td>Google, WhatsApp, Instagram, and most Western apps are blocked. Install a VPN before you arrive — downloading one inside China is much harder. For navigation: Amap or Apple Maps. For messaging: WeChat.</td></tr>
+          <tr><td>Visa</td><td>Most nationalities need a standard China visa. 144-hour visa-free transit is available for 54+ passport types through Bao'an Airport or Shekou sea port. See our <a href="../topics/visa.html" style="color:var(--red); text-decoration:none; font-weight:600;">Visa Guide</a>.</td></tr>
+          <tr><td>Weather</td><td>Subtropical. Oct–Dec is best: sunny, cool, low humidity (20–26°C). Jun–Sep is hot and very humid (30–35°C) with typhoon risk. Always carry a compact umbrella.</td></tr>
+          <tr><td>Tipping</td><td>Not expected or customary. Rounding up DiDi fares is fine but not required. High-end hotel and restaurant service charges are usually included in the bill.</td></tr>
+          <tr><td>Safety</td><td>Shenzhen is very safe for tourists. Standard urban precautions apply — be aware of pickpockets in Dongmen and at busy border crossings. Emergency: 110 (police), 120 (ambulance).</td></tr>
+          <tr><td>Medical</td><td>Shenzhen has good private hospitals with English-speaking doctors. Recommended: Shenzhen International General Hospital (Futian), Boai Hospital. See our <a href="../topics/medical.html" style="color:var(--red); text-decoration:none; font-weight:600;">Medical Guide</a>.</td></tr>
+          <tr><td>Payments</td><td>Set up Alipay before arrival — foreigners can now link international Visa/Mastercard. This is the most important practical step for a smooth trip. See our <a href="../topics/money.html" style="color:var(--red); text-decoration:none; font-weight:600;">Money Guide</a>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="warning-box">During Golden Week (Oct 1–7) and Chinese New Year, Shenzhen receives enormous visitor numbers from Hong Kong and across China. Border queues can reach 2–3 hours. Book accommodation months in advance.</div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section" id="faq">
+    <div class="section-header">
+      <div class="section-icon">❓</div>
+      <div class="section-title-group">
+        <h2>FAQ</h2>
+        <p>Common questions about visiting Shenzhen</p>
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">Do I need a China visa to visit Shenzhen from Hong Kong? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes — crossing from Hong Kong into mainland China at any Shenzhen border requires a standard China visa, regardless of your Hong Kong visa status. Citizens of some countries may qualify for a Shenzhen Special Economic Zone visa-on-arrival; check your country's eligibility with the nearest Chinese embassy before travel.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is Shenzhen worth visiting, or is it just for shopping? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Absolutely worth visiting — and the "just for shopping" reputation is well out of date. Shenzhen has a strong art and design scene (OCT Loft, Dafen, OCAT), genuine historical sites (Nantou, Dapeng Fortress), beautiful parks and coastline, one of the most spectacular metro stations in the world, and some of Guangdong's best food. It's also one of the easiest major Chinese cities for non-Chinese speakers to navigate.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How is Shenzhen different from Hong Kong? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">They're dramatically different despite being minutes apart. Hong Kong is a dense, bilingual SAR with a colonial heritage, common law legal system, and its own currency. Shenzhen is a mainland Chinese city — different political atmosphere, much lower prices, less English outside expat areas, and a faster, more experimental energy. Together they make a natural contrast pair for a single trip.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I use Google Maps and WhatsApp in Shenzhen? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Not without a VPN. Both are blocked in mainland China. Install a reliable VPN before you cross the border (downloading one inside China is much harder). For navigation: Amap (高德地图) or Apple Maps work well throughout Shenzhen. For messaging: WhatsApp works on a VPN, but WeChat is the local standard — add your key contacts before you arrive.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What's the best way to pay in Shenzhen? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Alipay or WeChat Pay — both are accepted everywhere from luxury hotels to street food stalls. Foreign visitors can link an international Visa or Mastercard to Alipay; set this up before you arrive. Foreign credit cards also work at ATMs and larger hotels. Cash (RMB) is a useful backup but rarely essential. Full instructions in our <a href="../topics/money.html" style="color:var(--red);">Money Guide</a>.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How many days do I need in Shenzhen? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Two days covers the main highlights — CBD, Shenzhen Bay, OCT Loft, Huaqiangbei. Three to four days lets you add Dapeng Peninsula (definitely worth it) and Dafen without rushing. Shenzhen also works very well as a one-night stop on a Hong Kong–Guangzhou route.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is the food in Shenzhen good? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Excellent. Shenzhen draws on Cantonese, Hakka, and Chaoshan (Teochew) traditions — all of which are among China's most refined food cultures. Dim sum is a highlight; so is claypot rice, seafood from the coast, and the full breadth of Guangdong street food. The international food scene in Shekou and Futian is also genuinely good, with a wide range of Japanese, Korean, and Western restaurants.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEEP READING -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">📚</div>
+      <div class="section-title-group">
+        <h2>Keep Reading</h2>
+        <p>More guides to help you plan</p>
+      </div>
+    </div>
+    <div class="related-grid">
+      <a href="shanghai.html" class="related-card">
+        <div class="related-label">City Guide</div>
+        <div class="related-title">Shanghai</div>
+        <div class="related-desc">The Bund, French Concession, Pudong — China's most cosmopolitan city.</div>
+      </a>
+      <a href="../topics/visa.html" class="related-card">
+        <div class="related-label">Before You Go</div>
+        <div class="related-title">Visas &amp; Entry</div>
+        <div class="related-desc">Visa-free programs, types, 144-hour transit, and how to apply.</div>
+      </a>
+      <a href="../topics/apps.html" class="related-card">
+        <div class="related-label">Essentials</div>
+        <div class="related-title">Apps &amp; SIM Cards</div>
+        <div class="related-desc">What to install before you land — WeChat, Alipay, VPN, navigation.</div>
+      </a>
+      <a href="../topics/money.html" class="related-card">
+        <div class="related-label">Topic</div>
+        <div class="related-title">Money &amp; Payments</div>
+        <div class="related-desc">Setting up Alipay, finding ATMs, and using foreign cards in China.</div>
+      </a>
+    </div>
+  </div>
+
+  <a href="../index.html" class="back-link">← Back to Home</a>
+</div>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // ── PHOTO LOADER ──
+  const PHOTOS = [
+    // Overview / panorama
+    { img: 'img-panorama', wrap: 'photo-panorama',
+      src: 'https://images.unsplash.com/photo-1644067321735-dca4a3be4d35?q=80&w=2542&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+    // Futian — skyline sq + Shigu Garden sq
+    { img: 'img-skyline', wrap: 'photo-skyline',
+      src: 'https://images.unsplash.com/photo-1608381742187-ea4b48c56630?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c2hlbnpoZW58ZW58MHx8MHx8fDA%3D' },
+    { img: 'img-shigupark', wrap: 'photo-shigupark',
+      src: 'https://images.unsplash.com/photo-1702887161995-d8e4e4e95aec?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+    // Nanshan — bay sq + ferris wheel sq
+    { img: 'img-szbay', wrap: 'photo-szbay',
+      src: 'https://images.unsplash.com/photo-1594907363740-42b9aae7c91c?q=80&w=1826&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+    { img: 'img-ferriswheel', wrap: 'photo-ferriswheel',
+      src: 'https://images.unsplash.com/photo-1626527273047-6d44b612a25f?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+    // DJI wide
+    { img: 'img-dji', wrap: 'photo-dji',
+      src: 'https://images.unsplash.com/photo-1627192656733-f4fc269d8bdf?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+    // Nanshan — Tencent sq + Wetland sq
+    { img: 'img-tencent', wrap: 'photo-tencent',
+      src: 'https://images.unsplash.com/photo-1654872592285-ed72535e4552?q=80&w=868&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+    { img: 'img-wetland', wrap: 'photo-wetland',
+      src: 'https://images.unsplash.com/photo-1674974804983-4516fa9b4c2b?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+    // Dapeng — Jiaochangwei wide
+    { img: 'img-jiaochangwei', wrap: 'photo-jiaochangwei',
+      src: 'https://images.unsplash.com/photo-1674974804967-de9f9019d80f?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+    // Dapeng — bridge sq + Wutong Village sq
+    { img: 'img-bridge', wrap: 'photo-bridge',
+      src: 'https://images.unsplash.com/photo-1709964677943-c92075d52cd5?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+    { img: 'img-wutongvillage', wrap: 'photo-wutongvillage',
+      src: 'https://images.unsplash.com/photo-1724905234752-5153df62137e?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+    // Itinerary reuse (bay)
+    { img: 'img-itinerary', wrap: 'photo-itinerary',
+      src: 'https://images.unsplash.com/photo-1594907363740-42b9aae7c91c?q=80&w=1826&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+  ];
+
+  // Pexels photos — keep placeholder on failure (do NOT remove)
+  const PEXELS = [
+    { img: 'img-metro', wrap: 'photo-metro',
+      src: 'https://images.pexels.com/photos/37209451/pexels-photo-37209451.jpeg' },
+    { img: 'img-bookstore', wrap: 'photo-bookstore',
+      src: 'https://images.pexels.com/photos/25375715/pexels-photo-25375715.jpeg' },
+  ];
+
+  function loadPhotos() {
+    PHOTOS.forEach(({ img: imgId, wrap: wrapId, src }) => {
+      const imgEl = document.getElementById(imgId);
+      const wrapEl = document.getElementById(wrapId);
+      if (!imgEl || !wrapEl) return;
+      imgEl.onload = () => { imgEl.classList.add('loaded'); wrapEl.classList.add('loaded'); };
+      imgEl.onerror = () => imgEl.remove();
+      imgEl.src = src;
+    });
+    // Pexels: on error keep the placeholder visible, just hide the broken img tag
+    PEXELS.forEach(({ img: imgId, wrap: wrapId, src }) => {
+      const imgEl = document.getElementById(imgId);
+      const wrapEl = document.getElementById(wrapId);
+      if (!imgEl || !wrapEl) return;
+      imgEl.onload = () => { imgEl.classList.add('loaded'); wrapEl.classList.add('loaded'); };
+      imgEl.onerror = () => { imgEl.style.display = 'none'; }; // placeholder stays, img hidden
+      imgEl.src = src;
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', loadPhotos);
+</script>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo-text">China Awaits</div>
+        <div class="footer-tagline">Your trusted guide for exploring China · chinaawaits.com</div>
+      </div>
+      <div class="footer-nav">
+        <a href="../index.html#cities">Cities</a>
+        <a href="../index.html#topics">Topics</a>
+        <a href="../index.html#essentials">Essentials</a>
+        <a href="../contact.html" class="footer-contact">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 China Awaits. All rights reserved.</span>
+      <span>chinaawaits.com</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
