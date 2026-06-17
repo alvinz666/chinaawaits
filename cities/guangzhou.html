@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guangzhou Travel Guide — China Awaits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #C0392B; --red-dark: #96281B;
+      --gold: #C9A84C; --gold-light: #e8c96a;
+      --ink: #1a1a1a; --ink-soft: #3d3d3d;
+      --mist: #f7f4f0; --mist-dark: #ede9e3;
+      --white: #ffffff; --border: #e0d9d0;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,0.14);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); line-height: 1.7; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 60px; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--red); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a { font-size: 14px; font-weight: 400; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--red); }
+
+    /* HERO */
+    .hero { background: var(--ink); position: relative; overflow: hidden; padding: 5rem 2rem 4rem; text-align: center; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 60%, rgba(192,57,43,0.30) 0%, transparent 55%), radial-gradient(ellipse at 80% 35%, rgba(201,168,76,0.20) 0%, transparent 55%); }
+    .hero-pattern { position: absolute; inset: 0; opacity: 0.035; background-image: repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%); background-size: 20px 20px; }
+    .hero-tag { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,0.4); padding: 0.3rem 0.9rem; border-radius: 2px; margin-bottom: 1.5rem; position: relative; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 1rem; position: relative; }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.65); max-width: 560px; margin: 0 auto 2.5rem; position: relative; }
+    .jump-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; position: relative; }
+    .jump-nav a { display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 0.45rem 1rem; border-radius: 40px; text-decoration: none; transition: all 0.2s; }
+    .jump-nav a:hover { background: rgba(201,168,76,0.2); border-color: var(--gold); color: var(--gold); }
+
+    /* LAYOUT */
+    .page-wrap { max-width: 860px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+    /* SECTION */
+    .section { margin-top: 4.5rem; scroll-margin-top: 80px; }
+    .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.8rem; padding-bottom: 1rem; border-bottom: 2px solid var(--border); }
+    .section-icon { width: 48px; height: 48px; background: var(--red); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+    .section-title-group h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+    .section-title-group p { font-size: 0.88rem; color: #888; margin-top: 0.1rem; }
+
+    /* PROSE */
+    .prose p { font-size: 0.97rem; color: var(--ink-soft); margin-bottom: 1rem; }
+    .prose strong { color: var(--ink); font-weight: 600; }
+
+    /* BOXES */
+    .highlight { background: var(--mist); border-left: 3px solid var(--gold); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1.2rem 0; font-size: 0.93rem; color: var(--ink-soft); }
+    .highlight strong { color: var(--ink); }
+    .tip-box { background: #fff8ee; border: 1px solid #f0d990; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #6b5b1a; }
+    .tip-box::before { content: '💡 Tip: '; font-weight: 600; }
+    .warning-box { background: #fff5f5; border: 1px solid #f5c6c6; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #7a2020; }
+    .warning-box::before { content: '⚠️ Note: '; font-weight: 600; }
+
+    /* BULLET LIST */
+    .bullet-list { list-style: none; margin: 1rem 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .bullet-list li { display: grid; grid-template-columns: 1rem 1fr; column-gap: 0.7rem; font-size: 0.93rem; color: var(--ink-soft); align-items: start; }
+    .bullet-list li::before { content: '—'; color: var(--gold); font-weight: 700; margin-top: 2px; }
+    .bullet-list li .li-content { display: block; }
+    .bullet-list li .sub { display: block; font-size: 0.83rem; color: #999; margin-top: 0.2rem; }
+
+    /* TABLE */
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    thead { background: var(--ink); color: white; }
+    thead th { padding: 0.85rem 1rem; text-align: left; font-weight: 600; font-size: 0.83rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:nth-child(even) { background: var(--mist); }
+    tbody td { padding: 0.85rem 1rem; color: var(--ink-soft); vertical-align: top; }
+    tbody td:first-child { font-weight: 600; color: var(--ink); }
+
+    /* CARD GRID */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; transition: box-shadow 0.2s, transform 0.2s; }
+    .card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+    .card-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+    .card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .card p { font-size: 0.87rem; color: #666; line-height: 1.5; }
+
+    /* SEASON STRIP */
+    .season-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; margin: 1.2rem 0; }
+    .season-box { border-radius: 10px; padding: 0.9rem 0.8rem; text-align: center; border: 1px solid var(--border); }
+    .season-box.best  { background: #f0fdf4; border-color: #bbf7d0; }
+    .season-box.ok    { background: #fffbeb; border-color: #fde68a; }
+    .season-box.avoid { background: #fff5f5; border-color: #fecaca; }
+    .season-name { font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem; }
+    .season-box.best  .season-name { color: #166534; }
+    .season-box.ok    .season-name { color: #92400e; }
+    .season-box.avoid .season-name { color: #991b1b; }
+    .season-months { font-size: 0.75rem; color: #999; margin-bottom: 0.4rem; }
+    .season-note { font-size: 0.78rem; color: #666; line-height: 1.4; }
+
+    /* SITE PHOTOS */
+    .site-photo { position: relative; border-radius: 14px; overflow: hidden; margin: 1.4rem 0; background: linear-gradient(135deg, rgba(192,57,43,0.1), rgba(201,168,76,0.15)); }
+    .site-photo-wide { height: 300px; }
+    .site-photo-sq { aspect-ratio: 3/4; height: auto; }
+    .site-photo-16-9 { aspect-ratio: 16/9; height: auto; }
+    .site-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s ease; }
+    .site-photo img.loaded { opacity: 1; }
+    .site-photo .photo-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 0.5rem 0.9rem; background: linear-gradient(transparent, rgba(0,0,0,0.55)); font-size: 0.72rem; color: rgba(255,255,255,0.9); font-style: italic; opacity: 0; transition: opacity 0.4s; }
+    .site-photo.loaded .photo-caption { opacity: 1; }
+    .site-photo .photo-fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; transition: opacity 0.3s; }
+    .site-photo.loaded .photo-fallback { opacity: 0; pointer-events: none; }
+    .img-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin: 1.4rem 0; }
+    .img-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem; margin: 1.4rem 0; }
+
+    /* NEIGHBOURHOOD BLOCK */
+    .hood-block { margin-bottom: 3rem; }
+    .hood-title-row { display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 0.3rem; flex-wrap: wrap; }
+    .hood-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--ink); }
+    .hood-zh { font-size: 0.9rem; color: var(--gold); font-weight: 600; }
+    .hood-badge { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; background: rgba(192,57,43,0.08); color: var(--red); padding: 0.2rem 0.65rem; border-radius: 20px; border: 1px solid rgba(192,57,43,0.2); }
+    .hood-desc { font-size: 0.95rem; color: var(--ink-soft); margin-bottom: 1rem; line-height: 1.65; }
+    .hood-divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+    /* ATTRACTION LIST */
+    .attraction-list { display: flex; flex-direction: column; gap: 0.7rem; margin: 0.8rem 0 1.2rem; }
+    .attraction-item { display: grid; grid-template-columns: 1fr auto; gap: 0.5rem 1rem; background: var(--mist); border: 1px solid var(--border); border-radius: 10px; padding: 0.85rem 1rem; align-items: start; }
+    .attraction-name { font-weight: 600; font-size: 0.93rem; color: var(--ink); }
+    .attraction-name .zh { font-size: 0.8rem; color: var(--gold); font-weight: 600; margin-left: 0.4rem; }
+    .attraction-desc { font-size: 0.85rem; color: #666; line-height: 1.5; margin-top: 0.2rem; grid-column: 1; }
+    .attraction-meta { text-align: right; flex-shrink: 0; display: flex; flex-direction: column; gap: 0.2rem; align-items: flex-end; }
+    .meta-price { font-size: 0.78rem; font-weight: 700; color: var(--red); background: rgba(192,57,43,0.07); padding: 0.15rem 0.55rem; border-radius: 4px; }
+    .meta-hours { font-size: 0.75rem; color: #999; }
+
+    /* ITINERARY */
+    .itinerary-block { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 1.5rem; }
+    .itinerary-header { background: var(--ink); color: var(--white); padding: 1rem 1.4rem; display: flex; align-items: center; gap: 1rem; }
+    .itinerary-day { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--gold); white-space: nowrap; }
+    .itinerary-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; color: var(--white); }
+    .itinerary-body { padding: 1.2rem 1.4rem; display: flex; flex-direction: column; gap: 1rem; }
+    .time-block { display: grid; grid-template-columns: 70px 1fr; gap: 0 1rem; }
+    .time-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); padding-top: 0.1rem; }
+    .time-content ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .time-content ul li { font-size: 0.9rem; color: var(--ink-soft); display: flex; align-items: baseline; gap: 0.5rem; }
+    .time-content ul li::before { content: '·'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+    .time-optional { font-size: 0.82rem; color: #aaa; font-style: italic; margin-top: 0.3rem; }
+
+    /* ROUTE CARDS */
+    .route-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .route-card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; }
+    .route-num { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+    .route-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .route-theme { font-size: 0.78rem; color: #888; margin-bottom: 0.7rem; font-style: italic; }
+    .route-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .route-card ul li { font-size: 0.85rem; color: var(--ink-soft); display: flex; gap: 0.5rem; }
+    .route-card ul li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
+    .route-style { margin-top: 0.8rem; font-size: 0.78rem; color: #999; font-style: italic; }
+
+    /* DAYTRIP */
+    .daytrip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .daytrip-card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; }
+    .daytrip-card h4 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .daytrip-meta { display: flex; gap: 0.6rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
+    .daytrip-meta span { font-size: 0.75rem; font-weight: 600; color: #888; }
+    .daytrip-card p { font-size: 0.85rem; color: #666; line-height: 1.5; }
+
+    /* FAQ */
+    .faq { margin: 1.5rem 0; }
+    .faq-item { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 0.6rem; overflow: hidden; }
+    .faq-q { width: 100%; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.2rem; font-family: 'DM Sans', sans-serif; font-size: 0.93rem; font-weight: 600; color: var(--ink); text-align: left; gap: 1rem; }
+    .faq-q:hover { background: var(--mist); }
+    .faq-arrow { font-size: 1rem; color: var(--gold); transition: transform 0.25s; flex-shrink: 0; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0.8rem 1.2rem 1rem; font-size: 0.9rem; color: var(--ink-soft); border-top: 1px solid var(--border); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* RELATED */
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .related-card { display: block; background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.1rem; text-decoration: none; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
+    .related-card:hover { border-color: var(--red); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .related-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 0.3rem; }
+    .related-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; }
+    .related-desc { font-size: 0.82rem; color: #888; line-height: 1.4; }
+
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.88rem; font-weight: 500; color: var(--red); text-decoration: none; margin-top: 3rem; }
+    .back-link:hover { text-decoration: underline; }
+    .h3-style { font-family: 'Playfair Display', serif; font-size: 1.15rem; margin: 1.8rem 0 0.9rem; color: var(--ink); }
+
+    /* FOOTER */
+    footer { background: transparent; border-top: 1px solid var(--border); padding: 2.8rem 2rem 2rem; margin-top: 2rem; }
+    .footer-inner { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.6rem; }
+    .footer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .footer-brand { display: flex; flex-direction: column; gap: .35rem; }
+    .footer-logo-text { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--red); }
+    .footer-tagline { font-size: 13px; color: var(--ink-soft); }
+    .footer-nav { display: flex; flex-wrap: wrap; gap: .5rem 1.6rem; align-items: center; }
+    .footer-nav a { text-decoration: none; font-size: 14px; color: var(--ink-soft); font-weight: 400; transition: color .2s; }
+    .footer-nav a:hover { color: var(--red); }
+    .footer-contact { background: var(--red); color: #fff !important; padding: 6px 16px; border-radius: 24px; font-size: 13px !important; font-weight: 500; }
+    .footer-contact:hover { background: var(--red-dark) !important; }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 1.2rem; font-size: 12px; color: var(--ink-soft); display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .page-wrap { padding: 0 1rem 4rem; }
+      .hero { padding: 3.5rem 1rem 3rem; }
+      .season-strip { grid-template-columns: repeat(2, 1fr); }
+      .img-grid-2, .img-grid-3 { grid-template-columns: 1fr; }
+      .time-block { grid-template-columns: 60px 1fr; }
+      .attraction-item { grid-template-columns: 1fr; }
+      .attraction-meta { flex-direction: row; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">China Awaits</a>
+  <ul class="nav-links">
+    <li><a href="../index.html#cities">Cities</a></li>
+    <li><a href="../index.html#topics">Topics</a></li>
+    <li><a href="../index.html#essentials">Essentials</a></li>
+    <li><a href="../contact.html">Contact Us</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-tag">City Guide</div>
+  <h1><span>Guangzhou</span> 广州</h1>
+  <p class="hero-sub">China's ancient southern gateway — where Lingnan architecture, Cantonese dim sum, and millennium-old trade history live alongside a vibrant modern metropolis.</p>
+  <div class="jump-nav">
+    <a href="#overview">🌺 Overview</a>
+    <a href="#history">🏛️ History</a>
+    <a href="#neighbourhoods">🗺️ Areas & Sights</a>
+    <a href="#food">🍵 Food & Yum Cha</a>
+    <a href="#itineraries">📅 Itineraries</a>
+    <a href="#niche">🎭 Niche Routes</a>
+    <a href="#getting-there">✈️ Getting There</a>
+    <a href="#getting-around">🚇 Getting Around</a>
+    <a href="#daytrips">🚄 Day Trips</a>
+    <a href="#practical">📋 Practical Info</a>
+    <a href="#faq">❓ FAQ</a>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- OVERVIEW -->
+  <div class="section" id="overview">
+    <div class="section-header">
+      <div class="section-icon">🌺</div>
+      <div class="section-title-group">
+        <h2>Welcome to Guangzhou</h2>
+        <p>The timeless gateway of southern China</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Known as Yangcheng (City of Rams) and Huacheng (City of Flowers), Guangzhou is the timeless gateway of southern China. Nestled along the Pearl River, this millennia-old commercial hub seamlessly weaves age-old traditions, exquisite Lingnan architecture, and bustling ancient streets with futuristic urban skylines into a unique tapestry. For over two thousand years, Guangzhou has served as a vital port for foreign trade, cultural exchange, and prosperity.</p>
+      <p>Beyond the iconic sights, its true charm lies in everyday life and culinary aromas. You can admire intricate brick carvings in ancestral halls, wander under shaded century-old arcades, savour a morning tea at a time-honoured teahouse, explore repurposed art neighbourhoods, or gaze at a brilliantly lit modern skyline. An ideal destination for travellers interested in maritime history, Cantonese cuisine, dim sum, and living waterfront landscapes.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🏛️</div>
+        <h3>Lingnan Architecture</h3>
+        <p>Ornate ancestral halls, grey-brick Xiguan mansions, European-style Qilou arcades, and sleek skyscrapers coexist harmoniously — a living museum of 2,000 years of southern Chinese history.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🍵</div>
+        <h3>Cantonese Food Culture</h3>
+        <p>Yum cha (dim sum) is a social ritual here, not just a meal. Guangzhou is widely regarded as the birthplace of Cantonese cuisine — the most internationally recognised style of Chinese cooking.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌊</div>
+        <h3>Pearl River Waterfront</h3>
+        <p>The Pearl River cuts through the city, offering cruises past Guangzhou Tower, Haixinsha Island, and the illuminated skyline of Tianhe's financial district.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌏</div>
+        <h3>Practical & Accessible</h3>
+        <p>An efficient metro, affordable transport, English-friendly signage, and a well-developed tourist infrastructure make Guangzhou one of the more comfortable cities for first-time visitors to China.</p>
+      </div>
+    </div>
+
+    <h3 class="h3-style">Best Time to Visit</h3>
+    <div class="season-strip">
+      <div class="season-box ok">
+        <div class="season-name">~ Spring</div>
+        <div class="season-months">Mar – May</div>
+        <div class="season-note">Lush and blooming — kapok and bauhinia flowers. Comfortable but humid; carry an umbrella.</div>
+      </div>
+      <div class="season-box avoid">
+        <div class="season-name">✗ Summer</div>
+        <div class="season-months">Jun – Aug</div>
+        <div class="season-note">Hot, very humid, frequent typhoons. Avoid midday outdoors. Best for indoor sights and night markets.</div>
+      </div>
+      <div class="season-box best">
+        <div class="season-name">✓ Autumn</div>
+        <div class="season-months">Sep – Nov</div>
+        <div class="season-note">Pleasant and dry, clear skies. Best overall — ideal for sightseeing, day trips, and photography.</div>
+      </div>
+      <div class="season-box best">
+        <div class="season-name">✓ Winter</div>
+        <div class="season-months">Dec – Feb</div>
+        <div class="season-note">Mild and cool — Guangzhou's best season. Perfect for walking, eating, and exploring without sweating.</div>
+      </div>
+    </div>
+
+    <div class="site-photo site-photo-wide" id="photo-panorama">
+      <div class="photo-fallback">🌆</div>
+      <img id="img-panorama" alt="Guangzhou skyline at night" />
+      <div class="photo-caption">Guangzhou — Pearl River skyline at night</div>
+    </div>
+
+    <div class="highlight"><strong>Snapshot:</strong> Population ~19 million · Time zone UTC+8 · Currency RMB (¥) · Language Cantonese (locals) + Mandarin · Airport Guangzhou Baiyun International (CAN) · Metro 16 lines</div>
+  </div>
+
+  <!-- HISTORY & ARCHITECTURE -->
+  <div class="section" id="history">
+    <div class="section-header">
+      <div class="section-icon">🏛️</div>
+      <div class="section-title-group">
+        <h2>History & Architecture</h2>
+        <p>Two thousand years as China's southern gateway</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Guangzhou is one of the oldest continuously inhabited cities in China, with a history stretching over 2,000 years. Since the Tang Dynasty it rose to fame as a world-class trading port — a hub where Persian, Arab, Indian, and European merchants converged at China's southern edge. It became China's primary foreign trade port for centuries, and the Thirty Factories (Guangzhou Factories) drew merchants from across the globe, ushering in unprecedented commercial evolution.</p>
+      <p>This cosmopolitan past shaped an architecture like nowhere else in China. Today Guangzhou is not a city of museums but a living architectural timeline — Lingnan-style brick mansions, European-Cantonese fusion villas, Gothic churches, and sleek skyscrapers coexist harmoniously across the old and new city.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🏯</div>
+        <h3>Lingnan Style</h3>
+        <p>The defining aesthetic of southern Guangdong — ornate grey brick, elaborate pottery sculpture on rooftop ridges, and wood carvings that blend practicality with incredible artistry. Best seen at Chen Clan Ancestral Hall.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏘️</div>
+        <h3>Xiguan Houses</h3>
+        <p>Wealthier merchant family residences in the Liwan District. Grey walls, blue-green doors, enclosed courtyards — well adapted to the subtropical climate, featuring ventilation shafts and interior wells.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏪</div>
+        <h3>Qilou Arcades</h3>
+        <p>Colonnade-style buildings combining Western architectural elements with continuous covered corridors — sheltering shoppers from both sun and rain. Best explored on Enning Road, Shangxiajiu, and Beijing Road.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏙️</div>
+        <h3>Zhujiang New Town</h3>
+        <p>Guangzhou's modern financial core — home to Guangzhou Tower, the IFC, Zaha Hadid's Guangzhou Opera House, and the dazzling Haixinsha Asian Games Park. A completely different city from the historic west.</p>
+      </div>
+    </div>
+
+    <div class="site-photo site-photo-wide" id="photo-liedebridge">
+      <div class="photo-fallback">🌉</div>
+      <img id="img-liedebridge" alt="Liede Bridge Guangzhou night" />
+      <div class="photo-caption">猎德大桥 Liede Bridge — Pearl River by night</div>
+    </div>
+  </div>
+
+  <!-- AREAS & SIGHTS -->
+  <div class="section" id="neighbourhoods">
+    <div class="section-header">
+      <div class="section-icon">🗺️</div>
+      <div class="section-title-group">
+        <h2>Areas & Sights</h2>
+        <p>Where to go and what to see in each district</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Guangzhou divides broadly into the historic west (Liwan, Yuexiu, Haizhu — the old city's character), the green middle (Yuexiu Park, Yongqing Fang, the ancestral halls), and the modern east (Tianhe, Zhujiang New Town — the financial skyline and nightlife). Most visitors spend two to three days moving west to east, with the Pearl River as a constant backdrop.</p>
+    </div>
+
+    <!-- LIWAN & XIGUAN -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Liwan & Xiguan Old District</span>
+        <span class="hood-zh">荔湾·西关</span>
+        <span class="hood-badge">Historic · Start Here</span>
+      </div>
+      <p class="hood-desc">The oldest and most atmospheric part of Guangzhou — a warren of grey-brick lanes, Qilou arcades, century-old teahouses, and beautifully preserved Xiguan merchant houses. This is where Guangzhou's soul lives. Explore Enning Road for renovated heritage streets, Shangxiajiu Pedestrian Street for Qilou architecture and street food, and Yongqing Fang for a hip, creative remix of old Xiguan style.</p>
+
+      <div class="img-grid-2">
+        <div class="site-photo site-photo-sq" id="photo-xiguan1">
+          <div class="photo-fallback">🏘️</div>
+          <img id="img-xiguan1" alt="Xiguan old houses Guangzhou" />
+          <div class="photo-caption">Xiguan — traditional grey-brick merchant houses</div>
+        </div>
+        <div class="site-photo site-photo-sq" id="photo-enning">
+          <div class="photo-fallback">🏮</div>
+          <img id="img-enning" alt="Enning Road Guangzhou" />
+          <div class="photo-caption">Enning Road — renovated heritage streetscape</div>
+        </div>
+      </div>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Shangxiajiu Pedestrian Street <span class="zh">上下九步行街</span></div>
+            <div class="attraction-desc">Guangzhou's most famous historic commercial street, lined with Qilou arcades housing traditional snack stalls, teahouses, and local shops. Best in the early evening when everything lights up.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">All day</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Yongqing Fang <span class="zh">永庆坊</span></div>
+            <div class="attraction-desc">A beautifully renovated Xiguan lane complex — original grey-brick alleyways now housing independent cafés, boutiques, and creative studios. The most photogenic neighbourhood in Guangzhou.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">All day</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Enning Road <span class="zh">恩宁路</span></div>
+            <div class="attraction-desc">A long heritage street stretching through the heart of Xiguan. Mix of preserved Qilou facades, local wet markets, indie galleries, and traditional craft workshops. Walk the full length for the best atmosphere.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">All day</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Liwan Lake Park <span class="zh">荔湾湖公园</span></div>
+            <div class="attraction-desc">A serene lakeside park at the heart of the old west city — locals practise taichi, elders play chess, and barges drift past on the Lixi Creek. One of Guangzhou's most tranquil morning spots.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">06:00–21:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="hood-divider" />
+
+    <!-- YUEXIU -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Yuexiu</span>
+        <span class="hood-zh">越秀</span>
+        <span class="hood-badge">Cultural Heart</span>
+      </div>
+      <p class="hood-desc">Guangzhou's historical and civic core — home to the Five Rams Statue (the city's defining symbol), the Zhenhai Tower, Sun Yat-sen Memorial Hall, and the largest park in the city centre. This is Guangzhou in its most ancient, monumental form. Beijing Road, the city's oldest commercial artery, runs through here with an archaeological excavation site visible beneath glass in the pavement.</p>
+
+      <div class="img-grid-2">
+        <div class="site-photo site-photo-sq" id="photo-chenclan">
+          <div class="photo-fallback">🏯</div>
+          <img id="img-chenclan" alt="Chen Clan Ancestral Hall Guangzhou" />
+          <div class="photo-caption">陈家祠 Chen Clan Ancestral Hall — Lingnan architecture masterpiece</div>
+        </div>
+        <div class="site-photo site-photo-sq" id="photo-sunmemorial">
+          <div class="photo-fallback">🏛️</div>
+          <img id="img-sunmemorial" alt="Sun Yat-sen Memorial Hall Guangzhou" />
+          <div class="photo-caption">中山纪念堂 Sun Yat-sen Memorial Hall</div>
+        </div>
+      </div>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Yuexiu Park <span class="zh">越秀公园</span></div>
+            <div class="attraction-desc">Guangzhou's largest central park, home to the iconic Five Rams Statue (五羊雕像) and the Zhenhai Tower — a 600-year-old Ming Dynasty fortification housing the City Museum. Morning visits are best for watching locals exercise, dance, and socialise.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">06:00–21:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Chen Clan Ancestral Hall <span class="zh">陈家祠</span></div>
+            <div class="attraction-desc">Guangzhou's most magnificent example of Lingnan architecture — a late Qing Dynasty complex featuring elaborate brick carvings, wood carvings, and pottery sculptures across 19 interconnected buildings. Built in 1894 to serve as a venue for the Chen clan's students. A genuine masterpiece.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥10</span>
+            <span class="meta-hours">09:00–17:30 (closed Tue)</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Sun Yat-sen Memorial Hall <span class="zh">中山纪念堂</span></div>
+            <div class="attraction-desc">A grand octagonal hall built in 1931 to commemorate the father of modern China. Set in landscaped grounds, the building combines traditional Chinese palace roofing with modern engineering — and hosts major performances and events year-round.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">08:00–18:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Beijing Road Archaeological Site <span class="zh">北京路千年古道</span></div>
+            <div class="attraction-desc">Guangzhou's oldest commercial street, with layers of paving stones from different dynasties visible through glass panels set into the modern pavement. A remarkable way to see 2,000 years of urban continuity. Free to view as you walk.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">All day</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Sacred Heart Cathedral <span class="zh">石室圣心大教堂</span></div>
+            <div class="attraction-desc">A magnificent Gothic structure completed in 1888 — one of the largest all-stone Gothic cathedrals in Asia, with twin spires and gorgeous stained-glass windows. Built on the site of the former Viceroy's residence. Still an active parish.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">10:00–17:00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-photo site-photo-wide" id="photo-cathedral">
+        <div class="photo-fallback">⛪</div>
+        <img id="img-cathedral" alt="Sacred Heart Cathedral Guangzhou Gothic" />
+        <div class="photo-caption">石室圣心大教堂 Sacred Heart Cathedral — one of Asia's largest all-stone Gothic cathedrals</div>
+      </div>
+    </div>
+
+    <hr class="hood-divider" />
+
+    <!-- HAIZHU & SHAMIAN -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Shamian Island & Haizhu</span>
+        <span class="hood-zh">沙面·海珠</span>
+        <span class="hood-badge">Colonial · Scenic</span>
+      </div>
+      <p class="hood-desc">Shamian Island is a tiny sandbank in the Pearl River that served as the foreign concession from 1505 — the former base of Western trading powers in Guangzhou. Today it's a tree-lined pedestrian island of colonial European architecture, banyan trees, outdoor cafés, and wrought-iron benches. Exceptionally photogenic and a world away from the surrounding city. Haizhu district across the river is home to the massive Haizhu Wetland Park — a surprising ecological reserve right in the urban fabric.</p>
+
+      <div class="site-photo site-photo-wide" id="photo-shamian">
+        <div class="photo-fallback">🌳</div>
+        <img id="img-shamian" alt="Shamian Island Guangzhou colonial architecture" />
+        <div class="photo-caption">Shamian Island — tree-lined colonial boulevards</div>
+      </div>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Shamian Island <span class="zh">沙面岛</span></div>
+            <div class="attraction-desc">A 0.3 km² island with 150 colonial-era buildings — French and British concession architecture, tree-lined boulevards, and a remarkably quiet pace. Walk the full perimeter along the river; stop at the old customs house and the stone-arched bridges. Free entry, always open.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">24 hours</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Guangzhou Maritime Silk Road Museum <span class="zh">海上丝绸之路博物馆</span></div>
+            <div class="attraction-desc">Near Shamian, this museum traces Guangzhou's 2,000-year history as the starting point of China's Maritime Silk Road — with ship models, ancient cargo, and artefacts from the Tang, Song, and Ming dynasties.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">09:00–17:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Haizhu Wetland Park <span class="zh">海珠湿地公园</span></div>
+            <div class="attraction-desc">A 1,100-hectare ecological park — the largest urban wetland in China — rising from former fruit orchards in the heart of the city. Canals, fruit trees, migratory birds, and floating gardens. A deeply un-Guangzhou experience that surprises every visitor.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">08:00–18:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="hood-divider" />
+
+    <!-- TIANHE & ZHUJIANG NEW TOWN -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Tianhe & Zhujiang New Town</span>
+        <span class="hood-zh">天河·珠江新城</span>
+        <span class="hood-badge">Modern · Skyline</span>
+      </div>
+      <p class="hood-desc">Guangzhou's face to the future — the Tianhe district is the city's commercial engine, while Zhujiang New Town (Pearl River New Town) is its architectural showcase. The Guangzhou Tower (Canton Tower) dominates the skyline with its distinctive "slim waist" silhouette. The Guangzhou Opera House, designed by Zaha Hadid, sits beside the Pearl River with a fluid, avant-garde form. Haixinsha Island hosts the Asian Games Park with nightly light shows.</p>
+
+      <div class="img-grid-2">
+        <div class="site-photo site-photo-sq" id="photo-tower">
+          <div class="photo-fallback">🗼</div>
+          <img id="img-tower" alt="Canton Tower Guangzhou" />
+          <div class="photo-caption">广州塔 Canton Tower — the "slim waist" landmark</div>
+        </div>
+        <div class="site-photo site-photo-sq" id="photo-opera">
+          <div class="photo-fallback">🎭</div>
+          <img id="img-opera" alt="Guangzhou Opera House Zaha Hadid" />
+          <div class="photo-caption">广州大剧院 Guangzhou Opera House — Zaha Hadid</div>
+        </div>
+      </div>
+
+      <div class="site-photo site-photo-wide" id="photo-yuancenter">
+        <div class="photo-fallback">🏢</div>
+        <img id="img-yuancenter" alt="Guangzhou International Finance Centre round building" />
+        <div class="photo-caption">广州圆大厦 — Zhujiang New Town's distinctive circular landmark</div>
+      </div>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Canton Tower <span class="zh">广州塔</span></div>
+            <div class="attraction-desc">At 600 metres, one of the tallest towers in the world — and Guangzhou's defining landmark. The "slim waist" twisting silhouette is spectacular at night when fully illuminated. Observation decks at 108F and 488F, plus the world's highest horizontal Ferris wheel. Best visited in the late afternoon to catch both sunset and the nightly light show.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥150–398</span>
+            <span class="meta-hours">09:30–22:30</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Guangzhou Opera House <span class="zh">广州大剧院</span></div>
+            <div class="attraction-desc">Zaha Hadid's masterpiece on the Pearl River waterfront — a fluid, double-pebble form clad in reflective panels. Even if you don't attend a performance, the exterior is worth a visit, especially at dusk. Check the schedule for world-class opera, ballet, and orchestral events.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free / ticketed</span>
+            <span class="meta-hours">Varies</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Haixinsha Asian Games Park <span class="zh">海心沙亚运公园</span></div>
+            <div class="attraction-desc">An island park in the Pearl River built for the 2010 Asian Games — now a free public promenade with spectacular views of Canton Tower and the Tianhe skyline. Evening light shows most nights. Free entry; reach by metro to Chigang station.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">08:00–21:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Guangzhou IFC & Tianhe Skyline Walk <span class="zh">广州国际金融中心</span></div>
+            <div class="attraction-desc">The West Tower of the IFC rises 440 metres and is visible for miles. The Huacheng Square public plaza below (known as "Flower City Square") is a great free vantage point for the whole Zhujiang New Town skyline — particularly dramatic after dark.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free (plaza)</span>
+            <span class="meta-hours">All day</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="hood-divider" />
+
+    <!-- DONGSHAN -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Dongshan & Huangpu</span>
+        <span class="hood-zh">东山·黄埔</span>
+        <span class="hood-badge">Heritage · Creative</span>
+      </div>
+      <p class="hood-desc">East of Yuexiu, Dongshan is an old residential quarter of Republican-era villas and block-style courtyard houses — once home to returned overseas Chinese, now full of independent cafés, galleries, and speakeasy bars. The Bruce Lee ancestral home is here. Huangpu, further east, contains the Whampoa Military Academy ruins — a seminal site in modern Chinese history.</p>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Dongshan Villas Area <span class="zh">东山洋楼</span></div>
+            <div class="attraction-desc">A quiet, tree-shaded neighbourhood of Republican-era Western-style villas — built by returned overseas Chinese in the 1920s and 1930s. Now occupied by cafés, independent bookshops, small galleries, and dinner restaurants. Best explored on foot.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">All day</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Bruce Lee Ancestral Home <span class="zh">李小龙祖居</span></div>
+            <div class="attraction-desc">The traditional ancestral home of the Lee family in Junpu Village, Huangpu — where Bruce Lee's family originated. A small museum with memorabilia, rare photos, and exhibits on his life and legacy. A worthwhile detour for fans.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">09:00–17:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Whampoa Military Academy Ruins <span class="zh">黄埔军校旧址</span></div>
+            <div class="attraction-desc">The site of the historic Whampoa Military Academy, founded in 1924 by Sun Yat-sen — where Chiang Kai-shek trained the officers of the National Revolutionary Army. A restored complex on Changzhou Island with a small museum. Significant for anyone interested in modern Chinese history.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">09:00–17:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOD & YUM CHA -->
+  <div class="section" id="food">
+    <div class="section-header">
+      <div class="section-icon">🍵</div>
+      <div class="section-title-group">
+        <h2>Food & Yum Cha</h2>
+        <p>The culinary heartland of Cantonese cuisine</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Eating in Guangzhou is an experience in itself. Yum cha (飲茶 — literally "drink tea") is not simply breakfast: it's a social ritual lasting two to three hours, where families and friends gather, order endlessly from circling trolleys, and linger without any pressure to leave. Locals do this most mornings and often on weekends too. It is one of the most rewarding things a visitor can do in Guangzhou.</p>
+      <p>Beyond dim sum, Cantonese cooking here emphasises freshness above all — minimal seasoning so that the natural flavour of the ingredients shines. The technique is often described as "letting the ingredient speak." Don't miss braised goose, white-cut chicken, fresh fish, and the city's magnificent dessert traditions.</p>
+    </div>
+
+    <div class="site-photo site-photo-wide" id="photo-dimsum">
+      <div class="photo-fallback">🥟</div>
+      <img id="img-dimsum" alt="Cantonese yum cha dim sum Guangzhou" />
+      <div class="photo-caption">广式早茶 Yum cha — a social ritual that can last all morning</div>
+    </div>
+
+    <h3 class="h3-style">Must-Try Dim Sum Dishes</h3>
+    <ul class="bullet-list">
+      <li><span class="li-content"><strong>Har Gow 虾饺</strong> — shrimp dumplings<span class="sub">The benchmark of any dim sum kitchen. Thin, translucent wrapper; plump, fresh prawn filling. Order these first at every teahouse.</span></span></li>
+      <li><span class="li-content"><strong>Char Siu Bao 叉烧包</strong> — BBQ pork buns<span class="sub">Both baked (金黄色外皮) and steamed varieties exist. The baked version with a glossy top is Guangzhou's most iconic snack.</span></span></li>
+      <li><span class="li-content"><strong>Cheung Fun 肠粉</strong> — rice noodle rolls<span class="sub">Silky steamed rice sheets rolled around shrimp, pork, or beef, dressed with sweet soy sauce. Also available plain as a street-food breakfast.</span></span></li>
+      <li><span class="li-content"><strong>Egg Tarts 蛋挞</strong> — custard tarts<span class="sub">Guangzhou's version features a flaky pastry shell (not shortcrust) and a silky smooth egg custard. Pick them up freshly baked at any traditional bakery.</span></span></li>
+      <li><span class="li-content"><strong>Turnip Cake 萝卜糕</strong> — pan-fried radish cake<span class="sub">Savoury, crispy-edged slices of steamed and pan-fried radish cake. A humble dim sum staple that locals order without thinking.</span></span></li>
+    </ul>
+
+    <h3 class="h3-style">Cantonese Classics Beyond Dim Sum</h3>
+    <ul class="bullet-list">
+      <li><span class="li-content"><strong>White-Cut Chicken 白切鸡</strong><span class="sub">Poached at low temperature until just cooked, served cold with ginger-scallion sauce. Deceptively simple; incredibly flavourful when done right.</span></span></li>
+      <li><span class="li-content"><strong>Braised Goose 卤水鹅</strong><span class="sub">Slow-braised whole goose in spiced master stock — Chaoshan style. Found at dedicated roast-meat restaurants throughout the city.</span></span></li>
+      <li><span class="li-content"><strong>Wonton Noodles & Bamboo Pole Noodles 云吞面·竹升面</strong><span class="sub">The quintessential Cantonese noodle classics. Wonton noodle soup comes in a clear pork-shrimp broth; bamboo pole noodles are hand-beaten for a springy, elastic texture. Both are breakfast staples at traditional shops.</span></span></li>
+      <li><span class="li-content"><strong>Claypot Rice 煲仔饭</strong><span class="sub">Rice cooked in an individual clay pot with your choice of toppings — Chinese sausage, salted fish, chicken, or ribs. The crispy rice crust at the bottom is the point.</span></span></li>
+      <li><span class="li-content"><strong>Double-Skin Milk 双皮奶</strong><span class="sub">A Shunde specialty — two layers of silky steamed milk pudding. Delicate and subtly sweet. Guangzhou's answer to panna cotta.</span></span></li>
+      <li><span class="li-content"><strong>Ginger Milk Curd 姜撞奶</strong><span class="sub">Hot sweetened milk poured over fresh ginger juice, causing it to set into a warm, silky custard on contact. One of Guangzhou's most distinctive desserts — best tried at a specialist dessert shop in Liwan.</span></span></li>
+      <li><span class="li-content"><strong>Mango Sago 杨枝甘露</strong><span class="sub">A chilled dessert soup of mango, pomelo, and tapioca pearls in coconut milk. Found at dessert shops all over the city, particularly in Tianhe.</span></span></li>
+      <li><span class="li-content"><strong>Snake Soup 蛇羹</strong> <em style="font-size:0.8rem;color:#aaa;">(seasonal — autumn/winter)</em><span class="sub">A traditional Cantonese cold-weather dish — rich, herbal broth with shredded snake and pork. Available at specialist restaurants from October to February. A genuinely local experience not found anywhere else in China.</span></span></li>
+    </ul>
+
+    <h3 class="h3-style">Where to Eat</h3>
+    <ul class="bullet-list">
+      <li><span class="li-content"><strong>Taotao Ju 陶陶居</strong> — century-old yum cha institution<span class="sub">Est. 1880 on Enning Road. Arrive before 8am on weekends or expect long waits. The most atmospheric traditional yum cha in the city.</span></span></li>
+      <li><span class="li-content"><strong>Lianxianglou 莲香楼</strong> — traditional dim sum<span class="sub">Another historic teahouse on Liuersan Road. Famous for egg tarts and lotus paste pastries. Open from early morning.</span></span></li>
+      <li><span class="li-content"><strong>Xihua Road Food Street 西华路美食街</strong> — street snacks<span class="sub">A concentrated strip of Cantonese snack stalls, claypot rice shops, and barbecue restaurants. Locals eat here at all hours.</span></span></li>
+      <li><span class="li-content"><strong>Longjin Road 龙津路</strong> — local wet market dining<span class="sub">Wander the covered wet market, then eat at nearby stalls and simple restaurants serving whatever came in fresh that morning.</span></span></li>
+    </ul>
+
+    <div class="tip-box">For yum cha at busy teahouses, arrive before 9:00 AM on weekdays, or before 8:00 AM on weekends. Most traditional teahouses stop serving dim sum by noon. Point at trolleys or tick items on a paper menu — no Mandarin needed.</div>
+  </div>
+
+  <!-- ITINERARIES -->
+  <div class="section" id="itineraries">
+    <div class="section-header">
+      <div class="section-icon">📅</div>
+      <div class="section-title-group">
+        <h2>Suggested Itineraries</h2>
+        <p>How to spend 2–4 days in Guangzhou</p>
+      </div>
+    </div>
+
+    <!-- 2-Day Classic -->
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">2-Day Classic</div>
+        <div class="itinerary-title">Guangzhou's Greatest Hits</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Day 1</div>
+          <div class="time-content">
+            <ul>
+              <li>Morning yum cha at Taotao Ju or Lianxianglou (arrive by 8:30 AM)</li>
+              <li>Explore Enning Road and Yongqing Fang on foot</li>
+              <li>Walk Shangxiajiu Pedestrian Street — Qilou arcades and street food</li>
+              <li>Afternoon: Chen Clan Ancestral Hall — Lingnan architecture masterpiece</li>
+              <li>Evening: Pearl River cruise from Tianzi Wharf</li>
+              <li>Night: Haixinsha light show and Canton Tower illuminated skyline</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Day 2</div>
+          <div class="time-content">
+            <ul>
+              <li>Morning walk on Shamian Island before the crowds arrive</li>
+              <li>Yuexiu Park — Five Rams Statue and Zhenhai Tower</li>
+              <li>Beijing Road archaeological pavement and street food lunch</li>
+              <li>Afternoon: Sun Yat-sen Memorial Hall and Sacred Heart Cathedral</li>
+              <li>Evening: Explore Tianhe and Huacheng Square at dusk</li>
+              <li>Dinner: Claypot rice or braised goose at a local restaurant</li>
+            </ul>
+            <div class="time-optional">Optional: ascend Canton Tower for sunset views (book ahead)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4-Day In-Depth -->
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">5-Day In-Depth</div>
+        <div class="itinerary-title">Old City, Modern Skyline & Slow Neighbourhood Life</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Day 1</div>
+          <div class="time-content">
+            <ul>
+              <li>Yum cha in Liwan — traditional teahouse breakfast</li>
+              <li>Deep dive into Xiguan old lanes and Yongqing Fang</li>
+              <li>Chen Clan Ancestral Hall</li>
+              <li>Afternoon: Haizhu Wetland Park (surprising green escape)</li>
+              <li>Evening: Shamian Island sunset walk</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Day 2</div>
+          <div class="time-content">
+            <ul>
+              <li>Morning: Yuexiu Park at sunrise (locals exercising)</li>
+              <li>Five Rams Statue, Zhenhai Tower, City Museum</li>
+              <li>Beijing Road archaeological site and lunch in the old town</li>
+              <li>Afternoon: Sacred Heart Cathedral + Dongshankou villas</li>
+              <li>Evening: speakeasy bars and dinner in Dongshan</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Day 3</div>
+          <div class="time-content">
+            <ul>
+              <li>Morning: Guangzhou Opera House exterior (best in morning light)</li>
+              <li>Flower City Square and Zhujiang New Town skyline walk</li>
+              <li>Afternoon: Canton Tower observation deck</li>
+              <li>Haixinsha Asian Games Park — Pearl River views</li>
+              <li>Evening Pearl River cruise from Guangzhou Ferry Terminal</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Day 4</div>
+          <div class="time-content">
+            <ul>
+              <li>Suburban day trip — Option A: Baomo Garden (Panyu) — classical Lingnan garden with koi ponds and carved halls</li>
+              <li>Option B: Zini Ancient Village — preserved rural Lingnan settlement with original architecture</li>
+              <li>Late afternoon return to Guangzhou</li>
+              <li>Evening: Dongshankou café district — independent shops and gallery-hopping</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Day 5</div>
+          <div class="time-content">
+            <ul>
+              <li>Morning: Yuexiu old residential blocks and local wet markets (best before 9 AM)</li>
+              <li>Afternoon: Dongshankou backstreets — design shops, indie cafés, and galleries</li>
+              <li>Evening: Farewell Cantonese dinner at a local roast restaurant</li>
+              <li>Late: Hidden speakeasy bars or live music venues in Dongshan</li>
+            </ul>
+            <div class="time-optional">Optional: Whampoa Military Academy ruins as a morning detour before the wet market visit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NICHE ROUTES -->
+  <div class="section" id="niche">
+    <div class="section-header">
+      <div class="section-icon">🎭</div>
+      <div class="section-title-group">
+        <h2>Niche Routes</h2>
+        <p>Theme itineraries for deeper exploration</p>
+      </div>
+    </div>
+
+    <div class="route-grid">
+      <div class="route-card">
+        <div class="route-num">Route 01</div>
+        <div class="route-name">The Architecture Walk</div>
+        <div class="route-theme">Lingnan craftsmanship · colonial echoes · futuristic skyline</div>
+        <ul>
+          <li>Chen Clan Ancestral Hall (Lingnan masterpiece)</li>
+          <li>Enning Road Qilou arcades</li>
+          <li>Shamian Island colonial facades</li>
+          <li>Sacred Heart Cathedral (Gothic)</li>
+          <li>Guangzhou Opera House (Zaha Hadid)</li>
+          <li>Canton Tower at dusk</li>
+        </ul>
+        <div class="route-style">Full day · best in autumn or winter</div>
+        <div class="site-photo site-photo-sq" style="background:var(--mist);border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;margin-top:1rem;">
+          <div style="font-size:1.5rem;">🗺️</div>
+          <div style="font-size:0.78rem;color:#999;font-style:italic;">Route map — coming soon</div>
+        </div>
+      </div>
+
+      <div class="route-card">
+        <div class="route-num">Route 02</div>
+        <div class="route-name">The Photographer's Guangzhou</div>
+        <div class="route-theme">Sunrise · street life · golden hour skyline</div>
+        <ul>
+          <li>Sunrise at Yuexiu Park (locals doing taichi)</li>
+          <li>Wet market life on Longjin Road</li>
+          <li>Yongqing Fang alleyways and light shafts</li>
+          <li>Shamian Island in the afternoon</li>
+          <li>Canton Tower and Pearl River at night</li>
+        </ul>
+        <div class="route-style">Full day · start before 7 AM</div>
+        <div class="site-photo site-photo-sq" style="background:var(--mist);border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;margin-top:1rem;">
+          <div style="font-size:1.5rem;">🗺️</div>
+          <div style="font-size:0.78rem;color:#999;font-style:italic;">Route map — coming soon</div>
+        </div>
+      </div>
+
+      <div class="route-card">
+        <div class="route-num">Route 03</div>
+        <div class="route-name">Deep Cantonese Food Route</div>
+        <div class="route-theme">From yum cha to night snacks — a full day of eating</div>
+        <ul>
+          <li>7:30 AM yum cha at Taotao Ju (traditional teahouse)</li>
+          <li>Cheung fun street stall breakfast — Longjin Road</li>
+          <li>White-cut chicken lunch at a local roast shop</li>
+          <li>Xihua Road afternoon snacks</li>
+          <li>Claypot rice dinner — Liwan backstreets</li>
+          <li>Herbal tea and double-skin milk dessert</li>
+        </ul>
+        <div class="route-style">Flexible · seasonal snacks vary · come hungry</div>
+        <div class="site-photo site-photo-sq" style="background:var(--mist);border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;margin-top:1rem;">
+          <div style="font-size:1.5rem;">🗺️</div>
+          <div style="font-size:0.78rem;color:#999;font-style:italic;">Route map — coming soon</div>
+        </div>
+      </div>
+
+      <div class="route-card">
+        <div class="route-num">Route 04</div>
+        <div class="route-name">Old Guangzhou Everyday Life</div>
+        <div class="route-theme">Grassroots Cantonese lifestyle · daily rhythms · authentic local interaction</div>
+        <ul>
+          <li>Early morning wet market in Xiguan lanes (before 9 AM)</li>
+          <li>Traditional barbershop and herbal tea shop observation</li>
+          <li>Mahjong culture watch at a neighbourhood teahouse</li>
+          <li>Liwan and Yuexiu backstreet wandering</li>
+          <li>Local Cantonese dinner at a neighbourhood roast shop</li>
+        </ul>
+        <div class="route-style">Slow immersion · best on weekday mornings · observational, not checkbox travel</div>
+        <div class="site-photo site-photo-sq" style="background:var(--mist);border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;margin-top:1rem;">
+          <div style="font-size:1.5rem;">🗺️</div>
+          <div style="font-size:0.78rem;color:#999;font-style:italic;">Route map — coming soon</div>
+        </div>
+      </div>
+
+      <div class="route-card">
+        <div class="route-num">Route 05</div>
+        <div class="route-name">Nightscape & Neon Tour</div>
+        <div class="route-theme">Pearl River after dark · light shows · cinematic skyline photography</div>
+        <ul>
+          <li>Sunset drinks on Shamian Island waterfront</li>
+          <li>Pearl River night cruise (18:00–22:30, ¥80–200)</li>
+          <li>Canton Tower light show from Haixinsha Island</li>
+          <li>Zhujiang New Town skyline walk — Huacheng Square</li>
+          <li>Beijing Road and Shangxiajiu night food streets</li>
+        </ul>
+        <div class="route-style">Photography-heavy · cinematic pace · best September–February (clear skies)</div>
+        <div class="site-photo site-photo-sq" style="background:var(--mist);border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;margin-top:1rem;">
+          <div style="font-size:1.5rem;">🗺️</div>
+          <div style="font-size:0.78rem;color:#999;font-style:italic;">Route map — coming soon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GETTING THERE -->
+  <div class="section" id="getting-there">
+    <div class="section-header">
+      <div class="section-icon">✈️</div>
+      <div class="section-title-group">
+        <h2>Getting There</h2>
+        <p>By air, rail, and ferry from Hong Kong</p>
+      </div>
+    </div>
+
+    <h3 class="h3-style">By Air</h3>
+    <div class="prose">
+      <p>Guangzhou Baiyun International Airport (CAN) is one of China's busiest — with direct connections across Asia, Europe, Oceania, and major hub transfers within China. It is well-connected to the city centre by metro.</p>
+    </div>
+    <ul class="bullet-list">
+      <li><span class="li-content"><strong>Metro Line 3 (North Extension)</strong> — direct to city centre<span class="sub">Runs from the airport to Tianhe and onwards. ~45 minutes to Guangzhou East Station, ¥6–8. The easiest option for most visitors.</span></span></li>
+      <li><span class="li-content"><strong>Metro Line 18</strong> — express to city<span class="sub">High-speed metro line connecting the airport area directly to Zhujiang New Town in under 30 minutes. Check current routing at the airport.</span></span></li>
+      <li><span class="li-content"><strong>Taxi from airport</strong><span class="sub">~¥80–120 to city centre depending on destination. Use the official metered taxi rank outside arrivals — avoid touts.</span></span></li>
+    </ul>
+
+    <h3 class="h3-style">By High-Speed Rail</h3>
+    <ul class="bullet-list">
+      <li><span class="li-content"><strong>Beijing → Guangzhou</strong> — ~8 hours, ¥800–1,000 second class<span class="sub">The Guangzhou–Beijing high-speed line is one of China's longest. Guangzhou South Station (广州南站) handles most HSR arrivals.</span></span></li>
+      <li><span class="li-content"><strong>Shanghai → Guangzhou</strong> — ~4–6 hours, ¥500–700 second class<span class="sub">Multiple departure times daily. A comfortable option with stunning southern scenery.</span></span></li>
+      <li><span class="li-content"><strong>Shenzhen → Guangzhou</strong> — 35–50 minutes, ¥80–120<span class="sub">Extremely frequent — practically a commuter service. Use Guangzhou South or Guangzhou East depending on destination.</span></span></li>
+      <li><span class="li-content"><strong>Hong Kong → Guangzhou</strong> — ~50 minutes via the Guangshen–Hong Kong Express<span class="sub">Departs from Hong Kong West Kowloon station directly to Guangzhou South. No transfer needed. Book via 12306 or Trip.com.</span></span></li>
+    </ul>
+
+    <h3 class="h3-style">From Hong Kong by Bus or Ferry</h3>
+    <ul class="bullet-list">
+      <li><span class="li-content"><strong>Direct coach</strong> — ~2.5 hours, HK$120–150<span class="sub">Multiple operators run coaches from various Hong Kong pick-up points directly to Guangzhou hotels or the coach terminal. Convenient and affordable.</span></span></li>
+      <li><span class="li-content"><strong>Ferry</strong> — ~90 minutes, from China Ferry Terminal Kowloon<span class="sub">Ferries to Nansha Ferry Terminal in Guangzhou — then metro into the centre. A scenic option but less convenient than HSR for most visitors.</span></span></li>
+    </ul>
+
+    <div class="tip-box">Guangzhou has three major train stations: Guangzhou South (广州南站) for high-speed rail, Guangzhou Station (广州站) for conventional trains, and Guangzhou East (广州东站) for trains from Shenzhen and Hong Kong. Know which one your train uses before you set out.</div>
+  </div>
+
+  <!-- GETTING AROUND -->
+  <div class="section" id="getting-around">
+    <div class="section-header">
+      <div class="section-icon">🚇</div>
+      <div class="section-title-group">
+        <h2>Getting Around</h2>
+        <p>Metro, DiDi, and the Pearl River ferry</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Guangzhou's metro is extensive, clean, and inexpensive — 16 lines covering the entire city, with clear bilingual signage throughout. For most tourist journeys, the metro is far more reliable than a taxi in traffic. Liwan and Yuexiu are walkable within each district; Tianhe and Zhujiang New Town are best reached by metro.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Option</th><th>Best For</th><th>Cost</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>🚇 Metro</td><td>Almost everything across the city</td><td>¥2–10</td><td>16 lines, extensive coverage. Get a transport card (Yang Cheng Tong) at any station. Works on buses too.</td></tr>
+          <tr><td>🚗 DiDi</td><td>Late nights, luggage, awkward locations</td><td>¥15–60</td><td>Set up before arriving. Have your destination ready in Chinese characters. More useful here than in Shanghai due to wider spacing.</td></tr>
+          <tr><td>🚢 Pearl River Ferry</td><td>Sightseeing and crossing between Shamian and Haizhu</td><td>¥2–5</td><td>Small public ferries cross the Pearl River at multiple points. A cheap and scenic way to cross.</td></tr>
+          <tr><td>🚲 Shared bikes</td><td>Flat Liwan and Haizhu side streets</td><td>¥1.5/30 min</td><td>HelloBike and Meituan available. Scan via WeChat or Alipay. Not suitable for longer distances.</td></tr>
+          <tr><td>🚶 Walking</td><td>Liwan/Xiguan, Shamian, Dongshan villa areas</td><td>Free</td><td>Historic west Guangzhou is very walkable. Heat in summer makes this difficult — plan long walks for the cooler months.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tip-box">The Yang Cheng Tong (羊城通) transport card covers metro, bus, and even some ferries. Pick one up at any metro station service counter for ¥30 deposit. Many stations now also accept Alipay, WeChat Pay, and UnionPay — no card required.</div>
+  </div>
+
+  <!-- DAY TRIPS -->
+  <div class="section" id="daytrips">
+    <div class="section-header">
+      <div class="section-icon">🚄</div>
+      <div class="section-title-group">
+        <h2>Day Trips</h2>
+        <p>Easy escapes from Guangzhou — all within 2 hours</p>
+      </div>
+    </div>
+
+    <div class="daytrip-grid">
+      <div class="daytrip-card">
+        <h4>Foshan 佛山</h4>
+        <div class="daytrip-meta"><span>🚇 30 min</span><span>Full or half day</span></div>
+        <p>Guangzhou's creative and ceramic twin city — home to the Nanfeng Ancient Kiln (still firing pottery), Zumiao (Ancestral Temple), and the birthplace of Bruce Lee's family. Foshan's older districts have better-preserved Lingnan architecture than Guangzhou itself.</p>
+      </div>
+      <div class="daytrip-card">
+        <h4>Baomo Garden 宝墨园</h4>
+        <div class="daytrip-meta"><span>🚇 ~40 min (Panyu)</span><span>Half day</span></div>
+        <p>A classical Lingnan garden in Panyu featuring koi ponds, ornate carved halls, bonsai pavilions, and traditional courtyards. Far less visited than its quality warrants — a genuine hidden gem for lovers of garden architecture and tranquil scenery.</p>
+      </div>
+      <div class="daytrip-card">
+        <h4>Shenzhen 深圳</h4>
+        <div class="daytrip-meta"><span>🚄 35 min</span><span>Full day</span></div>
+        <p>The tech and design powerhouse of the Greater Bay Area. OCT Loft creative park, Dafen Oil Painting Village, Futian CBD, and some of the best contemporary architecture in China. A sharp contrast with Guangzhou's historic character.</p>
+      </div>
+      <div class="daytrip-card">
+        <h4>Kaiping Diaolou 开平碉楼</h4>
+        <div class="daytrip-meta"><span>🚌 ~2 hrs</span><span>Full day</span></div>
+        <p>A UNESCO World Heritage Site — a landscape of watchtower mansions built by returned overseas Chinese in the early 20th century, blending European, Chinese, and Southeast Asian styles in the rural Guangdong paddy fields. A truly unique day trip.</p>
+      </div>
+      <div class="daytrip-card">
+        <h4>Chimelong (Panyu) 长隆</h4>
+        <div class="daytrip-meta"><span>🚇 40 min</span><span>Full day</span></div>
+        <p>The Chimelong resort complex in Panyu includes a world-class safari park, water park, and International Circus. One of the best theme park destinations in China — great for families.</p>
+      </div>
+      <div class="daytrip-card">
+        <h4>Hong Kong 香港</h4>
+        <div class="daytrip-meta"><span>🚄 50 min</span><span>Full day / overnight</span></div>
+        <p>Hong Kong is within an hour by high-speed rail. Entry requires a separate travel document process — check visa requirements carefully depending on your nationality. A natural complement to a Guangzhou trip.</p>
+      </div>
+    </div>
+
+    <div class="site-photo site-photo-wide" id="photo-baomo">
+      <div class="photo-fallback">🌸</div>
+      <img id="img-baomo" alt="Baomo Garden Panyu Guangzhou classical Lingnan garden" />
+      <div class="photo-caption">宝墨园 Baomo Garden, Panyu — classical Lingnan garden architecture</div>
+    </div>
+  </div>
+
+  <!-- PRACTICAL INFO -->
+  <div class="section" id="practical">
+    <div class="section-header">
+      <div class="section-icon">📋</div>
+      <div class="section-title-group">
+        <h2>Practical Information</h2>
+        <p>Everything you need before you arrive</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Topic</th><th>Details</th></tr></thead>
+        <tbody>
+          <tr><td>Currency</td><td>Chinese Yuan (RMB / ¥). WeChat Pay and Alipay both support international credit cards — set up one before arriving. ATMs widely available. Most tourist sites and shops also accept cash.</td></tr>
+          <tr><td>Language</td><td>Cantonese is the local language; Mandarin widely understood. Metro and tourist sites have English signage. Save key destination names in Chinese characters on your phone — taxi drivers rarely speak English.</td></tr>
+          <tr><td>Internet</td><td>Google, WhatsApp, Instagram, and most Western apps are blocked. Download and test a VPN before arriving — it cannot be installed once inside China. See the <a href="../topics/internet.html" style="color:var(--red);font-weight:600;">internet guide</a>.</td></tr>
+          <tr><td>SIM Card</td><td>Buy a local SIM at Baiyun Airport arrivals (China Mobile, China Unicom, China Telecom all have counters). Or use an international eSIM purchased before departure.</td></tr>
+          <tr><td>Weather</td><td>Subtropical climate. Summer (Jun–Sep) is hot and very humid with typhoon risk. Autumn–winter (Oct–Feb) is the most comfortable period. Always carry an umbrella.</td></tr>
+          <tr><td>Emergency</td><td>Police 110 · Fire 119 · Ambulance 120 · Tourist helpline 12301</td></tr>
+          <tr><td>Pearl River Cruise</td><td>Night cruises depart from Tianzi Wharf (天字码头) and Guangzhou Ferry Terminal. Tickets ¥80–200. Operates 18:00–22:30. Book at the pier or via Trip.com — weekends sell out fast.</td></tr>
+          <tr><td>Hospitals</td><td>Guangzhou First People's Hospital and Sun Yat-sen Memorial Hospital have foreigners' clinics. Bring your passport. Consider travel insurance with medical coverage.</td></tr>
+          <tr><td>Electricity</td><td>220V / 50Hz. Type I (Australia-style) and Type A sockets are common. European two-pin widely fits. US visitors need a voltage adaptor.</td></tr>
+          <tr><td>Tipping</td><td>Not expected or customary anywhere in Guangzhou — including restaurants, taxis, and hotels. Do not tip unless specifically noted in a high-end international context.</td></tr>
+          <tr><td>Visa</td><td>Many nationalities qualify for 30-day visa-free entry or 144-hour transit visa. Guangzhou is a qualifying 144-hour port. See the <a href="../topics/visa.html" style="color:var(--red);font-weight:600;">visa page</a> for current rules.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="highlight"><strong>Travel pace:</strong> Guangzhou rewards slowness. The best moments — a morning yum cha stretching to noon, wandering Xiguan lanes without an agenda, watching the Pearl River at dusk — all require time you can't schedule. Build in more spare hours than you think you need.</div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section" id="faq">
+    <div class="section-header">
+      <div class="section-icon">❓</div>
+      <div class="section-title-group">
+        <h2>Frequently Asked Questions</h2>
+        <p>Common questions from first-time Guangzhou visitors</p>
+      </div>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">How many days do I need in Guangzhou? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Two full days covers the main highlights without rushing. Three days is more comfortable and lets you include a day trip to Foshan or a slower morning yum cha experience. Four days allows a proper deep dive into the old districts, modern skyline, and surrounding region.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is Guangzhou safe for tourists? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Very safe by international standards. Guangzhou is a major metropolis with extensive policing and CCTV coverage. The most common issues for visitors are pickpocketing in busy markets and overcharging at unlicensed establishments. Use your common sense, use official taxis or DiDi, and you will have no problems. See the <a href="../topics/safety.html" style="color:var(--red);">safety guide</a> for more detail.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do people speak English in Guangzhou? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Metro signage and major tourist sites all have English. In restaurants, shops, and taxis, English is rarely spoken. Save the names and addresses of your destinations in Chinese characters on your phone — this is the single most useful thing you can do. Google Translate's camera mode also works well for menus and signs.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What's the difference between Guangzhou and Shenzhen? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Guangzhou is an ancient city with over 2,000 years of history, a strong Cantonese cultural identity, and one of the world's great food cultures. Shenzhen is a city built from scratch since 1980 — young, tech-focused, design-forward, and fast-paced. They complement each other well and are only 35 minutes apart by high-speed train. Many visitors do both in one trip.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What's the best way to try authentic dim sum? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Go to a traditional teahouse — Taotao Ju, Lianxianglou, or any of the older establishments in Liwan district — early in the morning (before 9 AM on weekdays, before 8 AM on weekends). Sit down, order tea first (that's how yum cha works — tea comes before food), then either pick from passing trolleys or tick items on a paper order form. It's more approachable than it looks.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is Guangzhou worth visiting for someone who doesn't speak Cantonese? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Absolutely. Most locals under 50 speak Mandarin in addition to Cantonese, and tourist infrastructure (metro, museums, major attractions) is fully bilingual in English. You do not need to speak either language to have a great experience — a translation app and your hotel's address in Chinese characters will handle most situations.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I use a VPN, and should I set one up before arriving? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes — and you must set it up before arriving. Google, WhatsApp, Instagram, and most Western platforms are blocked in mainland China. VPN apps cannot be downloaded once you're inside the country. Download, install, and test a VPN before you board your flight. See the <a href="../topics/internet.html" style="color:var(--red);">internet guide</a> for recommended options and setup instructions.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEEP READING -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">📚</div>
+      <div class="section-title-group">
+        <h2>Keep Reading</h2>
+        <p>More guides to help plan your trip</p>
+      </div>
+    </div>
+    <div class="related-grid">
+      <a href="shenzhen.html" class="related-card">
+        <div class="related-label">City Guide</div>
+        <div class="related-title">Shenzhen</div>
+        <div class="related-desc">Guangzhou's tech-driven neighbour — just 35 minutes away by train.</div>
+      </a>
+      <a href="../topics/food.html" class="related-card">
+        <div class="related-label">Topic</div>
+        <div class="related-title">Food & Dining</div>
+        <div class="related-desc">Cantonese cuisine in context — and China's other seven regional styles.</div>
+      </a>
+      <a href="../topics/transport.html" class="related-card">
+        <div class="related-label">Topic</div>
+        <div class="related-title">Getting Around China</div>
+        <div class="related-desc">High-speed rail, metro systems, DiDi — the full national transport guide.</div>
+      </a>
+      <a href="../topics/money.html" class="related-card">
+        <div class="related-label">Topic</div>
+        <div class="related-title">Money & Payments</div>
+        <div class="related-desc">Setting up Alipay or WeChat Pay and using foreign cards in China.</div>
+      </a>
+    </div>
+  </div>
+
+  <a href="../index.html" class="back-link">← Back to Home</a>
+</div>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // ── PHOTO LOADER ──
+  const PHOTOS = [
+    // Overview — Guangzhou nightscape (wide)
+    {
+      img: 'img-panorama', wrap: 'photo-panorama',
+      src: 'https://images.unsplash.com/photo-1762964601999-c9a45aabe875?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    // History — Liede Bridge (wide)
+    {
+      img: 'img-liedebridge', wrap: 'photo-liedebridge',
+      src: 'https://images.unsplash.com/photo-1542642839-83adadcbe645?q=80&w=2044&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    // Liwan — two portrait placeholders (no user photo; keep Unsplash fallbacks)
+    {
+      img: 'img-xiguan1', wrap: 'photo-xiguan1',
+      src: 'https://images.unsplash.com/photo-1578922746465-3a80a228f223?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0'
+    },
+    {
+      img: 'img-enning', wrap: 'photo-enning',
+      src: 'https://images.unsplash.com/photo-1655101945827-c03e9e42ce06?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0'
+    },
+    // Yuexiu — Chen Clan (portrait) + Sun Yat-sen Memorial (portrait)
+    {
+      img: 'img-chenclan', wrap: 'photo-chenclan',
+      src: 'https://images.unsplash.com/photo-1696618041962-00933b9c8297?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    {
+      img: 'img-sunmemorial', wrap: 'photo-sunmemorial',
+      src: 'https://images.unsplash.com/photo-1697077290180-538e8204bfe8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDh8fGd1YW5nemhvdXxlbnwwfHwwfHx8MA%3D%3D'
+    },
+    // Yuexiu — Sacred Heart Cathedral (wide)
+    {
+      img: 'img-cathedral', wrap: 'photo-cathedral',
+      src: 'https://images.unsplash.com/photo-1611387886912-3a4f3f67538c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    // Shamian — keep existing Unsplash fallback
+    {
+      img: 'img-shamian', wrap: 'photo-shamian',
+      src: 'https://images.unsplash.com/photo-1658145907278-7e8a3a0c1aaa?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0'
+    },
+    // Tianhe — Canton Tower (portrait)
+    {
+      img: 'img-tower', wrap: 'photo-tower',
+      src: 'https://images.unsplash.com/photo-1575041764111-b407991d6826?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fGd1YW5nemhvdXxlbnwwfHwwfHx8MA%3D%3D'
+    },
+    // Tianhe — Guangzhou Opera House (portrait, used as sq)
+    {
+      img: 'img-opera', wrap: 'photo-opera',
+      src: 'https://images.unsplash.com/photo-1505233899547-55d22b78e1f0?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    // Tianhe — Guangzhou International Finance Centre / Round Building (wide)
+    {
+      img: 'img-yuancenter', wrap: 'photo-yuancenter',
+      src: 'https://images.unsplash.com/photo-1588267863680-ba244f1bf0d4?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    // Food — Cantonese yum cha (portrait)
+    {
+      img: 'img-dimsum', wrap: 'photo-dimsum',
+      src: 'https://images.unsplash.com/photo-1604632911232-18733a0b3563?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzB8fGRpbSUyMHN1bXxlbnwwfHwwfHx8MA%3D%3D'
+    },
+    // Day Trips — Baomo Garden (wide)
+    {
+      img: 'img-baomo', wrap: 'photo-baomo',
+      src: 'https://images.unsplash.com/photo-1593186019667-e7b5696f4609?q=80&w=1831&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+  ];
+
+  function loadPhotos() {
+    PHOTOS.forEach(({ img: imgId, wrap: wrapId, src }) => {
+      const imgEl = document.getElementById(imgId);
+      const wrapEl = document.getElementById(wrapId);
+      if (!imgEl || !wrapEl) return;
+      imgEl.onload = () => {
+        imgEl.classList.add('loaded');
+        wrapEl.classList.add('loaded');
+      };
+      imgEl.onerror = () => imgEl.remove();
+      imgEl.src = src;
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', loadPhotos);
+</script>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo-text">China Awaits</div>
+        <div class="footer-tagline">Your trusted guide for exploring China · chinaawaits.com</div>
+      </div>
+      <div class="footer-nav">
+        <a href="../index.html#cities">Cities</a>
+        <a href="../index.html#topics">Topics</a>
+        <a href="../index.html#essentials">Essentials</a>
+        <a href="../contact.html" class="footer-contact">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 China Awaits. All rights reserved.</span>
+      <span>chinaawaits.com</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
