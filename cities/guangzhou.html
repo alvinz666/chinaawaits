@@ -311,7 +311,7 @@
 
     <div class="site-photo site-photo-wide" id="photo-panorama">
       <div class="photo-fallback">🌆</div>
-      <img id="img-panorama" alt="Guangzhou skyline at night" />
+      <img id="img-panorama" alt="Guangzhou skyline at night" style="object-position: center 25%;" />
       <div class="photo-caption">Guangzhou — Pearl River skyline at night</div>
     </div>
 
@@ -518,10 +518,16 @@
         </div>
       </div>
 
-      <div class="site-photo site-photo-wide" id="photo-cathedral">
-        <div class="photo-fallback">⛪</div>
-        <img id="img-cathedral" alt="Sacred Heart Cathedral Guangzhou Gothic" />
-        <div class="photo-caption">石室圣心大教堂 Sacred Heart Cathedral — one of Asia's largest all-stone Gothic cathedrals</div>
+      <div class="img-grid-2">
+        <div class="site-photo site-photo-sq" id="photo-cathedral">
+          <div class="photo-fallback">⛪</div>
+          <img id="img-cathedral" alt="Sacred Heart Cathedral Guangzhou Gothic" />
+          <div class="photo-caption">石室圣心大教堂 Sacred Heart Cathedral</div>
+        </div>
+        <div class="site-photo site-photo-sq" style="background:var(--mist);border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;">
+          <div style="font-size:1.5rem;">📷</div>
+          <div style="font-size:0.78rem;color:#999;font-style:italic;">Photo coming soon</div>
+        </div>
       </div>
     </div>
 
@@ -587,23 +593,23 @@
       </div>
       <p class="hood-desc">Guangzhou's face to the future — the Tianhe district is the city's commercial engine, while Zhujiang New Town (Pearl River New Town) is its architectural showcase. The Guangzhou Tower (Canton Tower) dominates the skyline with its distinctive "slim waist" silhouette. The Guangzhou Opera House, designed by Zaha Hadid, sits beside the Pearl River with a fluid, avant-garde form. Haixinsha Island hosts the Asian Games Park with nightly light shows.</p>
 
+      <div class="site-photo site-photo-wide" id="photo-opera">
+        <div class="photo-fallback">🎭</div>
+        <img id="img-opera" alt="Guangzhou Opera House Zaha Hadid" />
+        <div class="photo-caption">广州大剧院 Guangzhou Opera House — Zaha Hadid</div>
+      </div>
+
       <div class="img-grid-2">
         <div class="site-photo site-photo-sq" id="photo-tower">
           <div class="photo-fallback">🗼</div>
           <img id="img-tower" alt="Canton Tower Guangzhou" />
-          <div class="photo-caption">广州塔 Canton Tower — the "slim waist" landmark</div>
+          <div class="photo-caption">广州塔 Canton Tower</div>
         </div>
-        <div class="site-photo site-photo-sq" id="photo-opera">
-          <div class="photo-fallback">🎭</div>
-          <img id="img-opera" alt="Guangzhou Opera House Zaha Hadid" />
-          <div class="photo-caption">广州大剧院 Guangzhou Opera House — Zaha Hadid</div>
+        <div class="site-photo site-photo-sq" id="photo-yuancenter">
+          <div class="photo-fallback">🏢</div>
+          <img id="img-yuancenter" alt="Guangzhou Round Building IFC" style="object-position: 20% center;" />
+          <div class="photo-caption">广州圆大厦 Guangzhou Round Building</div>
         </div>
-      </div>
-
-      <div class="site-photo site-photo-wide" id="photo-yuancenter">
-        <div class="photo-fallback">🏢</div>
-        <img id="img-yuancenter" alt="Guangzhou International Finance Centre round building" />
-        <div class="photo-caption">广州圆大厦 — Zhujiang New Town's distinctive circular landmark</div>
       </div>
 
       <div class="attraction-list">
@@ -710,10 +716,17 @@
       <p>Beyond dim sum, Cantonese cooking here emphasises freshness above all — minimal seasoning so that the natural flavour of the ingredients shines. The technique is often described as "letting the ingredient speak." Don't miss braised goose, white-cut chicken, fresh fish, and the city's magnificent dessert traditions.</p>
     </div>
 
-    <div class="site-photo site-photo-wide" id="photo-dimsum">
-      <div class="photo-fallback">🥟</div>
-      <img id="img-dimsum" alt="Cantonese yum cha dim sum Guangzhou" />
-      <div class="photo-caption">广式早茶 Yum cha — a social ritual that can last all morning</div>
+    <div class="img-grid-2">
+      <div class="site-photo site-photo-sq" id="photo-dimsum">
+        <div class="photo-fallback">🥟</div>
+        <img id="img-dimsum" alt="Cantonese yum cha dim sum Guangzhou" />
+        <div class="photo-caption">广式早茶 Yum cha — a social ritual that can last all morning</div>
+      </div>
+      <div class="site-photo site-photo-sq" id="photo-dimsum2">
+        <div class="photo-fallback">🫖</div>
+        <img id="img-dimsum2" alt="Cantonese dim sum teahouse" />
+        <div class="photo-caption">Traditional teahouse dim sum</div>
+      </div>
     </div>
 
     <h3 class="h3-style">Must-Try Dim Sum Dishes</h3>
@@ -1286,7 +1299,29 @@
     });
   }
 
-  window.addEventListener('DOMContentLoaded', loadPhotos);
+  // Pexels images — onerror keeps placeholder visible (does NOT remove)
+  const PEXELS = [
+    {
+      img: 'img-dimsum2', wrap: 'photo-dimsum2',
+      src: 'https://images.pexels.com/photos/16211353/pexels-photo-16211353.jpeg'
+    },
+  ];
+
+  function loadPexels() {
+    PEXELS.forEach(({ img: imgId, wrap: wrapId, src }) => {
+      const imgEl = document.getElementById(imgId);
+      const wrapEl = document.getElementById(wrapId);
+      if (!imgEl || !wrapEl) return;
+      imgEl.onload = () => {
+        imgEl.classList.add('loaded');
+        wrapEl.classList.add('loaded');
+      };
+      imgEl.onerror = () => { imgEl.style.display = 'none'; };
+      imgEl.src = src;
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', () => { loadPhotos(); loadPexels(); });
 </script>
 
 <footer>
