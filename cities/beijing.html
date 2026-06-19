@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beijing Travel Guide — China Awaits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #C0392B; --red-dark: #96281B;
+      --gold: #C9A84C; --gold-light: #e8c96a;
+      --ink: #1a1a1a; --ink-soft: #3d3d3d;
+      --mist: #f7f4f0; --mist-dark: #ede9e3;
+      --white: #ffffff; --border: #e0d9d0;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,0.14);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); line-height: 1.7; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 60px; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--red); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a { font-size: 14px; font-weight: 400; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--red); }
+
+    /* HERO */
+    .hero { background: var(--ink); position: relative; overflow: hidden; padding: 5rem 2rem 4rem; text-align: center; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 60%, rgba(192,57,43,0.30) 0%, transparent 55%), radial-gradient(ellipse at 80% 35%, rgba(201,168,76,0.20) 0%, transparent 55%); }
+    .hero-pattern { position: absolute; inset: 0; opacity: 0.035; background-image: repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%); background-size: 20px 20px; }
+    .hero-tag { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,0.4); padding: 0.3rem 0.9rem; border-radius: 2px; margin-bottom: 1.5rem; position: relative; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 1rem; position: relative; }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.65); max-width: 560px; margin: 0 auto 2.5rem; position: relative; }
+    .jump-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; position: relative; }
+    .jump-nav a { display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 0.45rem 1rem; border-radius: 40px; text-decoration: none; transition: all 0.2s; }
+    .jump-nav a:hover { background: rgba(201,168,76,0.2); border-color: var(--gold); color: var(--gold); }
+
+    /* LAYOUT */
+    .page-wrap { max-width: 860px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+    /* SECTION */
+    .section { margin-top: 4.5rem; scroll-margin-top: 80px; }
+    .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.8rem; padding-bottom: 1rem; border-bottom: 2px solid var(--border); }
+    .section-icon { width: 48px; height: 48px; background: var(--red); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+    .section-title-group h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+    .section-title-group p { font-size: 0.88rem; color: #888; margin-top: 0.1rem; }
+
+    /* PROSE */
+    .prose p { font-size: 0.97rem; color: var(--ink-soft); margin-bottom: 1rem; }
+    .prose strong { color: var(--ink); font-weight: 600; }
+
+    /* BOXES */
+    .highlight { background: var(--mist); border-left: 3px solid var(--gold); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1.2rem 0; font-size: 0.93rem; color: var(--ink-soft); }
+    .highlight strong { color: var(--ink); }
+    .tip-box { background: #fff8ee; border: 1px solid #f0d990; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #6b5b1a; }
+    .tip-box::before { content: '💡 Tip: '; font-weight: 600; }
+    .warning-box { background: #fff5f5; border: 1px solid #f5c6c6; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #7a2020; }
+    .warning-box::before { content: '⚠️ Note: '; font-weight: 600; }
+
+    /* BULLET LIST */
+    .bullet-list { list-style: none; margin: 1rem 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .bullet-list li { display: grid; grid-template-columns: 1rem 1fr; column-gap: 0.7rem; font-size: 0.93rem; color: var(--ink-soft); align-items: start; }
+    .bullet-list li::before { content: '—'; color: var(--gold); font-weight: 700; margin-top: 2px; }
+    .bullet-list li .li-content { display: block; }
+    .bullet-list li .sub { display: block; font-size: 0.83rem; color: #999; margin-top: 0.2rem; }
+
+    /* TABLE */
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    thead { background: var(--ink); color: white; }
+    thead th { padding: 0.85rem 1rem; text-align: left; font-weight: 600; font-size: 0.83rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:nth-child(even) { background: var(--mist); }
+    tbody td { padding: 0.85rem 1rem; color: var(--ink-soft); vertical-align: top; }
+    tbody td:first-child { font-weight: 600; color: var(--ink); }
+
+    /* CARD GRID */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; transition: box-shadow 0.2s, transform 0.2s; }
+    .card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+    .card-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+    .card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .card p { font-size: 0.87rem; color: #666; line-height: 1.5; }
+
+    /* SEASON STRIP */
+    .season-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; margin: 1.2rem 0; }
+    .season-box { border-radius: 10px; padding: 0.9rem 0.8rem; text-align: center; border: 1px solid var(--border); }
+    .season-box.best  { background: #f0fdf4; border-color: #bbf7d0; }
+    .season-box.ok    { background: #fffbeb; border-color: #fde68a; }
+    .season-box.avoid { background: #fff5f5; border-color: #fecaca; }
+    .season-name { font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem; }
+    .season-box.best  .season-name { color: #166534; }
+    .season-box.ok    .season-name { color: #92400e; }
+    .season-box.avoid .season-name { color: #991b1b; }
+    .season-months { font-size: 0.75rem; color: #999; margin-bottom: 0.4rem; }
+    .season-note { font-size: 0.78rem; color: #666; line-height: 1.4; }
+
+    /* SITE PHOTOS */
+    .site-photo { position: relative; border-radius: 14px; overflow: hidden; margin: 1.4rem 0; background: linear-gradient(135deg, rgba(192,57,43,0.1), rgba(201,168,76,0.15)); }
+    .site-photo-wide { height: 300px; }
+    .site-photo-sq { aspect-ratio: 3/4; height: auto; }
+    .site-photo-16-9 { aspect-ratio: 16/9; height: auto; }
+    .site-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s ease; }
+    .site-photo img.loaded { opacity: 1; }
+    .site-photo .photo-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 0.5rem 0.9rem; background: linear-gradient(transparent, rgba(0,0,0,0.55)); font-size: 0.72rem; color: rgba(255,255,255,0.9); font-style: italic; opacity: 0; transition: opacity 0.4s; }
+    .site-photo.loaded .photo-caption { opacity: 1; }
+    .site-photo .photo-fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; transition: opacity 0.3s; }
+    .site-photo.loaded .photo-fallback { opacity: 0; pointer-events: none; }
+    .img-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin: 1.4rem 0; }
+    .img-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem; margin: 1.4rem 0; }
+
+    /* NEIGHBOURHOOD BLOCK */
+    .hood-block { margin-bottom: 3rem; }
+    .hood-title-row { display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 0.3rem; flex-wrap: wrap; }
+    .hood-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--ink); }
+    .hood-zh { font-size: 0.9rem; color: var(--gold); font-weight: 600; }
+    .hood-badge { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; background: rgba(192,57,43,0.08); color: var(--red); padding: 0.2rem 0.65rem; border-radius: 20px; border: 1px solid rgba(192,57,43,0.2); }
+    .hood-desc { font-size: 0.95rem; color: var(--ink-soft); margin-bottom: 1rem; line-height: 1.65; }
+    .hood-divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+    /* ATTRACTION LIST */
+    .attraction-list { display: flex; flex-direction: column; gap: 0.7rem; margin: 0.8rem 0 1.2rem; }
+    .attraction-item { display: grid; grid-template-columns: 1fr auto; gap: 0.5rem 1rem; background: var(--mist); border: 1px solid var(--border); border-radius: 10px; padding: 0.85rem 1rem; align-items: start; }
+    .attraction-name { font-weight: 600; font-size: 0.93rem; color: var(--ink); }
+    .attraction-name .zh { font-size: 0.8rem; color: var(--gold); font-weight: 600; margin-left: 0.4rem; }
+    .attraction-desc { font-size: 0.85rem; color: #666; line-height: 1.5; margin-top: 0.2rem; grid-column: 1; }
+    .attraction-meta { text-align: right; flex-shrink: 0; display: flex; flex-direction: column; gap: 0.2rem; align-items: flex-end; }
+    .meta-price { font-size: 0.78rem; font-weight: 700; color: var(--red); background: rgba(192,57,43,0.07); padding: 0.15rem 0.55rem; border-radius: 4px; }
+    .meta-hours { font-size: 0.75rem; color: #999; }
+
+    /* ITINERARY */
+    .itinerary-block { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 1.5rem; }
+    .itinerary-header { background: var(--ink); color: var(--white); padding: 1rem 1.4rem; display: flex; align-items: center; gap: 1rem; }
+    .itinerary-day { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--gold); white-space: nowrap; }
+    .itinerary-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; color: var(--white); }
+    .itinerary-body { padding: 1.2rem 1.4rem; display: flex; flex-direction: column; gap: 1rem; }
+    .time-block { display: grid; grid-template-columns: 70px 1fr; gap: 0 1rem; }
+    .time-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); padding-top: 0.1rem; }
+    .time-content ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .time-content ul li { font-size: 0.9rem; color: var(--ink-soft); display: flex; align-items: baseline; gap: 0.5rem; }
+    .time-content ul li::before { content: '·'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+    .time-optional { font-size: 0.82rem; color: #aaa; font-style: italic; margin-top: 0.3rem; }
+
+    /* ROUTE CARDS */
+    .route-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .route-card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; }
+    .route-num { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+    .route-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .route-theme { font-size: 0.78rem; color: #888; margin-bottom: 0.7rem; font-style: italic; }
+    .route-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .route-card ul li { font-size: 0.85rem; color: var(--ink-soft); display: flex; gap: 0.5rem; }
+    .route-card ul li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
+    .route-style { margin-top: 0.8rem; font-size: 0.78rem; color: #999; font-style: italic; }
+
+    /* DAYTRIP */
+    .daytrip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .daytrip-card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; }
+    .daytrip-card h4 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .daytrip-meta { display: flex; gap: 0.6rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
+    .daytrip-meta span { font-size: 0.75rem; font-weight: 600; color: #888; }
+    .daytrip-card p { font-size: 0.85rem; color: #666; line-height: 1.5; }
+
+    /* FAQ */
+    .faq { margin: 1.5rem 0; }
+    .faq-item { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 0.6rem; overflow: hidden; }
+    .faq-q { width: 100%; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.2rem; font-family: 'DM Sans', sans-serif; font-size: 0.93rem; font-weight: 600; color: var(--ink); text-align: left; gap: 1rem; }
+    .faq-q:hover { background: var(--mist); }
+    .faq-arrow { font-size: 1rem; color: var(--gold); transition: transform 0.25s; flex-shrink: 0; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0.8rem 1.2rem 1rem; font-size: 0.9rem; color: var(--ink-soft); border-top: 1px solid var(--border); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* RELATED */
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .related-card { display: block; background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.1rem; text-decoration: none; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
+    .related-card:hover { border-color: var(--red); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .related-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 0.3rem; }
+    .related-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; }
+    .related-desc { font-size: 0.82rem; color: #888; line-height: 1.4; }
+
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.88rem; font-weight: 500; color: var(--red); text-decoration: none; margin-top: 3rem; }
+    .back-link:hover { text-decoration: underline; }
+    .h3-style { font-family: 'Playfair Display', serif; font-size: 1.15rem; margin: 1.8rem 0 0.9rem; color: var(--ink); }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .page-wrap { padding: 0 1rem 4rem; }
+      .hero { padding: 3.5rem 1rem 3rem; }
+      .season-strip { grid-template-columns: repeat(2, 1fr); }
+      .img-grid-2, .img-grid-3 { grid-template-columns: 1fr; }
+      .time-block { grid-template-columns: 60px 1fr; }
+      .attraction-item { grid-template-columns: 1fr; }
+      .attraction-meta { flex-direction: row; align-items: center; }
+    }
+
+    /* FOOTER */
+    footer { background: transparent; border-top: 1px solid var(--border); padding: 2.8rem 2rem 2rem; margin-top: 2rem; }
+    .footer-inner { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.6rem; }
+    .footer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .footer-brand { display: flex; flex-direction: column; gap: .35rem; }
+    .footer-logo-text { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--red); }
+    .footer-tagline { font-size: 13px; color: var(--ink-soft); }
+    .footer-nav { display: flex; flex-wrap: wrap; gap: .5rem 1.6rem; align-items: center; }
+    .footer-nav a { text-decoration: none; font-size: 14px; color: var(--ink-soft); font-weight: 400; transition: color .2s; }
+    .footer-nav a:hover { color: var(--red); }
+    .footer-contact { background: var(--red); color: #fff !important; padding: 6px 16px; border-radius: 24px; font-size: 13px !important; font-weight: 500; }
+    .footer-contact:hover { background: var(--red-dark) !important; }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 1.2rem; font-size: 12px; color: var(--ink-soft); display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">China Awaits</a>
+  <ul class="nav-links">
+    <li><a href="../index.html#cities">Cities</a></li>
+    <li><a href="../index.html#topics">Topics</a></li>
+    <li><a href="../index.html#essentials">Essentials</a></li>
+    <li><a href="../contact.html">Contact Us</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-tag">City Guide</div>
+  <h1><span>Beijing</span> 北京</h1>
+  <p class="hero-sub">China's imperial capital for over 800 years — a living continuum of palace complexes, winding hutong alleys, and a modern skyline that has grown around a timeless axis.</p>
+  <div class="jump-nav">
+    <a href="#overview">🌆 Overview</a>
+    <a href="#history">🏛️ History</a>
+    <a href="#areas">🗺️ Areas & Sights</a>
+    <a href="#itineraries">📅 Itineraries</a>
+    <a href="#niche">🎭 Niche Routes</a>
+    <a href="#getting-there">✈️ Getting There</a>
+    <a href="#getting-around">🚇 Getting Around</a>
+    <a href="#daytrips">🚌 Day Trips</a>
+    <a href="#practical">📋 Practical Info</a>
+    <a href="#faq">❓ FAQ</a>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- OVERVIEW -->
+  <div class="section" id="overview">
+    <div class="section-header">
+      <div class="section-icon">🌆</div>
+      <div class="section-title-group">
+        <h2>Overview</h2>
+        <p>Imperial legacy, hutong culture, and contemporary capital identity</p>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🏯</div>
+        <h3>Imperial Scale</h3>
+        <p>Home to the world's largest palace complex and one of history's most ambitious urban plans — the north–south imperial axis that still defines Beijing's structure today.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏘️</div>
+        <h3>Hutong Depth</h3>
+        <p>Beijing's old alley networks (hutongs) remain some of the most atmospheric urban fabric in Asia — daily life, tea houses, morning markets, and courtyard homes unchanged for centuries.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧱</div>
+        <h3>Great Wall Access</h3>
+        <p>Several of the Great Wall's most dramatic and accessible sections lie within day-trip distance, from the fully restored Badaling to the rugged hiking terrain of Jinshanling.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎨</div>
+        <h3>Cultural Depth</h3>
+        <p>World-class museums, Peking Opera, the 798 Art District, and a contemporary creative scene that coexists, often unexpectedly, with the imperial and traditional layers of the city.</p>
+      </div>
+    </div>
+
+    <div class="site-photo site-photo-wide" id="photo-panorama">
+      <div class="photo-fallback">🏯</div>
+      <img id="img-panorama" alt="Forbidden City Beijing" style="object-position: center 55%;" />
+      <div class="photo-caption">The Forbidden City — imperial axis at the heart of Beijing</div>
+    </div>
+
+    <h3 class="h3-style">When to Visit</h3>
+    <div class="season-strip">
+      <div class="season-box ok">
+        <div class="season-name">Spring</div>
+        <div class="season-months">Mar – May</div>
+        <div class="season-note">Mild and warming, but occasional dust and wind days. Good for walking tours and imperial sites.</div>
+      </div>
+      <div class="season-box avoid">
+        <div class="season-name">Summer</div>
+        <div class="season-months">Jun – Aug</div>
+        <div class="season-note">Hot and humid with frequent thunderstorms. Plan outdoor sites for early morning or evening.</div>
+      </div>
+      <div class="season-box best">
+        <div class="season-name">Autumn</div>
+        <div class="season-months">Sep – Nov</div>
+        <div class="season-note">Best season overall — cool, dry, clear skies. Ideal for Great Wall photography and long walks.</div>
+      </div>
+      <div class="season-box ok">
+        <div class="season-name">Winter</div>
+        <div class="season-months">Dec – Feb</div>
+        <div class="season-note">Cold and dry. Fewer crowds. Hutongs and imperial sites feel especially atmospheric. Festive temple fairs at Chinese New Year.</div>
+      </div>
+    </div>
+
+    <div class="highlight"><strong>The Beijing approach:</strong> Beijing is a city of layers rather than speed. Its best experiences come from slow walking in hutongs, long visits to imperial sites, and observing the subtle contrasts between old and new — compressed into a single, living city.</div>
+  </div>
+
+  <!-- HISTORY & ARCHITECTURE -->
+  <div class="section" id="history">
+    <div class="section-header">
+      <div class="section-icon">🏛️</div>
+      <div class="section-title-group">
+        <h2>History & Architecture</h2>
+        <p>Eight centuries of imperial order, frontier defense, and modern reinvention</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Beijing became the imperial capital during the Yuan Dynasty and was systematically redesigned under the Ming and Qing into one of history's most ambitious planned cities. The central north–south axis — running from the Bell and Drum Towers in the north to Yongdingmen in the south — was the conceptual spine of the entire urban order, with the Forbidden City at its literal and symbolic centre.</p>
+      <p>Unlike many great cities shaped by a single era, Beijing is a living historical continuum. Imperial power, republican transition, revolutionary transformation, and contemporary global ambition have all left visible marks on its streets and districts — often within a few hundred metres of each other.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🏯</div>
+        <h3>Imperial Architecture</h3>
+        <p>Forbidden City, Temple of Heaven, Summer Palace — the great ritual and ceremonial complexes built to a strict hierarchy of symmetry, scale, and symbolic order that governed every dimension of their construction.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏘️</div>
+        <h3>Hutong & Siheyuan</h3>
+        <p>The traditional alley-and-courtyard system that once housed Beijing's aristocratic and civilian population. Many survive in Dongcheng and Xicheng — still lived in, still the social fabric of old Beijing neighbourhoods.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏫</div>
+        <h3>Republican & Modern</h3>
+        <p>Embassy districts, early university campuses (Peking University, Tsinghua), and transitional 20th-century commercial architecture from the period when Beijing shifted from imperial to republican capital.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏗️</div>
+        <h3>Contemporary Beijing</h3>
+        <p>The CBD skyscraper cluster at Guomao, the converted industrial complex of 798 Art District, and the globally recognised Olympic structures — Bird's Nest and Water Cube — that announced a modern capital on a world stage.</p>
+      </div>
+    </div>
+
+    <div class="img-grid-2">
+      <div class="site-photo site-photo-sq" id="photo-forbiddencity">
+        <div class="photo-fallback">🏯</div>
+        <img id="img-forbiddencity" alt="Forbidden City Beijing" />
+        <div class="photo-caption">The Forbidden City — 600 years of dynastic history</div>
+      </div>
+      <div class="site-photo site-photo-sq" id="photo-greatwall-sq">
+        <div class="photo-fallback">🧱</div>
+        <img id="img-greatwall-sq" alt="Great Wall of China" />
+        <div class="photo-caption">The Great Wall — Beijing's frontier defense system</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AREAS & SIGHTS -->
+  <div class="section" id="areas">
+    <div class="section-header">
+      <div class="section-icon">🗺️</div>
+      <div class="section-title-group">
+        <h2>Areas & Sights</h2>
+        <p>Beijing's key districts — from the imperial core to the modern CBD</p>
+      </div>
+    </div>
+
+    <!-- DONGCHENG -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Dongcheng</span>
+        <span class="hood-zh">东城区</span>
+        <span class="hood-badge">Imperial Core · History</span>
+      </div>
+      <p class="hood-desc">Dongcheng is the historic heart of Beijing — the district that contains the Forbidden City, Tiananmen Square, the Temple of Heaven, and the commercial street of Wangfujing. This is where the imperial axis runs most visibly, and where the density of significant landmarks is highest. Most first-time visitors will spend the majority of their first day or two here.</p>
+
+      <div class="site-photo site-photo-wide" id="photo-tiananmen">
+        <div class="photo-fallback">🏮</div>
+        <img id="img-tiananmen" alt="Tiananmen Square Beijing" style="object-position: center 40%;" />
+        <div class="photo-caption">Tiananmen Square — the ceremonial gate that opens to the Forbidden City</div>
+      </div>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Forbidden City <span class="zh">故宫</span></div>
+            <div class="attraction-desc">The world's largest imperial palace complex — 180 acres, nearly a thousand buildings, and over 600 years of dynastic history. The axial symmetry of its courtyards and gates is best understood on foot, walking north from the Meridian Gate through to the Imperial Garden. Book tickets in advance online — capacity is capped daily. Closed on Mondays.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥40–60</span>
+            <span class="meta-hours">8:30–17:00 · Closed Mon</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Tiananmen Square <span class="zh">天安门广场</span></div>
+            <div class="attraction-desc">One of the world's largest public squares — 440,000 square metres, flanked by the National Museum of China, the Great Hall of the People, and Mao's Mausoleum. Entry is free but requires a reservation and security screening. The flag-raising ceremony at sunrise draws large crowds daily.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Timed access</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Jingshan Park <span class="zh">景山公园</span></div>
+            <div class="attraction-desc">A coal hill park directly north of the Forbidden City, offering the single best elevated view of the palace complex and the imperial axis. Climb to the central Wanchun Pavilion — the view north and south simultaneously reveals how the axis works at scale. Best in morning light. Entry is inexpensive and the park is rarely crowded.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥2</span>
+            <span class="meta-hours">6:00–21:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Temple of Heaven <span class="zh">天坛</span></div>
+            <div class="attraction-desc">A vast ritual complex where emperors performed annual ceremonies to pray for good harvests — the Hall of Prayer for Good Harvests (the circular blue-roofed structure most associated with Beijing's iconography) sits within a large park used daily by locals for tai chi, calligraphy, and music. The southern part of Dongcheng; allow half a day for the full park circuit.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥15–34</span>
+            <span class="meta-hours">6:00–21:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Wangfujing <span class="zh">王府井</span></div>
+            <div class="attraction-desc">Beijing's main commercial pedestrian street, a mix of department stores, street food stalls, and a covered snack market with adventurous offerings. More tourist-facing than a local shopping street, but useful for orientation, browsing, and eating. The nearby Beijing Bookstore (王府井书店) is worth a stop for design books and maps.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Open 24h</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-photo site-photo-wide" id="photo-tiantan">
+        <div class="photo-fallback">🛕</div>
+        <img id="img-tiantan" alt="Temple of Heaven Beijing" style="object-position: center 40%;" />
+        <div class="photo-caption">Temple of Heaven — the ritual complex where emperors prayed for good harvests</div>
+      </div>
+    </div>
+    <hr class="hood-divider">
+
+    <!-- XICHENG -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Xicheng</span>
+        <span class="hood-zh">西城区</span>
+        <span class="hood-badge">Lakes · Hutong Life</span>
+      </div>
+      <p class="hood-desc">Directly west of Dongcheng, Xicheng is home to Beijing's most intact hutong neighbourhoods and the Shichahai lake district — a cluster of three interconnected lakes lined with willow trees, courtyard restaurants, and bars. This is the quieter, more liveable face of old Beijing, where residents still conduct daily life in the same alley networks that existed five centuries ago.</p>
+
+      <div class="img-grid-2">
+        <div class="site-photo site-photo-sq" id="photo-grandtheatre">
+          <div class="photo-fallback">🎭</div>
+          <img id="img-grandtheatre" alt="National Centre for Performing Arts Beijing" />
+          <div class="photo-caption">National Centre for Performing Arts — on the edge of Tiananmen</div>
+        </div>
+        <div class="site-photo site-photo-sq" id="photo-yiheyuan-sq">
+          <div class="photo-fallback">🌸</div>
+          <img id="img-yiheyuan-sq" alt="Summer Palace Beijing" />
+          <div class="photo-caption">颐和园 — the Summer Palace lake and pavilions</div>
+        </div>
+      </div>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Shichahai & Houhai <span class="zh">什刹海 · 后海</span></div>
+            <div class="attraction-desc">A chain of three lakes — Qianhai, Houhai, and Xihai — surrounded by willow-lined paths, old courtyard residences, tea houses, and a bar street that comes alive at night. Walk the full lake circuit in the morning for the best local life: elderly residents doing exercises, fishing, and playing music by the water. Free to enter; the bar zone around Houhai is tourist-facing but atmospheric.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Open 24h</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Nanluoguxiang <span class="zh">南锣鼓巷</span></div>
+            <div class="attraction-desc">A 780-metre hutong that has become Beijing's most visited alley — lined with cafés, craft shops, snack vendors, and independent boutiques. It can feel overrun on weekends, but the branching hutongs off either side (Mao'er Hutong, Ju'er Hutong) are quieter and more authentic. Best on a weekday morning before the crowds arrive.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Open 24h</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Drum Tower & Bell Tower <span class="zh">鼓楼 · 钟楼</span></div>
+            <div class="attraction-desc">The northern terminus of the imperial axis — the Drum Tower (1272) and Bell Tower (1745) stand at the top of the city's central spine. The Drum Tower now has a museum inside on Beijing's timekeeping history. The tower square is a pleasant gathering place in the evening, with local vendors and the old drum performances.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥30</span>
+            <span class="meta-hours">9:00–17:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="hood-divider">
+
+    <!-- HAIDIAN -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Haidian</span>
+        <span class="hood-zh">海淀区</span>
+        <span class="hood-badge">Cultural & Academic</span>
+      </div>
+      <p class="hood-desc">The northwestern district of Haidian is Beijing's cultural and educational heartland — home to the Summer Palace, the Old Summer Palace ruins, Peking University, and Tsinghua University. It's a less tourist-dense part of the city but rewards those who venture out: the Summer Palace in particular is one of the most beautiful landscaped environments in China.</p>
+
+      <div class="site-photo site-photo-wide" id="photo-summerpalace">
+        <div class="photo-fallback">🌸</div>
+        <img id="img-summerpalace" alt="Summer Palace Beijing" style="object-position: center 50%;" />
+        <div class="photo-caption">Summer Palace — the Long Corridor and Kunming Lake in morning light</div>
+      </div>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Summer Palace <span class="zh">颐和园</span></div>
+            <div class="attraction-desc">An immense imperial garden and palace complex built around Kunming Lake — one of the most beautiful landscapes in China. The Long Corridor, Marble Boat, Tower of Buddhist Incense, and the lake itself form a carefully composed classical landscape. Allow a full morning or afternoon. The walk around the lake perimeter takes roughly two hours at a relaxed pace. Opens early — arrive at 6:30am to see it in near-quiet.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥20–30</span>
+            <span class="meta-hours">6:30–19:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Old Summer Palace <span class="zh">圆明园</span></div>
+            <div class="attraction-desc">The ruins of the original imperial pleasure gardens — looted and burned by Anglo-French forces in 1860 during the Second Opium War. The remaining European-style ruins (designed by Jesuit architects) and the vast park around them have a particular melancholy beauty. A sobering counterpart to the Summer Palace, and far less visited.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥10–25</span>
+            <span class="meta-hours">7:00–18:30</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="hood-divider">
+
+    <!-- CHAOYANG -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Chaoyang</span>
+        <span class="hood-zh">朝阳区</span>
+        <span class="hood-badge">Modern · Arts · Nightlife</span>
+      </div>
+      <p class="hood-desc">East of the old city, Chaoyang is modern Beijing — the CBD skyline, the 798 Art District, the Sanlitun bar and shopping zone, and the Olympic Park. It's the part of the city that feels most international, and where the contemporary capital's identity is most visible. A very different experience from Dongcheng or Xicheng, but important for understanding Beijing's full range.</p>
+
+      <div class="img-grid-2">
+        <div class="site-photo site-photo-sq" id="photo-soho">
+          <div class="photo-fallback">🏙️</div>
+          <img id="img-soho" alt="Wangjing SOHO Beijing" />
+          <div class="photo-caption">Wangjing SOHO — Zaha Hadid's fluid towers in Chaoyang</div>
+        </div>
+        <div class="site-photo site-photo-sq" id="photo-birdsnest">
+          <div class="photo-fallback">🏟️</div>
+          <img id="img-birdsnest" alt="Bird's Nest National Stadium Beijing" />
+          <div class="photo-caption">The Bird's Nest — National Stadium from the 2008 Olympics</div>
+        </div>
+      </div>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">798 Art District <span class="zh">798艺术区</span></div>
+            <div class="attraction-desc">A former military electronics factory complex converted into Beijing's main contemporary art hub — galleries, studios, cafés, and public sculpture installations spread across Bauhaus-style industrial buildings. More curated than rough-edged now, but still the best place to see Chinese contemporary art in context. Entry to the district is free; individual galleries charge separately or not at all.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free entry</span>
+            <span class="meta-hours">10:00–18:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Olympic Park & Bird's Nest <span class="zh">奥林匹克公园 · 鸟巢</span></div>
+            <div class="attraction-desc">The stadium complex built for the 2008 Summer Olympics — the Bird's Nest (National Stadium) and Water Cube (National Aquatics Center) remain impressive at scale, both architecturally and as pieces of contemporary Chinese national narrative. The surrounding park is large and pleasant for walking; the towers to the north offer elevated city views.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥30–100</span>
+            <span class="meta-hours">9:00–21:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Sanlitun <span class="zh">三里屯</span></div>
+            <div class="attraction-desc">Beijing's main international bar, restaurant, and shopping district — busy at all hours, with a mix of global brands, independent restaurants, and nightlife venues. The Taikoo Li complex at the centre is a good benchmark for Beijing's contemporary retail design. More useful in the evening than during the day.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Open late</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-photo site-photo-wide" id="photo-nightscape">
+        <div class="photo-fallback">🌃</div>
+        <img id="img-nightscape" alt="Beijing night skyline" style="object-position: center 60%;" />
+        <div class="photo-caption">Beijing by night — the CBD towers illuminate the eastern skyline</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ITINERARIES -->
+  <div class="section" id="itineraries">
+    <div class="section-header">
+      <div class="section-icon">📅</div>
+      <div class="section-title-group">
+        <h2>Itineraries</h2>
+        <p>Structured plans for 3 and 5 days in Beijing</p>
+      </div>
+    </div>
+
+    <h3 class="h3-style">3-Day Classic Beijing</h3>
+    <div class="highlight">The essential Beijing experience — imperial axis, hutong culture, and a Great Wall day trip, with an evening of modern city life to finish.</div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 1</div>
+        <div class="itinerary-title">Imperial Axis — Forbidden City to Wangfujing</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Morning</div>
+          <div class="time-content">
+            <ul>
+              <li>Arrive at Tiananmen Square early — the square is less crowded before 9am</li>
+              <li>Enter the Forbidden City from the Meridian Gate, walk the full north–south axis</li>
+              <li>Exit through the north gate and enter Jingshan Park for the elevated view south</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Afternoon</div>
+          <div class="time-content">
+            <ul>
+              <li>Lunch in the area — zhajiang noodles or a Beijing restaurant near Jingshan</li>
+              <li>Walk south through Dongcheng toward the Temple of Heaven</li>
+              <li>Spend the afternoon in the Temple of Heaven park — watch locals in the outer park</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Evening</div>
+          <div class="time-content">
+            <ul>
+              <li>Dinner on Wangfujing or nearby — roast duck is the obvious first-night choice</li>
+              <li>Walk the Wangfujing pedestrian street in the evening</li>
+            </ul>
+            <p class="time-optional">Optional: Peking Opera performance — the Liyuan Theatre and Chang'an Grand Theatre both offer evening shows accessible to non-Mandarin speakers</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 2</div>
+        <div class="itinerary-title">Hutong Beijing — Shichahai & Nanluoguxiang</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Morning</div>
+          <div class="time-content">
+            <ul>
+              <li>Walk the Shichahai lake circuit — best in early morning when locals are out</li>
+              <li>Explore the branching hutongs east of Houhai (quieter, more residential)</li>
+              <li>Stop at the Drum Tower square for tea or breakfast</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Afternoon</div>
+          <div class="time-content">
+            <ul>
+              <li>Walk south into Nanluoguxiang — browse the alley and its side streets</li>
+              <li>Enter Mao'er Hutong or Ju'er Hutong for a quieter residential perspective</li>
+              <li>Visit the National Art Museum or a nearby gallery if time allows</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Evening</div>
+          <div class="time-content">
+            <ul>
+              <li>Dinner in the hutong area — courtyard restaurants around Shichahai are atmospheric</li>
+              <li>Evening drinks by Houhai lake</li>
+            </ul>
+            <p class="time-optional">Optional: Evening hutong rickshaw tour — touristy but gives a different pace and perspective</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 3</div>
+        <div class="itinerary-title">Summer Palace + Great Wall + Modern Beijing</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Morning</div>
+          <div class="time-content">
+            <ul>
+              <li>Summer Palace — arrive at opening (6:30am) to walk the lake in near-quiet</li>
+              <li>Walk the Long Corridor and climb to the Tower of Buddhist Incense for lake views</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Afternoon</div>
+          <div class="time-content">
+            <ul>
+              <li>Head to the Great Wall — Mutianyu is the most practical for an afternoon visit (cable car option)</li>
+              <li>Allow 2–3 hours on the wall itself</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Evening</div>
+          <div class="time-content">
+            <ul>
+              <li>Return to the city and head east to Sanlitun or the CBD for dinner</li>
+              <li>Night view of the CBD skyline — the illuminated towers from the east ring road are striking</li>
+            </ul>
+            <p class="time-optional">Optional: 798 Art District in the early evening before heading to Sanlitun</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-photo site-photo-wide" style="background: var(--mist); border: 2px dashed var(--border); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:0.5rem;">
+      <div style="font-size:2rem;">🗺️</div>
+      <div style="font-size:0.85rem; color:#999; font-style:italic;">Route map — coming soon</div>
+    </div>
+
+    <h3 class="h3-style">5-Day In-Depth Beijing</h3>
+    <div class="highlight">The 5-day plan builds on the 3-day itinerary, adding deeper hutong exploration, a dedicated Great Wall day, and time to visit secondary sights that reward slower travel.</div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 1</div>
+        <div class="itinerary-title">Imperial Axis Exploration</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Focus</div>
+          <div class="time-content">
+            <ul>
+              <li>Full day on the central axis: Tiananmen, Forbidden City, Jingshan Park</li>
+              <li>Temple of Heaven in the afternoon — the full park circuit takes 2–3 hours</li>
+              <li>First-night Peking duck dinner</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 2</div>
+        <div class="itinerary-title">Temple of Heaven + Cultural Streets</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Focus</div>
+          <div class="time-content">
+            <ul>
+              <li>Return to the Temple of Heaven park in the morning — the outer park at dawn is a different world</li>
+              <li>Walk north through Dongcheng's older commercial streets</li>
+              <li>Afternoon: National Museum of China (one of the world's largest — plan 3+ hours)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 3</div>
+        <div class="itinerary-title">Hutong Immersion</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Focus</div>
+          <div class="time-content">
+            <ul>
+              <li>Full day in Xicheng — Shichahai, Drum Tower, deep hutong walking</li>
+              <li>Nanluoguxiang and its side alleys in the afternoon</li>
+              <li>Evening at Houhai lakeside — dinner, drinks, local atmosphere</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 4</div>
+        <div class="itinerary-title">Great Wall Day Trip</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Focus</div>
+          <div class="time-content">
+            <ul>
+              <li>Full day at the Great Wall — Mutianyu for families and first-timers; Jinshanling for hikers and photographers</li>
+              <li>Leave Beijing by 7–8am to reach the wall by mid-morning and avoid peak crowds</li>
+              <li>Allow at least 3 hours on the wall itself; more if hiking between towers</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 5</div>
+        <div class="itinerary-title">Modern Beijing — 798 + CBD + Nightlife</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Focus</div>
+          <div class="time-content">
+            <ul>
+              <li>Summer Palace or Old Summer Palace in the morning</li>
+              <li>798 Art District in the afternoon — galleries, coffee, gallery-hopping</li>
+              <li>Sanlitun for dinner and the city's best international restaurant options</li>
+              <li>CBD skyline views at night — the illuminated towers from Guomao</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NICHE ROUTES -->
+  <div class="section" id="niche">
+    <div class="section-header">
+      <div class="section-icon">🎭</div>
+      <div class="section-title-group">
+        <h2>Niche Routes</h2>
+        <p>Themed walks for a deeper, less obvious Beijing</p>
+      </div>
+    </div>
+
+    <div class="route-grid">
+      <div class="route-card">
+        <div class="route-num">Route 01</div>
+        <div class="route-name">The Imperial Axis on Foot</div>
+        <div class="route-theme">History · Architecture · Photography</div>
+        <ul>
+          <li>Yongdingmen Gate (south) to Bell Tower (north)</li>
+          <li>Full 7.8km central axis walk — the conceptual spine of the city</li>
+          <li>Tiananmen, Forbidden City, Jingshan, Drum & Bell Towers</li>
+          <li>Best in early morning for light and space</li>
+        </ul>
+        <div class="route-style">Walking · Full day · Best in autumn</div>
+        <div class="site-photo site-photo-sq" style="background:var(--mist);border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;margin-top:1rem;">
+          <div style="font-size:1.5rem;">🗺️</div>
+          <div style="font-size:0.78rem;color:#999;font-style:italic;">Route map — coming soon</div>
+        </div>
+      </div>
+
+      <div class="route-card">
+        <div class="route-num">Route 02</div>
+        <div class="route-name">Deep Hutong Walking</div>
+        <div class="route-theme">Local Life · Urban Texture · Slow Travel</div>
+        <ul>
+          <li>Skip Nanluoguxiang — enter via Mao'er Hutong or Banchang Hutong</li>
+          <li>Weave through the grid east of Shichahai</li>
+          <li>Morning market observations, courtyard gates, old neighbourhood life</li>
+          <li>End at the Drum Tower square for tea</li>
+        </ul>
+        <div class="route-style">Walking · Half day · Best on weekday mornings</div>
+        <div class="site-photo site-photo-sq" style="background:var(--mist);border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;margin-top:1rem;">
+          <div style="font-size:1.5rem;">🗺️</div>
+          <div style="font-size:0.78rem;color:#999;font-style:italic;">Route map — coming soon</div>
+        </div>
+      </div>
+
+      <div class="route-card">
+        <div class="route-num">Route 03</div>
+        <div class="route-name">Photographer's Beijing</div>
+        <div class="route-theme">Photography · Light · Architecture</div>
+        <ul>
+          <li>Jingshan Park at dawn — the Forbidden City roofscape in low light</li>
+          <li>Temple of Heaven outer park: calligraphy writers, morning dancers</li>
+          <li>Hutong doorways and courtyard gates in Xicheng</li>
+          <li>798 Art District for industrial architecture and street art</li>
+        </ul>
+        <div class="route-style">Walking · Full day · Start before 7am</div>
+        <div class="site-photo site-photo-sq" style="background:var(--mist);border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;margin-top:1rem;">
+          <div style="font-size:1.5rem;">🗺️</div>
+          <div style="font-size:0.78rem;color:#999;font-style:italic;">Route map — coming soon</div>
+        </div>
+      </div>
+
+      <div class="route-card">
+        <div class="route-num">Route 04</div>
+        <div class="route-name">Great Wall: Beyond Badaling</div>
+        <div class="route-theme">Hiking · History · Photography</div>
+        <ul>
+          <li>Jinshanling section — rugged, partially unrestored, dramatic ridgeline views</li>
+          <li>Hike between towers along the mountain spine (6–10km possible)</li>
+          <li>Mutianyu cable car option for those less keen on the climb</li>
+          <li>Best visited in autumn for clear skies and turning foliage</li>
+        </ul>
+        <div class="route-style">Day trip · Full day · Best Sep–Nov</div>
+        <div class="site-photo site-photo-sq" style="background:var(--mist);border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;margin-top:1rem;">
+          <div style="font-size:1.5rem;">🗺️</div>
+          <div style="font-size:0.78rem;color:#999;font-style:italic;">Route map — coming soon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GETTING THERE -->
+  <div class="section" id="getting-there">
+    <div class="section-header">
+      <div class="section-icon">✈️</div>
+      <div class="section-title-group">
+        <h2>Getting There</h2>
+        <p>Air, rail, and overland connections to Beijing</p>
+      </div>
+    </div>
+
+    <h3 class="h3-style">By Air</h3>
+    <div class="prose">
+      <p>Beijing is served by two international airports. <strong>Beijing Capital International Airport (PEK)</strong> is the older and more widely used — located about 25km northeast of the city centre, connected by the Airport Express rail line to Sanyuanqiao and Dongzhimen metro stations (30 min, ¥25). <strong>Beijing Daxing International Airport (PKX)</strong> is the newer facility to the south, designed by Zaha Hadid Architects — served by the Daxing Airport Express (roughly 35 min to Caoqiao, ¥35) and now handling a growing share of domestic and international traffic.</p>
+    </div>
+
+    <h3 class="h3-style">By High-Speed Rail</h3>
+    <div class="prose">
+      <p>Beijing is the hub of China's national high-speed rail network. Major services depart from <strong>Beijing South Station</strong> (Beijing Nan) for Shanghai (4.5–5 hrs, G trains), Tianjin (35 min), and Nanjing. <strong>Beijing West Station</strong> handles services toward Xi'an and other western destinations. <strong>Beijing Station</strong> (Jingzhan) handles some slower conventional services. Book tickets through the 12306 app or Trip.com; for popular routes on weekends and holidays, book at least a few days in advance.</p>
+    </div>
+
+    <div class="tip-box">The Airport Express is the fastest and most predictable way from Capital Airport to the city — avoid taxis during rush hour. From Daxing Airport, the express to the southern metro network is similarly reliable.</div>
+  </div>
+
+  <!-- GETTING AROUND -->
+  <div class="section" id="getting-around">
+    <div class="section-header">
+      <div class="section-icon">🚇</div>
+      <div class="section-title-group">
+        <h2>Getting Around</h2>
+        <p>Navigating Beijing's metro, buses, taxis, and on foot</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Transport</th><th>Coverage</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Metro</td><td>Extensive — 27 lines, 500+ stations</td><td>Covers nearly all major sights. Inexpensive (¥3–9 per journey). English signage throughout. A Beijing Transport Card (购物卡) gives discounts on multiple rides.</td></tr>
+          <tr><td>DiDi</td><td>Citywide</td><td>China's main ride-hailing app. Set up in advance — requires Chinese phone number or international registration. More practical than flagging taxis, especially for non-Mandarin speakers.</td></tr>
+          <tr><td>Taxi</td><td>Citywide</td><td>Available but less convenient than DiDi. Carry your destination written in Chinese — most drivers speak minimal English. Metered; fares are reasonable.</td></tr>
+          <tr><td>Bus</td><td>Very extensive</td><td>Cheap (¥2) but harder to navigate without Mandarin. Useful for specific routes the metro misses; map apps (Baidu Maps) show real-time bus info.</td></tr>
+          <tr><td>Walking</td><td>Essential in hutong zones</td><td>Many of Beijing's most interesting areas — especially Xicheng's hutong network — are not penetrated by metro. Walking is the only way to experience them.</td></tr>
+          <tr><td>Bicycle / E-bike</td><td>Good for lake areas and parks</td><td>Shared bikes (Meituan, Hello) are available citywide. Useful for the Summer Palace circuit and the Shichahai lake area. Download one app in advance.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tip-box">Download Baidu Maps (not Google Maps — it doesn't work reliably in China) for transit routing and offline navigation. It handles metro, bus, and walking directions in English.</div>
+  </div>
+
+  <!-- DAY TRIPS -->
+  <div class="section" id="daytrips">
+    <div class="section-header">
+      <div class="section-icon">🚌</div>
+      <div class="section-title-group">
+        <h2>Day Trips</h2>
+        <p>Beyond the city — the Great Wall and surrounding destinations</p>
+      </div>
+    </div>
+
+    <div class="daytrip-grid">
+      <div class="daytrip-card">
+        <h4>Mutianyu Great Wall 慕田峪</h4>
+        <div class="daytrip-meta"><span>🚌 1.5–2 hrs</span><span>Full day</span></div>
+        <p>The most visitor-friendly Great Wall section — scenic, well-maintained, and less crowded than Badaling. Cable car and toboggan slide available. Good for families and first-time visitors. Book transport or a tour in advance from the city.</p>
+      </div>
+      <div class="daytrip-card">
+        <h4>Jinshanling Great Wall 金山岭</h4>
+        <div class="daytrip-meta"><span>🚌 2.5 hrs</span><span>Full day</span></div>
+        <p>The best section for hiking and photography — partially unrestored, dramatic ridgeline terrain, and fewer crowds than the main tourist sections. The hike between towers is excellent in autumn. An early start is essential to maximise time on the wall.</p>
+      </div>
+      <div class="daytrip-card">
+        <h4>Badaling Great Wall 八达岭</h4>
+        <div class="daytrip-meta"><span>🚄 1 hr</span><span>Half day</span></div>
+        <p>The most-visited and fully restored section — easy to reach by direct high-speed train from Badaling Station (opened 2019, tunnelled under the mountain). Expect large crowds on weekends and holidays. The views are impressive despite the bustle.</p>
+      </div>
+      <div class="daytrip-card">
+        <h4>Tianjin 天津</h4>
+        <div class="daytrip-meta"><span>🚄 35 min</span><span>Full day</span></div>
+        <p>A major port city with a well-preserved European concession area (Italian, French, and British quarters still standing), a lively food culture centred on goubuli baozi and mahua pastry, and a very different scale and pace from Beijing.</p>
+      </div>
+    </div>
+
+    <div class="tip-box">For the Great Wall, consider a private driver or a small-group tour for sections like Jinshanling — public transport options are limited and an early start makes a significant difference to the experience. Book online the day before.</div>
+  </div>
+
+  <!-- PRACTICAL INFO -->
+  <div class="section" id="practical">
+    <div class="section-header">
+      <div class="section-icon">📋</div>
+      <div class="section-title-group">
+        <h2>Practical Information</h2>
+        <p>Everything you need before you arrive in Beijing</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Topic</th><th>Details</th></tr></thead>
+        <tbody>
+          <tr><td>Currency</td><td>Chinese Yuan (RMB / ¥). WeChat Pay and Alipay are dominant — both support international credit cards. Set one up before arriving. ATMs widely available at banks and convenience stores.</td></tr>
+          <tr><td>Language</td><td>Mandarin. English is available in major tourist zones, hotels, and metro stations, but limited in hutongs and local areas. Save your hotel address and key destinations in Chinese characters — essential for taxis and local shops.</td></tr>
+          <tr><td>Internet</td><td>Google, WhatsApp, Instagram, and most Western apps are blocked. Install a VPN <strong>before you arrive</strong> — it cannot be downloaded once inside China. See the <a href="../topics/internet.html" style="color:var(--red);font-weight:600;">internet guide</a>.</td></tr>
+          <tr><td>SIM Card</td><td>Available at Capital Airport on arrival — China Mobile, Unicom, and Telecom all have counters. eSIM options available from some overseas providers before departure.</td></tr>
+          <tr><td>Booking Tickets</td><td>The Forbidden City and Tiananmen Square require advance online reservation — capacity is strictly limited. Book on the official Palace Museum (故宫) website 1–7 days ahead, especially during Golden Week (Oct 1–7) and Chinese New Year.</td></tr>
+          <tr><td>Emergency</td><td>Police 110 · Fire 119 · Ambulance 120 · Tourist helpline 12301</td></tr>
+          <tr><td>Hospitals</td><td>Beijing United Family Hospital (朝阳区) and Peking Union Medical College Hospital are most foreigner-accessible. Bring your passport. International travel insurance with medical cover is strongly recommended.</td></tr>
+          <tr><td>Electricity</td><td>220V / 50Hz. Type I (Australia-style) and Type A (US-style flat pin) sockets common. European two-pin often fits. US visitors typically need an adaptor.</td></tr>
+          <tr><td>Tipping</td><td>Not expected or customary anywhere in Beijing. High-end hotels may have some international tip culture but it is never required.</td></tr>
+          <tr><td>Visa</td><td>Many nationalities now qualify for 30-day visa-free entry, or 144-hour transit without visa. Check the <a href="../topics/visa.html" style="color:var(--red);font-weight:600;">visa page</a> for current rules.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="highlight"><strong>Best travel pace:</strong> Beijing is a city of layers rather than speed. Walking slowly in hutongs, spending extended time in imperial sites, and making space to simply observe — these are what the city rewards most. Resist the urge to see everything; choose a few things and go deep.</div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section" id="faq">
+    <div class="section-header">
+      <div class="section-icon">❓</div>
+      <div class="section-title-group">
+        <h2>Frequently Asked Questions</h2>
+        <p>Common questions from first-time Beijing visitors</p>
+      </div>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">How many days do I need in Beijing? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Three days covers the major Imperial sites, one hutong area, and a Great Wall section without feeling rushed. Five days gives you room to slow down, explore less-visited corners, add the Summer Palace properly, and have time to let the city settle. Many visitors find three days satisfying but wish they had more — Beijing reveals itself gradually.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Which Great Wall section should I visit? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">For most first-time visitors, Mutianyu is the best balance — scenic, accessible, less crowded than Badaling, and has a cable car option. Jinshanling is the best choice if you want to hike and take photography seriously; it's more rugged and requires a longer journey. Badaling is the most visited and easiest to reach (direct high-speed train), but is very crowded on weekends and holidays.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I need to book the Forbidden City in advance? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes — entry is strictly capped and tickets often sell out days ahead, especially in spring and autumn. Book on the official Palace Museum website (pm.cn) with your passport number. Arrive early in the morning — the complex gets significantly more crowded as the day progresses. Closed on Mondays.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is Beijing safe for tourists? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Very safe by international standards. Violent crime against tourists is extremely rare. The main risks are tourist scams — particularly around Tiananmen and Wangfujing, where approaches to visit "art exhibitions" or drink tea are common traps. Be politely firm with unsolicited invitations, and you'll have no issues. See the <a href="../topics/safety.html" style="color:var(--red);">safety guide</a> for detail.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I need a VPN in Beijing? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes, if you want to use Google, Instagram, WhatsApp, Gmail, YouTube, or most Western apps — all are blocked in mainland China. Download and test a VPN before you leave home; it cannot be installed once inside the country. See the <a href="../topics/internet.html" style="color:var(--red);">internet guide</a> for recommended options.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What's the best area to stay in Beijing? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Dongcheng District (around Wangfujing and the Forbidden City) is the most central and convenient for first-timers — close to the main imperial sights and well-connected by metro. Xicheng (around Shichahai / Houhai) is more atmospheric and characterful, ideal if you want to be immersed in the hutong neighbourhoods. Avoid Chaoyang unless you specifically want the CBD or Sanlitun area as your base.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I get around Beijing without speaking Mandarin? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes — major tourist areas, all metro stations, and most hotels have English signage and support. Outside these areas, and especially in hutong neighbourhoods and local restaurants, English is rarely spoken. Save your hotel address and key destinations in Chinese characters on your phone, and use translation apps (DeepL, Google Translate) offline. A few basic Mandarin phrases are always appreciated.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEEP READING -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">📚</div>
+      <div class="section-title-group">
+        <h2>Keep Reading</h2>
+        <p>More guides to help plan your trip</p>
+      </div>
+    </div>
+    <div class="related-grid">
+      <a href="../topics/transport.html" class="related-card">
+        <div class="related-label">Topic</div>
+        <div class="related-title">Getting Around China</div>
+        <div class="related-desc">High-speed rail, metro, DiDi — the full guide to moving around.</div>
+      </a>
+      <a href="../topics/food.html" class="related-card">
+        <div class="related-label">Topic</div>
+        <div class="related-title">Food & Dining</div>
+        <div class="related-desc">How to order, dietary needs, and China's eight regional cuisines.</div>
+      </a>
+      <a href="../topics/money.html" class="related-card">
+        <div class="related-label">Topic</div>
+        <div class="related-title">Money & Payments</div>
+        <div class="related-desc">Setting up Alipay, finding ATMs, and using foreign cards in China.</div>
+      </a>
+      <a href="../topics/internet.html" class="related-card">
+        <div class="related-label">Topic</div>
+        <div class="related-title">Internet & VPNs</div>
+        <div class="related-desc">The Great Firewall explained, and how to stay connected.</div>
+      </a>
+    </div>
+  </div>
+
+  <a href="../index.html" class="back-link">← Back to Home</a>
+</div>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // ── PHOTO LOADER ──
+  const PHOTOS = [
+    // Overview panorama — Forbidden City wide
+    {
+      img: 'img-panorama', wrap: 'photo-panorama',
+      src: 'https://images.unsplash.com/photo-1614555383820-941c466f1b52?q=80&w=1824&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    // History — Forbidden City portrait + Great Wall portrait
+    {
+      img: 'img-forbiddencity', wrap: 'photo-forbiddencity',
+      src: 'https://images.unsplash.com/photo-1603120527222-33f28c2ce89e?q=80&w=908&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    {
+      img: 'img-greatwall-sq', wrap: 'photo-greatwall-sq',
+      src: 'https://images.unsplash.com/photo-1582895516735-25a974f11f2c?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    // Dongcheng — Tiananmen wide
+    {
+      img: 'img-tiananmen', wrap: 'photo-tiananmen',
+      src: 'https://images.unsplash.com/photo-1586784444981-ac96e335555c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    // Dongcheng — Temple of Heaven wide
+    {
+      img: 'img-tiantan', wrap: 'photo-tiantan',
+      src: 'https://images.unsplash.com/photo-1584872589930-e99fe5bf4408?q=80&w=1754&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    // Xicheng — Grand Theatre portrait + Summer Palace portrait
+    {
+      img: 'img-grandtheatre', wrap: 'photo-grandtheatre',
+      src: 'https://images.unsplash.com/photo-1713540161414-c76d8efcdf40?q=80&w=1876&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    {
+      img: 'img-yiheyuan-sq', wrap: 'photo-yiheyuan-sq',
+      src: 'https://images.unsplash.com/photo-1628859334254-6a175577d4ee?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    // Haidian — Summer Palace wide
+    {
+      img: 'img-summerpalace', wrap: 'photo-summerpalace',
+      src: 'https://images.unsplash.com/photo-1591275520356-63e1cdae0cea?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjM1fHxiZWlqaW5nfGVufDB8fDB8fHww'
+    },
+    // Chaoyang — SOHO portrait + Bird's Nest portrait
+    {
+      img: 'img-soho', wrap: 'photo-soho',
+      src: 'https://images.unsplash.com/photo-1515986503437-c617811ba008?q=80&w=930&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    {
+      img: 'img-birdsnest', wrap: 'photo-birdsnest',
+      src: 'https://images.unsplash.com/photo-1647549666881-d1d23dd72f78?q=80&w=2576&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    // Chaoyang — night skyline wide
+    {
+      img: 'img-nightscape', wrap: 'photo-nightscape',
+      src: 'https://images.unsplash.com/photo-1677818911820-7111f3292f9b?q=80&w=2563&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+  ];
+
+  function loadPhotos() {
+    PHOTOS.forEach(({ img: imgId, wrap: wrapId, src }) => {
+      const imgEl = document.getElementById(imgId);
+      const wrapEl = document.getElementById(wrapId);
+      if (!imgEl || !wrapEl) return;
+      imgEl.onload = () => {
+        imgEl.classList.add('loaded');
+        wrapEl.classList.add('loaded');
+      };
+      imgEl.onerror = () => imgEl.remove();
+      imgEl.src = src;
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', loadPhotos);
+</script>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo-text">China Awaits</div>
+        <div class="footer-tagline">Your trusted guide for exploring China · chinaawaits.com</div>
+      </div>
+      <div class="footer-nav">
+        <a href="../index.html#cities">Cities</a>
+        <a href="../index.html#topics">Topics</a>
+        <a href="../index.html#essentials">Essentials</a>
+        <a href="../contact.html" class="footer-contact">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 China Awaits. All rights reserved.</span>
+      <span>chinaawaits.com</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
