@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xi'an Travel Guide — China Awaits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #C0392B; --red-dark: #96281B;
+      --gold: #C9A84C; --gold-light: #e8c96a;
+      --ink: #1a1a1a; --ink-soft: #3d3d3d;
+      --mist: #f7f4f0; --mist-dark: #ede9e3;
+      --white: #ffffff; --border: #e0d9d0;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,0.14);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); line-height: 1.7; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 60px; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--red); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a { font-size: 14px; font-weight: 400; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--red); }
+
+    /* HERO */
+    .hero { background: var(--ink); position: relative; overflow: hidden; padding: 5rem 2rem 4rem; text-align: center; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 60%, rgba(192,57,43,0.30) 0%, transparent 55%), radial-gradient(ellipse at 80% 35%, rgba(201,168,76,0.20) 0%, transparent 55%); }
+    .hero-pattern { position: absolute; inset: 0; opacity: 0.035; background-image: repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%); background-size: 20px 20px; }
+    .hero-tag { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,0.4); padding: 0.3rem 0.9rem; border-radius: 2px; margin-bottom: 1.5rem; position: relative; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 1rem; position: relative; }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.65); max-width: 560px; margin: 0 auto 2.5rem; position: relative; }
+    .jump-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; position: relative; }
+    .jump-nav a { display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 0.45rem 1rem; border-radius: 40px; text-decoration: none; transition: all 0.2s; }
+    .jump-nav a:hover { background: rgba(201,168,76,0.2); border-color: var(--gold); color: var(--gold); }
+
+    /* LAYOUT */
+    .page-wrap { max-width: 860px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+    /* SECTION */
+    .section { margin-top: 4.5rem; scroll-margin-top: 80px; }
+    .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.8rem; padding-bottom: 1rem; border-bottom: 2px solid var(--border); }
+    .section-icon { width: 48px; height: 48px; background: var(--red); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+    .section-title-group h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+    .section-title-group p { font-size: 0.88rem; color: #888; margin-top: 0.1rem; }
+
+    /* PROSE */
+    .prose p { font-size: 0.97rem; color: var(--ink-soft); margin-bottom: 1rem; }
+    .prose strong { color: var(--ink); font-weight: 600; }
+
+    /* BOXES */
+    .highlight { background: var(--mist); border-left: 3px solid var(--gold); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1.2rem 0; font-size: 0.93rem; color: var(--ink-soft); }
+    .highlight strong { color: var(--ink); }
+    .tip-box { background: #fff8ee; border: 1px solid #f0d990; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #6b5b1a; }
+    .tip-box::before { content: '💡 Tip: '; font-weight: 600; }
+    .warning-box { background: #fff5f5; border: 1px solid #f5c6c6; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #7a2020; }
+    .warning-box::before { content: '⚠️ Note: '; font-weight: 600; }
+
+    /* BULLET LIST */
+    .bullet-list { list-style: none; margin: 1rem 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .bullet-list li { display: grid; grid-template-columns: 1rem 1fr; column-gap: 0.7rem; font-size: 0.93rem; color: var(--ink-soft); align-items: start; }
+    .bullet-list li::before { content: '—'; color: var(--gold); font-weight: 700; margin-top: 2px; }
+    .bullet-list li .li-content { display: block; }
+    .bullet-list li .sub { display: block; font-size: 0.83rem; color: #999; margin-top: 0.2rem; }
+
+    /* TABLE */
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    thead { background: var(--ink); color: white; }
+    thead th { padding: 0.85rem 1rem; text-align: left; font-weight: 600; font-size: 0.83rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:nth-child(even) { background: var(--mist); }
+    tbody td { padding: 0.85rem 1rem; color: var(--ink-soft); vertical-align: top; }
+    tbody td:first-child { font-weight: 600; color: var(--ink); }
+
+    /* CARD GRID */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; transition: box-shadow 0.2s, transform 0.2s; }
+    .card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+    .card-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+    .card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .card p { font-size: 0.87rem; color: #666; line-height: 1.5; }
+
+    /* SEASON STRIP */
+    .season-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; margin: 1.2rem 0; }
+    .season-box { border-radius: 10px; padding: 0.9rem 0.8rem; text-align: center; border: 1px solid var(--border); }
+    .season-box.best  { background: #f0fdf4; border-color: #bbf7d0; }
+    .season-box.ok    { background: #fffbeb; border-color: #fde68a; }
+    .season-box.avoid { background: #fff5f5; border-color: #fecaca; }
+    .season-name { font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem; }
+    .season-box.best  .season-name { color: #166534; }
+    .season-box.ok    .season-name { color: #92400e; }
+    .season-box.avoid .season-name { color: #991b1b; }
+    .season-months { font-size: 0.75rem; color: #999; margin-bottom: 0.4rem; }
+    .season-note { font-size: 0.78rem; color: #666; line-height: 1.4; }
+
+    /* SITE PHOTOS */
+    .site-photo { position: relative; border-radius: 14px; overflow: hidden; margin: 1.4rem 0; background: linear-gradient(135deg, rgba(192,57,43,0.1), rgba(201,168,76,0.15)); }
+    .site-photo-wide { height: 300px; }
+    .site-photo-sq { aspect-ratio: 3/4; height: auto; }
+    .site-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s ease; }
+    .site-photo img.loaded { opacity: 1; }
+    .site-photo .photo-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 0.5rem 0.9rem; background: linear-gradient(transparent, rgba(0,0,0,0.55)); font-size: 0.72rem; color: rgba(255,255,255,0.9); font-style: italic; opacity: 0; transition: opacity 0.4s; }
+    .site-photo.loaded .photo-caption { opacity: 1; }
+    .site-photo .photo-fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; transition: opacity 0.3s; }
+    .site-photo.loaded .photo-fallback { opacity: 0; pointer-events: none; }
+    .img-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin: 1.4rem 0; }
+    .img-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem; margin: 1.4rem 0; }
+
+    /* NEIGHBOURHOOD BLOCK */
+    .hood-block { margin-bottom: 3rem; }
+    .hood-title-row { display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 0.3rem; flex-wrap: wrap; }
+    .hood-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--ink); }
+    .hood-zh { font-size: 0.9rem; color: var(--gold); font-weight: 600; }
+    .hood-badge { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; background: rgba(192,57,43,0.08); color: var(--red); padding: 0.2rem 0.65rem; border-radius: 20px; border: 1px solid rgba(192,57,43,0.2); }
+    .hood-desc { font-size: 0.95rem; color: var(--ink-soft); margin-bottom: 1rem; line-height: 1.65; }
+    .hood-divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+    /* ATTRACTION LIST inside hood */
+    .attraction-list { display: flex; flex-direction: column; gap: 0.7rem; margin: 0.8rem 0 1.2rem; }
+    .attraction-item { display: grid; grid-template-columns: 1fr auto; gap: 0.5rem 1rem; background: var(--mist); border: 1px solid var(--border); border-radius: 10px; padding: 0.85rem 1rem; align-items: start; }
+    .attraction-name { font-weight: 600; font-size: 0.93rem; color: var(--ink); }
+    .attraction-name .zh { font-size: 0.8rem; color: var(--gold); font-weight: 600; margin-left: 0.4rem; }
+    .attraction-desc { font-size: 0.85rem; color: #666; line-height: 1.5; margin-top: 0.2rem; grid-column: 1; }
+    .attraction-meta { text-align: right; flex-shrink: 0; display: flex; flex-direction: column; gap: 0.2rem; align-items: flex-end; }
+    .meta-price { font-size: 0.78rem; font-weight: 700; color: var(--red); background: rgba(192,57,43,0.07); padding: 0.15rem 0.55rem; border-radius: 4px; }
+    .meta-hours { font-size: 0.75rem; color: #999; }
+
+    /* ITINERARY */
+    .itinerary-block { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 1.5rem; }
+    .itinerary-header { background: var(--ink); color: var(--white); padding: 1rem 1.4rem; display: flex; align-items: center; gap: 1rem; }
+    .itinerary-day { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--gold); white-space: nowrap; }
+    .itinerary-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; color: var(--white); }
+    .itinerary-body { padding: 1.2rem 1.4rem; display: flex; flex-direction: column; gap: 1rem; }
+    .time-block { display: grid; grid-template-columns: 70px 1fr; gap: 0 1rem; }
+    .time-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); padding-top: 0.1rem; }
+    .time-content ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .time-content ul li { font-size: 0.9rem; color: var(--ink-soft); display: flex; align-items: baseline; gap: 0.5rem; }
+    .time-content ul li::before { content: '·'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+    .time-optional { font-size: 0.82rem; color: #aaa; font-style: italic; margin-top: 0.3rem; }
+
+    /* ROUTE CARDS */
+    .route-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .route-card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; }
+    .route-num { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+    .route-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .route-theme { font-size: 0.78rem; color: #888; margin-bottom: 0.7rem; font-style: italic; }
+    .route-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .route-card ul li { font-size: 0.85rem; color: var(--ink-soft); display: flex; gap: 0.5rem; }
+    .route-card ul li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
+    .route-style { margin-top: 0.8rem; font-size: 0.78rem; color: #999; font-style: italic; }
+
+    /* DAYTRIP */
+    .daytrip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .daytrip-card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; }
+    .daytrip-card h4 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .daytrip-meta { display: flex; gap: 0.6rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
+    .daytrip-meta span { font-size: 0.75rem; font-weight: 600; color: #888; }
+    .daytrip-card p { font-size: 0.85rem; color: #666; line-height: 1.5; }
+
+    /* FAQ */
+    .faq { margin: 1.5rem 0; }
+    .faq-item { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 0.6rem; overflow: hidden; }
+    .faq-q { width: 100%; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.2rem; font-family: 'DM Sans', sans-serif; font-size: 0.93rem; font-weight: 600; color: var(--ink); text-align: left; gap: 1rem; }
+    .faq-q:hover { background: var(--mist); }
+    .faq-arrow { font-size: 1rem; color: var(--gold); transition: transform 0.25s; flex-shrink: 0; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0.8rem 1.2rem 1rem; font-size: 0.9rem; color: var(--ink-soft); border-top: 1px solid var(--border); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* RELATED */
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .related-card { display: block; background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.1rem; text-decoration: none; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
+    .related-card:hover { border-color: var(--red); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .related-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 0.3rem; }
+    .related-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; }
+    .related-desc { font-size: 0.82rem; color: #888; line-height: 1.4; }
+
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.88rem; font-weight: 500; color: var(--red); text-decoration: none; margin-top: 3rem; }
+    .back-link:hover { text-decoration: underline; }
+    .h3-style { font-family: 'Playfair Display', serif; font-size: 1.15rem; margin: 1.8rem 0 0.9rem; color: var(--ink); }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .page-wrap { padding: 0 1rem 4rem; }
+      .hero { padding: 3.5rem 1rem 3rem; }
+      .season-strip { grid-template-columns: repeat(2, 1fr); }
+      .img-grid-2, .img-grid-3 { grid-template-columns: 1fr; }
+      .time-block { grid-template-columns: 60px 1fr; }
+      .attraction-item { grid-template-columns: 1fr; }
+      .attraction-meta { flex-direction: row; align-items: center; }
+    }
+
+    /* FOOTER */
+    footer { background: transparent; border-top: 1px solid var(--border); padding: 2.8rem 2rem 2rem; margin-top: 2rem; }
+    .footer-inner { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.6rem; }
+    .footer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .footer-brand { display: flex; flex-direction: column; gap: .35rem; }
+    .footer-logo-text { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--red); }
+    .footer-tagline { font-size: 13px; color: var(--ink-soft); }
+    .footer-nav { display: flex; flex-wrap: wrap; gap: .5rem 1.6rem; align-items: center; }
+    .footer-nav a { text-decoration: none; font-size: 14px; color: var(--ink-soft); font-weight: 400; transition: color .2s; }
+    .footer-nav a:hover { color: var(--red); }
+    .footer-contact { background: var(--red); color: #fff !important; padding: 6px 16px; border-radius: 24px; font-size: 13px !important; font-weight: 500; }
+    .footer-contact:hover { background: var(--red-dark) !important; }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 1.2rem; font-size: 12px; color: var(--ink-soft); display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">China Awaits</a>
+  <ul class="nav-links">
+    <li><a href="../index.html#cities">Cities</a></li>
+    <li><a href="../index.html#topics">Topics</a></li>
+    <li><a href="../index.html#essentials">Essentials</a></li>
+    <li><a href="../contact.html">Contact Us</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-tag">City Guide</div>
+  <h1><span>Xi'an</span> 西安</h1>
+  <p class="hero-sub">China's ancient imperial capital — where Ming city walls, Tang Buddhist pagodas, and 2,000-year-old Terracotta Warriors bring 13 dynasties of history to life.</p>
+  <div class="jump-nav">
+    <a href="#overview">🏯 Overview</a>
+    <a href="#history">🏛️ History</a>
+    <a href="#neighbourhoods">🗺️ Areas & Sights</a>
+    <a href="#itineraries">📅 Itineraries</a>
+    <a href="#niche">🎭 Niche Routes</a>
+    <a href="#getting-there">✈️ Getting There</a>
+    <a href="#getting-around">🚇 Getting Around</a>
+    <a href="#daytrips">🚄 Day Trips</a>
+    <a href="#practical">📋 Practical Info</a>
+    <a href="#faq">❓ FAQ</a>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- OVERVIEW -->
+  <div class="section" id="overview">
+    <div class="section-header">
+      <div class="section-icon">🏯</div>
+      <div class="section-title-group">
+        <h2>Welcome to Xi'an</h2>
+        <p>The eternal capital, the start of the Silk Road</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Known through history as Chang'an, "the City of Eternal Peace," Xi'an is China's most storied ancient capital and the eastern starting point of the Silk Road. For over 3,100 years and 13 dynasties, this was the seat of imperial power — and today it's a rare place where an intact Ming-era city wall, grand Tang pagodas, Muslim courtyard quarters, and sleek modern waterfront districts all sit within the same city limits.</p>
+      <p>Beyond the world-famous Terracotta Warriors, Xi'an's real charm is in how royal grandeur and everyday street life sit side by side. Cycle the full 13.7 km ancient wall at sunset, wander lantern-lit Muslim Quarter alleys thick with the smell of noodles and lamb, and watch the fountains dance under the Big Wild Goose Pagoda after dark.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">⚱️</div>
+        <h3>Imperial Archaeology</h3>
+        <p>Home to the Terracotta Army and thousands of years of dynastic relics — few places on earth offer this depth of ancient Chinese history in one destination.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🐫</div>
+        <h3>Silk Road Heritage</h3>
+        <p>Chang'an was the eastern terminus of the Silk Road — a melting pot of Persian, Central Asian, and Buddhist culture whose traces remain in the Muslim Quarter and Great Mosque today.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏮</div>
+        <h3>Tang Dynasty Nightscapes</h3>
+        <p>Qujiang New District glows after dark with lantern-lit streets, musical fountains, and immersive Tang-style performances recreating the golden age of Chang'an.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🍜</div>
+        <h3>Northern Shaanxi Cuisine</h3>
+        <p>Hand-torn biangbiang noodles, lamb soup with crumbled flatbread, and roujiamo — bold, hearty wheat-and-lamb cooking rooted in Guanzhong farming and Silk Road fusion.</p>
+      </div>
+    </div>
+
+    <h3 class="h3-style">Best Time to Visit</h3>
+    <div class="season-strip">
+      <div class="season-box best">
+        <div class="season-name">✓ Spring</div>
+        <div class="season-months">Mar – May</div>
+        <div class="season-note">Mild temperatures, peach blossoms on Lishan, comfortable wall-cycling weather. Best overall.</div>
+      </div>
+      <div class="season-box avoid">
+        <div class="season-name">✗ Summer</div>
+        <div class="season-months">Jun – Aug</div>
+        <div class="season-note">Hot and dry, often above 32°C. Visit outdoor sites before 9am and save afternoons for museums.</div>
+      </div>
+      <div class="season-box best">
+        <div class="season-name">✓ Autumn</div>
+        <div class="season-months">Sep – Nov</div>
+        <div class="season-note">Peak season for a reason — cool dry air, golden foliage, and the best light for city wall photography.</div>
+      </div>
+      <div class="season-box ok">
+        <div class="season-name">~ Winter</div>
+        <div class="season-months">Dec – Feb</div>
+        <div class="season-note">Cold and quiet, occasional snow over the pagodas. Fewer tourists and steaming lamb paomo to warm up.</div>
+      </div>
+    </div>
+
+    <div class="highlight"><strong>Snapshot:</strong> Population ~13 million · Time zone UTC+8 · Currency RMB (¥) · Language Mandarin (Shaanxi dialect spoken locally) · Airport Xi'an Xianyang International (XIY)</div>
+  </div>
+
+  <!-- HISTORY & ARCHITECTURE -->
+  <div class="section" id="history">
+    <div class="section-header">
+      <div class="section-icon">🏛️</div>
+      <div class="section-title-group">
+        <h2>History & Architecture</h2>
+        <p>13 dynasties, one continuous timeline</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Before the Qin Dynasty, Xi'an was already the heart of Guanzhong civilization. In 221 BC Emperor Qin Shi Huang unified China here and built his mausoleum guarded by the Terracotta Army. Under the Han Dynasty, Chang'an became the eastern anchor of the Silk Road, drawing merchants, monks, and diplomats from Persia and Central Asia.</p>
+      <p>The Tang Dynasty (618–907) was Chang'an's golden age — briefly the largest city on earth, with over a million residents, grand palaces, and flourishing Buddhism. After the Ming Dynasty rebuilt the city with the massive brick wall that still encircles the old town, Xi'an settled into its role as a cradle of Chinese civilization, one that today links inland China to Eurasian trade once again.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🏯</div>
+        <h3>Ming City Wall & Bell-Drum Towers</h3>
+        <p>China's best-preserved complete city fortification — 13.7 km of 12-metre brick ramparts. At the historic centre, the symmetrical Bell and Drum Towers once kept time for the whole city.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🛕</div>
+        <h3>Tang Buddhist Pagodas</h3>
+        <p>Simple, solid brick towers built to shelter Silk Road scriptures. The Big Wild Goose Pagoda and its slender sibling, the Small Wild Goose Pagoda, are the finest surviving examples.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🕌</div>
+        <h3>Sino-Islamic Courtyards</h3>
+        <p>The Great Mosque hides deep in the Muslim Quarter — Chinese courtyard layouts and upturned-eave wooden halls carrying Islamic geometric carving, with no domes or minarets in sight.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚱️</div>
+        <h3>Underground Qin Mausoleum</h3>
+        <p>Beneath Lishan lies one of the greatest archaeological finds in history — thousands of individually sculpted Terracotta Warriors, each with unique facial features.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEIGHBOURHOODS + ATTRACTIONS -->
+  <div class="section" id="neighbourhoods">
+    <div class="section-header">
+      <div class="section-icon">🗺️</div>
+      <div class="section-title-group">
+        <h2>Areas & Sights</h2>
+        <p>Where to go and what to see in each district</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Xi'an's essential sights cluster into a handful of distinct zones — the walled old city, the Tang-heritage new district to the south, the Muslim Quarter's back lanes, and the Terracotta Army complex out toward Lishan. Most visitors can cover the old town on foot and reach everything else by metro or a short taxi ride.</p>
+    </div>
+
+    <!-- OLD CITY CENTER -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Old City Center</span>
+        <span class="hood-zh">老城区</span>
+        <span class="hood-badge">Iconic · Start Here</span>
+      </div>
+      <p class="hood-desc">The historic heart within the Ming wall — Bell Tower, Drum Tower, the full circuit of city ramparts, and the Muslim Quarter's food-stall alleys all within walking distance of each other. Best explored as a full day, combining daytime architecture with an evening food crawl.</p>
+
+      <div class="site-photo site-photo-wide" id="photo-wall-wide">
+        <div class="photo-fallback">🏯</div>
+        <img id="img-wall-wide" alt="Xi'an City Wall panorama" />
+        <div class="photo-caption">Xi'an City Wall — cycling the complete 13.7km loop</div>
+      </div>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Xi'an City Wall <span class="zh">西安城墙</span></div>
+            <div class="attraction-desc">Cycle or walk the complete 13.7 km loop atop the ramparts. Start from Yongningmen (South Gate) for sunrise and the best layered views of old and new Xi'an. Bike rental available at every gate.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥54</span>
+            <span class="meta-hours">8:00–21:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Bell Tower & Drum Tower <span class="zh">钟楼 · 鼓楼</span></div>
+            <div class="attraction-desc">Symmetrical multi-story wooden towers marking the geometric centre of the ancient city grid. The Muslim Quarter begins right between them.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥50 combined</span>
+            <span class="meta-hours">8:30–22:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Muslim Quarter Food Streets <span class="zh">回民街</span></div>
+            <div class="attraction-desc">The lively market lanes between Drum Tower and the Great Mosque — roujiamo, liangpi, and lamb soup stalls running from morning until midnight.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">9:00–23:00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-photo site-photo-wide" id="photo-belltower">
+        <div class="photo-fallback">🔔</div>
+        <img id="img-belltower" alt="Xi'an Bell Tower" />
+        <div class="photo-caption">Bell Tower — the historic centre of the ancient city grid</div>
+      </div>
+
+      <div class="site-photo site-photo-sq" id="photo-wall-sq" style="max-width: 340px;">
+        <div class="photo-fallback">🧱</div>
+        <img id="img-wall-sq" alt="Xi'an City Wall detail" />
+        <div class="photo-caption">Xi'an City Wall — up close on the ramparts</div>
+      </div>
+    </div>
+    <hr class="hood-divider">
+
+    <!-- QUJIANG NEW DISTRICT -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Qujiang New District</span>
+        <span class="hood-zh">曲江新区</span>
+        <span class="hood-badge">Tang Culture · Night Views</span>
+      </div>
+      <p class="hood-desc">South of the old town, Qujiang unifies Tang-style architecture with Xi'an's grandest museum and Buddhist heritage. Visit in the late afternoon to carry through into the evening fountain and lantern shows.</p>
+
+      <div class="img-grid-2">
+        <div class="site-photo site-photo-sq" id="photo-goose">
+          <div class="photo-fallback">🛕</div>
+          <img id="img-goose" alt="Big Wild Goose Pagoda Xi'an" />
+          <div class="photo-caption">Big Wild Goose Pagoda — Monk Xuanzang's Silk Road pagoda</div>
+        </div>
+        <div class="site-photo site-photo-sq" id="photo-tangparadise">
+          <div class="photo-fallback">🏮</div>
+          <img id="img-tangparadise" alt="Tang Paradise Xi'an" />
+          <div class="photo-caption">Tang Paradise — recreated royal garden and night performances</div>
+        </div>
+      </div>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Big Wild Goose Pagoda & Da Ci'en Temple <span class="zh">大雁塔 · 大慈恩寺</span></div>
+            <div class="attraction-desc">The 7-story brick pagoda commissioned by Monk Xuanzang, a UNESCO Silk Road site. Reserve time in the north square for Asia's largest musical fountain show after dark.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥50 (+¥25 to climb)</span>
+            <span class="meta-hours">8:30–18:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Shaanxi History Museum <span class="zh">陕西历史博物馆</span></div>
+            <div class="attraction-desc">370,000 relics spanning prehistory to the Tang golden age, including priceless gold and silver wares. Book the free standard exhibition well ahead — it sells out.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free (reserve ahead)</span>
+            <span class="meta-hours">9:00–17:30, closed Mon</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Tang Paradise <span class="zh">大唐芙蓉园</span></div>
+            <div class="attraction-desc">A recreated Tang royal garden with lake, pavilions, floating lanterns, and nightly costume performances. Best visited after sunset.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥120</span>
+            <span class="meta-hours">9:00–21:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Small Wild Goose Pagoda & Beilin Museum <span class="zh">小雁塔 · 碑林博物馆</span></div>
+            <div class="attraction-desc">A quieter, more slender pagoda paired with a museum of ancient stone calligraphy tablets — a must for anyone drawn to Chinese art and script.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥65 (Beilin)</span>
+            <span class="meta-hours">8:00–18:30</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="hood-divider">
+
+    <!-- GREAT MOSQUE & BACK ALLEYS -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Great Mosque & Muslim Quarter Back Alleys</span>
+        <span class="hood-zh">清真大寺</span>
+        <span class="hood-badge">Hidden Gem</span>
+      </div>
+      <p class="hood-desc">Duck off the main food street and into the Great Mosque's quiet multi-courtyard complex, then keep wandering the residential back alleys beyond it — fewer crowds, more authentic halal snacks, and a completely different pace than the main thoroughfare.</p>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Great Mosque <span class="zh">清真大寺</span></div>
+            <div class="attraction-desc">A unique fusion of Chinese courtyard architecture and Islamic carving, built across Ming-Qing era courtyards. Modest clothing required; visitors may not enter prayer halls.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥25 (¥15 winter)</span>
+            <span class="meta-hours">8:00–18:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Residential Back Lanes <span class="zh">回坊小巷</span></div>
+            <div class="attraction-desc">Quiet courtyard residences and small halal eateries a few streets back from the main tourist strip — the cheapest, most authentic food in the city.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Open 24h</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="hood-divider">
+
+    <!-- DAMING PALACE -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Daming Palace Heritage Park</span>
+        <span class="hood-zh">大明宫国家遗址公园</span>
+        <span class="hood-badge">Tang Imperial Ruins</span>
+      </div>
+      <p class="hood-desc">The vast foundation ruins of the Tang Dynasty's grandest imperial palace. Open grounds and miniature models reveal just how enormous ancient Chang'an's royal court once was — a peaceful, uncrowded sunset walk.</p>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Daming Palace National Heritage Park <span class="zh">大明宫国家遗址公园</span></div>
+            <div class="attraction-desc">Open archaeological grounds with palace foundation relics and scale models of Tang Chang'an. A relaxed contrast to the busier sights in town.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥60</span>
+            <span class="meta-hours">9:30–18:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="hood-divider">
+
+    <!-- LISHAN & TERRACOTTA ARMY -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Lishan & Terracotta Army Scenic Zone</span>
+        <span class="hood-zh">骊山 · 兵马俑</span>
+        <span class="hood-badge">Day Trip · Book Ahead</span>
+      </div>
+      <p class="hood-desc">About an hour east of downtown — the single most famous archaeological site in China, alongside the Tang imperial hot spring palace at its foot. Allocate at least half a day, and reserve tickets in advance.</p>
+
+      <div class="img-grid-2">
+        <div class="site-photo site-photo-sq" id="photo-terracotta1">
+          <div class="photo-fallback">⚱️</div>
+          <img id="img-terracotta1" alt="Terracotta Army Xi'an" />
+          <div class="photo-caption">Terracotta Army — thousands of individually sculpted warriors</div>
+        </div>
+        <div class="site-photo site-photo-sq" id="photo-terracotta2">
+          <div class="photo-fallback">⚱️</div>
+          <img id="img-terracotta2" alt="Terracotta Army warriors detail" />
+          <div class="photo-caption">Terracotta Army — Pit 1, guarding Emperor Qin Shi Huang's mausoleum</div>
+        </div>
+      </div>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Terracotta Army <span class="zh">兵马俑</span></div>
+            <div class="attraction-desc">Thousands of individually sculpted life-sized clay warriors guarding Emperor Qin Shi Huang's mausoleum, alongside preserved bronze chariots. Pits 1–3 are all worth seeing — Pit 1 is the showstopper.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥120</span>
+            <span class="meta-hours">8:30–18:00 (summer)</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Huaqing Palace <span class="zh">华清宫</span></div>
+            <div class="attraction-desc">Tang imperial hot spring palace at the foot of Lishan, with lake and mountain views — best combined with the Terracotta Army as a single day-trip loop.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥120</span>
+            <span class="meta-hours">7:00–18:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ITINERARIES -->
+  <div class="section" id="itineraries">
+    <div class="section-header">
+      <div class="section-icon">📅</div>
+      <div class="section-title-group">
+        <h2>Itineraries</h2>
+        <p>Ready-made day-by-day plans</p>
+      </div>
+    </div>
+
+    <h3 class="h3-style">3-Day Classic Xi'an</h3>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 1</div>
+        <div class="itinerary-title">Ming Old Town & Street Food Culture</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Morning</div>
+          <div class="time-content">
+            <ul>
+              <li>Cycle the City Wall from Yongningmen South Gate — sunrise and layered old-new city views</li>
+              <li>Visit Bell Tower and Drum Tower, taking in the symmetrical grid of ancient Chang'an</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Afternoon</div>
+          <div class="time-content">
+            <ul>
+              <li>Wander Muslim Quarter alleys — roujiamo, liangpi, and lamb soup</li>
+              <li>Tour the Great Mosque's Sino-Islamic courtyards</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Evening</div>
+          <div class="time-content">
+            <ul>
+              <li>Night stroll through the Muslim Quarter's lantern-lit food stalls</li>
+            </ul>
+            <p class="time-optional">Optional: Shadow puppetry or Shaanxi opera performance near the Drum Tower</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 2</div>
+        <div class="itinerary-title">Tang Culture & World-Class Museums</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Morning</div>
+          <div class="time-content">
+            <ul>
+              <li>Shaanxi History Museum (book days ahead) — bronze, pottery, and Tang gold relics</li>
+              <li>Small Wild Goose Pagoda and Beilin Stone Stele Museum</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Afternoon</div>
+          <div class="time-content">
+            <ul>
+              <li>Da Ci'en Temple & Big Wild Goose Pagoda — Monk Xuanzang's Silk Road journey</li>
+              <li>Reserve a spot in the north square for the evening musical fountain show</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Evening</div>
+          <div class="time-content">
+            <ul>
+              <li>Tang Paradise — illuminated royal garden and costume performances</li>
+              <li>Dinner: authentic biangbiang noodles and local cold dishes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 3</div>
+        <div class="itinerary-title">Terracotta Army Day Trip & Imperial Relics</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Morning</div>
+          <div class="time-content">
+            <ul>
+              <li>Terracotta Army — Pits 1–3 and the preserved bronze chariots</li>
+              <li>Tour Lishan Garden within the scenic complex</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Afternoon</div>
+          <div class="time-content">
+            <ul>
+              <li>Huaqing Palace — Tang hot spring palaces with mountain and lake views</li>
+              <li>Return downtown to Daming Palace Ruins for a relaxed sunset walk</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Evening</div>
+          <div class="time-content">
+            <ul>
+              <li>Riverside dinner with northern Shaanxi hot pot</li>
+            </ul>
+            <p class="time-optional">Optional: Immersive Tang-style night walk at Grand Tang Mall</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="site-photo site-photo-wide" style="background: var(--mist); border: 2px dashed var(--border); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:0.5rem;">
+        <div style="font-size:2rem;">🗺️</div>
+        <div style="font-size:0.85rem; color:#999; font-style:italic;">Route map — coming soon</div>
+      </div>
+
+    <h3 class="h3-style">5-Day In-Depth Xi'an</h3>
+    <div class="highlight">The 5-day plan builds on the 3-day itinerary above, adding a stone-calligraphy-focused day and a mountain day trip.</div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 1</div>
+        <div class="itinerary-title">Ming Ancient City Core</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Focus</div>
+          <div class="time-content">
+            <ul>
+              <li>City wall fortifications, bell-drum towers, Muslim multicultural folk life</li>
+              <li>Cycling the city wall, Great Mosque, Muslim Quarter food tour</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 2</div>
+        <div class="itinerary-title">Tang Buddhism & National Museum Treasures</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Focus</div>
+          <div class="time-content">
+            <ul>
+              <li>Silk Road Buddhist heritage and dynastic art relics</li>
+              <li>Shaanxi History Museum, Big Wild Goose Pagoda, Da Ci'en Temple, musical fountain</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 3</div>
+        <div class="itinerary-title">Qin Imperial Archaeology Day Trip</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Focus</div>
+          <div class="time-content">
+            <ul>
+              <li>Qin Dynasty underground mausoleum and imperial mountain palaces</li>
+              <li>Terracotta Army, Lishan, Huaqing Palace</li>
+            </ul>
+            <p class="time-optional">Evening: return to Qujiang District for Tang night scenery</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 4</div>
+        <div class="itinerary-title">Tang Royal Ruins & Calligraphy Heritage</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Focus</div>
+          <div class="time-content">
+            <ul>
+              <li>Tang palace archaeology and ancient stone calligraphy</li>
+              <li>Daming Palace National Heritage Park, Small Wild Goose Pagoda, Beilin Museum, hidden old courtyard lanes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 5</div>
+        <div class="itinerary-title">Mountain Day Trip & Local Slow Life</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Focus</div>
+          <div class="time-content">
+            <ul>
+              <li>Natural mountain scenery — Mount Hua, world-famous for its steep peaks</li>
+              <li>Off-the-beaten-path local neighbourhoods</li>
+            </ul>
+            <p class="time-optional">Evening: final city wall sunset walk and farewell lamb feast</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- NICHE ROUTES -->
+  <div class="section" id="niche">
+    <div class="section-header">
+      <div class="section-icon">🎭</div>
+      <div class="section-title-group">
+        <h2>Niche Routes</h2>
+        <p>Theme-based itineraries for deeper exploration</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>These routes are built around a single theme for visitors who want to go deeper than the headline sights. Any of these can slot into a longer trip as a full day or afternoon.</p>
+    </div>
+
+    <div class="route-grid">
+      <div class="route-card">
+        <div class="route-num">Route 01</div>
+        <div class="route-name">Imperial Architecture & Archaeology</div>
+        <div class="route-theme">Dynastic Relics & Ancient Fortifications</div>
+        <ul>
+          <li>Xi'an City Wall</li>
+          <li>Big Wild Goose Pagoda</li>
+          <li>Daming Palace Ruins</li>
+          <li>Terracotta Army</li>
+          <li>Beilin Museum</li>
+        </ul>
+        <p class="route-style">Walking and museum-heavy · Best in spring or autumn</p>
+        <div class="site-photo site-photo-sq" style="background: var(--mist); border: 2px dashed var(--border); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:0.5rem; margin-top:1rem;">
+          <div style="font-size:1.5rem;">🗺️</div>
+          <div style="font-size:0.78rem; color:#999; font-style:italic;">Route map — coming soon</div>
+        </div>
+      </div>
+
+      <div class="route-card">
+        <div class="route-num">Route 02</div>
+        <div class="route-name">Food & Muslim Quarter Culinary Route</div>
+        <div class="route-theme">Northern Shaanxi Wheat & Lamb Cuisine</div>
+        <ul>
+          <li>Muslim Quarter alleys</li>
+          <li>Old noodle shops near Xiaozhai</li>
+          <li>Traditional lamb soup houses</li>
+          <li>Drum Tower back lanes</li>
+          <li>Dessert stalls and candied hawthorn skewers</li>
+        </ul>
+        <p class="route-style">For food lovers chasing authentic local flavour</p>
+        <div class="site-photo site-photo-sq" style="background: var(--mist); border: 2px dashed var(--border); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:0.5rem; margin-top:1rem;">
+          <div style="font-size:1.5rem;">🗺️</div>
+          <div style="font-size:0.78rem; color:#999; font-style:italic;">Route map — coming soon</div>
+        </div>
+      </div>
+
+      <div class="route-card">
+        <div class="route-num">Route 03</div>
+        <div class="route-name">Tang Dynasty Nightscape</div>
+        <div class="route-theme">Lanterns, Classical Architecture & Performance</div>
+        <ul>
+          <li>Big Wild Goose Pagoda fountain show</li>
+          <li>Tang Paradise</li>
+          <li>Grand Tang Mall</li>
+          <li>South Gate city wall evening light show</li>
+        </ul>
+        <p class="route-style">Evening-only · Cinematic glowing ancient scenery</p>
+        <div class="site-photo site-photo-sq" style="background: var(--mist); border: 2px dashed var(--border); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:0.5rem; margin-top:1rem;">
+          <div style="font-size:1.5rem;">🗺️</div>
+          <div style="font-size:0.78rem; color:#999; font-style:italic;">Route map — coming soon</div>
+        </div>
+      </div>
+
+      <div class="route-card">
+        <div class="route-num">Route 04</div>
+        <div class="route-name">Silk Road Buddhist Culture</div>
+        <div class="route-theme">Cross-Border Religious Heritage</div>
+        <ul>
+          <li>Da Ci'en Temple</li>
+          <li>Great Mosque</li>
+          <li>Small Wild Goose Pagoda</li>
+          <li>Silk Road exhibition halls, Shaanxi History Museum</li>
+        </ul>
+        <p class="route-style">Ideal for cultural researchers and spiritual travellers</p>
+        <div class="site-photo site-photo-sq" style="background: var(--mist); border: 2px dashed var(--border); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:0.5rem; margin-top:1rem;">
+          <div style="font-size:1.5rem;">🗺️</div>
+          <div style="font-size:0.78rem; color:#999; font-style:italic;">Route map — coming soon</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- GETTING THERE -->
+  <div class="section" id="getting-there">
+    <div class="section-header">
+      <div class="section-icon">✈️</div>
+      <div class="section-title-group">
+        <h2>Getting There</h2>
+        <p>Airport, high-speed rail, and reaching the city centre</p>
+      </div>
+    </div>
+
+    <h3 class="h3-style">From Xianyang International Airport (XIY)</h3>
+    <ul class="bullet-list">
+      <li><span class="li-content"><strong>Metro Line 14</strong> — cheapest, most reliable<span class="sub">Direct metro connection into the city centre, roughly 40–50 minutes.</span></span></li>
+      <li><span class="li-content"><strong>Airport shuttle bus</strong> — several city-centre routes<span class="sub">Runs to major hotels and the railway station area; slower than the metro but simple with luggage.</span></span></li>
+      <li><span class="li-content"><strong>DiDi or taxi</strong> — most convenient<span class="sub">Roughly 45–60 minutes to the old town depending on traffic. Best option late at night.</span></span></li>
+    </ul>
+
+    <h3 class="h3-style">By High-Speed Rail</h3>
+    <ul class="bullet-list">
+      <li><span class="li-content"><strong>Beijing → Xi'an</strong> — around 4.5 to 6 hours<span class="sub">One of the busiest domestic HSR corridors; book on Trip.com or the 12306 app.</span></span></li>
+      <li><span class="li-content"><strong>Chengdu → Xi'an</strong> — around 3.5 to 4 hours<span class="sub">Crosses the scenic Qinling mountain range.</span></span></li>
+      <li><span class="li-content"><strong>Xi'an North Railway Station</strong><span class="sub">The main HSR hub, connected to the metro and a fair distance from the old city centre — budget extra time.</span></span></li>
+    </ul>
+  </div>
+
+  <!-- GETTING AROUND -->
+  <div class="section" id="getting-around">
+    <div class="section-header">
+      <div class="section-icon">🚇</div>
+      <div class="section-title-group">
+        <h2>Getting Around</h2>
+        <p>Metro, tourist buses, and when to just walk</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Xi'an's metro network covers downtown relics, Qujiang District, and — via Line 9 — the Terracotta Army. English signage is available throughout. The old city wall, Muslim Quarter, and Bell Tower zones are best explored on foot.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Option</th><th>Best For</th><th>Cost</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>🚇 Metro</td><td>Downtown relics, Qujiang District, Terracotta Army (Line 9)</td><td>¥2–7</td><td>English signage available throughout.</td></tr>
+          <tr><td>🚌 Tourist Bus 306</td><td>Terracotta Army day trip</td><td>Low cost</td><td>Direct line from Xi'an Railway Station — affordable and convenient.</td></tr>
+          <tr><td>🚶 Walking</td><td>Old city wall, Muslim Quarter, Bell Tower zones</td><td>Free</td><td>Highly recommended — this is where the city's character lives.</td></tr>
+          <tr><td>🚲 Shared bikes</td><td>Short hops between wall gates and nearby alleys</td><td>Low cost</td><td>Scan via WeChat or Alipay.</td></tr>
+          <tr><td>🚗 Taxi / DiDi</td><td>Early morning trips to archaeological sites</td><td>Moderate</td><td>Rush-hour congestion common near South Gate.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tip-box">Save Chinese attraction names on your phone to show taxi drivers — Shaanxi dialect is spoken locally and English is limited outside major hotels and ticket offices.</div>
+  </div>
+
+  <!-- DAY TRIPS -->
+  <div class="section" id="daytrips">
+    <div class="section-header">
+      <div class="section-icon">🚄</div>
+      <div class="section-title-group">
+        <h2>Day Trips</h2>
+        <p>Easy escapes from the city centre</p>
+      </div>
+    </div>
+
+    <div class="daytrip-grid">
+      <div class="daytrip-card">
+        <h4>Terracotta Army & Lishan 兵马俑</h4>
+        <div class="daytrip-meta"><span>🚌 ~1 hr</span><span>Half to full day</span></div>
+        <p>China's most famous archaeological site. Advance online reservation mandatory — tickets sell out fast on weekends and holidays. Combine with Huaqing Palace for a full day.</p>
+      </div>
+      <div class="daytrip-card">
+        <h4>Huaqing Palace 华清宫</h4>
+        <div class="daytrip-meta"><span>🚌 ~1 hr</span><span>Half day</span></div>
+        <p>Tang imperial hot spring palace at the foot of Lishan, with mountain and lake views — easily paired with the Terracotta Army.</p>
+      </div>
+      <div class="daytrip-card">
+        <h4>Mount Hua 华山</h4>
+        <div class="daytrip-meta"><span>🚄 ~1 hr</span><span>Full day</span></div>
+        <p>One of China's most dramatic mountains, famous for its narrow plank walkways and sheer cliffside paths. A serious day out — start early and check cable car options in advance.</p>
+      </div>
+    </div>
+
+    <div class="tip-box">All popular sites here require online reservation 3–7 days in advance. Tickets sell out quickly on weekends and Chinese public holidays.</div>
+  </div>
+
+  <!-- PRACTICAL INFO -->
+  <div class="section" id="practical">
+    <div class="section-header">
+      <div class="section-icon">📋</div>
+      <div class="section-title-group">
+        <h2>Practical Information</h2>
+        <p>Everything you need before you arrive</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Topic</th><th>Details</th></tr></thead>
+        <tbody>
+          <tr><td>Currency</td><td>Chinese Yuan (RMB / ¥). WeChat Pay and Alipay dominate and now support international cards. ATMs are available but less dense than in Shanghai or Beijing.</td></tr>
+          <tr><td>Language</td><td>Mandarin, with a distinct Shaanxi dialect spoken locally. Basic English at major museums and hotel ticket offices. Save attraction names in Chinese characters for taxis.</td></tr>
+          <tr><td>Internet</td><td>Google, WhatsApp, Instagram, and most Western apps are blocked. Install a VPN <strong>before you arrive</strong> — it cannot be downloaded once inside China. See the <a href="../topics/internet.html" style="color:var(--red);font-weight:600;">internet guide</a>.</td></tr>
+          <tr><td>SIM Card</td><td>Available at Xianyang Airport on arrival — China Mobile, Unicom, and Telecom desks. eSIM also available via some overseas providers.</td></tr>
+          <tr><td>Emergency</td><td>Police 110 · Fire 119 · Ambulance 120 · Tourist helpline 12301</td></tr>
+          <tr><td>Electricity</td><td>220V / 50Hz. Type I (Australia-style) sockets common. European two-pin also widely fits.</td></tr>
+          <tr><td>Tipping</td><td>Not expected or customary anywhere in Xi'an.</td></tr>
+          <tr><td>Dress Code</td><td>The Great Mosque prohibits shorts, sleeveless tops, and revealing clothing. Visitors may not enter the prayer halls.</td></tr>
+          <tr><td>Visa</td><td>Many nationalities qualify for 144-hour transit or 30-day visa-free entry. Check the <a href="../topics/visa.html" style="color:var(--red);font-weight:600;">visa page</a> for current rules.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="highlight"><strong>Ticket tip:</strong> The Terracotta Army, Shaanxi History Museum, and most major sites require online reservation days in advance. Book as soon as your dates are fixed, especially around weekends and public holidays.</div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section" id="faq">
+    <div class="section-header">
+      <div class="section-icon">❓</div>
+      <div class="section-title-group">
+        <h2>Frequently Asked Questions</h2>
+        <p>Common questions from first-time Xi'an visitors</p>
+      </div>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">How many days do I need in Xi'an? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Three days covers the old town, the Tang heritage district, and the Terracotta Army without rushing. Five days lets you add Mount Hua and a slower pace through the museums and calligraphy sites.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I need to book Terracotta Army tickets in advance? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes — online reservation 3–7 days ahead is effectively mandatory, especially on weekends and Chinese public holidays. The same applies to the Shaanxi History Museum's free standard exhibition.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Which airport should I fly into? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Xi'an Xianyang International Airport (XIY) is the only major airport serving the city, connected to downtown by Metro Line 14 and airport shuttle buses.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is Xi'an safe for tourists? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Very safe by international standards. The main risks are the usual pickpocketing in crowded market areas and occasional tourist-targeted scams — be sensibly alert, especially around major attractions.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I need a VPN, and how do I get one? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes, if you want to use Google, Instagram, WhatsApp, Gmail, or most Western apps — all blocked in mainland China. Download and test a VPN before arriving; it cannot be installed once you're inside the country. See the <a href="../topics/internet.html" style="color:var(--red);">internet guide</a> for recommended options.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What should I wear to visit the Great Mosque? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Modest clothing — no shorts, sleeveless tops, or revealing outfits. Visitors are welcome throughout the courtyards but cannot enter the prayer halls.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I get by without speaking Mandarin? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes, though Xi'an has less English signage than Shanghai or Beijing. Save your hotel address and destinations in Chinese characters on your phone for taxis and local shops, especially in the Muslim Quarter.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEEP READING -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">📚</div>
+      <div class="section-title-group">
+        <h2>Keep Reading</h2>
+        <p>More guides to help plan your trip</p>
+      </div>
+    </div>
+    <div class="related-grid">
+      <a href="../topics/transport.html" class="related-card">
+        <div class="related-label">Topic</div>
+        <div class="related-title">Getting Around China</div>
+        <div class="related-desc">High-speed rail, metro, DiDi — the full guide to moving around.</div>
+      </a>
+      <a href="../topics/food.html" class="related-card">
+        <div class="related-label">Topic</div>
+        <div class="related-title">Food & Dining</div>
+        <div class="related-desc">How to order, dietary needs, and China's eight regional cuisines.</div>
+      </a>
+      <a href="../topics/money.html" class="related-card">
+        <div class="related-label">Topic</div>
+        <div class="related-title">Money & Payments</div>
+        <div class="related-desc">Setting up Alipay, finding ATMs, and using foreign cards in China.</div>
+      </a>
+      <a href="../topics/internet.html" class="related-card">
+        <div class="related-label">Topic</div>
+        <div class="related-title">Internet & VPNs</div>
+        <div class="related-desc">The Great Firewall explained, and how to stay connected.</div>
+      </a>
+    </div>
+  </div>
+
+  <a href="../index.html" class="back-link">← Back to Home</a>
+</div>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // ── PHOTO LOADER ──
+  const PHOTOS = [
+    {
+      img: 'img-wall-wide', wrap: 'photo-wall-wide',
+      src: 'https://images.unsplash.com/photo-1723360480906-44dc0d612f0f?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    {
+      img: 'img-belltower', wrap: 'photo-belltower',
+      src: 'https://images.unsplash.com/photo-1569685794205-a8fc87049f5d?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    {
+      img: 'img-tangparadise', wrap: 'photo-tangparadise',
+      src: 'https://images.unsplash.com/photo-1683712988284-eba2c588c0eb?q=80&w=824&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    {
+      img: 'img-terracotta1', wrap: 'photo-terracotta1',
+      src: 'https://images.unsplash.com/photo-1659466248885-8b7a03205661?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    {
+      img: 'img-terracotta2', wrap: 'photo-terracotta2',
+      src: 'https://images.unsplash.com/photo-1620018765412-ceccb1af8fa0?q=80&w=772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+  ];
+
+  const PEXELS = [
+    {
+      img: 'img-wall-sq', wrap: 'photo-wall-sq',
+      src: 'https://images.pexels.com/photos/18764177/pexels-photo-18764177.jpeg'
+    },
+    {
+      img: 'img-goose', wrap: 'photo-goose',
+      src: 'https://images.pexels.com/photos/19135215/pexels-photo-19135215.jpeg'
+    },
+  ];
+
+  function loadPhotos() {
+    PHOTOS.forEach(({ img: imgId, wrap: wrapId, src }) => {
+      const imgEl = document.getElementById(imgId);
+      const wrapEl = document.getElementById(wrapId);
+      if (!imgEl || !wrapEl) return;
+      imgEl.onload = () => {
+        imgEl.classList.add('loaded');
+        wrapEl.classList.add('loaded');
+      };
+      imgEl.onerror = () => imgEl.remove();
+      imgEl.src = src;
+    });
+  }
+
+  function loadPexels() {
+    PEXELS.forEach(({ img: imgId, wrap: wrapId, src }) => {
+      const imgEl = document.getElementById(imgId);
+      const wrapEl = document.getElementById(wrapId);
+      if (!imgEl || !wrapEl) return;
+      imgEl.onload = () => {
+        imgEl.classList.add('loaded');
+        wrapEl.classList.add('loaded');
+      };
+      imgEl.onerror = () => { imgEl.style.display = 'none'; };
+      imgEl.src = src;
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    loadPhotos();
+    loadPexels();
+  });
+</script>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo-text">China Awaits</div>
+        <div class="footer-tagline">Your trusted guide for exploring China · chinaawaits.com</div>
+      </div>
+      <div class="footer-nav">
+        <a href="../index.html#cities">Cities</a>
+        <a href="../index.html#topics">Topics</a>
+        <a href="../index.html#essentials">Essentials</a>
+        <a href="../contact.html" class="footer-contact">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 China Awaits. All rights reserved.</span>
+      <span>chinaawaits.com</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
