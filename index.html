@@ -150,6 +150,9 @@
       box-shadow: 0 2px 8px rgba(0,0,0,.08);
     }
     .city-card:hover { transform: translateY(-5px); box-shadow: 0 12px 28px rgba(0,0,0,.15); }
+    .city-card.city-pending { cursor: default; }
+    .city-card.city-pending:hover { transform: none; box-shadow: none; }
+    .city-tag-pending { color: rgba(255,255,255,0.45); font-style: italic; }
     .city-bg {
       position: absolute; inset: 0;
       display: flex; align-items: center; justify-content: center; font-size: 60px;
@@ -362,14 +365,14 @@
       <div class="city-overlay"></div>
       <div class="city-info"><div class="city-name">Shenzhen</div><div class="city-tag">Tech · Modern</div></div>
     </a>
-    <div class="city-card" style="cursor:default;">
+    <a href="cities/chengdu.html" class="city-card city-cd">
       <div class="city-bg">
         <img id="city-img-cd" alt="Chengdu" />
         <span class="city-emoji">🐼</span>
       </div>
       <div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Chengdu</div><div class="city-tag" style="color:rgba(255,255,255,0.45);font-style:italic;">Coming soon</div></div>
-    </div>
+      <div class="city-info"><div class="city-name">Chengdu</div><div class="city-tag">Pandas · Sichuan Flavour</div></div>
+    </a>
     <a href="cities/xian.html" class="city-card city-xian">
       <div class="city-bg">
         <img id="city-img-xian" alt="Xi'an" />
@@ -378,38 +381,38 @@
       <div class="city-overlay"></div>
       <div class="city-info"><div class="city-name">Xi'an</div><div class="city-tag">Imperial · Ancient Capital</div></div>
     </a>
-    <div class="city-card" style="cursor:default;">
+    <a href="cities/hangzhou.html" class="city-card city-pending" data-slug="hangzhou" data-tag="West Lake · Tea Culture">
       <div class="city-bg">
         <img id="city-img-hz" alt="Hangzhou" />
         <span class="city-emoji">🌿</span>
       </div>
       <div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Hangzhou</div><div class="city-tag" style="color:rgba(255,255,255,0.45);font-style:italic;">Coming soon</div></div>
-    </div>
-    <div class="city-card" style="cursor:default;">
+      <div class="city-info"><div class="city-name">Hangzhou</div><div class="city-tag city-tag-pending">Coming soon</div></div>
+    </a>
+    <a href="cities/chongqing.html" class="city-card city-pending" data-slug="chongqing" data-tag="Mountain City · Spicy">
       <div class="city-bg">
         <img id="city-img-cq" alt="Chongqing" />
         <span class="city-emoji">🌶️</span>
       </div>
       <div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Chongqing</div><div class="city-tag" style="color:rgba(255,255,255,0.45);font-style:italic;">Coming soon</div></div>
-    </div>
-    <div class="city-card" style="cursor:default;">
+      <div class="city-info"><div class="city-name">Chongqing</div><div class="city-tag city-tag-pending">Coming soon</div></div>
+    </a>
+    <a href="cities/nanjing.html" class="city-card city-pending" data-slug="nanjing" data-tag="Six Dynasties · Riverside">
       <div class="city-bg">
         <img id="city-img-nj" alt="Nanjing" />
         <span class="city-emoji">🏛️</span>
       </div>
       <div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Nanjing</div><div class="city-tag" style="color:rgba(255,255,255,0.45);font-style:italic;">Coming soon</div></div>
-    </div>
-    <div class="city-card" style="cursor:default;">
+      <div class="city-info"><div class="city-name">Nanjing</div><div class="city-tag city-tag-pending">Coming soon</div></div>
+    </a>
+    <a href="cities/kunming.html" class="city-card city-pending" data-slug="kunming" data-tag="Spring City · Flowers">
       <div class="city-bg">
         <img id="city-img-km" alt="Kunming" />
         <span class="city-emoji">🌸</span>
       </div>
       <div class="city-overlay"></div>
-      <div class="city-info"><div class="city-name">Kunming</div><div class="city-tag" style="color:rgba(255,255,255,0.45);font-style:italic;">Coming soon</div></div>
-    </div>
+      <div class="city-info"><div class="city-name">Kunming</div><div class="city-tag city-tag-pending">Coming soon</div></div>
+    </a>
   </div>
 </section>
 
@@ -599,6 +602,7 @@
     { keywords: ['guangzhou','canton','guangdong','dim sum'], title: 'Guangzhou', url: 'cities/guangzhou.html', icon: '🌺' },
     { keywords: ['shenzhen','tech','huaqiangbei','electronics'], title: 'Shenzhen', url: 'cities/shenzhen.html', icon: '💻' },
     { keywords: ['xian',"xi'an",'terracotta','terracotta army','city wall','muslim quarter','bell tower'], title: "Xi'an", url: 'cities/xian.html', icon: '🗿' },
+    { keywords: ['chengdu','panda','pandas','sichuan','hotpot','mahjong','teahouse','kuanzhai'], title: 'Chengdu', url: 'cities/chengdu.html', icon: '🐼' },
   ];
 
   function triggerSearch() {
@@ -638,6 +642,34 @@
       img.onload = () => img.classList.add('loaded');
       img.onerror = () => img.remove();
       img.src = src;
+    });
+  });
+</script>
+
+<script>
+  // Auto-connect city cards once their page is uploaded to cities/{slug}.html —
+  // no manual index.html edit needed. Cards start disabled ("Coming soon");
+  // once a HEAD request to the page succeeds, the card becomes a live link
+  // and its tag text switches from "Coming soon" to the real tagline.
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.city-card.city-pending').forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (card.classList.contains('city-pending')) e.preventDefault();
+      });
+      const url = card.getAttribute('href');
+      const tag = card.dataset.tag;
+      fetch(url, { method: 'HEAD', cache: 'no-store' })
+        .then(res => {
+          if (res.ok) {
+            card.classList.remove('city-pending');
+            const tagEl = card.querySelector('.city-tag');
+            if (tagEl) {
+              tagEl.textContent = tag;
+              tagEl.classList.remove('city-tag-pending');
+            }
+          }
+        })
+        .catch(() => { /* stays "Coming soon" until the page exists */ });
     });
   });
 </script>
