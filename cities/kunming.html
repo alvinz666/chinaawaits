@@ -376,10 +376,22 @@
       </div>
       <p class="hood-desc">A compact, walkable zone blending nature and modern history — city-centre slow leisure, gull feeding in winter, and museums tracing Kunming's wartime role. The natural place to start.</p>
 
-      <div class="site-photo site-photo-sq" id="photo-cuihu" style="max-width: 340px;">
-        <div class="photo-fallback">🦢</div>
-        <img id="img-cuihu" alt="Cuihu Park Kunming" />
-        <div class="photo-caption">Cuihu Park — winter home to migratory black-headed gulls</div>
+      <div class="img-grid-3">
+        <div class="site-photo site-photo-sq" id="photo-cuihu">
+          <div class="photo-fallback">🦢</div>
+          <img id="img-cuihu" alt="Cuihu Park Kunming" />
+          <div class="photo-caption">Cuihu Park — winter home to migratory black-headed gulls</div>
+        </div>
+        <div class="site-photo site-photo-sq" id="photo-gulls">
+          <div class="photo-fallback">🕊️</div>
+          <img id="img-gulls" alt="Black-headed gulls Kunming" />
+          <div class="photo-caption">Black-headed gulls, arriving every winter from Siberia</div>
+        </div>
+        <div class="site-photo site-photo-sq" id="photo-flowerbird">
+          <div class="photo-fallback">🌺</div>
+          <img id="img-flowerbird" alt="Flower and Bird Market Kunming" />
+          <div class="photo-caption">Flower & Bird Market — old lanes of flowers, birds, and handicrafts</div>
+        </div>
       </div>
 
       <div class="attraction-list">
@@ -580,46 +592,6 @@
     </div>
     <hr class="hood-divider">
 
-    <!-- KUNMING BOTANICAL GARDEN & FULI PALACE -->
-    <div class="hood-block">
-      <div class="hood-title-row">
-        <span class="hood-name">Kunming Botanical Garden & Fuli Palace</span>
-        <span class="hood-zh">昆明植物园 · 扶荔宫</span>
-        <span class="hood-badge">Rare Plants · Reserve Ahead</span>
-      </div>
-      <p class="hood-desc">North of the city near Heilongtan (Black Dragon Pool), the Kunming Institute of Botany's garden is one of China's leading plant science sites — home to camellia and magnolia gardens, and Fuli Palace, a greenhouse cluster built around the world's tallest transparent glasshouse.</p>
-
-      <div class="site-photo site-photo-wide" id="photo-fuligong">
-        <div class="photo-fallback">🌿</div>
-        <img id="img-fuligong" alt="Fuli Palace Kunming Botanical Garden" />
-        <div class="photo-caption">Fuli Palace — the world's tallest transparent greenhouse</div>
-      </div>
-
-      <div class="attraction-list">
-        <div class="attraction-item">
-          <div>
-            <div class="attraction-name">Fuli Palace <span class="zh">扶荔宫</span></div>
-            <div class="attraction-desc">A 31-metre glasshouse — the world's tallest transparent greenhouse — spiralled by a walkway past more than 2,500 rare and tropical plant species, plus a dedicated orchid house and carnivorous-plant house. Visits are guided-tour only; book online in advance, tours run roughly 1.5 hours.</div>
-          </div>
-          <div class="attraction-meta">
-            <span class="meta-price">¥80 (incl. guide)</span>
-            <span class="meta-hours">9:00–17:00</span>
-          </div>
-        </div>
-        <div class="attraction-item">
-          <div>
-            <div class="attraction-name">Camellia & Magnolia Gardens <span class="zh">山茶园 · 木兰园</span></div>
-            <div class="attraction-desc">Kunming's Yunnan camellia collection is internationally recognised, with hundreds of cultivars in bloom across winter and spring — a quieter, more academic counterpart to the city's flower markets.</div>
-          </div>
-          <div class="attraction-meta">
-            <span class="meta-price">Included</span>
-            <span class="meta-hours">9:00–17:00</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <hr class="hood-divider">
-
     <!-- SHILIN STONE FOREST -->
     <div class="hood-block">
       <div class="hood-title-row">
@@ -633,6 +605,19 @@
         <div class="photo-fallback">🗿</div>
         <img id="img-shilin" alt="Shilin Stone Forest Kunming" />
         <div class="photo-caption">Shilin Stone Forest — karst limestone pillars, a World Heritage site</div>
+      </div>
+
+      <div class="img-grid-2">
+        <div class="site-photo site-photo-sq" id="photo-shilin2">
+          <div class="photo-fallback">🗿</div>
+          <img id="img-shilin2" alt="Shilin karst rock formations" />
+          <div class="photo-caption">Towering limestone pillars along the stone paths</div>
+        </div>
+        <div class="site-photo site-photo-sq" id="photo-shilin3">
+          <div class="photo-fallback">🗿</div>
+          <img id="img-shilin3" alt="Shilin Stone Forest karst peaks" />
+          <div class="photo-caption">The Great Stone Forest — Shilin's landmark peaks</div>
+        </div>
       </div>
 
       <div class="attraction-list">
@@ -1163,10 +1148,6 @@
   // ── PHOTO LOADER ──
   const PHOTOS = [
     {
-      img: 'img-fuligong', wrap: 'photo-fuligong',
-      src: 'https://images.unsplash.com/photo-1713832186247-c68555261e73?q=80&w=772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-    },
-    {
       img: 'img-panorama', wrap: 'photo-panorama',
       src: 'https://images.unsplash.com/photo-1720765499700-c6c3a6f13980?q=80&w=2516&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
     },
@@ -1191,8 +1172,20 @@
       src: 'https://images.unsplash.com/photo-1711887365737-2851dc54f72b?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
     },
     {
+      img: 'img-shilin2', wrap: 'photo-shilin2',
+      src: 'https://pixabay.com/images/download/hbieser-china-694640_1920.jpg'
+    },
+    {
+      img: 'img-shilin3', wrap: 'photo-shilin3',
+      src: 'https://pixabay.com/images/download/x-694628_1920.jpg'
+    },
+    {
       img: 'img-cuihu', wrap: 'photo-cuihu',
       src: 'https://images.unsplash.com/photo-1753597510326-f3f06f5fdf6f?q=80&w=772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    {
+      img: 'img-gulls', wrap: 'photo-gulls',
+      src: 'https://images.unsplash.com/photo-1768036512576-b94a4b341ebf?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGt1bm1pbmclMjBnYXJkZW58ZW58MHx8MHx8fDA%3D'
     },
   ];
 
@@ -1204,6 +1197,10 @@
     {
       img: 'img-luolong', wrap: 'photo-luolong',
       src: 'https://images.pexels.com/photos/35233488/pexels-photo-35233488.jpeg'
+    },
+    {
+      img: 'img-flowerbird', wrap: 'photo-flowerbird',
+      src: 'https://images.pexels.com/photos/37835468/pexels-photo-37835468.jpeg'
     },
   ];
 
