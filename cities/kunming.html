@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kunming Travel Guide — China Awaits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #C0392B; --red-dark: #96281B;
+      --gold: #C9A84C; --gold-light: #e8c96a;
+      --ink: #1a1a1a; --ink-soft: #3d3d3d;
+      --mist: #f7f4f0; --mist-dark: #ede9e3;
+      --white: #ffffff; --border: #e0d9d0;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,0.14);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); line-height: 1.7; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 60px; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--red); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a { font-size: 14px; font-weight: 400; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--red); }
+
+    /* HERO */
+    .hero { background: var(--ink); position: relative; overflow: hidden; padding: 5rem 2rem 4rem; text-align: center; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 60%, rgba(192,57,43,0.30) 0%, transparent 55%), radial-gradient(ellipse at 80% 35%, rgba(201,168,76,0.20) 0%, transparent 55%); }
+    .hero-pattern { position: absolute; inset: 0; opacity: 0.035; background-image: repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%); background-size: 20px 20px; }
+    .hero-tag { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,0.4); padding: 0.3rem 0.9rem; border-radius: 2px; margin-bottom: 1.5rem; position: relative; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 1rem; position: relative; }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.65); max-width: 560px; margin: 0 auto 2.5rem; position: relative; }
+    .jump-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; position: relative; }
+    .jump-nav a { display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 0.45rem 1rem; border-radius: 40px; text-decoration: none; transition: all 0.2s; }
+    .jump-nav a:hover { background: rgba(201,168,76,0.2); border-color: var(--gold); color: var(--gold); }
+
+    /* LAYOUT */
+    .page-wrap { max-width: 860px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+    /* SECTION */
+    .section { margin-top: 4.5rem; scroll-margin-top: 80px; }
+    .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.8rem; padding-bottom: 1rem; border-bottom: 2px solid var(--border); }
+    .section-icon { width: 48px; height: 48px; background: var(--red); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+    .section-title-group h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+    .section-title-group p { font-size: 0.88rem; color: #888; margin-top: 0.1rem; }
+
+    /* PROSE */
+    .prose p { font-size: 0.97rem; color: var(--ink-soft); margin-bottom: 1rem; }
+    .prose strong { color: var(--ink); font-weight: 600; }
+
+    /* BOXES */
+    .highlight { background: var(--mist); border-left: 3px solid var(--gold); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1.2rem 0; font-size: 0.93rem; color: var(--ink-soft); }
+    .highlight strong { color: var(--ink); }
+    .tip-box { background: #fff8ee; border: 1px solid #f0d990; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #6b5b1a; }
+    .tip-box::before { content: '💡 Tip: '; font-weight: 600; }
+    .warning-box { background: #fff5f5; border: 1px solid #f5c6c6; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.92rem; color: #7a2020; }
+    .warning-box::before { content: '⚠️ Note: '; font-weight: 600; }
+
+    /* BULLET LIST */
+    .bullet-list { list-style: none; margin: 1rem 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .bullet-list li { display: grid; grid-template-columns: 1rem 1fr; column-gap: 0.7rem; font-size: 0.93rem; color: var(--ink-soft); align-items: start; }
+    .bullet-list li::before { content: '—'; color: var(--gold); font-weight: 700; margin-top: 2px; }
+    .bullet-list li .li-content { display: block; }
+    .bullet-list li .sub { display: block; font-size: 0.83rem; color: #999; margin-top: 0.2rem; }
+
+    /* TABLE */
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    thead { background: var(--ink); color: white; }
+    thead th { padding: 0.85rem 1rem; text-align: left; font-weight: 600; font-size: 0.83rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:nth-child(even) { background: var(--mist); }
+    tbody td { padding: 0.85rem 1rem; color: var(--ink-soft); vertical-align: top; }
+    tbody td:first-child { font-weight: 600; color: var(--ink); }
+
+    /* CARD GRID */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; transition: box-shadow 0.2s, transform 0.2s; }
+    .card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+    .card-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+    .card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .card p { font-size: 0.87rem; color: #666; line-height: 1.5; }
+
+    /* SEASON STRIP */
+    .season-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; margin: 1.2rem 0; }
+    .season-box { border-radius: 10px; padding: 0.9rem 0.8rem; text-align: center; border: 1px solid var(--border); }
+    .season-box.best  { background: #f0fdf4; border-color: #bbf7d0; }
+    .season-box.ok    { background: #fffbeb; border-color: #fde68a; }
+    .season-box.avoid { background: #fff5f5; border-color: #fecaca; }
+    .season-name { font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem; }
+    .season-box.best  .season-name { color: #166534; }
+    .season-box.ok    .season-name { color: #92400e; }
+    .season-box.avoid .season-name { color: #991b1b; }
+    .season-months { font-size: 0.75rem; color: #999; margin-bottom: 0.4rem; }
+    .season-note { font-size: 0.78rem; color: #666; line-height: 1.4; }
+
+    /* SITE PHOTOS */
+    .site-photo { position: relative; border-radius: 14px; overflow: hidden; margin: 1.4rem 0; background: linear-gradient(135deg, rgba(192,57,43,0.1), rgba(201,168,76,0.15)); }
+    .site-photo-wide { height: 300px; }
+    .site-photo-sq { aspect-ratio: 3/4; height: auto; }
+    .site-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s ease; }
+    .site-photo img.loaded { opacity: 1; }
+    .site-photo .photo-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 0.5rem 0.9rem; background: linear-gradient(transparent, rgba(0,0,0,0.55)); font-size: 0.72rem; color: rgba(255,255,255,0.9); font-style: italic; opacity: 0; transition: opacity 0.4s; }
+    .site-photo.loaded .photo-caption { opacity: 1; }
+    .site-photo .photo-fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; transition: opacity 0.3s; }
+    .site-photo.loaded .photo-fallback { opacity: 0; pointer-events: none; }
+    .img-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin: 1.4rem 0; }
+    .img-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem; margin: 1.4rem 0; }
+
+    /* NEIGHBOURHOOD BLOCK */
+    .hood-block { margin-bottom: 3rem; }
+    .hood-title-row { display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 0.3rem; flex-wrap: wrap; }
+    .hood-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--ink); }
+    .hood-zh { font-size: 0.9rem; color: var(--gold); font-weight: 600; }
+    .hood-badge { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; background: rgba(192,57,43,0.08); color: var(--red); padding: 0.2rem 0.65rem; border-radius: 20px; border: 1px solid rgba(192,57,43,0.2); }
+    .hood-desc { font-size: 0.95rem; color: var(--ink-soft); margin-bottom: 1rem; line-height: 1.65; }
+    .hood-divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+    /* ATTRACTION LIST inside hood */
+    .attraction-list { display: flex; flex-direction: column; gap: 0.7rem; margin: 0.8rem 0 1.2rem; }
+    .attraction-item { display: grid; grid-template-columns: 1fr auto; gap: 0.5rem 1rem; background: var(--mist); border: 1px solid var(--border); border-radius: 10px; padding: 0.85rem 1rem; align-items: start; }
+    .attraction-name { font-weight: 600; font-size: 0.93rem; color: var(--ink); }
+    .attraction-name .zh { font-size: 0.8rem; color: var(--gold); font-weight: 600; margin-left: 0.4rem; }
+    .attraction-desc { font-size: 0.85rem; color: #666; line-height: 1.5; margin-top: 0.2rem; grid-column: 1; }
+    .attraction-meta { text-align: right; flex-shrink: 0; display: flex; flex-direction: column; gap: 0.2rem; align-items: flex-end; }
+    .meta-price { font-size: 0.78rem; font-weight: 700; color: var(--red); background: rgba(192,57,43,0.07); padding: 0.15rem 0.55rem; border-radius: 4px; }
+    .meta-hours { font-size: 0.75rem; color: #999; }
+
+    /* ITINERARY */
+    .itinerary-block { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 1.5rem; }
+    .itinerary-header { background: var(--ink); color: var(--white); padding: 1rem 1.4rem; display: flex; align-items: center; gap: 1rem; }
+    .itinerary-day { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--gold); white-space: nowrap; }
+    .itinerary-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; color: var(--white); }
+    .itinerary-body { padding: 1.2rem 1.4rem; display: flex; flex-direction: column; gap: 1rem; }
+    .time-block { display: grid; grid-template-columns: 70px 1fr; gap: 0 1rem; }
+    .time-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); padding-top: 0.1rem; }
+    .time-content ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .time-content ul li { font-size: 0.9rem; color: var(--ink-soft); display: flex; align-items: baseline; gap: 0.5rem; }
+    .time-content ul li::before { content: '·'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+    .time-optional { font-size: 0.82rem; color: #aaa; font-style: italic; margin-top: 0.3rem; }
+
+    /* ROUTE CARDS */
+    .route-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .route-card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; }
+    .route-num { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+    .route-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .route-theme { font-size: 0.78rem; color: #888; margin-bottom: 0.7rem; font-style: italic; }
+    .route-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .route-card ul li { font-size: 0.85rem; color: var(--ink-soft); display: flex; gap: 0.5rem; }
+    .route-card ul li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
+    .route-style { margin-top: 0.8rem; font-size: 0.78rem; color: #999; font-style: italic; }
+
+    /* DAYTRIP */
+    .daytrip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .daytrip-card { background: var(--mist); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; }
+    .daytrip-card h4 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .daytrip-meta { display: flex; gap: 0.6rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
+    .daytrip-meta span { font-size: 0.75rem; font-weight: 600; color: #888; }
+    .daytrip-card p { font-size: 0.85rem; color: #666; line-height: 1.5; }
+
+    /* FAQ */
+    .faq { margin: 1.5rem 0; }
+    .faq-item { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 0.6rem; overflow: hidden; }
+    .faq-q { width: 100%; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.2rem; font-family: 'DM Sans', sans-serif; font-size: 0.93rem; font-weight: 600; color: var(--ink); text-align: left; gap: 1rem; }
+    .faq-q:hover { background: var(--mist); }
+    .faq-arrow { font-size: 1rem; color: var(--gold); transition: transform 0.25s; flex-shrink: 0; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0.8rem 1.2rem 1rem; font-size: 0.9rem; color: var(--ink-soft); border-top: 1px solid var(--border); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* RELATED */
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .related-card { display: block; background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.1rem; text-decoration: none; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
+    .related-card:hover { border-color: var(--red); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .related-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 0.3rem; }
+    .related-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; }
+    .related-desc { font-size: 0.82rem; color: #888; line-height: 1.4; }
+
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.88rem; font-weight: 500; color: var(--red); text-decoration: none; margin-top: 3rem; }
+    .back-link:hover { text-decoration: underline; }
+    .h3-style { font-family: 'Playfair Display', serif; font-size: 1.15rem; margin: 1.8rem 0 0.9rem; color: var(--ink); }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .page-wrap { padding: 0 1rem 4rem; }
+      .hero { padding: 3.5rem 1rem 3rem; }
+      .season-strip { grid-template-columns: repeat(2, 1fr); }
+      .img-grid-2, .img-grid-3 { grid-template-columns: 1fr; }
+      .time-block { grid-template-columns: 60px 1fr; }
+      .attraction-item { grid-template-columns: 1fr; }
+      .attraction-meta { flex-direction: row; align-items: center; }
+    }
+
+    /* FOOTER */
+    footer { background: transparent; border-top: 1px solid var(--border); padding: 2.8rem 2rem 2rem; margin-top: 2rem; }
+    .footer-inner { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.6rem; }
+    .footer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .footer-brand { display: flex; flex-direction: column; gap: .35rem; }
+    .footer-logo-text { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--red); }
+    .footer-tagline { font-size: 13px; color: var(--ink-soft); }
+    .footer-nav { display: flex; flex-wrap: wrap; gap: .5rem 1.6rem; align-items: center; }
+    .footer-nav a { text-decoration: none; font-size: 14px; color: var(--ink-soft); font-weight: 400; transition: color .2s; }
+    .footer-nav a:hover { color: var(--red); }
+    .footer-contact { background: var(--red); color: #fff !important; padding: 6px 16px; border-radius: 24px; font-size: 13px !important; font-weight: 500; }
+    .footer-contact:hover { background: var(--red-dark) !important; }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 1.2rem; font-size: 12px; color: var(--ink-soft); display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">China Awaits</a>
+  <ul class="nav-links">
+    <li><a href="../index.html#cities">Cities</a></li>
+    <li><a href="../index.html#topics">Topics</a></li>
+    <li><a href="../index.html#essentials">Essentials</a></li>
+    <li><a href="../contact.html">Contact Us</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-tag">City Guide</div>
+  <h1><span>Kunming</span> 昆明</h1>
+  <p class="hero-sub">The Spring City — where year-round mild weather, karst stone forests, plateau lakes, and 25 ethnic cultures meet at an easy, flower-filled pace.</p>
+  <div class="jump-nav">
+    <a href="#overview">🌸 Overview</a>
+    <a href="#history">🏛️ History</a>
+    <a href="#neighbourhoods">🗺️ Areas & Sights</a>
+    <a href="#itineraries">📅 Itineraries</a>
+    <a href="#niche">🎭 Niche Routes</a>
+    <a href="#getting-there">✈️ Getting There</a>
+    <a href="#getting-around">🚇 Getting Around</a>
+    <a href="#daytrips">🚄 Day Trips</a>
+    <a href="#practical">📋 Practical Info</a>
+    <a href="#faq">❓ FAQ</a>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- OVERVIEW -->
+  <div class="section" id="overview">
+    <div class="section-header">
+      <div class="section-icon">🌸</div>
+      <div class="section-title-group">
+        <h2>Welcome to Kunming</h2>
+        <p>The Spring City, the Flower Capital</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Famed as Chuncheng, "the Spring City," Kunming is the sun-drenched capital of Yunnan Province, perched on the Yunnan Plateau at roughly 1,892 metres. With an average annual temperature of just 15°C, it enjoys mild, flower-filled weather all year round — no sweltering summers or freezing winters, a rare luxury among inland Chinese cities. Ringed by green hills and centred on Dianchi Lake, Kunming weaves together plateau nature, 3,000 years of local history, multi-ethnic folk tradition, and a genuinely slow, unhurried urban rhythm.</p>
+      <p>Beyond the landmark sights, Kunming's real magic is in its unhurried daily charm: feeding migratory gulls at Cuihu Park in winter, wandering flower markets bursting with fresh roses, tasting wild mushroom hotpot in summer, and exploring ethnic villages that showcase Yunnan's 25 indigenous groups.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🌤️</div>
+        <h3>Year-Round Spring Climate</h3>
+        <p>Mild weather in every season means there's no wrong time to visit — a rarity that shapes the entire unhurried pace of the city.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⛰️</div>
+        <h3>Karst & Plateau Lakes</h3>
+        <p>World Natural Heritage limestone pillars at Shilin Stone Forest, and Dianchi Lake's waterfront framed by the "Sleeping Beauty" Western Hills.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎎</div>
+        <h3>Multi-Ethnic Culture</h3>
+        <p>Han, Yi, Bai, Dai, Hani and dozens more ethnic groups coexist here — a living cultural crossroads found nowhere else in China.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🍜</div>
+        <h3>Yunnan Cuisine & Rice Noodles</h3>
+        <p>Crossing-the-bridge rice noodles, wild mushroom hotpot, and edible rose flower cakes — plateau flavours unlike anywhere else in the country.</p>
+      </div>
+    </div>
+
+    <h3 class="h3-style">Best Time to Visit</h3>
+    <div class="season-strip">
+      <div class="season-box best">
+        <div class="season-name">✓ Spring</div>
+        <div class="season-months">Mar – May</div>
+        <div class="season-note">The absolute best season — mild 15–22°C, cherry blossoms and jacaranda trees citywide. Ideal for lake cycling and Shilin hiking.</div>
+      </div>
+      <div class="season-box ok">
+        <div class="season-name">~ Summer</div>
+        <div class="season-months">Jun – Aug</div>
+        <div class="season-note">A cool plateau summer, 20–26°C, and a popular national summer escape. Wild mushroom season begins; brief afternoon showers pass quickly.</div>
+      </div>
+      <div class="season-box best">
+        <div class="season-name">✓ Autumn</div>
+        <div class="season-months">Sep – Nov</div>
+        <div class="season-note">Clear, dry skies and soft golden light — excellent for photography, with fewer crowds than spring.</div>
+      </div>
+      <div class="season-box ok">
+        <div class="season-name">~ Winter</div>
+        <div class="season-months">Dec – Feb</div>
+        <div class="season-note">Mild, rarely below 10°C. The iconic gull-feeding season at Cuihu Park and Haigeng Dam — fewer tourists, quiet temples.</div>
+      </div>
+    </div>
+
+    <div class="highlight"><strong>Snapshot:</strong> Population ~8.5 million · Elevation ~1,892m · Time zone UTC+8 · Currency RMB (¥) · Language Mandarin (Yunnan dialect; Yi and Bai languages in rural areas) · Airport Changshui International (KMG)</div>
+  </div>
+
+  <!-- HISTORY & ARCHITECTURE -->
+  <div class="section" id="history">
+    <div class="section-header">
+      <div class="section-icon">🏛️</div>
+      <div class="section-title-group">
+        <h2>History & Architecture</h2>
+        <p>From the ancient Dian Kingdom to southwest China's wartime gateway</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Human settlement around Dianchi Lake stretches back over 30,000 years, with the mysterious Bronze-Age Dian Kingdom laying the foundation of local civilisation. During the Ming Dynasty, the city was laid out as a turtle-shaped walled town — the core of today's old-town layout. In the early 1900s, the French-built Yunnan-Vietnam Railway opened Kunming to global trade, bringing European architecture and cross-border exchange.</p>
+      <p>During World War II, Kunming became China's vital international transport hub via the Burma Road and the Hump air route, sheltering the Southwest Associated University and nurturing generations of scholars. Today it stands as the cultural melting pot of southwest China, where Han, Yi, Bai, Dai, Hani and dozens of other ethnic groups blend mountain, rice-farming, and Southeast Asian folk traditions into a one-of-a-kind regional identity.</p>
+    </div>
+
+    <div class="site-photo site-photo-wide" id="photo-panorama">
+      <div class="photo-fallback">🌆</div>
+      <img id="img-panorama" alt="Kunming skyline panorama" />
+      <div class="photo-caption">Kunming — the Spring City, ringed by green plateau hills</div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🏠</div>
+        <h3>Yunnan "One Seal" Courtyards</h3>
+        <p>The classic vernacular home of central Yunnan — square, walled compounds with inward-sloping tile roofs to capture rainwater, compact and windproof for plateau life.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎭</div>
+        <h3>Multi-Ethnic Village Architecture</h3>
+        <p>A living gallery of Yunnan's diverse dwellings — Dai stilt bamboo houses, Bai three-courtyard homes, Yi earthen flat-roofs, and Hani mushroom-shaped mountain houses.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚂</div>
+        <h3>French Colonial & Railway</h3>
+        <p>Left by the Yunnan-Vietnam Railway — yellow plastered villas, iron railings, arched doorways, and old train stations blending French design with Chinese timber detail.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⛩️</div>
+        <h3>Ming-Qing Temples & Archways</h3>
+        <p>Jinma Biji Archway's twin memorial gates, water-surrounded Yuantong Temple, and Guandu Ancient Town's thousand-year King Kong Pagoda complex.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEIGHBOURHOODS + ATTRACTIONS -->
+  <div class="section" id="neighbourhoods">
+    <div class="section-header">
+      <div class="section-icon">🗺️</div>
+      <div class="section-title-group">
+        <h2>Areas & Sights</h2>
+        <p>Where to go and what to see in each district</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Kunming's essentials fall into a compact downtown core around Cuihu Park, a lakeside zone along Dianchi and the Western Hills, a dedicated ethnic-culture park, old-town alleys, and a karst day trip out to Shilin. Metro and shared bikes connect nearly everything.</p>
+    </div>
+
+    <!-- CUIHU LAKE CULTURAL CIRCLE -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Cuihu Lake Cultural Circle</span>
+        <span class="hood-zh">翠湖文化圈</span>
+        <span class="hood-badge">Iconic · Start Here</span>
+      </div>
+      <p class="hood-desc">A compact, walkable zone blending nature and modern history — city-centre slow leisure, gull feeding in winter, and museums tracing Kunming's wartime role. The natural place to start.</p>
+
+      <div class="site-photo site-photo-sq" id="photo-cuihu" style="max-width: 340px;">
+        <div class="photo-fallback">🦢</div>
+        <img id="img-cuihu" alt="Cuihu Park Kunming" />
+        <div class="photo-caption">Cuihu Park — winter home to migratory black-headed gulls</div>
+      </div>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Cuihu Park <span class="zh">翠湖公园</span></div>
+            <div class="attraction-desc">Kunming's beloved city-centre lake park. Every winter, tens of thousands of black-headed gulls arrive from Siberia — buy bread and feed them by hand, best between 9:00 and 11:30am.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Open 24h</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Yunnan Military Academy <span class="zh">云南陆军讲武堂</span></div>
+            <div class="attraction-desc">A yellow-walled French-influenced military academy that trained generations of national leaders — now a museum documenting Yunnan's modern revolutionary history.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free (reserve ahead)</span>
+            <span class="meta-hours">9:00–17:00, closed Mon</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Southwest Associated University Site <span class="zh">西南联大旧址</span></div>
+            <div class="attraction-desc">The wartime campus that sheltered China's finest scholars after Beijing and Tianjin universities fled the Japanese invasion — a quiet, moving piece of modern history.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Varies</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Flower & Bird Market <span class="zh">花鸟市场</span></div>
+            <div class="attraction-desc">Old lanes packed with fresh flowers, songbirds, and local handicrafts — a snapshot of everyday Kunming life away from the main sights.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Daytime</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="hood-divider">
+
+    <!-- DIANCHI LAKE & WESTERN HILLS -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Dianchi Lake & Western Hills</span>
+        <span class="hood-zh">滇池 · 西山</span>
+        <span class="hood-badge">Plateau Lake · Sunset Cycling</span>
+      </div>
+      <p class="hood-desc">Kunming's defining landscape — a vast plateau lake framed by the "Sleeping Beauty" silhouette of the Western Hills. Cycle the greenway at sunset, or take the cable car up for panoramic overlooks.</p>
+
+      <div class="img-grid-2">
+        <div class="site-photo site-photo-sq" id="photo-longmen">
+          <div class="photo-fallback">⛰️</div>
+          <img id="img-longmen" alt="Western Hills Dragon Gate Kunming" />
+          <div class="photo-caption">Western Hills Dragon Gate — cliffside carvings above Dianchi Lake</div>
+        </div>
+        <div class="site-photo site-photo-sq" id="photo-daguan">
+          <div class="photo-fallback">🌳</div>
+          <img id="img-daguan" alt="Daguan Park Kunming" />
+          <div class="photo-caption">Daguan Park — lakeside gardens on Dianchi's shore</div>
+        </div>
+      </div>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Haigeng Dam Greenway <span class="zh">海埂大坝</span></div>
+            <div class="attraction-desc">A lakeside cycling and walking path along Dianchi's shore. Best at sunset, when the Western Hills silhouette turns gold across the water. Bike rental available on site.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free (bikes ¥15/hr)</span>
+            <span class="meta-hours">Open 24h</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Western Hills Dragon Gate <span class="zh">西山龙门</span></div>
+            <div class="attraction-desc">Cliffside stone carvings reached by cable car or a steep hike, with sweeping panoramic views over the full expanse of Dianchi Lake.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥40 (+¥70 cable car)</span>
+            <span class="meta-hours">8:00–17:30</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="hood-divider">
+
+    <!-- YUNNAN ETHNIC VILLAGE -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Yunnan Ethnic Village</span>
+        <span class="hood-zh">云南民族村</span>
+        <span class="hood-badge">Multi-Ethnic · Full Day</span>
+      </div>
+      <p class="hood-desc">A one-stop, 1:1 scale living gallery of Yunnan's 25 ethnic groups — Dai stilt houses, Bai courtyards, Yi earthen homes, and daily folk performances. Sits directly beside Dianchi Lake; plan a full day.</p>
+
+      <div class="site-photo site-photo-sq" id="photo-luolong" style="max-width: 340px;">
+        <div class="photo-fallback">🌸</div>
+        <img id="img-luolong" alt="Luolong Park Kunming" />
+        <div class="photo-caption">Luolong Park — greenery near the Dianchi lakeside</div>
+      </div>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Yunnan Ethnic Village <span class="zh">云南民族村</span></div>
+            <div class="attraction-desc">Tour all 25 ethnic compound replicas, watch Yi Torch Festival bonfire dances and Dai water-splashing shows, and try a Bai three-course tea ceremony. Evening light shows run on weekends.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥90</span>
+            <span class="meta-hours">8:30–18:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="hood-divider">
+
+    <!-- OLD STREET & GUANDU -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Kunming Old Street & Guandu Ancient Town</span>
+        <span class="hood-zh">昆明老街 · 官渡古镇</span>
+        <span class="hood-badge">Ming-Qing Alleys · Street Food</span>
+      </div>
+      <p class="hood-desc">Original stone-paved lanes and heritage shopfronts, with daily local vendors and century-old snack stalls. Guandu Town, further out, holds ancient temple complexes far from the crowds.</p>
+
+      <div class="img-grid-3">
+        <div class="site-photo site-photo-sq" id="photo-jinma">
+          <div class="photo-fallback">⛩️</div>
+          <img id="img-jinma" alt="Jinma Biji Archway Kunming" />
+          <div class="photo-caption">Jinma Biji Archway — Kunming's symbolic city gate</div>
+        </div>
+        <div class="site-photo site-photo-sq" id="photo-yuantong">
+          <div class="photo-fallback">🛕</div>
+          <img id="img-yuantong" alt="Yuantong Temple Kunming" />
+          <div class="photo-caption">Yuantong Temple — Kunming's oldest major temple</div>
+        </div>
+        <div class="site-photo site-photo-sq" id="photo-xisi">
+          <div class="photo-fallback">🏯</div>
+          <img id="img-xisi" alt="West Temple Pagoda Kunming" />
+          <div class="photo-caption">West Temple Pagoda — old-town heritage architecture</div>
+        </div>
+      </div>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Kunming Old Street & Nanqiang Night Market <span class="zh">昆明老街 · 南强街</span></div>
+            <div class="attraction-desc">Wenchang, Guanghua, and Nanqiang lanes preserve original stone roads and heritage buildings. Food stalls come alive from 4pm to 11pm.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Stalls 16:00–23:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Jinma Biji Archway <span class="zh">金马碧鸡坊</span></div>
+            <div class="attraction-desc">Twin wooden memorial gates and Kunming's symbolic city landmark, surrounded by flower stalls and vintage handicraft shops.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free</span>
+            <span class="meta-hours">Open 24h</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Yuantong Temple <span class="zh">圆通寺</span></div>
+            <div class="attraction-desc">Kunming's oldest major temple, distinctive for its water-surrounded Buddhist halls — an unusual and peaceful layout.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥6</span>
+            <span class="meta-hours">8:00–17:00</span>
+          </div>
+        </div>
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Guandu Ancient Town <span class="zh">官渡古镇</span></div>
+            <div class="attraction-desc">A thousand-year complex anchored by a multi-story stone King Kong Pagoda and ancient courtyard shrines, far quieter than the main old-town lanes.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">Free (halls ¥5–15)</span>
+            <span class="meta-hours">8:00–21:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="hood-divider">
+
+    <!-- SHILIN STONE FOREST -->
+    <div class="hood-block">
+      <div class="hood-title-row">
+        <span class="hood-name">Shilin Stone Forest</span>
+        <span class="hood-zh">石林</span>
+        <span class="hood-badge">Day Trip · World Heritage</span>
+      </div>
+      <p class="hood-desc">Massive grey limestone pillars rising from green valleys, about 1.5 hours from downtown — a World Natural Heritage site and the setting of the Yi Ashima folk legend.</p>
+
+      <div class="site-photo site-photo-wide" id="photo-shilin">
+        <div class="photo-fallback">🗿</div>
+        <img id="img-shilin" alt="Shilin Stone Forest Kunming" />
+        <div class="photo-caption">Shilin Stone Forest — karst limestone pillars, a World Heritage site</div>
+      </div>
+
+      <div class="attraction-list">
+        <div class="attraction-item">
+          <div>
+            <div class="attraction-name">Shilin Stone Forest Scenic Area <span class="zh">石林风景区</span></div>
+            <div class="attraction-desc">Walk the winding stone paths among towering karst formations, including the iconic Shilin sign stone and the Ashima-shaped rock. A shuttle cart is available if you'd rather not walk the whole loop.</div>
+          </div>
+          <div class="attraction-meta">
+            <span class="meta-price">¥130 (+¥25 shuttle)</span>
+            <span class="meta-hours">7:30–18:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ITINERARIES -->
+  <div class="section" id="itineraries">
+    <div class="section-header">
+      <div class="section-icon">📅</div>
+      <div class="section-title-group">
+        <h2>Itineraries</h2>
+        <p>Ready-made day-by-day plans</p>
+      </div>
+    </div>
+
+    <h3 class="h3-style">3-Day Classic Kunming</h3>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 1</div>
+        <div class="itinerary-title">Downtown Spring City & Lake Leisure</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Morning</div>
+          <div class="time-content">
+            <ul>
+              <li>Cuihu Park — feed black-headed gulls (winter) or stroll the lotus ponds (summer)</li>
+              <li>Yunnan Military Academy — explore its yellow French-style museum halls</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Afternoon</div>
+          <div class="time-content">
+            <ul>
+              <li>Kunming Old Street & Nanqiang Night Market for street snacks</li>
+              <li>Jinma Biji Archway — browse flower stalls and vintage handicraft shops</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Evening</div>
+          <div class="time-content">
+            <ul>
+              <li>Cycle Haigeng Dam along Dianchi Lake to watch sunset over the Western Hills</li>
+              <li>Dinner: authentic crossing-the-bridge rice noodles at a century-old restaurant</li>
+            </ul>
+            <p class="time-optional">Optional: lakeside rooftop coffee to watch twilight over the water</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 2</div>
+        <div class="itinerary-title">Multi-Ethnic Culture & Western Hills</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Morning</div>
+          <div class="time-content">
+            <ul>
+              <li>Full morning at Yunnan Ethnic Village — tour ethnic houses, watch folk dance performances</li>
+              <li>Experience a Bai three-course tea ceremony and batik handicraft making</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Afternoon</div>
+          <div class="time-content">
+            <ul>
+              <li>Cable car up Western Hills to the Dragon Gate cliff carvings</li>
+              <li>Hike the overlook platforms for full Dianchi Lake panoramic shots</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Evening</div>
+          <div class="time-content">
+            <ul>
+              <li>Return downtown for wild mushroom hotpot (Jun–Oct) or Yunnan barbecue</li>
+            </ul>
+            <p class="time-optional">Optional: stroll Park 1903's European-style plaza and light fountain show</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 3</div>
+        <div class="itinerary-title">Shilin Stone Forest Karst Day Trip</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Morning</div>
+          <div class="time-content">
+            <ul>
+              <li>Depart early for Shilin Scenic Area — the Great Stone Forest landmark peaks and Ashima Rock</li>
+              <li>Walk the winding stone paths among the towering karst formations</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Afternoon</div>
+          <div class="time-content">
+            <ul>
+              <li>Visit a local Yi village to watch folk singing and embroidery demonstrations</li>
+              <li>Return to Kunming city in the late afternoon</li>
+            </ul>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-label">Evening</div>
+          <div class="time-content">
+            <ul>
+              <li>Flower market shopping for edible rose flower cakes as souvenirs</li>
+            </ul>
+            <p class="time-optional">Optional: night snack tour of tofu pudding, roasted tofu, and fruit stalls</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="site-photo site-photo-wide" style="background: var(--mist); border: 2px dashed var(--border); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:0.5rem;">
+        <div style="font-size:2rem;">🗺️</div>
+        <div style="font-size:0.85rem; color:#999; font-style:italic;">Route map — coming soon</div>
+      </div>
+
+    <h3 class="h3-style">5-Day In-Depth Kunming</h3>
+    <div class="highlight">The 5-day plan builds on the 3-day itinerary above, adding a dedicated Dianchi Lake day and a flower-and-old-town day.</div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 1</div>
+        <div class="itinerary-title">Cuihu Historical Core</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Focus</div>
+          <div class="time-content">
+            <ul>
+              <li>Urban park life, modern revolutionary history, old alley snacks</li>
+              <li>Cuihu Park, Military Academy, Old Street flower and food stalls</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 2</div>
+        <div class="itinerary-title">Dianchi Lake & Western Hills</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Focus</div>
+          <div class="time-content">
+            <ul>
+              <li>Plateau lake ecology, mountain cliff relics, sunset waterfront cycling</li>
+              <li>Haigeng Dam, Dragon Gate, lakeside wetland walks</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 3</div>
+        <div class="itinerary-title">Yunnan Multi-Ethnic Culture</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Focus</div>
+          <div class="time-content">
+            <ul>
+              <li>25 ethnic dwellings, live folk performances, traditional crafts</li>
+              <li>Yunnan Ethnic Village, Bai tea ritual, Yi bonfire dance show</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 4</div>
+        <div class="itinerary-title">Shilin Stone Forest Karst Day Trip</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Focus</div>
+          <div class="time-content">
+            <ul>
+              <li>World natural heritage limestone landscape, Yi mountain village culture</li>
+            </ul>
+            <p class="time-optional">Evening: return to the city for a seasonal wild fungi feast</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itinerary-block">
+      <div class="itinerary-header">
+        <div class="itinerary-day">Day 5</div>
+        <div class="itinerary-title">Ancient Towns & Flower Culture</div>
+      </div>
+      <div class="itinerary-body">
+        <div class="time-block">
+          <div class="time-label">Focus</div>
+          <div class="time-content">
+            <ul>
+              <li>Slow rural heritage, flower markets, off-the-beaten-path local lanes</li>
+              <li>Guandu Ancient Town, Dounan Flower Market, quiet residential backstreets</li>
+            </ul>
+            <p class="time-optional">Evening: final sunset lake walk and farewell Yunnan dinner</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- NICHE ROUTES -->
+  <div class="section" id="niche">
+    <div class="section-header">
+      <div class="section-icon">🎭</div>
+      <div class="section-title-group">
+        <h2>Niche Routes</h2>
+        <p>Theme-based itineraries for deeper exploration</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>These routes are built around a single theme for visitors who want to go deeper than the headline sights. Any of these can slot into a longer trip as a full day or afternoon.</p>
+    </div>
+
+    <div class="route-grid">
+      <div class="route-card">
+        <div class="route-num">Route 01</div>
+        <div class="route-name">Flower & Spring City Slow Route</div>
+        <div class="route-theme">Year-Round Blossoms & Lakeside Relaxation</div>
+        <ul>
+          <li>Cuihu jacaranda lanes</li>
+          <li>Dounan flower market</li>
+          <li>Flower cake workshops</li>
+          <li>Dianchi greenway cycling</li>
+        </ul>
+        <p class="route-style">Low-intensity walking · Best March–November for full blooms</p>
+        <div class="site-photo site-photo-sq" style="background: var(--mist); border: 2px dashed var(--border); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:0.5rem; margin-top:1rem;">
+          <div style="font-size:1.5rem;">🗺️</div>
+          <div style="font-size:0.78rem; color:#999; font-style:italic;">Route map — coming soon</div>
+        </div>
+      </div>
+
+      <div class="route-card">
+        <div class="route-num">Route 02</div>
+        <div class="route-name">Multi-Ethnic Folk Culture Route</div>
+        <div class="route-theme">Indigenous Architecture, Dance & Handicrafts</div>
+        <ul>
+          <li>Yunnan Ethnic Village</li>
+          <li>Local Yi villages near Shilin</li>
+          <li>Batik and embroidery studios</li>
+        </ul>
+        <p class="route-style">Ideal for cultural researchers and costume photography lovers</p>
+        <div class="site-photo site-photo-sq" style="background: var(--mist); border: 2px dashed var(--border); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:0.5rem; margin-top:1rem;">
+          <div style="font-size:1.5rem;">🗺️</div>
+          <div style="font-size:0.78rem; color:#999; font-style:italic;">Route map — coming soon</div>
+        </div>
+      </div>
+
+      <div class="route-card">
+        <div class="route-num">Route 03</div>
+        <div class="route-name">Karst & Nature Day Trip Route</div>
+        <div class="route-theme">Geological Wonders, Plateau Mountain Scenery</div>
+        <ul>
+          <li>Shilin Stone Forest</li>
+          <li>Water wetland parks</li>
+          <li>Alpine lake trails</li>
+        </ul>
+        <p class="route-style">Best in autumn for clear light and vibrant green-and-stone contrast</p>
+        <div class="site-photo site-photo-sq" style="background: var(--mist); border: 2px dashed var(--border); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:0.5rem; margin-top:1rem;">
+          <div style="font-size:1.5rem;">🗺️</div>
+          <div style="font-size:0.78rem; color:#999; font-style:italic;">Route map — coming soon</div>
+        </div>
+      </div>
+
+      <div class="route-card">
+        <div class="route-num">Route 04</div>
+        <div class="route-name">Old Town & Railway Retro Route</div>
+        <div class="route-theme">Ming-Qing Alleys, French Colonial Railway Relics</div>
+        <ul>
+          <li>Kunming Old Street</li>
+          <li>Guandu Ancient Town</li>
+          <li>Kejiu Village vintage Yunnan-Vietnam train installations</li>
+        </ul>
+        <p class="route-style">Perfect for history and retro street photography enthusiasts</p>
+        <div class="site-photo site-photo-sq" style="background: var(--mist); border: 2px dashed var(--border); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:0.5rem; margin-top:1rem;">
+          <div style="font-size:1.5rem;">🗺️</div>
+          <div style="font-size:0.78rem; color:#999; font-style:italic;">Route map — coming soon</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- GETTING THERE -->
+  <div class="section" id="getting-there">
+    <div class="section-header">
+      <div class="section-icon">✈️</div>
+      <div class="section-title-group">
+        <h2>Getting There</h2>
+        <p>Airport, and reaching the city centre</p>
+      </div>
+    </div>
+
+    <h3 class="h3-style">From Changshui International Airport (KMG)</h3>
+    <ul class="bullet-list">
+      <li><span class="li-content"><strong>Metro</strong> — cheapest, most reliable<span class="sub">Direct metro connection into the city centre, covering downtown and the railway stations with English signage throughout.</span></span></li>
+      <li><span class="li-content"><strong>DiDi or taxi</strong> — most convenient<span class="sub">Best option late at night or with heavy luggage; roughly 40–60 minutes to downtown depending on traffic.</span></span></li>
+    </ul>
+
+    <h3 class="h3-style">By Long-Distance Bus</h3>
+    <ul class="bullet-list">
+      <li><span class="li-content"><strong>East Bus Station</strong> — the gateway to Shilin<span class="sub">Frequent coaches run direct to Shilin Stone Forest, making it an easy day trip without a private car.</span></span></li>
+    </ul>
+  </div>
+
+  <!-- GETTING AROUND -->
+  <div class="section" id="getting-around">
+    <div class="section-header">
+      <div class="section-icon">🚇</div>
+      <div class="section-title-group">
+        <h2>Getting Around</h2>
+        <p>Metro, bikes, and lake cable cars</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Kunming's metro network covers downtown, the Ethnic Village, and the railway stations, with English signage throughout. The flat lakeside greenways and old-town alleys are ideal for shared bikes, and a scenic cable car even connects across Dianchi Lake between the Western Hills and the Ethnic Village.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Option</th><th>Best For</th><th>Cost</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>🚇 Metro</td><td>Downtown, Ethnic Village, railway stations</td><td>¥2–7</td><td>Full network, English signage available.</td></tr>
+          <tr><td>🚌 Long-distance bus</td><td>Shilin Stone Forest day trips</td><td>Low cost</td><td>Frequent coaches from East Bus Station.</td></tr>
+          <tr><td>🚲 Shared bikes</td><td>Lakeside greenways, old-town alleys</td><td>Low cost</td><td>Ideal for the flat Dianchi and Cuihu routes.</td></tr>
+          <tr><td>🚗 Ride-hailing</td><td>Early day-trip departures</td><td>Moderate</td><td>Reliable for early starts before public transport ramps up.</td></tr>
+          <tr><td>🚡 Lake cable car</td><td>Crossing Dianchi Lake</td><td>Moderate</td><td>Connects Western Hills and the Ethnic Village with scenic lake views.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tip-box">High plateau elevation brings strong UV radiation year-round — sunscreen, a hat, and sunglasses are worth packing regardless of season.</div>
+  </div>
+
+  <!-- DAY TRIPS -->
+  <div class="section" id="daytrips">
+    <div class="section-header">
+      <div class="section-icon">🚄</div>
+      <div class="section-title-group">
+        <h2>Day Trips</h2>
+        <p>Karst landscapes and flower culture beyond downtown</p>
+      </div>
+    </div>
+
+    <div class="daytrip-grid">
+      <div class="daytrip-card">
+        <h4>Shilin Stone Forest 石林</h4>
+        <div class="daytrip-meta"><span>🚌 ~1.5 hr</span><span>Full day</span></div>
+        <p>World Natural Heritage limestone pillars rising from green valleys, tied to the Yi Ashima folk legend. The single best-known day trip from Kunming.</p>
+      </div>
+      <div class="daytrip-card">
+        <h4>Dounan Flower Market 斗南花市</h4>
+        <div class="daytrip-meta"><span>🚇 ~40 min</span><span>Half day</span></div>
+        <p>Asia's largest fresh flower trading market — arrive early for the lively morning auctions. A vivid, fragrant slice of Kunming's flower culture.</p>
+      </div>
+    </div>
+
+    <div class="tip-box">Most museums close on Mondays — book free-entry venues online in advance during holidays.</div>
+  </div>
+
+  <!-- PRACTICAL INFO -->
+  <div class="section" id="practical">
+    <div class="section-header">
+      <div class="section-icon">📋</div>
+      <div class="section-title-group">
+        <h2>Practical Information</h2>
+        <p>Everything you need before you arrive</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Topic</th><th>Details</th></tr></thead>
+        <tbody>
+          <tr><td>Currency</td><td>Chinese Yuan (RMB / ¥). WeChat Pay and Alipay dominate and now support international cards. Carry small cash for street food stalls.</td></tr>
+          <tr><td>Language</td><td>Mandarin, widely understood in tourist zones. Local Kunming dialect and Yi/Bai ethnic languages are heard in rural areas — save attraction names in Chinese characters for taxi drivers.</td></tr>
+          <tr><td>Internet</td><td>Google, WhatsApp, Instagram, and most Western apps are blocked. Install a VPN <strong>before you arrive</strong> — it cannot be downloaded once inside China. See the <a href="../topics/internet.html" style="color:var(--red);font-weight:600;">internet guide</a>.</td></tr>
+          <tr><td>SIM Card</td><td>Available at Changshui International Airport on arrival — China Mobile, Unicom, and Telecom desks.</td></tr>
+          <tr><td>Emergency</td><td>Police 110 · Fire 119 · Ambulance 120 · Tourist helpline 12301</td></tr>
+          <tr><td>Electricity</td><td>220V / 50Hz. Type I (Australia-style) sockets common. European two-pin also widely fits.</td></tr>
+          <tr><td>Tipping</td><td>Not expected or customary anywhere in Kunming.</td></tr>
+          <tr><td>Sun Protection</td><td>Plateau elevation means strong UV exposure year-round, even on mild or cloudy days. Sunscreen and a hat are worth packing regardless of season.</td></tr>
+          <tr><td>Wild Mushrooms</td><td>Only eat wild fungi at certified local restaurants. Never eat mushrooms picked casually outdoors — misidentification is a genuine seasonal health risk.</td></tr>
+          <tr><td>Visa</td><td>Many nationalities qualify for 144-hour transit or 30-day visa-free entry. Check the <a href="../topics/visa.html" style="color:var(--red);font-weight:600;">visa page</a> for current rules.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="highlight"><strong>Gull season tip:</strong> Migratory black-headed gulls arrive at Cuihu Park and Haigeng Dam from November through March. Bring small bread slices to feed them by hand — one of Kunming's most-loved seasonal rituals.</div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section" id="faq">
+    <div class="section-header">
+      <div class="section-icon">❓</div>
+      <div class="section-title-group">
+        <h2>Frequently Asked Questions</h2>
+        <p>Common questions from first-time Kunming visitors</p>
+      </div>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">How many days do I need in Kunming? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Three days covers the city core, the Ethnic Village, and a Shilin Stone Forest day trip without rushing. Five days lets you add Guandu Ancient Town, the Dounan Flower Market, and a slower pace around Dianchi Lake.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is Kunming's weather really mild all year? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes — the average annual temperature is around 15°C, with no extreme summers or winters. That said, plateau UV exposure is strong year-round, so sun protection matters even in mild weather.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">When is the best time to see the migratory gulls? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Black-headed gulls arrive from Siberia between November and March, congregating at Cuihu Park and Haigeng Dam. Feeding is best in the morning, roughly 9:00 to 11:30am.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is it safe to eat wild mushrooms in Kunming? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Only at certified restaurants — wild mushroom hotpot is a genuine seasonal highlight (June to October), but misidentified fungi picked casually outdoors is a real health risk. Stick to established local restaurants.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I need a VPN, and how do I get one? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes, if you want to use Google, Instagram, WhatsApp, Gmail, or most Western apps — all blocked in mainland China. Download and test a VPN before arriving; it cannot be installed once you're inside the country. See the <a href="../topics/internet.html" style="color:var(--red);">internet guide</a> for recommended options.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is Kunming safe for tourists? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Very safe by international standards. The usual sensible precautions apply — watch for pickpockets in crowded markets, and take standard care at high-elevation sites like Shilin and the Western Hills.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I visit Shilin Stone Forest without a tour group? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes — frequent coaches run from Kunming's East Bus Station, and the site is easy to navigate independently. A shuttle cart is available inside the park if you'd rather not walk the whole loop.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEEP READING -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">📚</div>
+      <div class="section-title-group">
+        <h2>Keep Reading</h2>
+        <p>More guides to help plan your trip</p>
+      </div>
+    </div>
+    <div class="related-grid">
+      <a href="../topics/transport.html" class="related-card">
+        <div class="related-label">Topic</div>
+        <div class="related-title">Getting Around China</div>
+        <div class="related-desc">High-speed rail, metro, DiDi — the full guide to moving around.</div>
+      </a>
+      <a href="../topics/food.html" class="related-card">
+        <div class="related-label">Topic</div>
+        <div class="related-title">Food & Dining</div>
+        <div class="related-desc">How to order, dietary needs, and China's eight regional cuisines.</div>
+      </a>
+      <a href="../topics/money.html" class="related-card">
+        <div class="related-label">Topic</div>
+        <div class="related-title">Money & Payments</div>
+        <div class="related-desc">Setting up Alipay, finding ATMs, and using foreign cards in China.</div>
+      </a>
+      <a href="../topics/internet.html" class="related-card">
+        <div class="related-label">Topic</div>
+        <div class="related-title">Internet & VPNs</div>
+        <div class="related-desc">The Great Firewall explained, and how to stay connected.</div>
+      </a>
+    </div>
+  </div>
+
+  <a href="../index.html" class="back-link">← Back to Home</a>
+</div>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // ── PHOTO LOADER ──
+  const PHOTOS = [
+    {
+      img: 'img-panorama', wrap: 'photo-panorama',
+      src: 'https://images.unsplash.com/photo-1720765499700-c6c3a6f13980?q=80&w=2516&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    {
+      img: 'img-longmen', wrap: 'photo-longmen',
+      src: 'https://images.unsplash.com/photo-1705713502190-3621831f9707?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    {
+      img: 'img-jinma', wrap: 'photo-jinma',
+      src: 'https://images.unsplash.com/photo-1725296765129-3b7e615eb4d2?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    {
+      img: 'img-yuantong', wrap: 'photo-yuantong',
+      src: 'https://images.unsplash.com/photo-1718182662553-a70c5bdabd2a?q=80&w=772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    {
+      img: 'img-xisi', wrap: 'photo-xisi',
+      src: 'https://images.unsplash.com/photo-1667870982041-68523d9cad78?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    {
+      img: 'img-shilin', wrap: 'photo-shilin',
+      src: 'https://images.unsplash.com/photo-1711887365737-2851dc54f72b?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+    {
+      img: 'img-cuihu', wrap: 'photo-cuihu',
+      src: 'https://images.unsplash.com/photo-1753597510326-f3f06f5fdf6f?q=80&w=772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    },
+  ];
+
+  const PEXELS = [
+    {
+      img: 'img-daguan', wrap: 'photo-daguan',
+      src: 'https://images.pexels.com/photos/19636078/pexels-photo-19636078.jpeg'
+    },
+    {
+      img: 'img-luolong', wrap: 'photo-luolong',
+      src: 'https://images.pexels.com/photos/35233488/pexels-photo-35233488.jpeg'
+    },
+  ];
+
+  function loadPhotos() {
+    PHOTOS.forEach(({ img: imgId, wrap: wrapId, src }) => {
+      const imgEl = document.getElementById(imgId);
+      const wrapEl = document.getElementById(wrapId);
+      if (!imgEl || !wrapEl) return;
+      imgEl.onload = () => {
+        imgEl.classList.add('loaded');
+        wrapEl.classList.add('loaded');
+      };
+      imgEl.onerror = () => imgEl.remove();
+      imgEl.src = src;
+    });
+  }
+
+  function loadPexels() {
+    PEXELS.forEach(({ img: imgId, wrap: wrapId, src }) => {
+      const imgEl = document.getElementById(imgId);
+      const wrapEl = document.getElementById(wrapId);
+      if (!imgEl || !wrapEl) return;
+      imgEl.onload = () => {
+        imgEl.classList.add('loaded');
+        wrapEl.classList.add('loaded');
+      };
+      imgEl.onerror = () => { imgEl.style.display = 'none'; };
+      imgEl.src = src;
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    loadPhotos();
+    loadPexels();
+  });
+</script>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo-text">China Awaits</div>
+        <div class="footer-tagline">Your trusted guide for exploring China · chinaawaits.com</div>
+      </div>
+      <div class="footer-nav">
+        <a href="../index.html#cities">Cities</a>
+        <a href="../index.html#topics">Topics</a>
+        <a href="../index.html#essentials">Essentials</a>
+        <a href="../contact.html" class="footer-contact">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 China Awaits. All rights reserved.</span>
+      <span>chinaawaits.com</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
